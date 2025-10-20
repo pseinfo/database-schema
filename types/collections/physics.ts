@@ -43,4 +43,35 @@ export type PhysicsCollection = Collection< {
         adiabaticIndex?: Single< PrimitiveProperty< number > >;
     } >;
 
+    // Hardness properties
+    hardness?: Group< {
+        brinellHardness?: Single< PrimitiveProperty< number > >;
+        mohsHardness?: Single< PrimitiveProperty< number > >;
+        vickersHardness?: Single< PrimitiveProperty< number > >;
+        rockwellHardness?: Single< PrimitiveProperty< number > >;
+        knooHardness?: Single< PrimitiveProperty< number > >;
+    } >;
+
+    // Elasticity and mechanical properties
+    elasticity?: Group< {
+        bulkModulus?: Single< NumberProperty< 'pressure' > >;
+        shearModulus?: Single< NumberProperty< 'pressure' > >;
+        youngModulus?: Single< NumberProperty< 'pressure' > >;
+        poissonRatio?: Single< PrimitiveProperty< number > >;
+        compressibility?: Single< NumberProperty< 'compressibility' > >;
+        tensileStrength?: Single< NumberProperty< 'pressure' > >;
+        yieldStrength?: Single< NumberProperty< 'pressure' > >;
+        ultimateStrength?: Single< NumberProperty< 'pressure' > >;
+    } >;
+
+    // Electrical properties
+    electricity?: Group< {
+        electricalConductivity?: Single< NumberProperty< 'electricalConductivity' > >;
+        electricalResistivity?: Single< NumberProperty< 'electricalResistivity' > >;
+        temperatureCoefficient?: Single< NumberProperty< 'temperatureCoefficient' > >;
+        superconductingPoint?: Single< NumberProperty< 'temperature' > >;
+        bandGap?: Single< NumberProperty< 'energy' > >;
+        dielectricConstant?: Single< PrimitiveProperty< number > >;
+    } >;
+
 } >;
