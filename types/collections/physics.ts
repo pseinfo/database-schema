@@ -4,13 +4,14 @@
  */
 
 import { Collection, Group, Single } from '../abstract/collection';
+import { Phase } from '../abstract/const';
 import { CoupledNumberProperty, NumberProperty, PrimitiveProperty } from '../abstract/property';
 
 export type PhysicsCollection = Collection< {
 
     // Fundamental physical properties
     density?: Single< NumberProperty< 'density' > >;
-    phase?: Single< PrimitiveProperty< 'solid' | 'liquid' | 'gaseous' | 'plasma' | 'unknown' > >;
+    phase?: Single< PrimitiveProperty< Phase > >;
 
     // Temperature-related properties
     temperature?: Group< {
@@ -81,7 +82,7 @@ export type PhysicsCollection = Collection< {
     // Magnetic properties
     magnetism?: Group< {
         magneticOrdering?: Single< PrimitiveProperty<
-            'diamagnetic' | 'paramagnetic' | 'ferromagnetic' | 
+            'diamagnetic' | 'paramagnetic' | 'ferromagnetic' |
             'antiferromagnetic' | 'ferrimagnetic' | 'superparamagnetic'
         > >;
         magneticSusceptibility?: Single< NumberProperty< 'magneticSusceptibility' > >;
