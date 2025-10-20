@@ -5,8 +5,7 @@ export type PhysicsCollection = Collection< {
 
     // Fundamental physical properties
     density?: Single< NumberProperty< 'density' > >;
-    phase?: Single< PrimitiveProperty< 'solid' | 'liquid' | 'gas' | 'unknown' > >;
-    soundSpeed?: Single< NumberProperty< 'velocity' > >;
+    phase?: Single< PrimitiveProperty< 'solid' | 'liquid' | 'gaseous' | 'plasma' | 'unknown' > >;
 
     // Temperature-related properties
     temperature?: Group< {
@@ -100,9 +99,26 @@ export type PhysicsCollection = Collection< {
         transmittance?: Single< PrimitiveProperty< number > >;
         opacity?: Single< PrimitiveProperty< number > >;
         color?: Single< PrimitiveProperty< string > >;
-        luster?: Single< PrimitiveProperty<
-            'metallic' | 'vitreous' | 'pearly' | 'dull' | 'adamantine'
-        > >;
+        luster?: Single< PrimitiveProperty< 'metallic' | 'vitreous' | 'pearly' | 'dull' | 'adamantine' > >;
+    } >;
+
+    // Acoustic properties
+    acoustics?: Group< {
+        soundSpeed?: Single< NumberProperty< 'velocity' > >;
+        acousticImpedance?: Single< NumberProperty< 'acousticImpedance' > >;
+        attenuationCoefficient?: Single< NumberProperty< 'attenuationCoefficient' > >;
+    } >;
+
+    // Surface properties
+    surface?: Group< {
+        surfaceTension?: Single< NumberProperty< 'surfaceTension' > >;
+        contactAngle?: Single< NumberProperty< 'angle' > >;
+    } >;
+
+    // Viscosity and flow properties
+    viscosity?: Group< {
+        dynamicViscosity?: Single< NumberProperty< 'dynamicViscosity' > >;
+        kinematicViscosity?: Single< NumberProperty< 'kinematicViscosity' > >;
     } >;
 
 } >;
