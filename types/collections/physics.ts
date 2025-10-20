@@ -74,4 +74,21 @@ export type PhysicsCollection = Collection< {
         dielectricConstant?: Single< PrimitiveProperty< number > >;
     } >;
 
+    // Magnetic properties
+    magnetism?: Group< {
+        magneticOrdering?: Single< PrimitiveProperty<
+            'diamagnetic' | 'paramagnetic' | 'ferromagnetic' | 
+            'antiferromagnetic' | 'ferrimagnetic' | 'superparamagnetic'
+        > >;
+        magneticSusceptibility?: Single< NumberProperty< 'magneticSusceptibility' > >;
+        molarMagneticSusceptibility?: Single< NumberProperty< 'molarMagneticSusceptibility' > >;
+        massMagneticSusceptibility?: Single< NumberProperty< 'massMagneticSusceptibility' > >;
+        curiePoint?: Single< NumberProperty< 'temperature' > >;
+        neelPoint?: Single< NumberProperty< 'temperature' > >;
+        magneticMoment?: Single< NumberProperty< 'magneticMoment' > >;
+        coercivity?: Single< NumberProperty< 'magneticFieldStrength' > >;
+        remanence?: Single< NumberProperty< 'magneticFluxDensity' > >;
+        permeability?: Single< NumberProperty< 'magneticPermeability' > >;
+    } >;
+
 } >;
