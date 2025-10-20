@@ -91,4 +91,18 @@ export type PhysicsCollection = Collection< {
         permeability?: Single< NumberProperty< 'magneticPermeability' > >;
     } >;
 
+    // Optical properties
+    optics?: Group< {
+        refractiveIndex?: Single< PrimitiveProperty< number > >;
+        reflectance?: Single< PrimitiveProperty< number > >;
+        absorptionCoefficient?: Single< NumberProperty< 'absorptionCoefficient' > >;
+        emissivity?: Single< PrimitiveProperty< number > >;
+        transmittance?: Single< PrimitiveProperty< number > >;
+        opacity?: Single< PrimitiveProperty< number > >;
+        color?: Single< PrimitiveProperty< string > >;
+        luster?: Single< PrimitiveProperty<
+            'metallic' | 'vitreous' | 'pearly' | 'dull' | 'adamantine'
+        > >;
+    } >;
+
 } >;
