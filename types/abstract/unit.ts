@@ -69,3 +69,26 @@ export type PhysicalQuantity = ( typeof PhysicalQuantity )[ number ];
  * [time, length, mass, electricCurrent, temperature, amountOfSubstance, luminousIntensity]
  */
 type DimensionVector = [ number, number, number, number, number, number, number ];
+
+// Type describing a physical unit
+type Unit = {
+    symbol: string;
+    name?: string;
+    isBase?: boolean;
+    conversion?: {
+        factor: number;
+        offset?: number;
+    };
+}
+
+// Type describing a physical quantity and its units
+type Quantity< Q extends PhysicalQuantity > = {
+    dimension?: {
+        symbol: string;
+        name: string;
+        si: Q extends SIDimension ? true : false;
+        vector: DimensionVector;
+    };
+    baseUnit: string;
+    units: Record< string, Unit >;
+}
