@@ -71,6 +71,10 @@ export const MagneticOrdering = [
 
 export type MagneticOrdering = ( typeof MagneticOrdering )[ number ];
 
+// Oxide character
+export const OxideCharacter = [ 'acidic', 'amphoteric','basic' ] as const;
+export type OxideCharacter = ( typeof OxideCharacter )[ number ];
+
 // Basicity character
 export const BasicityCharacter = [
     'strongAcidic', 'acidic', 'moderateAcidic', 'weakAcidic', 'amphoteric', 'weakBasic',
@@ -86,3 +90,11 @@ export type LewisModule = ( typeof LewisModule )[ number ];
 // HSAB theory
 export const HSAB = [ 'hard', 'borderline', 'soft' ] as const;
 export type HSAB = ( typeof HSAB )[ number ];
+
+// Bonding type
+export const BondType = [ 'ionic', 'covalent', 'metallic', 'vdw', 'hydrogen' ] as const;
+export type BondType = ( typeof BondType )[ number ];
+
+// Bond hybridization
+export const BondHybrid = [ 'sp', 'sp2', 'sp3', 'sp3d', 'sp3d2', 'sp3d3' ] as const;
+export type BondHybrid = ( typeof BondHybrid )[ number ];
