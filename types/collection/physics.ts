@@ -24,6 +24,7 @@ export type PhysicsCollection = Collection< {
         autoignitionTemp?: Single< NumberProperty< 'temperature' > >;
         criticalPoint?: Single< CoupledNumberProperty< 'temperature' | 'pressure' > >;
         triplePoint?: Single< CoupledNumberProperty< 'temperature' | 'pressure' > >;
+        debyeTemp?: Single< NumberProperty< 'temperature' > >;
     } >;
 
     // Enthalpy properties
