@@ -1,3 +1,8 @@
+/**
+ * Atomics Collection
+ * Collection of atomic properties for chemical elements.
+ */
+
 import { Collection, Distinct, Group, Single } from '../abstract/collection';
 import { ShellModel } from '../abstract/const';
 import { ArrayProperty, NumberProperty, PrimitiveProperty } from '../abstract/property';
@@ -9,7 +14,7 @@ export type AtomicsCollection = Collection< {
     massNumber?: Distinct< number >;
 
     // Electron configuration
-    electronConfiguration?: Single< PrimitiveProperty< string > >;
+    electronConfig?: Single< PrimitiveProperty< string > >;
     shellModel?: Distinct< { [ K in ShellModel ]?: number } >;
 
     // Ionization energy

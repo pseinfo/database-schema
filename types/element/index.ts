@@ -5,6 +5,7 @@
 
 import { Collection } from '../abstract/collection';
 import { FormCollection } from '../abstract/form';
+import { AtomicsCollection } from '../collection/atomics';
 import { ChemistryCollection } from '../collection/chemistry';
 import { MetaData } from '../collection/generic';
 import { PhysicsCollection } from '../collection/physics';
@@ -31,6 +32,7 @@ type SingleElement = Collection< {
     classification: ClassificationCollection;
     descriptive: DescriptiveCollection;
     physics?: PhysicsCollection;
+    atomics?: AtomicsCollection;
     chemistry?: ChemistryCollection;
     safety?: SafetyCollection;
 } >;
