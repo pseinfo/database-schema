@@ -36,4 +36,13 @@ export type ChemistryCollection = Collection< {
     // Crystallographic properties
     crystal?: CrystalSystemGroup;
 
+    // Electrochemical properties
+    electrochemistry?: Group< {
+        standardPotential?: Single< NumberProperty< 'electricPotential' > >;
+        standardReductionPotential?: Single< NumberProperty< 'electricPotential' > >;
+        standardOxidationPotential?: Single< NumberProperty< 'electricPotential' > >;
+        overpotential?: Single< NumberProperty< 'electricPotential' > >;
+        electrochemicalEquivalent?: Single< NumberProperty< 'mass' > >;
+    } >;
+
 } >;
