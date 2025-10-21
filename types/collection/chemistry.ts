@@ -1,3 +1,8 @@
+/**
+ * Chemistry Collection
+ * Defined collection types for chemical properties and data.
+ */
+
 import { Collection, Distinct, Group, Single } from '../abstract/collection';
 import { BasicityCharacter, BondHybrid, BondType, HSAB, LewisModule, OxideCharacter } from '../abstract/const';
 import { NumberProperty, PrimitiveProperty } from '../abstract/property';
