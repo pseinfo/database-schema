@@ -1,6 +1,6 @@
 import { Distinct, Group } from '../abstract/collection';
 
-// 
+// Define types for various chemical registry identifiers
 export type CASNumber = `${number}-${number}-${number}`;
 export type PubChemCID = `${number}`;
 export type ChemSpiderID = `${number}`;
@@ -18,7 +18,7 @@ export type GmelinNumber = `${number}`;
 export type PDBID = string;
 export type WikidataID = `Q${number}`;
 
-// 
+// Group type for chemical registry identifiers
 export type RegistryGroup = Group< {
 
     // Primary identifiers
@@ -55,4 +55,26 @@ export type RegistryGroup = Group< {
     // Additional identifiers
     wikidata?: Distinct< WikidataID >;
 
+} >;
+
+// Define types for various chemical structure representations
+export type InChI = `InChI=${string}`;
+export type InChIKey = `${string}-${string}-${string}`;
+export type SMILES = string;
+export type SMARTS = string;
+export type CanonicalSMILES = string;
+export type IsomericSMILES = string;
+export type WLN = string;
+export type IUPACName = string;
+
+// Group type for chemical structure representations
+export type StructureGroup = Group< {
+    inChI: Distinct< InChI >;
+    inChIkey: Distinct< InChIKey >;
+    smiles?: Distinct< SMILES >;
+    smarts?: Distinct< SMARTS >;
+    canonicalSmiles?: Distinct< CanonicalSMILES >;
+    isomericSmiles?: Distinct< IsomericSMILES >;
+    wln?: Distinct< WLN >;
+    iupacName?: Distinct< IUPACName >;
 } >;
