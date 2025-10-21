@@ -1,6 +1,12 @@
-import { Distinct, Group, Single } from '../abstract/collection';
+/**
+ * Generic Collection Types
+ * Defined common collection types for various data groups.
+ */
+
+import { Distinct, Group, LangGroup, Single } from '../abstract/collection';
 import { NumberProperty, PrimitiveProperty } from '../abstract/property';
 
+// Natural abundance data for elements, minerals, isotopes, etc.
 export type AbundanceGroup = Group< {
 
     // Cosmic abundance
@@ -25,6 +31,7 @@ export type AbundanceGroup = Group< {
 
 } >;
 
+// Discovery information group
 export type DiscoveryGroup = Group< {
     year?: Distinct< number >;
     discoverer?: Distinct< string | string[] >;
@@ -32,6 +39,7 @@ export type DiscoveryGroup = Group< {
     institute?: Distinct< string >;
 } >;
 
+// Group for media files associated with an entry
 export type MediaGroup = Group< {
 
     // Images
@@ -61,4 +69,17 @@ export type MediaGroup = Group< {
         url?: string;
     }[] >;
 
+} >;
+
+// Group for web links associated with an entry
+export type WeblinksGroup = Group< {
+    links?: Distinct< {
+        url: string;
+        text?: string;
+        description?: string;
+        archiveUrl?: string;
+        accessed?: string;
+        language?: string;
+    }[] >;
+    wiki?: LangGroup;
 } >;
