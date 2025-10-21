@@ -24,11 +24,11 @@ interface BaseFields< T extends ReferenceType > {
 
 interface BibTeXFields {
     address?: string;
-    author?: string;
+    author?: string | string[];
     booktitle?: string;
     chapter?: string;
     edition?: string;
-    editor?: string;
+    editor?: string | string[];
     howpublished?: string;
     institution?: string;
     isbn?: string;
