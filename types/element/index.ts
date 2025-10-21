@@ -5,6 +5,7 @@
 
 import { Collection } from '../abstract/collection';
 import { MetaData } from '../collection/generic';
+import { PhysicsCollection } from '../collection/physics';
 import { ClassificationCollection } from './classification';
 import { DescriptiveCollection } from './descriptive';
 
@@ -26,6 +27,7 @@ export type ElementSymbol = ( typeof ElementSymbol )[ number ];
 type SingleElement = Collection< {
     classification: ClassificationCollection;
     descriptive: DescriptiveCollection;
+    physics?: PhysicsCollection;
 } >;
 
 // Collection type for all elements, indexed by their symbol
