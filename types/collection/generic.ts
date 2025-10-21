@@ -6,6 +6,7 @@
 import { Distinct, Group, LangGroup, Single } from '../abstract/collection';
 import { CrystalStructure } from '../abstract/const';
 import { NumberProperty, PrimitiveProperty } from '../abstract/property';
+import { RangeValue, SingleValue } from '../abstract/value';
 
 // Meta data / schema version
 export type MetaData = Distinct< {
@@ -108,3 +109,12 @@ export type CrystalSystemGroup = Group< {
         gamma?: Distinct< number >;
     } >;
 } >;
+
+// Toxicity information
+export type Toxicity = Distinct< {
+    type: 'EC50' | 'LC50' | 'LD50' | 'TD50' | 'LOAEL' | 'LOEL' | 'NOAEL' | 'NOEL';
+    organism: string;
+    value: SingleValue< 'massFraction' > | RangeValue< 'massFraction' >;
+    application?: 'oral' | 'dermal' | 'inhalation' | 'intravenous' | 'intraperitoneal' | 'subcutaneous';
+    duration?: string;
+}[] >;
