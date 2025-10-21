@@ -8,7 +8,7 @@ import { LiteralUnion } from './utils';
 
 // Utility types
 export type Single< T extends Property > = T | T[];
-export type Distinct< T = unknown > = T | T[];
+export type Distinct< T = unknown > = T;
 export type Group< T extends Record< string, Single< Property > | Distinct< unknown > > > = T;
 export type LangGroup< L extends string = 'en' > = Group< {
     [ K in LiteralUnion< L > ]: Distinct< string >;
