@@ -70,3 +70,11 @@ export const MagneticOrdering = [
 ] as const;
 
 export type MagneticOrdering = ( typeof MagneticOrdering )[ number ];
+
+// Basicity character
+export const BasicityCharacter = [ 'acidic', 'basic', 'amphoteric', 'neutral' ] as const;
+export type BasicityCharacter = ( typeof BasicityCharacter )[ number ];
+
+// Lewis module
+export const LewisModule = [ 'strong', 'moderate', 'weak', 'none' ] as const;
+export type LewisModule = ( typeof LewisModule )[ number ];
