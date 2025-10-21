@@ -1,3 +1,8 @@
+/**
+ * Chemical Registry and Structure Types
+ * Property groups for various chemical identifiers and structure representations.
+ */
+
 import { Distinct, Group } from '../abstract/collection';
 
 // Define types for various chemical registry identifiers
