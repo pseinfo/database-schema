@@ -1,3 +1,8 @@
+/**
+ * Abstract Value Types
+ * Definitions for various types of values used in the schema.
+ */
+
 import { Uncertainty } from './uncertainty';
 import { PhysicalQuantity, UnitId } from './unit';
 import { Primitive, RequireAtLeastOne, StrictSubset } from './utils';
