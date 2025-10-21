@@ -62,3 +62,11 @@ export const CrystalStructure = [
 ] as const;
 
 export type CrystalStructure = ( typeof CrystalStructure )[ number ];
+
+// Magnetic ordering
+export const MagneticOrdering = [
+    'diamagnetic', 'paramagnetic', 'ferromagnetic', 'antiferromagnetic',
+    'ferrimagnetic', 'superparamagnetic'
+] as const;
+
+export type MagneticOrdering = ( typeof MagneticOrdering )[ number ];

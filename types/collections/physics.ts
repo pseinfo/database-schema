@@ -4,7 +4,7 @@
  */
 
 import { Collection, Group, Single } from '../abstract/collection';
-import { Phase } from '../abstract/const';
+import { MagneticOrdering, Phase } from '../abstract/const';
 import { CoupledNumberProperty, NumberProperty, PrimitiveProperty } from '../abstract/property';
 
 export type PhysicsCollection = Collection< {
@@ -81,10 +81,7 @@ export type PhysicsCollection = Collection< {
 
     // Magnetic properties
     magnetism?: Group< {
-        magneticOrdering?: Single< PrimitiveProperty<
-            'diamagnetic' | 'paramagnetic' | 'ferromagnetic' |
-            'antiferromagnetic' | 'ferrimagnetic' | 'superparamagnetic'
-        > >;
+        magneticOrdering?: Single< PrimitiveProperty< MagneticOrdering > >;
         magneticSusceptibility?: Single< NumberProperty< 'magneticSusceptibility' > >;
         molarMagneticSusceptibility?: Single< NumberProperty< 'molarMagneticSusceptibility' > >;
         massMagneticSusceptibility?: Single< NumberProperty< 'massMagneticSusceptibility' > >;
