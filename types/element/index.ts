@@ -7,6 +7,7 @@ import { Collection } from '../abstract/collection';
 import { FormCollection } from '../abstract/form';
 import { MetaData } from '../collection/generic';
 import { PhysicsCollection } from '../collection/physics';
+import { SafetyCollection } from '../collection/safety';
 import { ClassificationCollection } from './classification';
 import { DescriptiveCollection } from './descriptive';
 
@@ -29,6 +30,7 @@ type SingleElement = Collection< {
     classification: ClassificationCollection;
     descriptive: DescriptiveCollection;
     physics?: PhysicsCollection;
+    safety?: SafetyCollection;
 } >;
 
 // Collection type for all elements, indexed by their symbol
