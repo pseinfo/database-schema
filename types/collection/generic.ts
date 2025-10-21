@@ -6,6 +6,14 @@
 import { Distinct, Group, LangGroup, Single } from '../abstract/collection';
 import { NumberProperty, PrimitiveProperty } from '../abstract/property';
 
+// Meta data / schema version
+export type MetaData = Distinct< {
+    "@metadata": {
+        schemaVersion: 1;
+        lastModified: string;
+    };
+} >;
+
 // Natural abundance data for elements, minerals, isotopes, etc.
 export type AbundanceGroup = Group< {
 

@@ -1,7 +1,12 @@
+/**
+ * Classification Collection
+ * Defines the classification data structure for elements.
+ */
+
 import { Collection, Distinct } from '../abstract/collection';
 import { ElementBlock, ElementGroup, ElementSet, Goldschmidt, NaturalOccurrence, Phase, Superconductivity } from '../abstract/const';
 
-export type ElementClassificationCollection = Collection< {
+export type ClassificationCollection = Collection< {
     symbol: Distinct< string >;
     atomicNumber: Distinct< number >;
     block: Distinct< ElementBlock >;

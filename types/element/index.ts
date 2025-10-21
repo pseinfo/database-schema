@@ -1,3 +1,13 @@
+/**
+ * Element Collection
+ * Defines the collection for chemical elements in the periodic table.
+ */
+
+import { Collection } from '../abstract/collection';
+import { MetaData } from '../collection/generic';
+import { ClassificationCollection } from './classification';
+import { DescriptiveCollection } from './descriptive';
+
 // List of all element symbols from the periodic table
 export const ElementSymbol = [
     'h', 'he', 'li', 'be', 'b', 'c', 'n', 'o', 'f', 'ne', 'na', 'mg', 'al', 'si', 'p', 's',
@@ -11,3 +21,14 @@ export const ElementSymbol = [
 ] as const;
 
 export type ElementSymbol = ( typeof ElementSymbol )[ number ];
+
+// Type for a single element entry (all properties)
+type SingleElement = Collection< {
+    classification: ClassificationCollection;
+    descriptive: DescriptiveCollection;
+} >;
+
+// Collection type for all elements, indexed by their symbol
+export type ElementCollection = {
+    [ K in ElementSymbol ]: MetaData & SingleElement & {};
+};
