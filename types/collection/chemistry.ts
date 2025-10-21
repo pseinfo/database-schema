@@ -1,4 +1,4 @@
-import { Collection, Group, Single } from '../abstract/collection';
+import { Collection, Distinct, Group, Single } from '../abstract/collection';
 import { BasicityCharacter, LewisModule } from '../abstract/const';
 import { NumberProperty, PrimitiveProperty } from '../abstract/property';
 import { CrystalSystemGroup } from './generic';
@@ -17,7 +17,7 @@ export type ChemistryCollection = Collection< {
         lewisAcidity?: Single< PrimitiveProperty< LewisModule > >;
         lewisBasicity?: Single< PrimitiveProperty< LewisModule > >;
         hsab?: Single< PrimitiveProperty< 'hard' | 'borderline' | 'soft' > >;
-    }>;
+    } >;
 
     // Electronegativity
     electronegativity?: Group< {
@@ -31,6 +31,9 @@ export type ChemistryCollection = Collection< {
         pearson?: Single< NumberProperty< 'energy' > >;
         martynov?: Single< PrimitiveProperty< number > >;
         gordy?: Single< PrimitiveProperty< number > >;
-    }>;
+    } >;
+
+    // Crystallographic properties
+    crystal?: CrystalSystemGroup;
 
 } >;
