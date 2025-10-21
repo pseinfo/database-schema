@@ -19,4 +19,18 @@ export type ChemistryCollection = Collection< {
         hsab?: Single< PrimitiveProperty< 'hard' | 'borderline' | 'soft' > >;
     }>;
 
+    // Electronegativity
+    electronegativity?: Group< {
+        pauling?: Single< PrimitiveProperty< number > >;
+        sanderson?: Single< PrimitiveProperty< number > >;
+        allredRochow?: Single< PrimitiveProperty< number > >;
+        mulliken?: Single< PrimitiveProperty< number > >;
+        allen?: Single< PrimitiveProperty< number > >;
+        ghoshGupta?: Single< NumberProperty< 'energy' > >;
+        nagle?: Single< PrimitiveProperty< number > >;
+        pearson?: Single< NumberProperty< 'energy' > >;
+        martynov?: Single< PrimitiveProperty< number > >;
+        gordy?: Single< PrimitiveProperty< number > >;
+    }>;
+
 } >;
