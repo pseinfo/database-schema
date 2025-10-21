@@ -4,6 +4,7 @@
  */
 
 import { Distinct, Group, LangGroup, Single } from '../abstract/collection';
+import { CrystalStructure } from '../abstract/const';
 import { NumberProperty, PrimitiveProperty } from '../abstract/property';
 
 // Meta data / schema version
@@ -90,4 +91,20 @@ export type WeblinksGroup = Group< {
         language?: string;
     }[] >;
     wiki?: LangGroup;
+} >;
+
+// Crystal structure information
+export type CrystalSystemGroup = Group< {
+    crystalStructure?: Distinct< CrystalStructure >;
+    pearsonSymbol?: Distinct< string >;
+    spaceGroup?: Distinct< string >;
+    spaceGroupNumber?: Distinct< number >;
+    latticeConstant?: Group< {
+        a?: Distinct< number >;
+        b?: Distinct< number >;
+        c?: Distinct< number >;
+        alpha?: Distinct< number >;
+        beta?: Distinct< number >;
+        gamma?: Distinct< number >;
+    } >;
 } >;
