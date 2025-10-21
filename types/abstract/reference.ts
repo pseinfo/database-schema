@@ -3,7 +3,7 @@
  * Defines types and structures for bibliographic references based on BibTeX.
  */
 
-import { ExtractFrom, RequireAtLeastOne, RequireExactlyOne, StrictSubset } from '../abstract/utils';
+import { ExtractFrom, RequireAtLeastOne, RequireExactlyOne, StrictSubset } from './utils';
 
 // Reference types based on BibTeX
 export const ReferenceType = [
