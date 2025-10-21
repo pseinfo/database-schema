@@ -82,3 +82,7 @@ export type BasicityCharacter = ( typeof BasicityCharacter )[ number ];
 // Lewis module
 export const LewisModule = [ 'strong', 'moderate', 'weak', 'none' ] as const;
 export type LewisModule = ( typeof LewisModule )[ number ];
+
+// HSAB theory
+export const HSAB = [ 'hard', 'borderline', 'soft' ] as const;
+export type HSAB = ( typeof HSAB )[ number ];

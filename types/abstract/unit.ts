@@ -44,7 +44,7 @@ export const PhysicalQuantity = [ ...SIDimension,
     'amountConcentration', 'massConcentration', 'molality', 'molarMass', 'molarVolume',
     'molarEnergy', 'molarEntropy', 'molarHeatCapacity', 'catalyticActivity',
     'catalyticConcentration', 'massFraction', 'moleFraction', 'volumeFraction',
-    'specificSurfaceArea', 'surfaceConcentration',
+    'specificSurfaceArea', 'surfaceConcentration', 'concentration',
 
     // Acoustics
     'soundPressure', 'soundIntensity', 'soundPower', 'acousticImpedance',

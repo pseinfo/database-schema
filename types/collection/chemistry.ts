@@ -1,5 +1,5 @@
-import { Collection, Distinct, Group, Single } from '../abstract/collection';
-import { BasicityCharacter, LewisModule } from '../abstract/const';
+import { Collection, Group, Single } from '../abstract/collection';
+import { BasicityCharacter, HSAB, LewisModule } from '../abstract/const';
 import { NumberProperty, PrimitiveProperty } from '../abstract/property';
 import { CrystalSystemGroup } from './generic';
 
@@ -16,7 +16,7 @@ export type ChemistryCollection = Collection< {
         pKb?: Single< PrimitiveProperty< number > >;
         lewisAcidity?: Single< PrimitiveProperty< LewisModule > >;
         lewisBasicity?: Single< PrimitiveProperty< LewisModule > >;
-        hsab?: Single< PrimitiveProperty< 'hard' | 'borderline' | 'soft' > >;
+        hsab?: Single< PrimitiveProperty< HSAB > >;
     } >;
 
     // Electronegativity
@@ -43,6 +43,12 @@ export type ChemistryCollection = Collection< {
         standardOxidationPotential?: Single< NumberProperty< 'electricPotential' > >;
         overpotential?: Single< NumberProperty< 'electricPotential' > >;
         electrochemicalEquivalent?: Single< NumberProperty< 'mass' > >;
+    } >;
+
+    // Solubility
+    solubility?: Group< {
+        waterSolubility?: Single< NumberProperty< 'concentration' > >;
+        henryConstant?: Single< NumberProperty< 'pressure' > >;
     } >;
 
 } >;
