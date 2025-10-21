@@ -1,5 +1,5 @@
 import { Distinct, Group, Single } from '../abstract/collection';
-import { NumberProperty } from '../abstract/property';
+import { NumberProperty, PrimitiveProperty } from '../abstract/property';
 
 export type AbundanceGroup = Group< {
 
@@ -30,4 +30,35 @@ export type DiscoveryGroup = Group< {
     discoverer?: Distinct< string | string[] >;
     country?: Distinct< string >;
     institute?: Distinct< string >;
+} >;
+
+export type MediaGroup = Group< {
+
+    // Images
+    images?: Distinct< {
+        url: string;
+        credits: string;
+        license: string;
+        author?: string;
+        source?: string;
+        width?: number;
+        height?: number;
+        format?: 'jpg' | 'png' | 'svg' | 'webp';
+    }[] >;
+
+    // Spectral analyses
+    spectrum?: Group< {
+        absorption?: PrimitiveProperty< string >;
+        emission?: PrimitiveProperty< string >;
+        uv?: PrimitiveProperty< string >;
+        xray?: PrimitiveProperty< string >;
+    } >;
+
+    // 3D structures
+    structure3D?: Distinct< {
+        format: 'pdb' | 'mol' | 'sdf' | 'xyz' | 'cif';
+        data: string;
+        url?: string;
+    }[] >;
+
 } >;
