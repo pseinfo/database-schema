@@ -12,7 +12,7 @@ type SingleNuclide = Collection< {} >;
 
 // Collection type for all nuclides, indexed by their element symbol
 export type NuclideCollection = {
-    [ E in ElementSymbol ]?: MetaData & {
+    [ K in ElementSymbol ]?: MetaData & {
         nuclides: Record< string, SingleNuclide >;
     };
 };
