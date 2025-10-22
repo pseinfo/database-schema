@@ -6,7 +6,7 @@
 import { ReferenceCollection } from './abstract/reference';
 import { UnitCollection } from './abstract/unit';
 import { ElementCollection } from './element';
-import { NuclideCollection } from './nuclides';
+import { NuclideCollection } from './nuclide';
 
 export type DataBase = {
     elements: ElementCollection;
