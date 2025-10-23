@@ -8,5 +8,6 @@
     "email": "webmaster@komed3.de",
     "url": "https://komed3.de"
   },
-  "types": "types/index.ts"
+  "type": "module",
+  "main": "types/index.ts"
 }
