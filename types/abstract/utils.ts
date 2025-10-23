@@ -59,3 +59,31 @@ export type RequireAtLeastOne< T, K extends keyof T = keyof T > = Pick< T, Exclu
 export type StrictSubset<
     T extends object, R extends keyof T, O extends keyof T
 > = RequireFrom< T, R > & ExtractFrom< T, O >;
+
+/**
+ * @typedef DeepPartial
+ * Recursively make all properties optional (deep partial).
+ */
+export type DeepPartial< T > = {
+    [ P in keyof T ]?: T[ P ] extends Array< infer U >
+        ? DeepPartial< U >[]
+        : T[ P ] extends ReadonlyArray< infer U >
+        ? ReadonlyArray< DeepPartial< U > >
+        : T[ P ] extends object
+            ? DeepPartial< T[ P ] >
+            : T[ P ];
+};
+
+/**
+ * @typedef DeepRequired
+ * Recursively make all properties required (deep required).
+ */
+export type DeepRequired< T > = {
+    [ P in keyof T ]-?: T[ P ] extends Array< infer U >
+        ? DeepRequired< U >[]
+        : T[ P ] extends ReadonlyArray< infer U >
+        ? ReadonlyArray< DeepRequired< U > >
+        : T[ P ] extends object
+            ? DeepRequired< T[ P ] >
+            : T[ P ];
+};
