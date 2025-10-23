@@ -24,3 +24,38 @@ export type LiteralUnion< T extends U, U = string > = T | ( U & Record< never, n
  * Pick properties K from T and make them optional.
  */
 export type ExtractFrom< T, K extends keyof T > = Partial< Pick< T, K > >;
+
+/**
+ * @typedef RequireFrom
+ * Pick properties K from T and make them required.
+ */
+export type RequireFrom< T, K extends keyof T > = Required< Pick< T, K > >;
+
+/**
+ * @typedef RequireExactlyOne
+ * Require exactly one of the specified keys (XOR),
+ * all other properties remain as in T.
+ */
+export type RequireExactlyOne< T, K extends keyof T = keyof T > = {
+    [ P in K ]: 
+        Required< Pick< T, P > > &
+        Partial< Record< Exclude< K, P >, never > > &
+        Omit< T, K >;
+}[ K ];
+
+/**
+ * @typedef RequireAtLeastOne
+ * Require at least one of the specified keys.
+ * Other properties remain unchanged.
+ */
+export type RequireAtLeastOne< T, K extends keyof T = keyof T > = Pick< T, Exclude< keyof T, K > > & {
+    [ P in K ]: Required< Pick< T, P > > & Partial< Pick< T, Exclude< K, P > > >;
+}[ K ];
+
+/**
+ * @typedef StrictSubset
+ * Combine required and optional subsets from T.
+ */
+export type StrictSubset<
+    T extends object, R extends keyof T, O extends keyof T
+> = RequireFrom< T, R > & ExtractFrom< T, O >;
