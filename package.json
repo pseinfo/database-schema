@@ -9,5 +9,8 @@
     "url": "https://komed3.de"
   },
   "type": "module",
-  "main": "types/index.ts"
+  "main": "types/index.ts",
+  "devDependencies": {
+    "devtypes": "^1.0.0"
+  }
 }
