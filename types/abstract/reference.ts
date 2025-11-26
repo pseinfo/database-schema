@@ -52,32 +52,76 @@ interface BibTeXFields {
 }
 
 /** Helper types for specific reference types */
-type Thesis< T extends 'mastersthesis' | 'thesis' | 'phdthesis' > = BaseFields< T > & StrictSubset< BibTeXFields,
-    'author' | 'title' | 'school' | 'year',
-    'type' | 'address' | 'month' | 'note'
->;
+type Thesis< T extends 'mastersthesis' | 'thesis' | 'phdthesis' > =
+    BaseFields< T > &
+    StrictSubset<
+        BibTeXFields,
+        'author' | 'title' | 'school' | 'year',
+        'type' | 'address' | 'month' | 'note'
+    >;
 
-type Conference< T extends 'conference' | 'inproceedings' > = BaseFields< T > & StrictSubset< BibTeXFields,
-    'author' | 'title' | 'booktitle' | 'year',
-    'editor' | 'volume' | 'number' | 'series' | 'pages' | 'address' | 'month' | 'organization' | 'publisher' | 'note'
->;
+type Conference< T extends 'conference' | 'inproceedings' > =
+    BaseFields< T > &
+    StrictSubset<
+        BibTeXFields,
+        'author' | 'title' | 'booktitle' | 'year',
+        'editor' | 'volume' | 'number' | 'series' | 'pages' | 'address' | 'month' | 'organization' | 'publisher' | 'note'
+    >;
 
 /** Specific reference types */
-export type ArticleReference = BaseFields< 'article' > & StrictSubset< BibTeXFields,
-    'author' | 'title' | 'journal' | 'year',
-    'volume' | 'number' | 'pages' | 'month' | 'note'
->;
 
-export type BookReference = BaseFields< 'book' > & RequireExactlyOne< BibTeXFields, 'author' | 'editor' > & StrictSubset< BibTeXFields,
-    'title' | 'publisher' | 'year',
-    'volume' | 'number' | 'series' | 'address' | 'edition' | 'month' | 'note' | 'isbn'
->;
+/**
+ * ArticleReference
+ * Type describtion of an article reference
+ * 
+ * Fields: author, title, journal, year
+ * Optional Fields: volume, number, pages, month, note
+ */
+export type ArticleReference =
+    BaseFields< 'article' > &
+    StrictSubset<
+        BibTeXFields,
+        'author' | 'title' | 'journal' | 'year',
+        'volume' | 'number' | 'pages' | 'month' | 'note'
+    >;
 
-export type BookletReference = BaseFields< 'booklet' > & StrictSubset< BibTeXFields,
-    'title',
-    'author' | 'howpublished' | 'address' | 'month' | 'year' | 'note'
->;
+/**
+ * BookReference
+ * Type describtion of a book reference
+ * 
+ * Fields: author/editor, title, publisher, year
+ * Optional Fields: volume, number, series, address, edition, month, note, isbn
+ */
+export type BookReference =
+    BaseFields< 'book' > &
+    RequireExactlyOne< BibTeXFields, 'author' | 'editor' > &
+    StrictSubset<
+        BibTeXFields,
+        'title' | 'publisher' | 'year',
+        'volume' | 'number' | 'series' | 'address' | 'edition' | 'month' | 'note' | 'isbn'
+    >;
 
+/**
+ * BookletReference
+ * Type describtion of a booklet reference
+ * 
+ * Fields: title
+ * Optional Fields: author, howpublished, address, month, year, note
+ */
+export type BookletReference = BaseFields< 'booklet' > &
+    StrictSubset<
+        BibTeXFields,
+        'title',
+        'author' | 'howpublished' | 'address' | 'month' | 'year' | 'note'
+    >;
+
+/**
+ * ConferenceReference
+ * Type describtion of a conference reference
+ * 
+ * Fields: author, title, booktitle, year
+ * Optional Fields: editor, volume, number, series, pages, address, month, organization, publisher, note
+ */
 export type ConferenceReference = Conference< 'conference' >;
 
 export type InbookReference = BaseFields< 'inbook' > & RequireExactlyOne< BibTeXFields, 'author' | 'editor' > & RequireAtLeastOne<
