@@ -98,3 +98,38 @@ export type ArrayValue< Q extends PhysicalQuantity = PhysicalQuantity > =
 export type RangeValue< Q extends PhysicalQuantity = PhysicalQuantity > =
     BaseFields< 'range' > &
     StrictSubset< ValueFields< Q >, 'range', 'value' | 'unit' >;
+
+/** Coupled value type definitions */
+
+/**
+ * CoupledNumberValue
+ * Type describtion of a coupled value with number primitives
+ * 
+ * Fields: properties with single, array, or range values
+ */
+export type CoupledNumberValue< Q extends PhysicalQuantity = PhysicalQuantity > =
+    BaseFields< 'coupled' > & {
+        properties: RequireAtLeastOne< {
+            [ K in Q ]?:
+                | SingleValue< K >
+                | ArrayValue< K >
+                | RangeValue< K >;
+        } >;
+    };
+
+/**
+ * CoupledValue
+ * Type describtion of a coupled value with generic primitives
+ * 
+ * Fields: properties with primitive, single, array, or range values
+ */
+export type CoupledValue< Q extends PhysicalQuantity = PhysicalQuantity, T extends Primitive = Primitive > =
+    BaseFields< 'coupled' > & {
+        properties: RequireAtLeastOne< {
+            [ K in Q ]?:
+                | PrimitiveValue< T >
+                | SingleValue< K >
+                | ArrayValue< K >
+                | RangeValue< K >;
+        } >;
+    };
