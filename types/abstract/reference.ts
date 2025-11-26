@@ -4,6 +4,7 @@
  */
 
 import { Brand } from 'devtypes/types/base';
+import { StrictSubset } from 'devtypes/types/constraints';
 
 /** Reference types based on BibTeX */
 export const ReferenceType = [ 'article', 'book', 'booklet', 'conference', 'inbook', 'incollection', 'inproceedings', 'manual', 'mastersthesis', 'thesis', 'misc', 'phdthesis', 'proceedings', 'techreport', 'unpublished' ] as const;
@@ -49,3 +50,18 @@ interface BibTeXFields {
     volume?: number | string;
     year?: number | string;
 }
+
+/** Helper types for specific reference types */
+type Thesis< T extends 'mastersthesis' | 'thesis' | 'phdthesis' > = BaseFields< T > & StrictSubset<
+    BibTeXFields,
+    'author' | 'title' | 'school' | 'year',
+    'type' | 'address' | 'month' | 'note'
+>;
+
+type Conference< T extends 'conference' | 'inproceedings' > = BaseFields< T > & StrictSubset<
+    BibTeXFields,
+    'author' | 'title' | 'booktitle' | 'year',
+    'editor' | 'volume' | 'number' | 'series' | 'pages' | 'address' | 'month' | 'organization' | 'publisher' | 'note'
+>;
+
+
