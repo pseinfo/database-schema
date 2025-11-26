@@ -23,6 +23,6 @@ export type ElementSymbol = ( typeof ElementSymbol )[ number ];
 type SingleElement = Collection< {} >;
 
 /** Entity type for all elements, indexed by their symbol */
-export type Element = {
+export type ElementEntity = {
     [ K in ElementSymbol ]: SingleElement;
 };
