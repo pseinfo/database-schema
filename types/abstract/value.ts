@@ -68,36 +68,36 @@ export type PrimitiveValue< T extends Primitive = Primitive > =
 
 /**
  * SingleValue
- * Type describtion of a single value
+ * Type describtion of a single numeric value
  * 
- * Fields: value
+ * Fields: (numeric) value
  * Optional Fields: unit
  */
 export type SingleValue< Q extends PhysicalQuantity = PhysicalQuantity > =
     BaseFields< 'single' > &
-    StrictSubset< ValueFields< Q >, 'value', 'unit' >;
+    StrictSubset< ValueFields< Q, number >, 'value', 'unit' >;
 
 /**
  * ArrayValue
- * Type describtion of an array value
+ * Type describtion of an numeric array value
  * 
- * Fields: values
+ * Fields: (numeric) values
  * Optional Fields: unit
  */
 export type ArrayValue< Q extends PhysicalQuantity = PhysicalQuantity > =
     BaseFields< 'array' > &
-    StrictSubset< ValueFields< Q >, 'values', 'unit' >;
+    StrictSubset< ValueFields< Q, number >, 'values', 'unit' >;
 
 /**
  * RangeValue
- * Type describtion of a range value
+ * Type describtion of a numeric range value
  * 
- * Fields: range
+ * Fields: (numeric) range
  * Optional Fields: value, unit
  */
 export type RangeValue< Q extends PhysicalQuantity = PhysicalQuantity > =
     BaseFields< 'range' > &
-    StrictSubset< ValueFields< Q >, 'range', 'value' | 'unit' >;
+    StrictSubset< ValueFields< Q, number >, 'range', 'value' | 'unit' >;
 
 /** Coupled value type definitions */
 
