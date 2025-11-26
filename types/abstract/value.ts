@@ -4,7 +4,7 @@
  */
 
 import { Brand } from 'devtypes/types/base';
-import { RequireAtLeastOne } from 'devtypes/types/constraints';
+import { RequireAtLeastOne, RequireExactlyOne, StrictSubset } from 'devtypes/types/constraints';
 import { Primitive } from 'devtypes/types/primitives';
 import { Uncertainty } from './uncertainty';
 import { PhysicalQuantity, UnitId } from './unit';
@@ -53,3 +53,48 @@ interface ValueFields< Q extends PhysicalQuantity = PhysicalQuantity, T extends 
     } > >;
     unit?: UnitId< Q >;
 }
+
+/** Specific value type definitions */
+
+/**
+ * PrimitiveValue
+ * Type describtion of a primitive value
+ * 
+ * Fields: value or values
+ */
+export type PrimitiveValue< T extends Primitive = Primitive > =
+    BaseFields< 'primitive' > &
+    RequireExactlyOne< ValueFields< never, T >, 'value' | 'values' >;
+
+/**
+ * SingleValue
+ * Type describtion of a single value
+ * 
+ * Fields: value
+ * Optional Fields: unit
+ */
+export type SingleValue< Q extends PhysicalQuantity = PhysicalQuantity > =
+    BaseFields< 'single' > &
+    StrictSubset< ValueFields< Q >, 'value', 'unit' >;
+
+/**
+ * ArrayValue
+ * Type describtion of an array value
+ * 
+ * Fields: values
+ * Optional Fields: unit
+ */
+export type ArrayValue< Q extends PhysicalQuantity = PhysicalQuantity > =
+    BaseFields< 'array' > &
+    StrictSubset< ValueFields< Q >, 'values', 'unit' >;
+
+/**
+ * RangeValue
+ * Type describtion of a range value
+ * 
+ * Fields: range
+ * Optional Fields: value, unit
+ */
+export type RangeValue< Q extends PhysicalQuantity = PhysicalQuantity > =
+    BaseFields< 'range' > &
+    StrictSubset< ValueFields< Q >, 'range', 'value' | 'unit' >;
