@@ -5,10 +5,10 @@
 
 import { ReferenceCollection } from './abstract/reference';
 import { UnitCollection } from './abstract/unit';
-import { ElementEntity } from './entities/element';
+import { Element } from './entities/element';
 
 export type Database = {
-    elements: ElementEntity;
+    elements: Element;
     references: ReferenceCollection;
     units: UnitCollection;
 };

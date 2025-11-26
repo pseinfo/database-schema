@@ -67,6 +67,6 @@ type SingleElement = Collection< {
 } >;
 
 /** Entity type for all elements, indexed by their symbol */
-export type ElementEntity = {
+export type Element = {
     [ K in ElementSymbol ]: MetaData & SingleElement;
 };
