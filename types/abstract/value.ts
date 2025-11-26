@@ -133,3 +133,28 @@ export type CoupledValue< Q extends PhysicalQuantity = PhysicalQuantity, T exten
                 | RangeValue< K >;
         } >;
     };
+
+/** Union value types */
+
+/**
+ * NumberValue
+ * Union type for all number-based value types
+ * 
+ * Fields: single, array, range, or coupled number values
+ */
+export type NumberValue< Q extends PhysicalQuantity = PhysicalQuantity > =
+    | SingleValue< Q >
+    | ArrayValue< Q >
+    | RangeValue< Q >
+    | CoupledNumberValue< Q >;
+
+/**
+ * Value
+ * Union type for all value types
+ * 
+ * Fields: number-based, primitive-based, or coupled values
+ */
+export type Value< Q extends PhysicalQuantity = PhysicalQuantity, T extends Primitive = Primitive > =
+    | NumberValue< Q >
+    | PrimitiveValue< T >
+    | CoupledValue< Q, T >;
