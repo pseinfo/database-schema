@@ -25,7 +25,33 @@ type BaseFields< T extends ReferenceType > = Brand< {
     doi?: string;
 }, T >;
 
-/** Fields for bibliographic references based on BibTeX */
+/**
+ * BibTeXFields
+ * Fields for bibliographic references based on BibTeX
+ * 
+ * @param address - address of the publisher or institution
+ * @param author - author(s) of the work
+ * @param booktitle - title of the book or conference proceedings
+ * @param chapter - chapter number or name
+ * @param edition - edition of the book
+ * @param editor - editor(s) of the work
+ * @param howpublished - how the work was published
+ * @param institution - institution associated with the work
+ * @param isbn - ISBN number of the book
+ * @param journal - journal name
+ * @param month - month of publication
+ * @param note - additional notes about the reference
+ * @param number - number of the journal, volume, or report
+ * @param organization - organization associated with the work
+ * @param pages - page numbers
+ * @param publisher - publisher of the work
+ * @param school - school associated with the thesis
+ * @param series - series name
+ * @param title - title of the work
+ * @param type - type of report or thesis
+ * @param volume - volume number
+ * @param year - year of publication
+ */
 interface BibTeXFields {
     address?: string;
     author?: string | string[];
