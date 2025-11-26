@@ -124,3 +124,27 @@ export type UnpublishedReference = BaseFields< 'unpublished' > & StrictSubset< B
     'author' | 'title' | 'note',
     'month' | 'year'
 >;
+
+/** Union type for any reference */
+export type Reference =
+    | ArticleReference
+    | BookReference
+    | BookletReference
+    | ConferenceReference
+    | InbookReference
+    | IncollectionReference
+    | InproceedingsReference
+    | ManualReference
+    | MastersthesisReference
+    | ThesisReference
+    | MiscReference
+    | PhdthesisReference
+    | ProceedingsReference
+    | TechreportReference
+    | UnpublishedReference;
+
+/** Reference IDs used in other parts of the data model */
+export type RefId = string;
+
+/** Collection of references indexed by a unique key */
+export type ReferenceCollection = Record< RefId, Reference >;
