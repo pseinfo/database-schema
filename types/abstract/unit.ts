@@ -42,7 +42,7 @@ type Unit = {
         factor: number;
         offset?: number;
     };
-}
+};
 
 /**
  * Quantity
@@ -67,4 +67,12 @@ type Quantity< Q extends PhysicalQuantity > = {
     };
     baseUnit: string;
     units: Record< string, Unit >;
-}
+};
+
+/** Collection of physical quantities and their units */
+export type UnitCollection = {
+    [ Q in PhysicalQuantity ]?: Quantity< Q >;
+};
+
+/** Unit reference used in other parts of the data model */
+export type UnitId< Q extends PhysicalQuantity = PhysicalQuantity > = [ Q, string ];
