@@ -4,6 +4,7 @@
  */
 
 import { Collection } from '../abstract/collection';
+import { MetaData } from '../collections/generic';
 
 /** List of all element symbols from the periodic table */
 export const ElementSymbol = [
@@ -24,5 +25,5 @@ type SingleElement = Collection< {} >;
 
 /** Entity type for all elements, indexed by their symbol */
 export type ElementEntity = {
-    [ K in ElementSymbol ]: SingleElement;
+    [ K in ElementSymbol ]: MetaData & SingleElement;
 };
