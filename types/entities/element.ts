@@ -5,6 +5,7 @@
 
 import { Collection, LangGroup } from '../abstract/collection';
 import { AbundanceGroup, DiscoveryGroup, MediaGroup, MetaData, WeblinksGroup } from '../collections/generic';
+import { RegistryGroup, StructureGroup } from '../collections/registry';
 
 /** List of all element symbols from the periodic table */
 export const ElementSymbol = [
@@ -25,9 +26,11 @@ export type ElementSymbol = ( typeof ElementSymbol )[ number ];
 /**
  * DescriptiveCollection
  * Collection for descriptive properties of elements.
- * Includes names, appearance, abundance, discovery, media, and weblinks.
+ * Includes registry, structure, names, appearance, abundance, discovery, media, and weblinks.
  */
 type DescriptiveCollection = Collection< {
+    registry: RegistryGroup;
+    structure: StructureGroup;
     names: LangGroup< 'en' | 'la' >;
     appearance?: LangGroup;
     abundance?: AbundanceGroup;
@@ -38,7 +41,12 @@ type DescriptiveCollection = Collection< {
 
 /** Main element entity */
 
-/** Type for a single element entry (all properties) */
+/**
+ * SingleElement
+ * Type for a single element entry (all properties)
+ * 
+ * @param descriptive - Descriptive properties collection
+ */
 type SingleElement = Collection< {
     descriptive: DescriptiveCollection;
 } >;
