@@ -1,3 +1,10 @@
+/**
+ * Element Entity
+ * Defines the database entity for chemical elements of the periodic table.
+ */
+
+import { Collection } from '../abstract/collection';
+
 /** List of all element symbols from the periodic table */
 export const ElementSymbol = [
     'h', 'he', 'li', 'be', 'b', 'c', 'n', 'o', 'f', 'ne', 'na', 'mg', 'al', 'si', 'p', 's',
@@ -11,3 +18,11 @@ export const ElementSymbol = [
 ] as const;
 
 export type ElementSymbol = ( typeof ElementSymbol )[ number ];
+
+/** Type for a single element entry (all properties) */
+type SingleElement = Collection< {} >;
+
+/** Entity type for all elements, indexed by their symbol */
+export type Element = {
+    [ K in ElementSymbol ]: SingleElement;
+};
