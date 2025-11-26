@@ -48,6 +48,7 @@ type Unit = {
  * Quantity
  * Type describtion of a physical quantity and its units
  * 
+ * @template Q - physical quantity type
  * @param dimension - optional dimension information
  *  - symbol - dimension symbol (e.g., "L" for length)
  *  - name - full name of the dimension (e.g., "Length")
