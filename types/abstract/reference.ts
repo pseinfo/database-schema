@@ -124,50 +124,145 @@ export type BookletReference = BaseFields< 'booklet' > &
  */
 export type ConferenceReference = Conference< 'conference' >;
 
-export type InbookReference = BaseFields< 'inbook' > & RequireExactlyOne< BibTeXFields, 'author' | 'editor' > & RequireAtLeastOne<
-    StrictSubset< BibTeXFields,
-        'title' | 'booktitle' | 'chapter' | 'pages' | 'publisher' | 'year',
-        'volume' | 'number' | 'series' | 'type' | 'address' | 'edition' | 'month' | 'note'
-    >,
-    'chapter' | 'pages'
->;
+/**
+ * InbookReference
+ * Type describtion of an inbook reference
+ * 
+ * Fields: author/editor, title, booktitle, chapter/pages, publisher, year
+ * Optional Fields: volume, number, series, type, address, edition, month, note
+ */
+export type InbookReference =
+    BaseFields< 'inbook' > &
+    RequireExactlyOne< BibTeXFields, 'author' | 'editor' > &
+    RequireAtLeastOne<
+        StrictSubset<
+            BibTeXFields,
+            'title' | 'booktitle' | 'chapter' | 'pages' | 'publisher' | 'year',
+            'volume' | 'number' | 'series' | 'type' | 'address' | 'edition' | 'month' | 'note'
+        >,
+        'chapter' | 'pages'
+    >;
 
-export type IncollectionReference = BaseFields< 'incollection' > & StrictSubset< BibTeXFields,
-    'author' | 'title' | 'booktitle' | 'publisher' | 'year',
-    'editor' | 'volume' | 'number' | 'series' | 'type' | 'chapter' | 'pages' | 'address' | 'edition' | 'month' | 'note'
->;
+/**
+ * IncollectionReference
+ * Type describtion of an incollection reference
+ * 
+ * Fields: author, title, booktitle, publisher, year
+ * Optional Fields: editor, volume, number, series, type, chapter, pages, address, edition, month, note
+ */
+export type IncollectionReference =
+    BaseFields< 'incollection' > &
+    StrictSubset<
+        BibTeXFields,
+        'author' | 'title' | 'booktitle' | 'publisher' | 'year',
+        'editor' | 'volume' | 'number' | 'series' | 'type' | 'chapter' | 'pages' | 'address' | 'edition' | 'month' | 'note'
+    >;
 
+/**
+ * InproceedingsReference
+ * Type describtion of an inproceedings reference
+ * 
+ * Fields: author, title, booktitle, year
+ * Optional Fields: editor, volume, number, series, pages, address, month, organization, publisher, note
+ */
 export type InproceedingsReference = Conference< 'inproceedings' >;
 
-export type ManualReference = BaseFields< 'manual' > & StrictSubset< BibTeXFields,
-    'title',
-    'author' | 'organization' | 'address' | 'edition' | 'month' | 'year' | 'note'
->;
+/**
+ * ManualReference
+ * Type describtion of a manual reference
+ * 
+ * Fields: title
+ * Optional Fields: author, organization, address, edition, month, year, note
+ */
+export type ManualReference =
+    BaseFields< 'manual' > &
+    StrictSubset<
+        BibTeXFields,
+        'title',
+        'author' | 'organization' | 'address' | 'edition' | 'month' | 'year' | 'note'
+    >;
 
+/**
+ * MastersthesisReference
+ * Type describtion of a mastersthesis reference
+ * 
+ * Fields: author, title, school, year
+ * Optional Fields: type, address, month, note
+ */
 export type MastersthesisReference = Thesis< 'mastersthesis' >;
 
+/**
+ * ThesisReference
+ * Type describtion of a thesis reference
+ * 
+ * Fields: author, title, school, year
+ * Optional Fields: type, address, month, note
+ */
 export type ThesisReference = Thesis< 'thesis' >;
 
-export type MiscReference = BaseFields< 'misc' > & ExtractFrom< BibTeXFields,
-    'author' | 'title' | 'howpublished' | 'month' | 'year' | 'note'
->;
+/**
+ * MiscReference
+ * Type describtion of a miscellaneous reference
+ * 
+ * Optional Fields: author, title, howpublished, month, year, note
+ */
+export type MiscReference =
+    BaseFields< 'misc' > &
+    ExtractFrom< BibTeXFields, 'author' | 'title' | 'howpublished' | 'month' | 'year' | 'note' >;
 
+/**
+ * PhdthesisReference
+ * Type describtion of a phdthesis reference
+ * 
+ * Fields: author, title, school, year
+ * Optional Fields: type, address, month, note
+ */
 export type PhdthesisReference = Thesis< 'phdthesis' >;
 
-export type ProceedingsReference = BaseFields< 'proceedings' > & StrictSubset< BibTeXFields,
-    'title' | 'year',
-    'editor' | 'volume' | 'number' | 'series' | 'address' | 'month' | 'organization' | 'publisher' | 'note'
->;
+/**
+ * ProceedingsReference
+ * Type describtion of a proceedings reference
+ * 
+ * Fields: title, year
+ * Optional Fields: editor, volume, number, series, address, month, organization, publisher, note
+ */
+export type ProceedingsReference =
+    BaseFields< 'proceedings' > &
+    StrictSubset<
+        BibTeXFields,
+        'title' | 'year',
+        'editor' | 'volume' | 'number' | 'series' | 'address' | 'month' | 'organization' | 'publisher' | 'note'
+    >;
 
-export type TechreportReference = BaseFields< 'techreport' > & StrictSubset< BibTeXFields,
-    'author' | 'title' | 'institution' | 'year',
-    'type' | 'number' | 'address' | 'month' | 'note'
->;
+/**
+ * TechreportReference
+ * Type describtion of a techreport reference
+ * 
+ * Fields: author, title, institution, year
+ * Optional Fields: type, number, address, month, note
+ */
+export type TechreportReference =
+    BaseFields< 'techreport' > &
+    StrictSubset<
+        BibTeXFields,
+        'author' | 'title' | 'institution' | 'year',
+        'type' | 'number' | 'address' | 'month' | 'note'
+    >;
 
-export type UnpublishedReference = BaseFields< 'unpublished' > & StrictSubset< BibTeXFields,
-    'author' | 'title' | 'note',
-    'month' | 'year'
->;
+/**
+ * UnpublishedReference
+ * Type describtion of an unpublished reference
+ * 
+ * Fields: author, title, note
+ * Optional Fields: month, year
+ */
+export type UnpublishedReference =
+    BaseFields< 'unpublished' > &
+    StrictSubset<
+        BibTeXFields,
+        'author' | 'title' | 'note',
+        'month' | 'year'
+    >;
 
 /** Union type for any reference */
 export type Reference =
