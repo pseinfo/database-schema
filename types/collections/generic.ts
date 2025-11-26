@@ -3,8 +3,8 @@
  * Defined common collection types for various data groups.
  */
 
-import { Distinct, Group, Single } from '../abstract/collection';
-import { NumberProperty } from '../abstract/property';
+import { Distinct, Group, LangGroup, Single } from '../abstract/collection';
+import { NumberProperty, PrimitiveProperty } from '../abstract/property';
 import { RefId } from '../abstract/reference';
 
 /**
@@ -58,4 +58,57 @@ export type DiscoveryGroup = Group< {
     country?: Distinct< string >;
     institute?: Distinct< string >;
     references?: RefId[];
+} >;
+
+/**
+ * MediaGroup
+ * Group for media files associated with an entry.
+ * Includes images, spectral analyses, and 3D structures.
+ */
+export type MediaGroup = Group< {
+
+    // Images
+    images?: Distinct< {
+        url: string;
+        credits: string;
+        license: string;
+        author?: string;
+        source?: string;
+        width?: number;
+        height?: number;
+        format?: 'jpg' | 'png' | 'svg' | 'webp';
+    }[] >;
+
+    // Spectral analyses
+    spectrum?: Group< {
+        absorption?: PrimitiveProperty< string >;
+        emission?: PrimitiveProperty< string >;
+        uv?: PrimitiveProperty< string >;
+        xray?: PrimitiveProperty< string >;
+    } >;
+
+    // 3D structures
+    structure3D?: Distinct< {
+        format: 'pdb' | 'mol' | 'sdf' | 'xyz' | 'cif';
+        data: string;
+        url?: string;
+    }[] >;
+
+} >;
+
+/**
+ * WeblinksGroup
+ * Group for web links associated with an entry.
+ * Includes generic weblinks and Wikipedia entries.
+ */
+export type WeblinksGroup = Group< {
+    links?: Distinct< {
+        url: string;
+        text?: string;
+        description?: string;
+        archiveUrl?: string;
+        accessed?: string;
+        language?: string;
+    }[] >;
+    wiki?: LangGroup;
 } >;
