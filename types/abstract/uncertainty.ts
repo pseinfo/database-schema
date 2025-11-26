@@ -1,0 +1,70 @@
+/**
+ * Uncertainty System
+ * Physical and measurement uncertainty representations.
+ */
+
+import { Brand } from 'devtypes/types/base';
+import { RequireFrom } from 'devtypes/types/constraints';
+
+/** Uncertainty types */
+export const UncertaintyType = [ 'absolute', 'relative', 'asymmetrical' ] as const;
+export type UncertaintyType = ( typeof UncertaintyType )[ number ];
+
+/**
+ * BaseFields
+ * Common fields for all uncertainty types
+ * 
+ * @template T - Uncertainty type
+ * @param confidence - optional confidence level (0 to 1)
+ * @param note - optional note about the uncertainty
+ */
+type BaseFields< T extends UncertaintyType > = Brand< {
+    confidence?: number;
+    note?: string;
+}, T >;
+
+/** Fields common to all uncertainty types */
+interface UncertaintyFields {
+    absolute?: number;
+    relative?: number;
+    plus?: number;
+    minus?: number;
+}
+
+/** Specific uncertainty type definitions */
+
+/**
+ * AbsoluteUncertainty
+ * Type describtion of an absolute uncertainty
+ * 
+ * Fields: absolute
+ */
+export type AbsoluteUncertainty =
+    BaseFields< 'absolute' > &
+    RequireFrom< UncertaintyFields, 'absolute' >;
+
+/**
+ * RelativeUncertainty
+ * Type describtion of a relative uncertainty
+ * 
+ * Fields: relative
+ */
+export type RelativeUncertainty =
+    BaseFields< 'relative' > &
+    RequireFrom< UncertaintyFields, 'relative' >;
+
+/**
+ * AsymmetricalUncertainty
+ * Type describtion of an asymmetrical uncertainty
+ * 
+ * Fields: plus, minus
+ */
+export type AsymmetricalUncertainty =
+    BaseFields< 'asymmetrical' > &
+    RequireFrom< UncertaintyFields, 'plus' | 'minus' >;
+
+/** Union type for all uncertainty types */
+export type Uncertainty =
+    | AbsoluteUncertainty
+    | RelativeUncertainty
+    | AsymmetricalUncertainty;
