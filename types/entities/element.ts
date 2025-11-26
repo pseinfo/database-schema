@@ -3,8 +3,8 @@
  * Defines the database entity for chemical elements of the periodic table.
  */
 
-import { Collection } from '../abstract/collection';
-import { MetaData } from '../collections/generic';
+import { Collection, LangGroup } from '../abstract/collection';
+import { AbundanceGroup, DiscoveryGroup, MediaGroup, MetaData, WeblinksGroup } from '../collections/generic';
 
 /** List of all element symbols from the periodic table */
 export const ElementSymbol = [
@@ -20,8 +20,28 @@ export const ElementSymbol = [
 
 export type ElementSymbol = ( typeof ElementSymbol )[ number ];
 
+/** Element collections */
+
+/**
+ * DescriptiveCollection
+ * Collection for descriptive properties of elements.
+ * Includes names, appearance, abundance, discovery, media, and weblinks.
+ */
+type DescriptiveCollection = Collection< {
+    names: LangGroup< 'en' | 'la' >;
+    appearance?: LangGroup;
+    abundance?: AbundanceGroup;
+    discovery?: DiscoveryGroup;
+    media?: MediaGroup;
+    weblinks?: WeblinksGroup;
+} >;
+
+/** Main element entity */
+
 /** Type for a single element entry (all properties) */
-type SingleElement = Collection< {} >;
+type SingleElement = Collection< {
+    descriptive: DescriptiveCollection;
+} >;
 
 /** Entity type for all elements, indexed by their symbol */
 export type ElementEntity = {
