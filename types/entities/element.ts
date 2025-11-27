@@ -4,6 +4,7 @@
  */
 
 import { Collection, Distinct, LangGroup } from '../abstract/collection';
+import { AtomicsCollection } from '../collections/atomics';
 import { AbundanceGroup, DiscoveryGroup, MediaGroup, MetaData, WeblinksGroup } from '../collections/generic';
 import { PhysicsCollection } from '../collections/physics';
 import { RegistryGroup, StructureGroup } from '../collections/registry';
@@ -62,11 +63,13 @@ type Classification = Collection< {
  * @param descriptive - Descriptive properties collection
  * @param classification - Classification properties collection
  * @param physics - Physics properties collection
+ * @param atomics - Atomics properties collection
  */
 type SingleElement = Collection< {
     descriptive: Descriptive;
     classification: Classification;
     physics?: PhysicsCollection;
+    atomics?: AtomicsCollection;
 } >;
 
 /** Entity type for all elements, indexed by their symbol */
