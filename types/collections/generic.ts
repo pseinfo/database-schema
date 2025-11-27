@@ -10,6 +10,9 @@ import { RefId } from '../abstract/reference';
 /**
  * MetaData
  * Represents metadata information for collections.
+ * 
+ * @param schemaVersion - Version of the schema
+ * @param lastModified - Timestamp of the last modification
  */
 export type MetaData = Distinct< {
     "@metadata": {
@@ -21,7 +24,19 @@ export type MetaData = Distinct< {
 /**
  * AbundanceGroup
  * Natural abundance data for elements, minerals, isotopes, etc.
- * Includes cosmic, terrestrial, biological, and geological types.
+ * 
+ * @param universeAbundance - Abundance in the universe
+ * @param solarSystemAbundance - Abundance in the solar system
+ * @param sunAbundance - Abundance in the sun
+ * @param meteoriteAbundance - Abundance in meteorites
+ * @param crustalAbundance - Abundance in the Earth's crust
+ * @param oceanAbundance - Abundance in oceans
+ * @param seaAbundance - Abundance in seas
+ * @param streamAbundance - Abundance in streams
+ * @param atmosphereAbundance - Abundance in the atmosphere
+ * @param humanAbundance - Abundance in the human body
+ * @param mineralAbundance - Abundance in minerals
+ * @param oreAbundance - Abundance in ores
  */
 export type AbundanceGroup = Group< {
 
@@ -50,7 +65,12 @@ export type AbundanceGroup = Group< {
 /**
  * DiscoveryGroup
  * Information about the discovery of elements, isotopes, or compounds.
- * Includes year, discoverer, country, and institute details.
+ * 
+ * @param year - Year of discovery
+ * @param discoverer - Name(s) of the discoverer(s)
+ * @param country - Country of discovery
+ * @param institute - Institute or organization of discovery
+ * @param references - References related to the discovery
  */
 export type DiscoveryGroup = Group< {
     year?: Distinct< number >;
@@ -63,7 +83,10 @@ export type DiscoveryGroup = Group< {
 /**
  * MediaGroup
  * Group for media files associated with an entry.
- * Includes images, spectral analyses, and 3D structures.
+ * 
+ * @param images - Image files related to the entry
+ * @param spectrum - Spectral analysis data
+ * @param structure3D - 3D structure files
  */
 export type MediaGroup = Group< {
 
@@ -99,7 +122,9 @@ export type MediaGroup = Group< {
 /**
  * WeblinksGroup
  * Group for web links associated with an entry.
- * Includes generic weblinks and Wikipedia entries.
+ * 
+ * @param links - List of web links with metadata
+ * @param wiki - Wikipedia links in different languages
  */
 export type WeblinksGroup = Group< {
     links?: Distinct< {
@@ -116,7 +141,13 @@ export type WeblinksGroup = Group< {
 /**
  * CrystalGroup
  * Crystallographic properties for elements and compounds.
- * Includes crystal structure, Pearson symbol, space group, and lattice constants.
+ * 
+ * @param crystalStructure - Type of crystal structure
+ * @param pearsonSymbol - Pearson symbol notation
+ * @param spaceGroup - Space group notation
+ * @param spaceGroupNumber - Space group number
+ * @param latticeConstant - Lattice constants group
+ * @param references - References related to crystallographic data
  */
 export type CrystalGroup = Group< {
     crystalStructure?: Distinct<
