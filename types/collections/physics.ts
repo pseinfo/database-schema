@@ -11,8 +11,19 @@ import { Phase } from '../utils/const';
  * PhysicsCollection
  * Collection for physical properties of elements.
  * 
- * Includes density, temperature, enthalpy, heat, hardness, elasticity, electricity,
- * magnetism, optics, acoustics, surface, and viscosity.
+ * @param density - Density of the element or substance
+ * @param phase - Standard phase at room temperature
+ * @param temperature - Temperature-related properties
+ * @param enthalpy - Enthalpy properties
+ * @param heat - Heat properties
+ * @param hardness - Hardness properties
+ * @param elasticity - Elasticity and mechanical properties
+ * @param electricity - Electrical properties
+ * @param magnetism - Magnetic properties
+ * @param optics - Optical properties
+ * @param acoustics - Acoustic properties
+ * @param surface - Surface properties
+ * @param viscosity - Viscosity and flow properties
  */
 export type PhysicsCollection = Collection< {
 
