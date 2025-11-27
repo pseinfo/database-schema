@@ -19,7 +19,7 @@ export type ValueConfidence = ( typeof ValueConfidence )[ number ];
 
 /**
  * BaseFields
- * Common fields for all value types
+ * Common fields for all value types.
  * 
  * @template T - value type brand
  * @param confidence - confidence level of the value
@@ -34,7 +34,7 @@ type BaseFields< T extends ValueType > = Brand< {
 
 /**
  * ValueFields
- * Fields for different types of values
+ * Fields for different types of values.
  * 
  * @template Q - Physical quantity type
  * @template T - Primitive type
@@ -58,7 +58,7 @@ interface ValueFields< Q extends PhysicalQuantity = PhysicalQuantity, T extends 
 
 /**
  * PrimitiveValue
- * Type describtion of a primitive value
+ * Type describtion of a primitive value.
  * 
  * Fields: value or values
  */
@@ -68,7 +68,7 @@ export type PrimitiveValue< T extends Primitive = Primitive > =
 
 /**
  * SingleValue
- * Type describtion of a single numeric value
+ * Type describtion of a single numeric value.
  * 
  * Fields: (numeric) value
  * Optional Fields: unit
@@ -79,7 +79,7 @@ export type SingleValue< Q extends PhysicalQuantity = PhysicalQuantity > =
 
 /**
  * ArrayValue
- * Type describtion of an numeric array value
+ * Type describtion of an numeric array value.
  * 
  * Fields: (numeric) values
  * Optional Fields: unit
@@ -90,7 +90,7 @@ export type ArrayValue< Q extends PhysicalQuantity = PhysicalQuantity > =
 
 /**
  * RangeValue
- * Type describtion of a numeric range value
+ * Type describtion of a numeric range value.
  * 
  * Fields: (numeric) range
  * Optional Fields: value, unit
@@ -103,7 +103,7 @@ export type RangeValue< Q extends PhysicalQuantity = PhysicalQuantity > =
 
 /**
  * CoupledNumberValue
- * Type describtion of a coupled value with number primitives
+ * Type describtion of a coupled value with number primitives.
  * 
  * Fields: properties with single, array, or range values
  */
@@ -119,7 +119,7 @@ export type CoupledNumberValue< Q extends PhysicalQuantity = PhysicalQuantity > 
 
 /**
  * CoupledValue
- * Type describtion of a coupled value with generic primitives
+ * Type describtion of a coupled value with generic primitives.
  * 
  * Fields: properties with primitive, single, array, or range values
  */
@@ -138,7 +138,7 @@ export type CoupledValue< Q extends PhysicalQuantity = PhysicalQuantity, T exten
 
 /**
  * NumberValue
- * Union type for all number-based value types
+ * Union type for all number-based value types.
  * 
  * Fields: single, array, range, or coupled number values
  */
@@ -150,7 +150,7 @@ export type NumberValue< Q extends PhysicalQuantity = PhysicalQuantity > =
 
 /**
  * Value
- * Union type for all value types
+ * Union type for all value types.
  * 
  * Fields: number-based, primitive-based, or coupled values
  */

@@ -1,6 +1,6 @@
 /**
  * Reference System
- * Types and structures for bibliographic references based on BibTeX
+ * Types and structures for bibliographic references based on BibTeX.
  */
 
 import { Brand } from 'devtypes/types/base';
@@ -12,7 +12,7 @@ export type ReferenceType = ( typeof ReferenceType )[ number ];
 
 /**
  * BaseFields
- * Common fields for all reference types
+ * Common fields for all reference types.
  * 
  * @template T - Reference type
  * @param accessed - date when the reference was accessed (for online resources)
@@ -27,7 +27,7 @@ type BaseFields< T extends ReferenceType > = Brand< {
 
 /**
  * BibTeXFields
- * Fields for bibliographic references based on BibTeX
+ * Fields for bibliographic references based on BibTeX.
  * 
  * @param address - address of the publisher or institution
  * @param author - author(s) of the work
@@ -98,7 +98,7 @@ type Conference< T extends 'conference' | 'inproceedings' > =
 
 /**
  * ArticleReference
- * Type describtion of an article reference
+ * Type describtion of an article reference.
  * 
  * Fields: author, title, journal, year
  * Optional Fields: volume, number, pages, month, note
@@ -113,7 +113,7 @@ export type ArticleReference =
 
 /**
  * BookReference
- * Type describtion of a book reference
+ * Type describtion of a book reference.
  * 
  * Fields: author/editor, title, publisher, year
  * Optional Fields: volume, number, series, address, edition, month, note, isbn
@@ -129,7 +129,7 @@ export type BookReference =
 
 /**
  * BookletReference
- * Type describtion of a booklet reference
+ * Type describtion of a booklet reference.
  * 
  * Fields: title
  * Optional Fields: author, howpublished, address, month, year, note
@@ -143,7 +143,7 @@ export type BookletReference = BaseFields< 'booklet' > &
 
 /**
  * ConferenceReference
- * Type describtion of a conference reference
+ * Type describtion of a conference reference.
  * 
  * Fields: author, title, booktitle, year
  * Optional Fields: editor, volume, number, series, pages, address, month, organization, publisher, note
@@ -152,7 +152,7 @@ export type ConferenceReference = Conference< 'conference' >;
 
 /**
  * InbookReference
- * Type describtion of an inbook reference
+ * Type describtion of an inbook reference.
  * 
  * Fields: author/editor, title, booktitle, chapter/pages, publisher, year
  * Optional Fields: volume, number, series, type, address, edition, month, note
@@ -171,7 +171,7 @@ export type InbookReference =
 
 /**
  * IncollectionReference
- * Type describtion of an incollection reference
+ * Type describtion of an incollection reference.
  * 
  * Fields: author, title, booktitle, publisher, year
  * Optional Fields: editor, volume, number, series, type, chapter, pages, address, edition, month, note
@@ -186,7 +186,7 @@ export type IncollectionReference =
 
 /**
  * InproceedingsReference
- * Type describtion of an inproceedings reference
+ * Type describtion of an inproceedings reference.
  * 
  * Fields: author, title, booktitle, year
  * Optional Fields: editor, volume, number, series, pages, address, month, organization, publisher, note
@@ -195,7 +195,7 @@ export type InproceedingsReference = Conference< 'inproceedings' >;
 
 /**
  * ManualReference
- * Type describtion of a manual reference
+ * Type describtion of a manual reference.
  * 
  * Fields: title
  * Optional Fields: author, organization, address, edition, month, year, note
@@ -210,7 +210,7 @@ export type ManualReference =
 
 /**
  * MastersthesisReference
- * Type describtion of a mastersthesis reference
+ * Type describtion of a mastersthesis reference.
  * 
  * Fields: author, title, school, year
  * Optional Fields: type, address, month, note
@@ -219,7 +219,7 @@ export type MastersthesisReference = Thesis< 'mastersthesis' >;
 
 /**
  * ThesisReference
- * Type describtion of a thesis reference
+ * Type describtion of a thesis reference.
  * 
  * Fields: author, title, school, year
  * Optional Fields: type, address, month, note
@@ -228,7 +228,7 @@ export type ThesisReference = Thesis< 'thesis' >;
 
 /**
  * MiscReference
- * Type describtion of a miscellaneous reference
+ * Type describtion of a miscellaneous reference.
  * 
  * Optional Fields: author, title, howpublished, month, year, note
  */
@@ -238,7 +238,7 @@ export type MiscReference =
 
 /**
  * PhdthesisReference
- * Type describtion of a phdthesis reference
+ * Type describtion of a phdthesis reference.
  * 
  * Fields: author, title, school, year
  * Optional Fields: type, address, month, note
@@ -247,7 +247,7 @@ export type PhdthesisReference = Thesis< 'phdthesis' >;
 
 /**
  * ProceedingsReference
- * Type describtion of a proceedings reference
+ * Type describtion of a proceedings reference.
  * 
  * Fields: title, year
  * Optional Fields: editor, volume, number, series, address, month, organization, publisher, note
@@ -262,7 +262,7 @@ export type ProceedingsReference =
 
 /**
  * TechreportReference
- * Type describtion of a techreport reference
+ * Type describtion of a techreport reference.
  * 
  * Fields: author, title, institution, year
  * Optional Fields: type, number, address, month, note
@@ -277,7 +277,7 @@ export type TechreportReference =
 
 /**
  * UnpublishedReference
- * Type describtion of an unpublished reference
+ * Type describtion of an unpublished reference.
  * 
  * Fields: author, title, note
  * Optional Fields: month, year

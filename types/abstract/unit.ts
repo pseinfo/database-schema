@@ -1,6 +1,6 @@
 /**
  * Physical Units System
- * Type system for physical units
+ * Type system for physical units.
  */
 
 import { LiteralUnion } from 'devtypes/types/primitives';
@@ -25,7 +25,7 @@ type DimensionVector = [ number, number, number, number, number, number, number 
 
 /**
  * Unit
- * Type describtion of a single physical unit
+ * Type describtion of a single physical unit.
  * 
  * @param symbol - unit symbol (e.g., "m" for meters)
  * @param name - optional full name of the unit (e.g., "meter")
@@ -46,7 +46,7 @@ type Unit = {
 
 /**
  * Quantity
- * Type describtion of a physical quantity and its units
+ * Type describtion of a physical quantity and its units.
  * 
  * @template Q - physical quantity type
  * @param dimension - optional dimension information
