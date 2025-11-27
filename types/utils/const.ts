@@ -7,6 +7,10 @@
 export const Phase = [ 'solid', 'gaseous', 'liquid', 'plasma', 'unknown' ] as const;
 export type Phase = ( typeof Phase )[ number ];
 
+/** Natural occurrence types */
+export const NaturalOccurrence = [ 'primordial', 'decayProduct', 'synthetic' ] as const;
+export type NaturalOccurrence = ( typeof NaturalOccurrence )[ number ];
+
 /** Element blocks */
 export const ElementBlock = [ 's', 'p', 'd', 'f' ] as const;
 export type ElementBlock = ( typeof ElementBlock )[ number ];

@@ -9,7 +9,7 @@ import { ChemistryCollection } from '../collections/chemistry';
 import { AbundanceGroup, DiscoveryGroup, MediaGroup, MetaData, WeblinksGroup } from '../collections/generic';
 import { PhysicsCollection } from '../collections/physics';
 import { RegistryGroup, StructureGroup } from '../collections/registry';
-import { ElementBlock, ElementGroup, ElementSet, ElementSymbol, Phase } from '../utils/const';
+import { ElementBlock, ElementGroup, ElementSet, ElementSymbol, NaturalOccurrence, Phase } from '../utils/const';
 
 /** Element properties */
 export const ElementProperty = [
@@ -53,6 +53,9 @@ type Classification = Collection< {
     radioactive: Distinct< boolean >;
     set?: Distinct< ElementSet >;
     phase?: Distinct< Phase >;
+    naturalOccurrence?: Distinct< NaturalOccurrence >;
+    goldschmidt?: Distinct< 'atmophile' | 'chalcophile' | 'lithophile' | 'siderophile' | 'synthetic' >;
+    superconductivity?: Distinct< 'none' | 'normal' | 'special' >;
 } >;
 
 /** Main element entity */
