@@ -11,13 +11,27 @@ export type Phase = ( typeof Phase )[ number ];
 export const NaturalOccurrence = [ 'primordial', 'decayProduct', 'synthetic' ] as const;
 export type NaturalOccurrence = ( typeof NaturalOccurrence )[ number ];
 
-/** Element blocks */
-export const ElementBlock = [ 's', 'p', 'd', 'f' ] as const;
-export type ElementBlock = ( typeof ElementBlock )[ number ];
-
 /** Shell model */
 export const ShellModel = [ 'k', 'l', 'm', 'n', 'o', 'p', 'q' ] as const;
 export type ShellModel = ( typeof ShellModel )[ number ];
+
+/** Element symbols */
+export const ElementSymbol = [
+    'h', 'he', 'li', 'be', 'b', 'c', 'n', 'o', 'f', 'ne', 'na', 'mg', 'al', 'si', 'p', 's',
+    'cl', 'ar', 'k', 'ca', 'sc', 'ti', 'v', 'cr', 'mn', 'fe', 'co', 'ni', 'cu', 'zn', 'ga',
+    'ge', 'as', 'se', 'br', 'kr', 'rb', 'sr', 'y', 'zr', 'nb', 'mo', 'tc', 'ru', 'rh', 'pd',
+    'ag', 'cd', 'in', 'sn', 'sb', 'te', 'i', 'xe', 'cs', 'ba', 'la', 'ce', 'pr', 'nd', 'pm',
+    'sm', 'eu', 'gd', 'tb', 'dy', 'ho', 'er', 'tm', 'yb', 'lu', 'hf', 'ta', 'w', 're', 'os',
+    'ir', 'pt', 'au', 'hg', 'tl', 'pb', 'bi', 'po', 'at', 'rn', 'fr', 'ra', 'ac', 'th', 'pa',
+    'u', 'np', 'pu', 'am', 'cm', 'bk', 'cf', 'es', 'fm', 'md', 'no', 'lr', 'rf', 'db', 'sg',
+    'bh', 'hs', 'mt', 'ds', 'rg', 'cn', 'nh', 'fl', 'mc', 'lv', 'ts', 'og'
+] as const;
+
+export type ElementSymbol = ( typeof ElementSymbol )[ number ];
+
+/** Element blocks */
+export const ElementBlock = [ 's', 'p', 'd', 'f' ] as const;
+export type ElementBlock = ( typeof ElementBlock )[ number ];
 
 /** Element sets */
 export const ElementSet = [
@@ -37,16 +51,11 @@ export const ElementGroup = [
 
 export type ElementGroup = ( typeof ElementGroup )[ number ];
 
-/** Element symbols */
-export const ElementSymbol = [
-    'h', 'he', 'li', 'be', 'b', 'c', 'n', 'o', 'f', 'ne', 'na', 'mg', 'al', 'si', 'p', 's',
-    'cl', 'ar', 'k', 'ca', 'sc', 'ti', 'v', 'cr', 'mn', 'fe', 'co', 'ni', 'cu', 'zn', 'ga',
-    'ge', 'as', 'se', 'br', 'kr', 'rb', 'sr', 'y', 'zr', 'nb', 'mo', 'tc', 'ru', 'rh', 'pd',
-    'ag', 'cd', 'in', 'sn', 'sb', 'te', 'i', 'xe', 'cs', 'ba', 'la', 'ce', 'pr', 'nd', 'pm',
-    'sm', 'eu', 'gd', 'tb', 'dy', 'ho', 'er', 'tm', 'yb', 'lu', 'hf', 'ta', 'w', 're', 'os',
-    'ir', 'pt', 'au', 'hg', 'tl', 'pb', 'bi', 'po', 'at', 'rn', 'fr', 'ra', 'ac', 'th', 'pa',
-    'u', 'np', 'pu', 'am', 'cm', 'bk', 'cf', 'es', 'fm', 'md', 'no', 'lr', 'rf', 'db', 'sg',
-    'bh', 'hs', 'mt', 'ds', 'rg', 'cn', 'nh', 'fl', 'mc', 'lv', 'ts', 'og'
+/** Element properties */
+export const ElementProperty = [
+    'antiquity', 'artificial', 'heavyMetal', 'lightMetal', 'mononuclide', 'native',
+    'natural', 'noble', 'platinumMetal', 'radioactive', 'rareEarths', 'refractorMetal',
+    'semiconductor', 'stable', 'synthetic', 'vital'
 ] as const;
 
-export type ElementSymbol = ( typeof ElementSymbol )[ number ];
+export type ElementProperty = ( typeof ElementProperty )[ number ];

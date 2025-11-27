@@ -9,23 +9,16 @@ import { ChemistryCollection } from '../collections/chemistry';
 import { AbundanceGroup, DiscoveryGroup, MediaGroup, MetaData, WeblinksGroup } from '../collections/generic';
 import { PhysicsCollection } from '../collections/physics';
 import { RegistryGroup, StructureGroup } from '../collections/registry';
-import { ElementBlock, ElementGroup, ElementSet, ElementSymbol, NaturalOccurrence, Phase } from '../utils/const';
-
-/** Element properties */
-export const ElementProperty = [
-    'antiquity', 'artificial', 'heavyMetal', 'lightMetal', 'mononuclide', 'native',
-    'natural', 'noble', 'platinumMetal', 'radioactive', 'rareEarths', 'refractorMetal',
-    'semiconductor', 'stable', 'synthetic', 'vital'
-] as const;
-
-export type ElementProperty = ( typeof ElementProperty )[ number ];
+import { ElementBlock, ElementGroup, ElementProperty, ElementSet, ElementSymbol, NaturalOccurrence, Phase } from '../utils/const';
 
 /** Element collections */
 
 /**
  * Descriptive
  * Collection for descriptive properties of elements.
- * Includes registry, structure, names, appearance, abundance, discovery, media, and weblinks.
+ * 
+ * Includes registry, structure, names, appearance, abundance, discovery,
+ * properties, media, and weblinks.
  */
 type Descriptive = Collection< {
     registry: RegistryGroup;
@@ -34,6 +27,7 @@ type Descriptive = Collection< {
     appearance?: LangGroup;
     abundance?: AbundanceGroup;
     discovery?: DiscoveryGroup;
+    properties?: Distinct< ElementProperty[] >;
     media?: MediaGroup;
     weblinks?: WeblinksGroup;
 } >;
@@ -41,7 +35,9 @@ type Descriptive = Collection< {
 /**
  * Classification
  * Collection for classification properties of elements.
- * Includes symbol, atomic number, block, group, column, period, radioactivity, set, and phase.
+ * 
+ * Includes symbol, atomic number, block, group, column, period, radioactivity,
+ * set, phase, natural occurrence, goldschmidt, and superconductivity.
  */
 type Classification = Collection< {
     symbol: Distinct< string >;
