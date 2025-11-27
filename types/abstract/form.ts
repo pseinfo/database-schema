@@ -5,6 +5,7 @@
 
 import { Brand } from 'devtypes/types/base';
 import { DeepPartial } from 'devtypes/types/collections';
+import { RequireFrom, StrictSubset } from 'devtypes/types/constraints';
 import { CrystalStructure, Phase } from '../utils/const';
 import { Collection, Distinct } from './collection';
 
@@ -43,3 +44,54 @@ interface FormFields {
     pearsonSymbol?: Distinct< string >;
     spaceGroup?: Distinct< string >;
 }
+
+/** Specific form types */
+
+/**
+ * AllotropeForm
+ * Form type for allotropes and other unspecified forms
+ * 
+ * Fields: properties, note, formula, phase, crystalStructure, pearsonSymbol, spaceGroup
+ */
+export type AllotropeForm< C extends Collection< any > > =
+    BaseFields< 'allotrope' | 'other', C > &
+    FormFields;
+
+/**
+ * MolecularForm
+ * Form type for molecular forms
+ * 
+ * Fields: properties, note, formula
+ */
+export type MolecularForm< C extends Collection< any > > =
+    BaseFields< 'molecular', C > &
+    RequireFrom< FormFields, 'formula' >;
+
+/**
+ * PhaseForm
+ * Form type for specific phases of substances
+ * 
+ * Fields: properties, note, phase
+ */
+export type PhaseForm< C extends Collection< any > > =
+    BaseFields< 'phase', C > &
+    RequireFrom< FormFields, 'phase' >;
+
+/**
+ * PolymorphForm
+ * Form type for polymorphs and amorphous forms
+ * 
+ * Fields: properties, note, crystalStructure
+ * Optional fields: pearsonSymbol, spaceGroup
+ */
+export type PolymorphForm< C extends Collection< any > > =
+    BaseFields< 'polymorph' | 'amorphous', C > &
+    StrictSubset< FormFields, 'crystalStructure', 'pearsonSymbol' | 'spaceGroup' >;
+
+/** Form IDs used in other parts of the data model */
+export type FormId = string;
+
+/** Collection of forms for substances */
+export type FormCollection< C extends Collection< any > > = Record< FormId, Collection<
+    AllotropeForm< C > | MolecularForm< C > | PhaseForm< C > | PolymorphForm< C >
+> >;
