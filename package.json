@@ -8,9 +8,50 @@
     "email": "webmaster@komed3.de",
     "url": "https://komed3.de"
   },
+  "homepage": "https://github.com/pseinfo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pseinfo/database-schema.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pseinfo/database-schema/issues"
+  },
   "type": "module",
+  "types": "types/index.ts",
   "main": "types/index.ts",
-  "devDependencies": {
+  "exports": {
+    ".": {
+      "types": "./types/index.ts"
+    },
+    "./abstract/*": {
+      "types": "./types/abstract/*.ts"
+    },
+    "./collections/*": {
+      "types": "./types/collections/*.ts"
+    },
+    "./entities/*": {
+      "types": "./types/entities/*.ts"
+    },
+    "./utils/*": {
+      "types": "./types/utils/*.ts"
+    }
+  },
+  "files": [
+    "types",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "chemistry",
+    "database",
+    "types",
+    "typescript",
+    "elements",
+    "periodic-table",
+    "schema",
+    "type-definitions"
+  ],
+  "dependencies": {
     "devtypes": "^1.0.0"
   }
 }
