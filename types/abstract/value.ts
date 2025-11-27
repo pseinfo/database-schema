@@ -58,7 +58,7 @@ interface ValueFields< Q extends PhysicalQuantity = PhysicalQuantity, T extends 
 
 /**
  * PrimitiveValue
- * Type describtion of a primitive value.
+ * Type description of a primitive value.
  * 
  * Fields: value or values
  */
@@ -68,7 +68,7 @@ export type PrimitiveValue< T extends Primitive = Primitive > =
 
 /**
  * SingleValue
- * Type describtion of a single numeric value.
+ * Type description of a single numeric value.
  * 
  * Fields: (numeric) value
  * Optional Fields: unit
@@ -79,7 +79,7 @@ export type SingleValue< Q extends PhysicalQuantity = PhysicalQuantity > =
 
 /**
  * ArrayValue
- * Type describtion of an numeric array value.
+ * Type description of an numeric array value.
  * 
  * Fields: (numeric) values
  * Optional Fields: unit
@@ -90,7 +90,7 @@ export type ArrayValue< Q extends PhysicalQuantity = PhysicalQuantity > =
 
 /**
  * RangeValue
- * Type describtion of a numeric range value.
+ * Type description of a numeric range value.
  * 
  * Fields: (numeric) range
  * Optional Fields: value, unit
@@ -103,7 +103,7 @@ export type RangeValue< Q extends PhysicalQuantity = PhysicalQuantity > =
 
 /**
  * CoupledNumberValue
- * Type describtion of a coupled value with number primitives.
+ * Type description of a coupled value with number primitives.
  * 
  * Fields: properties with single, array, or range values
  */
@@ -119,7 +119,7 @@ export type CoupledNumberValue< Q extends PhysicalQuantity = PhysicalQuantity > 
 
 /**
  * CoupledValue
- * Type describtion of a coupled value with generic primitives.
+ * Type description of a coupled value with generic primitives.
  * 
  * Fields: properties with primitive, single, array, or range values
  */

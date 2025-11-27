@@ -37,7 +37,7 @@ export type PrimitiveProperty<
 
 /**
  * SingleProperty
- * Type describtion of a single value property.
+ * Type description of a single value property.
  */
 export type SingleProperty<
     Q extends PhysicalQuantity = PhysicalQuantity,
@@ -47,7 +47,7 @@ export type SingleProperty<
 
 /**
  * ArrayProperty
- * Type describtion of an array value property.
+ * Type description of an array value property.
  */
 export type ArrayProperty<
     Q extends PhysicalQuantity = PhysicalQuantity,
@@ -57,7 +57,7 @@ export type ArrayProperty<
 
 /**
  * RangeProperty
- * Type describtion of a range value property.
+ * Type description of a range value property.
  */
 export type RangeProperty<
     Q extends PhysicalQuantity = PhysicalQuantity,
@@ -69,7 +69,7 @@ export type RangeProperty<
 
 /**
  * CoupledNumberProperty
- * Type describtion of a coupled number value property.
+ * Type description of a coupled number value property.
  */
 export type CoupledNumberProperty<
     Q extends PhysicalQuantity = PhysicalQuantity,
@@ -79,7 +79,7 @@ export type CoupledNumberProperty<
 
 /**
  * CoupledProperty
- * Type describtion of a coupled value property.
+ * Type description of a coupled value property.
  */
 export type CoupledProperty<
     Q extends PhysicalQuantity = PhysicalQuantity,
@@ -92,7 +92,7 @@ export type CoupledProperty<
 
 /**
  * NumberProperty
- * Type describtion of a number value property.
+ * Type description of a number value property.
  */
 export type NumberProperty<
     Q extends PhysicalQuantity = PhysicalQuantity,
@@ -102,7 +102,7 @@ export type NumberProperty<
 
 /**
  * Property
- * Type describtion of a general property with any value type.
+ * Type description of a general property with any value type.
  */
 export type Property<
     Q extends PhysicalQuantity = PhysicalQuantity,

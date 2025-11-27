@@ -43,7 +43,7 @@ interface UncertaintyFields {
 
 /**
  * AbsoluteUncertainty
- * Type describtion of an absolute uncertainty
+ * Type description of an absolute uncertainty
  * 
  * Fields: absolute
  */
@@ -53,7 +53,7 @@ export type AbsoluteUncertainty =
 
 /**
  * RelativeUncertainty
- * Type describtion of a relative uncertainty
+ * Type description of a relative uncertainty
  * 
  * Fields: relative
  */
@@ -63,7 +63,7 @@ export type RelativeUncertainty =
 
 /**
  * AsymmetricalUncertainty
- * Type describtion of an asymmetrical uncertainty
+ * Type description of an asymmetrical uncertainty
  * 
  * Fields: plus, minus
  */

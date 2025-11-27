@@ -98,7 +98,7 @@ type Conference< T extends 'conference' | 'inproceedings' > =
 
 /**
  * ArticleReference
- * Type describtion of an article reference.
+ * Type description of an article reference.
  * 
  * Fields: author, title, journal, year
  * Optional Fields: volume, number, pages, month, note
@@ -113,7 +113,7 @@ export type ArticleReference =
 
 /**
  * BookReference
- * Type describtion of a book reference.
+ * Type description of a book reference.
  * 
  * Fields: author/editor, title, publisher, year
  * Optional Fields: volume, number, series, address, edition, month, note, isbn
@@ -129,7 +129,7 @@ export type BookReference =
 
 /**
  * BookletReference
- * Type describtion of a booklet reference.
+ * Type description of a booklet reference.
  * 
  * Fields: title
  * Optional Fields: author, howpublished, address, month, year, note
@@ -143,7 +143,7 @@ export type BookletReference = BaseFields< 'booklet' > &
 
 /**
  * ConferenceReference
- * Type describtion of a conference reference.
+ * Type description of a conference reference.
  * 
  * Fields: author, title, booktitle, year
  * Optional Fields: editor, volume, number, series, pages, address, month, organization, publisher, note
@@ -152,7 +152,7 @@ export type ConferenceReference = Conference< 'conference' >;
 
 /**
  * InbookReference
- * Type describtion of an inbook reference.
+ * Type description of an inbook reference.
  * 
  * Fields: author/editor, title, booktitle, chapter/pages, publisher, year
  * Optional Fields: volume, number, series, type, address, edition, month, note
