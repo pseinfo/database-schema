@@ -6,6 +6,7 @@
 import { Distinct, Group, LangGroup, Single } from '../abstract/collection';
 import { NumberProperty, PrimitiveProperty } from '../abstract/property';
 import { RefId } from '../abstract/reference';
+import { CrystalStructure } from '../utils/const';
 
 /**
  * MetaData
@@ -150,11 +151,7 @@ export type WeblinksGroup = Group< {
  * @param references - References related to crystallographic data
  */
 export type CrystalGroup = Group< {
-    crystalStructure?: Distinct<
-        'hexagonal' | 'hexagonalClosePacked' | 'bodyCenteredCubic' | 'rhombohedral' |
-        'simpleCubic' | 'faceCenteredCubic' | 'diamondCubic' | 'orthorhombic' | 'tetragonal' |
-        'doubleHexagonalClosePacked' | 'monoclinic' | 'triclinic'
-    >;
+    crystalStructure?: Distinct< CrystalStructure >;
     pearsonSymbol?: Distinct< string >;
     spaceGroup?: Distinct< string >;
     spaceGroupNumber?: Distinct< number >;

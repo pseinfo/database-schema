@@ -59,3 +59,12 @@ export const ElementProperty = [
 ] as const;
 
 export type ElementProperty = ( typeof ElementProperty )[ number ];
+
+/** Crystal structure */
+export const CrystalStructure = [
+    'hexagonal', 'hexagonalClosePacked', 'bodyCenteredCubic', 'rhombohedral',
+    'simpleCubic', 'faceCenteredCubic', 'diamondCubic', 'orthorhombic', 'tetragonal',
+    'doubleHexagonalClosePacked', 'monoclinic', 'triclinic'
+] as const;
+
+export type CrystalStructure = ( typeof CrystalStructure )[ number ];
