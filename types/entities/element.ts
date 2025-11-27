@@ -9,6 +9,7 @@ import { ChemistryCollection } from '../collections/chemistry';
 import { AbundanceGroup, DiscoveryGroup, MediaGroup, MetaData, WeblinksGroup } from '../collections/generic';
 import { PhysicsCollection } from '../collections/physics';
 import { RegistryGroup, StructureGroup } from '../collections/registry';
+import { SafetyCollection } from '../collections/safety';
 import { ElementBlock, ElementGroup, ElementProperty, ElementSet, ElementSymbol, NaturalOccurrence, Phase } from '../utils/const';
 
 /** Element collections */
@@ -17,8 +18,15 @@ import { ElementBlock, ElementGroup, ElementProperty, ElementSet, ElementSymbol,
  * Descriptive
  * Collection for descriptive properties of elements.
  * 
- * Includes registry, structure, names, appearance, abundance, discovery,
- * properties, media, and weblinks.
+ * @param registry - Registry information group
+ * @param structure - Structural information group
+ * @param names - Names in different languages
+ * @param appearance - Appearance descriptions in different languages
+ * @param abundance - Natural abundance information group
+ * @param discovery - Discovery information group
+ * @param properties - List of element properties
+ * @param media - Media information group
+ * @param weblinks - Weblinks information group
  */
 type Descriptive = Collection< {
     registry: RegistryGroup;
@@ -36,8 +44,18 @@ type Descriptive = Collection< {
  * Classification
  * Collection for classification properties of elements.
  * 
- * Includes symbol, atomic number, block, group, column, period, radioactivity,
- * set, phase, natural occurrence, goldschmidt, and superconductivity.
+ * @param symbol - Chemical symbol of the element
+ * @param atomicNumber - Atomic number of the element
+ * @param block - Block of the periodic table
+ * @param group - Group of the periodic table
+ * @param column - Column number in the periodic table
+ * @param period - Period number in the periodic table
+ * @param radioactive - Whether the element is radioactive
+ * @param set - Set classification of the element
+ * @param phase - Standard phase at room temperature
+ * @param naturalOccurrence - Natural occurrence type
+ * @param goldschmidt - Goldschmidt classification
+ * @param superconductivity - Superconductivity type
  */
 type Classification = Collection< {
     symbol: Distinct< string >;
@@ -65,6 +83,7 @@ type Classification = Collection< {
  * @param physics - Physics properties collection
  * @param chemistry - Chemistry properties collection
  * @param atomics - Atomics properties collection
+ * @param safety - Safety properties collection
  */
 type SingleElement = Collection< {
     descriptive: Descriptive;
@@ -72,6 +91,7 @@ type SingleElement = Collection< {
     physics?: PhysicsCollection;
     chemistry?: ChemistryCollection;
     atomics?: AtomicsCollection;
+    safety?: SafetyCollection;
 } >;
 
 /** Entity type for all elements, indexed by their symbol */
