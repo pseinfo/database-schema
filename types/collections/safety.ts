@@ -65,8 +65,14 @@ export type NFPA = {
  * HazardGroup
  * Group for hazard information of substances.
  * 
- * Includes hazard statements, signal words, pictograms, classes, labels,
- * NFPA ratings, notes, and references.
+ * @param statements - Hazard, precautionary, and EU hazard statements
+ * @param signalWord - GHS signal word
+ * @param pictograms - GHS pictograms
+ * @param classes - Hazard classification systems (GHS, WHMIS, ADR, DOT)
+ * @param label - Hazard identification and UN numbers
+ * @param nfpa - NFPA 704 hazard rating
+ * @param note - Additional safety notes
+ * @param references - References for the hazard data
  */
 export type HazardGroup = Group< {
     statements?: Group< {
@@ -94,7 +100,13 @@ export type HazardGroup = Group< {
 /**
  * Toxicity
  * Represents toxicity data for substances.
- * Includes type, organism, value, application method, duration, and references.
+ * 
+ * @param type - Type of toxicity measurement (e.g., LD50, LC50)
+ * @param organism - Organism used in the toxicity test
+ * @param value - Measured toxicity value (single or range)
+ * @param application - Method of exposure
+ * @param duration - Duration of exposure
+ * @param references - References for the toxicity data
  */
 export type Toxicity = Distinct< {
     type: 'EC50' | 'LC50' | 'LD50' | 'TD50' | 'LOAEL' | 'LOEL' | 'NOAEL' | 'NOEL';
