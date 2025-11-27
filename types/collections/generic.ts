@@ -112,3 +112,28 @@ export type WeblinksGroup = Group< {
     }[] >;
     wiki?: LangGroup;
 } >;
+
+/**
+ * CrystalGroup
+ * Crystallographic properties for elements and compounds.
+ * Includes crystal structure, Pearson symbol, space group, and lattice constants.
+ */
+export type CrystalGroup = Group< {
+    crystalStructure?: Distinct<
+        'hexagonal' | 'hexagonalClosePacked' | 'bodyCenteredCubic' | 'rhombohedral' |
+        'simpleCubic' | 'faceCenteredCubic' | 'diamondCubic' | 'orthorhombic' | 'tetragonal' |
+        'doubleHexagonalClosePacked' | 'monoclinic' | 'triclinic'
+    >;
+    pearsonSymbol?: Distinct< string >;
+    spaceGroup?: Distinct< string >;
+    spaceGroupNumber?: Distinct< number >;
+    latticeConstant?: Group< {
+        a?: Distinct< number >;
+        b?: Distinct< number >;
+        c?: Distinct< number >;
+        alpha?: Distinct< number >;
+        beta?: Distinct< number >;
+        gamma?: Distinct< number >;
+    } >;
+    references?: RefId[];
+} >;
