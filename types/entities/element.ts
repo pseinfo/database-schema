@@ -4,6 +4,7 @@
  */
 
 import { Collection, Distinct, LangGroup } from '../abstract/collection';
+import { FormCollection } from '../abstract/form';
 import { AtomicsCollection } from '../collections/atomics';
 import { ChemistryCollection } from '../collections/chemistry';
 import { AbundanceGroup, DiscoveryGroup, MediaGroup, MetaData, WeblinksGroup } from '../collections/generic';
@@ -76,7 +77,7 @@ type Classification = Collection< {
 
 /**
  * SingleElement
- * Type for a single element entry (all properties)
+ * Type for a single element entry (all properties).
  * 
  * @param descriptive - Descriptive properties collection
  * @param classification - Classification properties collection
@@ -94,7 +95,15 @@ type SingleElement = Collection< {
     safety?: SafetyCollection;
 } >;
 
-/** Entity type for all elements, indexed by their symbol */
+/**
+ * Element
+ * Entity type for all elements, indexed by their symbol.
+ * 
+ * This includes metadata, collections for a single element, and optional forms.
+ * Forms are alternative representations or variations of the element data.
+ */
 export type Element = {
-    [ K in ElementSymbol ]: MetaData & SingleElement;
+    [ K in ElementSymbol ]: MetaData & SingleElement & {
+        forms?: FormCollection< SingleElement >;
+    };
 };
