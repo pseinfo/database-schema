@@ -3,7 +3,7 @@
  * Defines the structure for safety-related information in the database schema.
  */
 
-import { Distinct, Group } from '../abstract/collection';
+import { Collection, Distinct, Group } from '../abstract/collection';
 import { RefId } from '../abstract/reference';
 import { RangeValue, SingleValue } from '../abstract/value';
 
@@ -116,3 +116,15 @@ export type Toxicity = Distinct< {
     duration?: string;
     references?: RefId[];
 }[] >;
+
+/**
+ * SafetyCollection
+ * Safety collection combining hazard and toxicity information.
+ * 
+ * @param hazard - Hazard information group
+ * @param toxicity - Toxicity data
+ */
+export type SafetyCollection = Collection< {
+    hazard?: HazardGroup;
+    toxicity?: Toxicity;
+} >;
