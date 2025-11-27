@@ -3,6 +3,10 @@
  * Defines the structure for safety-related information in the database schema.
  */
 
+import { Distinct, Group } from '../abstract/collection';
+import { RefId } from '../abstract/reference';
+import { RangeValue, SingleValue } from '../abstract/value';
+
 /** Hazard statements */
 export type HStatement = `H${ '2' | '3' | '4' | '5' }${ string }`;
 export type PStatement = `P${ '1' | '2' | '3' | '4' | '5' }${ string }`;
@@ -56,3 +60,47 @@ export type NFPA = {
     reactivity: 0 | 1 | 2 | 3 | 4;
     specific?: 'W' | 'OX' | 'SA' | 'COR' | 'ACID' | 'ALK' | 'BIO' | 'POI' | 'RAD' | 'CRY';
 };
+
+/**
+ * HazardGroup
+ * Group for hazard information of substances.
+ * 
+ * Includes hazard statements, signal words, pictograms, classes, labels,
+ * NFPA ratings, notes, and references.
+ */
+export type HazardGroup = Group< {
+    statements?: Group< {
+        hazard?: Distinct< HStatement[] >;
+        precautionary?: Distinct< PStatement[] >;
+        eu?: Distinct< EUHStatement[] >;
+    } >;
+    signalWord?: Distinct< SignalWord >;
+    pictograms?: Distinct< GHSPictogram[] >;
+    classes?: Group< {
+        ghs?: Distinct< GHSClass[] >;
+        whmis?: Distinct< WHMISClass[] >;
+        adr?: Distinct< ADRClass[] >;
+        dot?: Distinct< DOTClass[] >;
+    } >;
+    label?: Distinct< {
+        hazNo: HazardIdentification;
+        unNo: UNNumber;
+    }[] >;
+    nfpa?: Distinct< NFPA >;
+    note?: Distinct< string >;
+    references?: RefId[];
+} >;
+
+/**
+ * Toxicity
+ * Represents toxicity data for substances.
+ * Includes type, organism, value, application method, duration, and references.
+ */
+export type Toxicity = Distinct< {
+    type: 'EC50' | 'LC50' | 'LD50' | 'TD50' | 'LOAEL' | 'LOEL' | 'NOAEL' | 'NOEL';
+    organism: string;
+    value: SingleValue< 'massFraction' > | RangeValue< 'massFraction' >;
+    application?: 'oral' | 'dermal' | 'inhalation' | 'intravenous' | 'intraperitoneal' | 'subcutaneous';
+    duration?: string;
+    references?: RefId[];
+}[] >;
