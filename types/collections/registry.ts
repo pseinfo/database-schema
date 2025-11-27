@@ -27,8 +27,22 @@ export type WikidataID = `Q${number}`;
  * RegistryGroup
  * Group type for chemical registry identifiers.
  * 
- * Includes CAS, PubChem, ChemSpider, ChEBI, ChEMBL, KEGG, ECHA, EC, RTECS,
- * UNII, NSC, DrugBank, Beilstein, Gmelin, PDB, and Wikidata IDs.
+ * @param cas - CAS number
+ * @param cid - PubChem ID
+ * @param chemspider - ChemSpider ID
+ * @param chebi - ChEBI ID
+ * @param chembl - ChEMBL ID
+ * @param kegg - KEGG ID
+ * @param echa - ECHA Info Card
+ * @param ec - European number
+ * @param rtecs - RTECS ID
+ * @param unii - UNII number
+ * @param nsc - NSC number
+ * @param drugbank - Drugbank ID
+ * @param beilstein - Beilstein number
+ * @param gmelin - Gmelin number
+ * @param pdb - PDB ID
+ * @param wikidata - WikiData ID
  */
 export type RegistryGroup = Group< {
 
@@ -82,8 +96,14 @@ export type IUPACName = string;
  * StructureGroup
  * Group type for chemical structure representations.
  * 
- * Includes InChI, InChIKey, SMILES, SMARTS, Canonical SMILES, Isomeric SMILES,
- * WLN, and IUPAC names.
+ * @param inChI - IUPAC International Chemical Identifier
+ * @param inChIkey - Hashed version of the InChI
+ * @param smiles - Simplified Molecular Input Line Entry System
+ * @param smarts - SMILES Arbitrary Target Specification
+ * @param canonicalSmiles - Canonical SMILES representation
+ * @param isomericSmiles - Isomeric SMILES representation
+ * @param wln - Wiswesser Line Notation
+ * @param iupacName - IUPAC systematic name
  */
 export type StructureGroup = Group< {
     inChI: Distinct< InChI >;

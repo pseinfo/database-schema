@@ -11,8 +11,14 @@ import { ShellModel } from '../utils/const';
  * AtomicsCollection
  * Collection for atomic properties of elements.
  * 
- * Includes atomic number, mass number, electron configuration, ionization energy,
- * atomic mass, atomic radius, and nuclear magnetic resonance.
+ * @param atomicNumber - Atomic number of the element
+ * @param massNumber - Mass number of the element
+ * @param electronConfig - Electron configuration string
+ * @param shellModel - Electron shell model distribution
+ * @param ionizationEnergies - List of ionization energies
+ * @param mass - Group of atomic mass properties
+ * @param radius - Group of atomic radius properties
+ * @param nmr - Group of nuclear magnetic resonance properties
  */
 export type AtomicsCollection = Collection< {
 

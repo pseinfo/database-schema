@@ -11,9 +11,16 @@ import { CrystalGroup } from './generic';
  * ChemistryCollection
  * Collection for chemical properties of elements.
  * 
- * Includes molar mass, molar volume, acid/base properties, electronegativity,
- * crystallographic properties, electrochemical properties, oxidation properties,
- * bonding, solubility, and thermochemical properties.
+ * @param molarMass - Molar mass of the substance
+ * @param molarVolume - Molar volume of the substance
+ * @param basicity - Acid/base properties group
+ * @param electronegativity - Electronegativity values group
+ * @param crystal - Crystallographic properties group
+ * @param electrochemistry - Electrochemical properties group
+ * @param oxidation - Oxidation properties group
+ * @param bonding - Bonding properties group
+ * @param solubility - Solubility properties group
+ * @param thermochemistry - Thermochemical properties group
  */
 export type ChemistryCollection = Collection< {
 
