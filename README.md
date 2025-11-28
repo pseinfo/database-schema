@@ -30,9 +30,9 @@ Properties in collections are defined either as `Single< T >` using above-descri
 
 ### Units & References
 
-The reference system for consistent bibliographic indexing is based on BibTeX. All BibTeX types, e.g., `book`, `article`, `misc`, `journal`, have exact definitions of required and optional fields.
+The physical unit system describes all physical quantities and their units, is based on the SI unit system, and allows the definition of multiple units per quantity. The system includes conversion factors and base units, describes their relationship to SI quantities, and is referenced in the database schema using the tuple `[ Quantity, Unit ]`.
 
-### Collections
+The reference system for consistent bibliographic indexing is based on BibTeX. All BibTeX types, e.g., `book`, `article`, `misc`, `journal`, have exact definitions of required and optional fields.
 
 ## Entities
 
