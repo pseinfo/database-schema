@@ -110,3 +110,6 @@ type Quantity< Q extends PhysicalQuantity > = {
 export type UnitCollection = {
     [ Q in PhysicalQuantity ]?: Quantity< Q >;
 };
+
+/** Unit reference used in other parts of the data model */
+export type UnitId< Q extends PhysicalQuantity = PhysicalQuantity > = [ Q, PrefixedSymbols< Q > ];
