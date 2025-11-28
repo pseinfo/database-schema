@@ -13,6 +13,15 @@ export type MetricSystem = ( typeof MetricSystem )[ number ];
 export const SIDimension = [ 'time', 'length', 'mass', 'electricCurrent', 'temperature', 'amountOfSubstance', 'luminousIntensity' ] as const;
 export type SIDimension = ( typeof SIDimension )[ number ];
 
+/** SI unit prefixes (metric system) */
+export const SIPrefix = {
+    Y: 1e24, Z: 1e21, E: 1e18, P: 1e15, T: 1e12, G: 1e9, M: 1e6, k: 1e3,
+    h: 1e2, da: 1e1, d: 1e-1, c: 1e-2, m: 1e-3, µ: 1e-6, n: 1e-9, p: 1e-12,
+    f: 1e-15, a: 1e-18, z: 1e-21, y: 1e-24
+} as const;
+
+export type SIPrefix = keyof typeof SIPrefix;
+
 /** List of valid quantities and their units */
 export const ValidUnits = {
     time: [ 's', 'm', 'h', 'd', 'a' ],
@@ -27,7 +36,10 @@ export const ValidUnits = {
 export type ValidUnits = typeof ValidUnits;
 
 /** List of valid physical quantities */
-export type PhysicalQuantity = keyof ValidUnits;
+export type PhysicalQuantity = keyof typeof ValidUnits;
+
+/* Base unit types for physical quantities */
+type BaseUnitSymbols< Q extends PhysicalQuantity > = ValidUnits[ Q ][ number ];
 
 /**
  * Dimension Vector
@@ -51,8 +63,8 @@ type DimensionVector = [ number, number, number, number, number, number, number 
  *  - factor - multiplication factor to convert to the base unit
  *  - offset - optional offset for units like Celsius to Kelvin
  */
-type Unit< Q extends PhysicalQuantity, U extends ValidUnits[ Q ][ number ] > = Brand< {
-    symbol: string;
+type Unit< Q extends PhysicalQuantity, U extends BaseUnitSymbols< Q > > = Brand< {
+    symbol: U;
     name?: string;
     isBase?: boolean;
     allowPrefix?: boolean;
@@ -83,6 +95,6 @@ type Quantity< Q extends PhysicalQuantity > = {
         si: boolean;
         vector: DimensionVector;
     };
-    baseUnit: ValidUnits[ Q ][ number ];
-    units: { [ U in ValidUnits[ Q ][ number ] ]: Unit< Q, U > };
+    baseUnit: BaseUnitSymbols< Q >;
+    units: { [ U in BaseUnitSymbols< Q > ]: Unit< Q, U > };
 };
