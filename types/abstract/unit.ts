@@ -41,6 +41,7 @@ type DimensionVector = [ number, number, number, number, number, number, number 
  * Type description of a single physical unit.
  * 
  * @template Q - physical quantity type
+ * @template U - unit symbol type
  * @param symbol - unit symbol (e.g., "m" for meters)
  * @param name - optional full name of the unit (e.g., "meter")
  * @param isBase - whether this unit is a base unit
@@ -50,7 +51,7 @@ type DimensionVector = [ number, number, number, number, number, number, number 
  *  - factor - multiplication factor to convert to the base unit
  *  - offset - optional offset for units like Celsius to Kelvin
  */
-type Unit< Q extends PhysicalQuantity > = Brand< {
+type Unit< Q extends PhysicalQuantity, U extends ValidUnits[ Q ][ number ] > = Brand< {
     symbol: string;
     name?: string;
     isBase?: boolean;
@@ -60,4 +61,28 @@ type Unit< Q extends PhysicalQuantity > = Brand< {
         factor: number;
         offset?: number;
     };
-}, `${ Q }::${ ValidUnits[ Q ][ number ] }` >;
+}, `${ Q }::${ U }` >;
+
+/**
+ * Quantity
+ * Type description of a physical quantity and its units.
+ * 
+ * @template Q - physical quantity type
+ * @param dimension - optional dimension information
+ *  - symbol - dimension symbol (e.g., "L" for length)
+ *  - name - full name of the dimension (e.g., "Length")
+ *  - si - whether this dimension is an SI base dimension
+ *  - vector - dimension vector representing the powers of base dimensions
+ * @param baseUnit - symbol of the base unit for this quantity
+ * @param units - record of units associated with this quantity
+ */
+type Quantity< Q extends PhysicalQuantity > = {
+    dimension?: {
+        symbol: string;
+        name: string;
+        si: boolean;
+        vector: DimensionVector;
+    };
+    baseUnit: ValidUnits[ Q ][ number ];
+    units: { [ U in ValidUnits[ Q ][ number ] ]: Unit< Q, U > };
+};
