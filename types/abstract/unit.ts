@@ -41,6 +41,11 @@ export type PhysicalQuantity = keyof typeof ValidUnits;
 /* Base unit types for physical quantities */
 type BaseUnitSymbols< Q extends PhysicalQuantity > = ValidUnits[ Q ][ number ];
 
+/* Unit symbols with optional SI prefixes */
+type PrefixedSymbols< Q extends PhysicalQuantity > =
+    | BaseUnitSymbols< Q >
+    | `${ SIPrefix }${ BaseUnitSymbols< Q > }`;
+
 /**
  * Dimension Vector
  * Represents the powers of each base dimension in the order:
@@ -96,5 +101,12 @@ type Quantity< Q extends PhysicalQuantity > = {
         vector: DimensionVector;
     };
     baseUnit: BaseUnitSymbols< Q >;
-    units: { [ U in BaseUnitSymbols< Q > ]: Unit< Q, U > };
+    units: {
+        [ U in BaseUnitSymbols< Q > ]: Unit< Q, U >;
+    };
+};
+
+/** Collection of physical quantities and their units */
+export type UnitCollection = {
+    [ Q in PhysicalQuantity ]?: Quantity< Q >;
 };
