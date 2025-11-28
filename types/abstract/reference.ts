@@ -171,7 +171,7 @@ export type InbookReference =
 
 /**
  * IncollectionReference
- * Type describtion of an incollection reference.
+ * Type description of an incollection reference.
  * 
  * Fields: author, title, booktitle, publisher, year
  * Optional Fields: editor, volume, number, series, type, chapter, pages, address, edition, month, note
@@ -186,7 +186,7 @@ export type IncollectionReference =
 
 /**
  * InproceedingsReference
- * Type describtion of an inproceedings reference.
+ * Type description of an inproceedings reference.
  * 
  * Fields: author, title, booktitle, year
  * Optional Fields: editor, volume, number, series, pages, address, month, organization, publisher, note
@@ -195,7 +195,7 @@ export type InproceedingsReference = Conference< 'inproceedings' >;
 
 /**
  * ManualReference
- * Type describtion of a manual reference.
+ * Type description of a manual reference.
  * 
  * Fields: title
  * Optional Fields: author, organization, address, edition, month, year, note
@@ -210,7 +210,7 @@ export type ManualReference =
 
 /**
  * MastersthesisReference
- * Type describtion of a mastersthesis reference.
+ * Type description of a mastersthesis reference.
  * 
  * Fields: author, title, school, year
  * Optional Fields: type, address, month, note
@@ -219,7 +219,7 @@ export type MastersthesisReference = Thesis< 'mastersthesis' >;
 
 /**
  * ThesisReference
- * Type describtion of a thesis reference.
+ * Type description of a thesis reference.
  * 
  * Fields: author, title, school, year
  * Optional Fields: type, address, month, note
@@ -228,7 +228,7 @@ export type ThesisReference = Thesis< 'thesis' >;
 
 /**
  * MiscReference
- * Type describtion of a miscellaneous reference.
+ * Type description of a miscellaneous reference.
  * 
  * Optional Fields: author, title, howpublished, month, year, note
  */
@@ -238,7 +238,7 @@ export type MiscReference =
 
 /**
  * PhdthesisReference
- * Type describtion of a phdthesis reference.
+ * Type description of a phdthesis reference.
  * 
  * Fields: author, title, school, year
  * Optional Fields: type, address, month, note
@@ -247,7 +247,7 @@ export type PhdthesisReference = Thesis< 'phdthesis' >;
 
 /**
  * ProceedingsReference
- * Type describtion of a proceedings reference.
+ * Type description of a proceedings reference.
  * 
  * Fields: title, year
  * Optional Fields: editor, volume, number, series, address, month, organization, publisher, note
@@ -262,7 +262,7 @@ export type ProceedingsReference =
 
 /**
  * TechreportReference
- * Type describtion of a techreport reference.
+ * Type description of a techreport reference.
  * 
  * Fields: author, title, institution, year
  * Optional Fields: type, number, address, month, note
@@ -277,7 +277,7 @@ export type TechreportReference =
 
 /**
  * UnpublishedReference
- * Type describtion of an unpublished reference.
+ * Type description of an unpublished reference.
  * 
  * Fields: author, title, note
  * Optional Fields: month, year
