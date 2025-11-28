@@ -48,3 +48,15 @@ Records of chemical elements are structured as follows:
 - Chemistry properties collection
 - Atomics properties collection
 - Safety properties collection
+
+### (Chemical) Compounds
+
+Yet not implemented.
+
+### Nuclides
+
+Yet not implemented.
+
+### Minerals
+
+Yet not implemented.
