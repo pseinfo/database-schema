@@ -22,15 +22,90 @@ export const SIPrefix = {
 
 export type SIPrefix = keyof typeof SIPrefix;
 
-/** List of valid quantities and their units */
+/** List of valid quantities and their base unit symbols */
 export const ValidUnits = {
-    time: [ 's', 'm', 'h', 'd', 'a' ],
-    length: [ 'm', 'in', 'ft', 'yd', 'mi' ],
-    mass: [ 'g', 't', 'oz', 'lb' ],
-    electricCurrent: [ 'A' ],
-    temperature: [ 'K', 'C', 'F' ],
-    amountOfSubstance: [ 'mol' ],
-    luminousIntensity: [ 'cd' ]
+
+    // SI base dimensions
+    time: [ 's', 'min', 'h', 'd', 'a', 'y' ] as const,
+    length: [ 'm', 'in', 'ft', 'yd', 'mi', 'Å', 'Ø' ] as const,
+    mass: [ 'g', 't', 'oz', 'lb', 'u', 'Da' ] as const,
+    electricCurrent: [ 'A' ] as const,
+    temperature: [ 'K', '°C', '°F' ] as const,
+    amountOfSubstance: [ 'mol' ] as const,
+    luminousIntensity: [ 'cd' ] as const,
+
+    // Mechanical quantities
+    velocity: [ 'm/s', 'km/h', 'mph', 'ft/s', 'knot', 'Mach' ] as const,
+    acceleration: [ 'm/s[2]', 'g (g-force)', 'Gal' ] as const,
+    force: [ 'N', 'dyn', 'kgf', 'lbf' ] as const,
+    surfaceTension: [ 'N/m', 'dyn/cm', 'mN/m' ] as const,
+    pressure: [ 'Pa', 'bar', 'atm', 'psi', 'torr', 'mmHg', 'inHg', 'cmH{2}O' ] as const,
+    energy: [ 'J', 'eV', 'kcal', 'Wh', 'Btu', 'erg' ] as const,
+    power: [ 'W', 'hp', 'erg/s', 'kcal/s' ] as const,
+    density: [ 'kg/m[3]', 'g/cm[3]', 'g/mL', 'lb/ft[3]' ] as const,
+    absorptionCoefficient: [ 'm[-1]', 'cm[-1]', 'L/(mol·cm)' ] as const,
+    attenuationCoefficient: [ 'm[-1]', 'cm[-1]', 'dB/cm', 'dB/km' ] as const,
+    compressibility: [ 'Pa[-1]', 'bar[-1]' ] as const,
+
+    // Thermal quantities
+    enthalpy: [ 'J/mol', 'J/g', 'kcal/mol', 'eV', 'Btu/lb' ] as const,
+    entropy: [ 'J/(mol·K)', 'J/(g·K)', 'cal/(mol·K)', 'Btu/(lb·°F)' ] as const,
+    heatCapacity: [ 'J/(mol·K)', 'J/(g·K)', 'cal/(mol·K)', 'Btu/(lb·°F)' ] as const,
+    specificHeatCapacity: [ 'J/(g·K)', 'J/(kg·K)', 'cal/(g·K)', 'Btu/(lb·°F)' ] as const,
+    tempCoefficient: [ 'K[-1]', 'ppm/K' ] as const,
+    thermalConductivity: [ 'W/(m·K)', 'W/(cm·K)', 'cal/(s·cm·K)' ] as const,
+    thermalExpansion: [ 'K[-1]', 'ppm/K' ] as const,
+    thermalDiffusivity: [ 'm[2]/s', 'cm[2]/s' ] as const,
+
+    // Electrical quantities
+    electricCharge: [ 'C', 'e', 'Ah' ] as const,
+    electricPotential: [ 'V' ] as const,
+    electricResistance: [ 'Ω' ] as const,
+    electricConductance: [ 'S' ] as const,
+    electricConductivity: [ 'S/m', 'S/cm' ] as const,
+    electricResistivity: [ 'Ω·m', 'Ω·cm' ] as const,
+
+    // Magnetic quantities
+    magneticFlux: [ 'Wb', 'V·s' ] as const,
+    magneticFluxDensity: [ 'T', 'G' ] as const,
+    magneticSusceptibility: [ 'dimensionless', 'cm[3]/mol', 'm[3]/mol' ] as const,
+    magneticMoment: [ 'J/T', 'A·m[2]', 'µ{B}', 'µ{N}' ] as const,
+    magneticFieldStrength: [ 'A/m', 'Oe' ] as const,
+    magneticPermeability: [ 'H/m' ] as const,
+    molarMagneticSusceptibility: [ 'cm[3]/mol', 'm[3]/mol' ] as const,
+    massMagneticSusceptibility: [ 'cm[3]/g', 'm[3]/kg' ] as const,
+
+    // Optical quantities
+    luminousFlux: [ 'lm' ] as const,
+    illuminance: [ 'lx', 'fc' ] as const,
+
+    // Acoustic quantities
+    soundSpeed: [ 'm/s', 'km/h', 'ft/s' ] as const,
+    acousticImpedance: [ 'Pa·s/m', 'kg/(m[2]·s)', 'Rayl' ] as const,
+
+    // Chemical quantities
+    molarMass: [ 'g/mol', 'kg/mol' ] as const,
+    molarVolume: [ 'L/mol', 'cm[3]/mol', 'm[3]/mol' ] as const,
+    concentration: [ 'mol/L', 'mol/m[3]', 'g/L', 'ppm', 'ppb' ] as const,
+    molarity: [ 'M', 'mol/L' ] as const,
+    molality: [ 'm', 'mol/kg' ] as const,
+    moleFraction: [ '%', 'dimensionless', 'ppm', 'ppb', 'ppt' ] as const,
+    molarHeatCapacity: [ 'J/(mol·K)', 'cal/(mol·K)' ] as const,
+
+    // Viscosity quantities
+    dynamicViscosity: [ 'Pa·s', 'cP', 'poise', 'mPa·s' ] as const,
+    kinematicViscosity: [ 'm[2]/s', 'cSt', 'stoke' ] as const,
+
+    // Radiation quantities
+    activity: [ 'Bq', 'Ci' ] as const,
+    absorbedDose: [ 'Gy', 'rad' ] as const,
+
+    // Specialized quantities
+    frequency: [ 'Hz', 'rpm', 'rps' ] as const,
+    angle: [ '°', 'rad', 'ʹ', 'ʺ', 'grad', 'turn' ] as const,
+    massFraction: [ '%', 'dimensionless', 'ppm', 'ppb', 'ppt' ] as const,
+    quantity: [ 'dimensionless', '%', 'mol' ] as const
+
 } as const;
 
 export type ValidUnits = typeof ValidUnits;

@@ -90,9 +90,9 @@ export type PhysicsCollection = Collection< {
 
     // Electrical properties
     electricity?: Group< {
-        electricalConductivity?: Single< NumberProperty< 'electricalConductivity' > >;
-        electricalResistivity?: Single< NumberProperty< 'electricalResistivity' > >;
-        temperatureCoefficient?: Single< NumberProperty< 'temperatureCoefficient' > >;
+        electricConductivity?: Single< NumberProperty< 'electricConductivity' > >;
+        electricResistivity?: Single< NumberProperty< 'electricResistivity' > >;
+        temperatureCoefficient?: Single< NumberProperty< 'tempCoefficient' > >;
         superconductingPoint?: Single< NumberProperty< 'temperature' > >;
         bandGap?: Single< NumberProperty< 'energy' > >;
         dielectricConstant?: Single< PrimitiveProperty< number > >;
