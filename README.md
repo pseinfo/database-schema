@@ -22,6 +22,12 @@ In addition to physics data, simple strings, numeric values, booleans, etc. can 
 
 ### Collections
 
+Database entries are organized into several collections, grouping properties that are similar or thematically related. Collections represent sets of properties from various scientific disciplines (physics, chemistry) or define frequently used, complex data structures (hazard information, registry, media, etc.).
+
+Collections usually define far more properties than needed, therefore these fields are mostly optional. Entities (e.g., chemical elements) define their own collections too, based on their own needs.
+
+Properties in collections are defined either as `Single< T >` using above-described physical values or `Distinct< T >` as a special data type. Properties in collections can be grouped using `Group< {...} >`. The `Collection< T >` is defined as an enclosing generic collection mapper that safely converts a collection definition into the corresponding internal structure.
+
 ### Units & References
 
 The reference system for consistent bibliographic indexing is based on BibTeX. All BibTeX types, e.g., `book`, `article`, `misc`, `journal`, have exact definitions of required and optional fields.
