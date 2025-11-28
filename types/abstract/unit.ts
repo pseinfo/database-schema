@@ -23,3 +23,13 @@ export const ValidUnits = {
 } as const;
 
 export type ValidUnits = typeof ValidUnits;
+
+/** List of valid physical quantities */
+export type PhysicalQuantity = keyof ValidUnits;
+
+/**
+ * Dimension Vector
+ * Represents the powers of each base dimension in the order:
+ * [time, length, mass, electricCurrent, temperature, amountOfSubstance, luminousIntensity]
+ */
+type DimensionVector = [ number, number, number, number, number, number, number ];
