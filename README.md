@@ -16,6 +16,10 @@ Most entries are branded, which allows for validation at runtime, as well as pur
 
 ### Values & Properties
 
+To ensure extensive recording of physical and chemical properties, the database features a complex type system that strictly types and monitors the definition of numerical values. Various property types, such as single numbers, ranges, arrays, or even more complex correlated physical properties, ensure precise specification in different applications. Furthermore, parameters are responsible for specifying measurement uncertainty, confidence ratings, conditions under which the properties are valid, and more.
+
+In addition to physics data, simple strings, numeric values, booleans, etc. can be stored using a primitive type. Apart from that, some collections define their own more complex structures, which, however, refer to or use basic types whenever possible.
+
 ### Collections
 
 ### Units & References
