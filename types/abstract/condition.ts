@@ -7,8 +7,8 @@ import { Primitive } from 'devtypes/types/primitives';
 import { PhysicalQuantity } from './unit';
 import { Value } from './value';
 
-/** Definition of special standard conditions */
-export const SpecialCondition = [
+/** Definition of standard conditions */
+export const StandardCondition = [
     'STP',          // T=0     P=100      IUPAC (STP) since 1982
     'STP_ATM',      // T=0     P=101.325  NIST, ISO 10780, former IUPAC STP
     'NTP',          // T=20    P=101.325  EPA, NIST
@@ -27,18 +27,19 @@ export const SpecialCondition = [
     'DIN_1343'      // T=0     P=101.325  DIN 1343:1990
 ] as const;
 
-export type SpecialCondition = ( typeof SpecialCondition )[ number ];
+export type StandardCondition = ( typeof StandardCondition )[ number ];
 
 /**
  * Conditions
- * A mapping of physical quantities as conditions for properties.
- * Allows for special standard conditions.
+ * Type description of a mapping of physical quantities to values as conditions.
+ * Either standard conditions or custom set of properties.
  * 
  * @template Q - Physical quantities used as conditions
  * @template T - Primitive types for the condition values
  */
-export type Conditions< Q extends PhysicalQuantity = PhysicalQuantity, T extends Primitive = Primitive > = {
+export type Conditions<
+    Q extends PhysicalQuantity = PhysicalQuantity,
+    T extends Primitive = Primitive
+> = StandardCondition | {
     [ K in Q ]?: Value< K, T >;
-} & {
-    special?: SpecialCondition;
 };
