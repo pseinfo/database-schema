@@ -36,4 +36,15 @@ The reference system for consistent bibliographic indexing is based on BibTeX. A
 
 ## Entities
 
+The chemical database consists of several entities (including elements, chemical compounds, nuclides), each of which stores all relevant data in a strictly typed manner. The entities are implemented at the top level alongside the unit system and references. Each entry consists of detailed structures and properties.
+
 ### Elements
+
+Records of chemical elements are structured as follows:
+
+- Descriptive properties collection
+- Classification properties collection
+- Physics properties collection
+- Chemistry properties collection
+- Atomics properties collection
+- Safety properties collection
