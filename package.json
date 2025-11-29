@@ -1,6 +1,6 @@
 {
   "name": "@pseinfo/database-schema",
-  "description": "TypeScript type declarations for the chemical database",
+  "description": "TypeScript type declarations for the @pseinfo database",
   "version": "0.1.0",
   "license": "MIT",
   "author": {
@@ -17,8 +17,8 @@
     "url": "https://github.com/pseinfo/database-schema/issues"
   },
   "keywords": [
-    "chemistry", "database", "types", "typescript",
-    "periodic-table", "schema", "type-definitions"
+    "database", "schema", "chemistry", "types", "typescript",
+    "periodic-table", "type-definitions", "pseinfo"
   ],
   "type": "module",
   "types": "types/index.ts",
