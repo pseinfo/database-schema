@@ -16,6 +16,10 @@
   "bugs": {
     "url": "https://github.com/pseinfo/database-schema/issues"
   },
+  "keywords": [
+    "chemistry", "database", "types", "typescript",
+    "periodic-table", "schema", "type-definitions"
+  ],
   "type": "module",
   "types": "types/index.ts",
   "main": "types/index.ts",
@@ -41,17 +45,10 @@
     "README.md",
     "LICENSE"
   ],
-  "keywords": [
-    "chemistry",
-    "database",
-    "types",
-    "typescript",
-    "elements",
-    "periodic-table",
-    "schema",
-    "type-definitions"
-  ],
   "dependencies": {
     "devtypes": "^1.0.0"
+  },
+  "scripts": {
+    "lint": "tsc"
   }
 }
