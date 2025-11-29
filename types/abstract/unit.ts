@@ -53,6 +53,52 @@ export const ValidUnits = {
     luminousIntensity: {
         base: [ 'cd' ] as const,
         prefixable: [] as const
+    },
+
+    // Mechanical quantities
+    velocity: {
+        base: [ 'm/s', 'km/h', 'mph', 'ft/s', 'knot', 'Mach' ] as const,
+        prefixable: [ 'm/s' ] as const
+    },
+    acceleration: {
+        base: [ 'm/s[2]', 'g', 'Gal' ] as const,
+        prefixable: [ 'm/s[2]' ] as const
+    },
+    force: {
+        base: [ 'N', 'dyn', 'kgf', 'lbf' ] as const,
+        prefixable: [ 'N' ] as const
+    },
+    surfaceTension: {
+        base: [ 'N/m', 'dyn/cm', 'mN/m' ] as const,
+        prefixable: [] as const
+    },
+    pressure: {
+        base: [ 'Pa', 'bar', 'atm', 'psi', 'torr', 'mmHg', 'inHg', 'cmH{2}O' ] as const,
+        prefixable: [ 'Pa', 'bar' ] as const
+    },
+    energy: {
+        base: [ 'J', 'eV', 'kcal', 'Wh', 'Btu', 'erg' ] as const,
+        prefixable: [ 'J', 'eV', 'Wh' ] as const
+    },
+    power: {
+        base: [ 'W', 'hp', 'erg/s', 'kcal/s' ] as const,
+        prefixable: [ 'W' ] as const
+    },
+    density: {
+        base: [ 'kg/m[3]', 'g/cm[3]', 'g/mL', 'lb/ft[3]' ] as const,
+        prefixable: [] as const
+    },
+    absorptionCoefficient: {
+        base: [ 'm[-1]', 'cm[-1]', 'L/(mol·cm)' ] as const,
+        prefixable: [] as const
+    },
+    attenuationCoefficient: {
+        base: [ 'm[-1]', 'cm[-1]', 'dB/cm', 'dB/km' ] as const,
+        prefixable: [] as const
+    },
+    compressibility: {
+        base: [ 'Pa[-1]', 'bar[-1]' ] as const,
+        prefixable: [] as const
     }
 
 } as const;
