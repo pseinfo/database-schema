@@ -7,7 +7,12 @@ import { Brand } from 'devtypes/types/base';
 import { ExtractFrom, RequireAtLeastOne, RequireExactlyOne, StrictSubset } from 'devtypes/types/constraints';
 
 /** Reference types based on BibTeX */
-export const ReferenceType = [ 'article', 'book', 'booklet', 'conference', 'inbook', 'incollection', 'inproceedings', 'manual', 'mastersthesis', 'thesis', 'misc', 'phdthesis', 'proceedings', 'techreport', 'unpublished' ] as const;
+export const ReferenceType = [
+    'article', 'book', 'booklet', 'conference', 'inbook', 'incollection', 'inproceedings',
+    'manual', 'mastersthesis', 'thesis', 'misc', 'phdthesis', 'proceedings', 'techreport',
+    'unpublished'
+] as const;
+
 export type ReferenceType = ( typeof ReferenceType )[ number ];
 
 /**
