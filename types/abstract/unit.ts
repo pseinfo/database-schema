@@ -135,7 +135,7 @@ type DimensionVector = [ number, number, number, number, number, number, number 
  * 
  * @template Q - physical quantity type
  * @template U - unit symbol type
- * @param symbol - unit symbol (e.g., "m" for meters)
+ * @param symbol - unit symbol (e.g., "m" for meters; branding)
  * @param name - optional full name of the unit (e.g., "meter")
  * @param isBase - whether this unit is a base unit
  * @param prefixable - whether unit prefixes are allowed
@@ -145,7 +145,6 @@ type DimensionVector = [ number, number, number, number, number, number, number 
  *  - offset - optional offset for units like Celsius to Kelvin
  */
 type Unit< Q extends PhysicalQuantity, U extends BaseUnitSymbols< Q > > = Brand< {
-    symbol: U;
     name?: string;
     isBase?: boolean;
     prefixable?: U extends PrefixableUnitSymbols< Q > ? true : false;
@@ -154,7 +153,7 @@ type Unit< Q extends PhysicalQuantity, U extends BaseUnitSymbols< Q > > = Brand<
         factor: number;
         offset?: number;
     };
-}, `${ Q }::${ U }` >;
+}, U, 'symbol', true >;
 
 /**
  * Quantity

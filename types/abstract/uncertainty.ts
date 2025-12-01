@@ -15,13 +15,14 @@ export type UncertaintyType = ( typeof UncertaintyType )[ number ];
  * Common fields for all uncertainty types
  * 
  * @template T - Uncertainty type
+ * @param type - type of uncertainty (branding)
  * @param confidence - optional confidence level (0 to 1)
  * @param note - optional note about the uncertainty
  */
 type BaseFields< T extends UncertaintyType > = Brand< {
     confidence?: number;
     note?: string;
-}, T >;
+}, T, 'type', true >;
 
 /**
  * UncertaintyFields

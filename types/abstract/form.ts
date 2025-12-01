@@ -19,13 +19,14 @@ export type FormType = ( typeof FormType )[ number ];
  * 
  * @template T - Form type
  * @template C - Collection type for properties
+ * @param type - type for substance form (branding)
  * @param properties - Partial collection of properties specific to the form
  * @param note - Additional notes about the form
  */
 type BaseFields< T extends FormType, C extends Collection< any > > = Brand< {
     properties?: DeepPartial< C >;
     note?: Distinct< string >;
-}, T >;
+}, T, 'type', true >;
 
 /**
  * FormFields

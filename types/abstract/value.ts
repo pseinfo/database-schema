@@ -22,6 +22,7 @@ export type ValueConfidence = ( typeof ValueConfidence )[ number ];
  * Common fields for all value types.
  * 
  * @template T - value type brand
+ * @param type - type for value (branding)
  * @param confidence - confidence level of the value
  * @param uncertainty - uncertainty associated with the value
  * @param note - optional note or comment about the value
@@ -30,7 +31,7 @@ type BaseFields< T extends ValueType > = Brand< {
     confidence?: ValueConfidence;
     uncertainty?: Uncertainty;
     note?: string;
-}, T >;
+}, T, 'type', true >;
 
 /**
  * ValueFields

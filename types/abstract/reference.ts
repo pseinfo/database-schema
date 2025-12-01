@@ -20,6 +20,7 @@ export type ReferenceType = ( typeof ReferenceType )[ number ];
  * Common fields for all reference types.
  * 
  * @template T - Reference type
+ * @param type - type of reference (branding)
  * @param accessed - date when the reference was accessed (for online resources)
  * @param url - URL of the reference
  * @param doi - DOI of the reference
@@ -28,7 +29,7 @@ type BaseFields< T extends ReferenceType > = Brand< {
     accessed?: string;
     url?: string;
     doi?: string;
-}, T >;
+}, T, 'type', true >;
 
 /**
  * BibTeXFields
