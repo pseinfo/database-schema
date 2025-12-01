@@ -46,7 +46,7 @@
     "LICENSE"
   ],
   "dependencies": {
-    "devtypes": "^1.0.0"
+    "devtypes": "^1.0.1"
   },
   "scripts": {
     "lint": "tsc"
