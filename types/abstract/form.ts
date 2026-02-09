@@ -3,9 +3,10 @@
  * Defines the structure for various form types of substances.
  */
 
-import { Brand } from 'devtypes/types/base';
-import { DeepPartial } from 'devtypes/types/collections';
-import { RequireFrom, StrictSubset } from 'devtypes/types/constraints';
+import { RequireFrom, StrictSubset } from 'devtypes/types/constraint';
+import { DeepPartial } from 'devtypes/types/transform';
+import { Brand } from 'devtypes/types/util';
+
 import { CrystalStructure, Phase } from '../utils/const';
 import { Collection, Distinct } from './collection';
 
