@@ -4,6 +4,7 @@
  */
 
 import { LiteralUnion } from 'devtypes/types/primitive';
+
 import { Property } from './property';
 
 /** Utility types */
