@@ -3,7 +3,8 @@
  * Defines a mapping of physical quantities as conditions for properties.
  */
 
-import { Primitive } from 'devtypes/types/primitives';
+import { Primitive } from 'devtypes/types/primitive';
+
 import { PhysicalQuantity } from './unit';
 import { Value } from './value';
 

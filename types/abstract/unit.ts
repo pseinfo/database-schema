@@ -3,7 +3,7 @@
  * Type system for physical units.
  */
 
-import { Brand } from 'devtypes/types/base';
+import { Brand } from 'devtypes/types/util';
 
 /** Metric systems */
 export const MetricSystem = [ 'metric', 'imperial', 'us', 'custom', 'unknown' ] as const;

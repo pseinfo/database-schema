@@ -3,7 +3,8 @@
  * Utility types for defining collections of properties with various structures.
  */
 
-import { LiteralUnion } from 'devtypes/types/primitives';
+import { LiteralUnion } from 'devtypes/types/primitive';
+
 import { Property } from './property';
 
 /** Utility types */

@@ -1,7 +1,7 @@
 {
   "name": "@pseinfo/database-schema",
   "description": "TypeScript type declarations for the @pseinfo database",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "author": {
     "name": "Paul Köhler",
@@ -17,8 +17,14 @@
     "url": "https://github.com/pseinfo/database-schema/issues"
   },
   "keywords": [
-    "database", "schema", "chemistry", "types", "typescript",
-    "periodic-table", "type-definitions", "pseinfo"
+    "database",
+    "schema",
+    "chemistry",
+    "types",
+    "typescript",
+    "periodic-table",
+    "type-definitions",
+    "pseinfo"
   ],
   "type": "module",
   "types": "types/index.ts",
@@ -46,7 +52,7 @@
     "LICENSE"
   ],
   "dependencies": {
-    "devtypes": "^1.0.1"
+    "devtypes": "^2.0.0"
   },
   "scripts": {
     "lint": "tsc"

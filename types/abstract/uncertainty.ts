@@ -3,8 +3,8 @@
  * Physical and measurement uncertainty representations.
  */
 
-import { Brand } from 'devtypes/types/base';
-import { RequireFrom } from 'devtypes/types/constraints';
+import { RequireFrom } from 'devtypes/types/constraint';
+import { Brand } from 'devtypes/types/util';
 
 /** Uncertainty types */
 export const UncertaintyType = [ 'absolute', 'relative', 'asymmetrical' ] as const;

@@ -3,7 +3,8 @@
  * Definitions for various property types used in the database schema.
  */
 
-import { Primitive } from 'devtypes/types/primitives';
+import { Primitive } from 'devtypes/types/primitive';
+
 import { Conditions } from './condition';
 import { RefId } from './reference';
 import { PhysicalQuantity } from './unit';
