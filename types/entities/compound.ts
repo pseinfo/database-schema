@@ -3,15 +3,16 @@
  * Defines the database entity for chemical compounds and substances.
  */
 
-import { Collection, Distinct, Group, LangGroup } from '../abstract/collection';
-import { FormCollection } from '../abstract/form';
-import { ChemistryCollection } from '../collections/chemistry';
-import { PhysicsCollection } from '../collections/physics';
-import { SafetyCollection } from '../collections/safety';
-import { RegistryGroup, StructureGroup } from '../collections/registry';
-import { DiscoveryGroup, MediaGroup, MetaData, WeblinksGroup } from '../collections/generic';
-import { ElementSymbol } from '../utils/const';
-import { LiteralUnion } from 'devtypes/types/primitive';
+import type { LiteralUnion } from 'devtypes/types/primitive';
+
+import type { Collection, Distinct, Group, LangGroup } from '../abstract/collection';
+import type { FormCollection } from '../abstract/form';
+import type { ChemistryCollection } from '../collections/chemistry';
+import type { PhysicsCollection } from '../collections/physics';
+import type { SafetyCollection } from '../collections/safety';
+import type { RegistryGroup, StructureGroup } from '../collections/registry';
+import type { DiscoveryGroup, MediaGroup, MetaData, WeblinksGroup } from '../collections/generic';
+import type { ElementSymbol } from '../utils/const';
 
 /** Compound collections */
 
