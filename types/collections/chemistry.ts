@@ -3,9 +3,9 @@
  * Defined collection types for chemical properties and data.
  */
 
-import { Collection, Distinct, Group, Single } from '../abstract/collection';
-import { NumberProperty, PrimitiveProperty } from '../abstract/property';
-import { CrystalGroup } from './generic';
+import type { Collection, Distinct, Group, Single } from '../abstract/collection';
+import type { NumberProperty, PrimitiveProperty } from '../abstract/property';
+import type { CrystalGroup } from './generic';
 
 /**
  * ChemistryCollection

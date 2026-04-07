@@ -3,9 +3,9 @@
  * Defines the structure for safety-related information in the database schema.
  */
 
-import { Collection, Distinct, Group } from '../abstract/collection';
-import { RefId } from '../abstract/reference';
-import { RangeValue, SingleValue } from '../abstract/value';
+import type { Collection, Distinct, Group } from '../abstract/collection';
+import type { RefId } from '../abstract/reference';
+import type { RangeValue, SingleValue } from '../abstract/value';
 
 /** Hazard statements */
 export type HStatement = `H${ '2' | '3' | '4' | '5' }${ string }`;

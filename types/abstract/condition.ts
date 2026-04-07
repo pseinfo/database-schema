@@ -3,10 +3,10 @@
  * Defines a mapping of physical quantities as conditions for properties.
  */
 
-import { Primitive } from 'devtypes/types/primitive';
+import type { Primitive } from 'devtypes/types/primitive';
 
-import { PhysicalQuantity } from './unit';
-import { Value } from './value';
+import type { PhysicalQuantity } from './unit';
+import type { Value } from './value';
 
 /** Definition of standard conditions */
 export const StandardCondition = [

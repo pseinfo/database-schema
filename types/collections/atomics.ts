@@ -3,9 +3,9 @@
  * Collection of atomic properties for chemical elements.
  */
 
-import { Collection, Distinct, Group, Single } from '../abstract/collection';
-import { ArrayProperty, NumberProperty, PrimitiveProperty } from '../abstract/property';
-import { ShellModel } from '../utils/const';
+import type { Collection, Distinct, Group, Single } from '../abstract/collection';
+import type { ArrayProperty, NumberProperty, PrimitiveProperty } from '../abstract/property';
+import type { ShellModel } from '../utils/const';
 
 /**
  * AtomicsCollection

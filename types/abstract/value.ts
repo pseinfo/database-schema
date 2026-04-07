@@ -3,12 +3,12 @@
  * Definitions for various types of values used in the schema.
  */
 
-import { RequireAtLeastOne, RequireExactlyOne, StrictSubset } from 'devtypes/types/constraint';
-import { Primitive } from 'devtypes/types/primitive';
-import { Brand } from 'devtypes/types/util';
+import type { RequireAtLeastOne, RequireExactlyOne, StrictSubset } from 'devtypes/types/constraint';
+import type { Primitive } from 'devtypes/types/primitive';
+import type { Brand } from 'devtypes/types/util';
 
-import { Uncertainty } from './uncertainty';
-import { PhysicalQuantity, UnitId } from './unit';
+import type { Uncertainty } from './uncertainty';
+import type { PhysicalQuantity, UnitId } from './unit';
 
 /** Value types */
 export const ValueType = [ 'primitive', 'single', 'array', 'range', 'coupled' ] as const;
