@@ -12,7 +12,7 @@ import type { PhysicsCollection } from '../collections/physics';
 import type { SafetyCollection } from '../collections/safety';
 import type { RegistryGroup, StructureGroup } from '../collections/registry';
 import type { AbundanceGroup, DiscoveryGroup, MediaGroup, MetaData, WeblinksGroup } from '../collections/generic';
-import type { ElementSymbol, Phase } from '../utils/const';
+import type { CompoundCategory, ElementSymbol, Phase } from '../utils/const';
 
 /** Compound collections */
 
@@ -71,11 +71,7 @@ type Descriptive = Collection< {
  * @param phase - Standard phase at room temperature
  */
 type Classification = Collection< {
-    category?: Distinct< LiteralUnion<
-        'organic' | 'inorganic' | 'organometallic' | 'biochemical' | 'polymer' | 'coordination' |
-        'salt' | 'acid' | 'base' | 'oxide' | 'hydride' | 'alloy' | 'intermetallic' | 'complex' |
-        'supramolecular' | 'natural' | 'synthetic' | 'unknown'
-    > >;
+    category?: Distinct< CompoundCategory >;
     family?: Distinct< string >;
     formula: Distinct< string >;
     formulaType?: Distinct<

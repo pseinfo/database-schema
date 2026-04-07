@@ -63,3 +63,11 @@ export const CrystalStructure = [
     'simpleCubic', 'faceCenteredCubic', 'diamondCubic', 'orthorhombic', 'tetragonal',
     'doubleHexagonalClosePacked', 'monoclinic', 'triclinic'
 ] as const;
+
+/** Compound categories */
+export type CompoundCategory = ( typeof CompoundCategory )[ number ];
+export const CompoundCategory = [
+    'organic', 'inorganic', 'organometallic', 'biochemical', 'polymer', 'coordination',
+    'salt', 'acid', 'base', 'oxide', 'hydride', 'alloy', 'intermetallic', 'complex',
+    'supramolecular', 'natural', 'synthetic', 'unknown'
+] as const;
