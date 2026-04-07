@@ -69,6 +69,16 @@ type Descriptive = Collection< {
 /** Main compound entity */
 
 /**
+ * SingleCompound
+ * Entity type for a single chemical compound, indexed by a unique identifier.
+ * 
+ * @param descriptive - Descriptive collections for the compound
+ */
+type SingleCompound = Collection< {
+    descriptive: Descriptive;
+} >;
+
+/**
  * Compound
  * Entity type for chemical compounds, indexed by a unique identifier.
  * 
@@ -76,4 +86,8 @@ type Descriptive = Collection< {
  * composition details, chemical and physical properties, safety data, and
  * optional specialized forms such as polymorphs, solvates, or phase variants.
  */
-export type Compound = {};
+export type Compound = {
+    [ key: string ]: MetaData & SingleCompound & {
+        forms?: FormCollection< SingleCompound >;
+    };
+};
