@@ -12,7 +12,7 @@ import type { PhysicsCollection } from '../collections/physics';
 import type { SafetyCollection } from '../collections/safety';
 import type { RegistryGroup, StructureGroup } from '../collections/registry';
 import type { AbundanceGroup, DiscoveryGroup, MediaGroup, MetaData, WeblinksGroup } from '../collections/generic';
-import type { CompoundCategory, ElementSymbol, Phase } from '../utils/const';
+import type { CompoundCategory, CompoundProperty, ElementSymbol, Phase } from '../utils/const';
 
 /** Compound collections */
 
@@ -45,6 +45,7 @@ type CompoundComponent = Group< {
  * @param appearance - Appearance descriptions in different languages
  * @param abundance - Natural abundance information group
  * @param discovery - Discovery information group
+ * @param properties - List of compound properties
  * @param media - Media information group
  * @param weblinks - Weblinks information group
  */
@@ -56,6 +57,7 @@ type Descriptive = Collection< {
     appearance?: LangGroup;
     abundance?: AbundanceGroup;
     discovery?: DiscoveryGroup;
+    properties?: Distinct< CompoundProperty[] >;
     media?: MediaGroup;
     weblinks?: WeblinksGroup;
 } >;
