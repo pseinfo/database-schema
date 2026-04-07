@@ -12,18 +12,12 @@ import type { PhysicsCollection } from '../collections/physics';
 import type { SafetyCollection } from '../collections/safety';
 import type { RegistryGroup, StructureGroup } from '../collections/registry';
 import type { AbundanceGroup, DiscoveryGroup, MediaGroup, MetaData, WeblinksGroup } from '../collections/generic';
-import type { ElementSymbol } from '../utils/const';
+import type { ElementSymbol, Phase } from '../utils/const';
 
 /** Compound collections */
 
 /**
- * Component Role
- * Defines the possible roles of components within a chemical compound.
- */
-export type CompoundComponentRole = LiteralUnion< 'cation' | 'anion' | 'neutral' | 'radical' | 'complex' >;
-
-/**
- * Component Component
+ * ComponentComponent
  * Defines the structure for components of a chemical compound.
  * 
  * @param element - Chemical symbol of the element in the component
@@ -35,7 +29,7 @@ export type CompoundComponentRole = LiteralUnion< 'cation' | 'anion' | 'neutral'
 type CompoundComponent = Group< {
     element: ElementSymbol;
     amount: Distinct< number >;
-    role?: Distinct< CompoundComponentRole >;
+    role?: Distinct< LiteralUnion< 'cation' | 'anion' | 'neutral' | 'radical' | 'complex' > >;
     massFraction?: Distinct< number >;
     atomicFraction?: Distinct< number >;
 } >;
@@ -66,6 +60,31 @@ type Descriptive = Collection< {
     weblinks?: WeblinksGroup;
 } >;
 
+/**
+ * Classification
+ * Collections for classification properties of chemical compounds.
+ * 
+ * @param category - Category of the compound (e.g., organic, inorganic)
+ * @param family - Optional family classification of the compound (e.g., alcohols, ketones)
+ * @param formula - Chemical formula of the compound
+ * @param formulaType - Type of chemical formula (e.g., empirical, molecular)
+ * @param phase - Standard phase at room temperature
+ */
+type Classification = Collection< {
+    category?: Distinct< LiteralUnion<
+        'organic' | 'inorganic' | 'organometallic' | 'biochemical' | 'polymer' | 'coordination' |
+        'salt' | 'acid' | 'base' | 'oxide' | 'hydride' | 'alloy' | 'intermetallic' | 'complex' |
+        'supramolecular' | 'natural' | 'synthetic' | 'unknown'
+    > >;
+    family?: Distinct< string >;
+    formula: Distinct< string >;
+    formulaType?: Distinct<
+        'empirical' | 'molecular' | 'structural' | 'condensed' |
+        'skeletal' | 'ionic' | 'coordination'
+    >;
+    phase?: Distinct< Phase >;
+} >;
+
 /** Main compound entity */
 
 /**
@@ -73,9 +92,11 @@ type Descriptive = Collection< {
  * Entity type for a single chemical compound, indexed by a unique identifier.
  * 
  * @param descriptive - Descriptive collections for the compound
+ * @param classification - Classification collections for the compound
  */
 type SingleCompound = Collection< {
     descriptive: Descriptive;
+    classification: Classification;
 } >;
 
 /**
