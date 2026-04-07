@@ -11,8 +11,8 @@ import type { CrystalStructure, Phase } from '../utils/const';
 import type { Collection, Distinct } from './collection';
 
 /** Form types for substances */
-export const FormType = [ 'allotrope', 'molecular', 'phase', 'polymorph', 'amorphous', 'other' ] as const;
 export type FormType = ( typeof FormType )[ number ];
+export const FormType = [ 'allotrope', 'molecular', 'phase', 'polymorph', 'amorphous', 'other' ] as const;
 
 /**
  * BaseFields

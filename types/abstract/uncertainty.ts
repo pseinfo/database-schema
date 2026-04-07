@@ -7,8 +7,8 @@ import type { RequireFrom } from 'devtypes/types/constraint';
 import type { Brand } from 'devtypes/types/util';
 
 /** Uncertainty types */
-export const UncertaintyType = [ 'absolute', 'relative', 'asymmetrical' ] as const;
 export type UncertaintyType = ( typeof UncertaintyType )[ number ];
+export const UncertaintyType = [ 'absolute', 'relative', 'asymmetrical' ] as const;
 
 /**
  * BaseFields
