@@ -22,6 +22,7 @@ import type { ElementBlock, ElementGroup, ElementProperty, ElementSet, ElementSy
  * @param registry - Registry information group
  * @param structure - Structural information group
  * @param names - Names in different languages
+ * @param description - Descriptions in different languages
  * @param appearance - Appearance descriptions in different languages
  * @param abundance - Natural abundance information group
  * @param discovery - Discovery information group
@@ -33,6 +34,7 @@ type Descriptive = Collection< {
     registry: RegistryGroup;
     structure: StructureGroup;
     names: LangGroup< 'en' | 'la' >;
+    description?: LangGroup;
     appearance?: LangGroup;
     abundance?: AbundanceGroup;
     discovery?: DiscoveryGroup;
