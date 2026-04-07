@@ -3,10 +3,10 @@
  * Defined common collection types for various data groups.
  */
 
-import { Distinct, Group, LangGroup, Single } from '../abstract/collection';
-import { NumberProperty, PrimitiveProperty } from '../abstract/property';
-import { RefId } from '../abstract/reference';
-import { CrystalStructure } from '../utils/const';
+import type { Distinct, Group, LangGroup, Single } from '../abstract/collection';
+import type { NumberProperty, PrimitiveProperty } from '../abstract/property';
+import type { RefId } from '../abstract/reference';
+import type { CrystalStructure } from '../utils/const';
 
 /**
  * MetaData

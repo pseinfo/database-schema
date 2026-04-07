@@ -3,15 +3,15 @@
  * Defines the database entity for chemical elements of the periodic table.
  */
 
-import { Collection, Distinct, LangGroup } from '../abstract/collection';
-import { FormCollection } from '../abstract/form';
-import { AtomicsCollection } from '../collections/atomics';
-import { ChemistryCollection } from '../collections/chemistry';
-import { AbundanceGroup, DiscoveryGroup, MediaGroup, MetaData, WeblinksGroup } from '../collections/generic';
-import { PhysicsCollection } from '../collections/physics';
-import { RegistryGroup, StructureGroup } from '../collections/registry';
-import { SafetyCollection } from '../collections/safety';
-import { ElementBlock, ElementGroup, ElementProperty, ElementSet, ElementSymbol, NaturalOccurrence, Phase } from '../utils/const';
+import type { Collection, Distinct, LangGroup } from '../abstract/collection';
+import type { FormCollection } from '../abstract/form';
+import type { AtomicsCollection } from '../collections/atomics';
+import type { ChemistryCollection } from '../collections/chemistry';
+import type { AbundanceGroup, DiscoveryGroup, MediaGroup, MetaData, WeblinksGroup } from '../collections/generic';
+import type { PhysicsCollection } from '../collections/physics';
+import type { RegistryGroup, StructureGroup } from '../collections/registry';
+import type { SafetyCollection } from '../collections/safety';
+import type { ElementBlock, ElementGroup, ElementProperty, ElementSet, ElementSymbol, NaturalOccurrence, Phase } from '../utils/const';
 
 /** Element collections */
 

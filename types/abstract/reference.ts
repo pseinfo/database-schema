@@ -3,8 +3,8 @@
  * Types and structures for bibliographic references based on BibTeX.
  */
 
-import { ExtractFrom, RequireAtLeastOne, RequireExactlyOne, StrictSubset } from 'devtypes/types/constraint';
-import { Brand } from 'devtypes/types/util';
+import type { ExtractFrom, RequireAtLeastOne, RequireExactlyOne, StrictSubset } from 'devtypes/types/constraint';
+import type { Brand } from 'devtypes/types/util';
 
 /** Reference types based on BibTeX */
 export const ReferenceType = [
