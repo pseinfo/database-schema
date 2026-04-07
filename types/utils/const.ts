@@ -71,3 +71,12 @@ export const CompoundCategory = [
     'salt', 'acid', 'base', 'oxide', 'hydride', 'alloy', 'intermetallic', 'complex',
     'supramolecular', 'natural', 'synthetic', 'unknown'
 ] as const;
+
+/** Compound Properties */
+export type CompoundProperty = ( typeof CompoundProperty )[ number ];
+export const CompoundProperty = [
+    'organic', 'inorganic', 'organometallic', 'biochemical', 'polymer', 'coordination',
+    'salt', 'acidic', 'basic', 'amphoteric', 'aromatic', 'radical', 'natural', 'synthetic',
+    'colorless', 'colored', 'corrosive', 'explosive', 'flammable', 'highlyToxic',
+    'radioactive', 'toxic', 'volatile'
+] as const;
