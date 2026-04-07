@@ -11,7 +11,7 @@ import type { ChemistryCollection } from '../collections/chemistry';
 import type { PhysicsCollection } from '../collections/physics';
 import type { SafetyCollection } from '../collections/safety';
 import type { RegistryGroup, StructureGroup } from '../collections/registry';
-import type { DiscoveryGroup, MediaGroup, MetaData, WeblinksGroup } from '../collections/generic';
+import type { AbundanceGroup, DiscoveryGroup, MediaGroup, MetaData, WeblinksGroup } from '../collections/generic';
 import type { ElementSymbol } from '../utils/const';
 
 /** Compound collections */
@@ -38,6 +38,32 @@ type CompoundComponent = Group< {
     role?: Distinct< CompoundComponentRole >;
     massFraction?: Distinct< number >;
     atomicFraction?: Distinct< number >;
+} >;
+
+/**
+ * Descriptive
+ * Collections for descriptive properties of chemical compounds.
+ * 
+ * @param registry - Registry information group
+ * @param structure - Structural information group
+ * @param names - Names in different languages
+ * @param description - Descriptions in different languages
+ * @param appearance - Appearance descriptions in different languages
+ * @param abundance - Natural abundance information group
+ * @param discovery - Discovery information group
+ * @param media - Media information group
+ * @param weblinks - Weblinks information group
+ */
+type Descriptive = Collection< {
+    registry: RegistryGroup;
+    structure: StructureGroup;
+    names: LangGroup< 'en' | 'la' >;
+    description?: LangGroup;
+    appearance?: LangGroup;
+    abundance?: AbundanceGroup;
+    discovery?: DiscoveryGroup;
+    media?: MediaGroup;
+    weblinks?: WeblinksGroup;
 } >;
 
 /** Main compound entity */
