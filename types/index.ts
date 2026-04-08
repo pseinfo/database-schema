@@ -7,20 +7,23 @@
  * references, and units.
  */
 
-import { ReferenceCollection } from './abstract/reference';
-import { UnitCollection } from './abstract/unit';
-import { Element } from './entities/element';
+import type { ReferenceCollection } from './abstract/reference';
+import type { UnitCollection } from './abstract/unit';
+import type { Compound } from './entities/compound';
+import type { Element } from './entities/element';
 
 /**
  * Database
  * Root database schema type containing all main entities.
  * 
  * @param elements - Collection of chemical elements
+ * @param compounds - Collection of chemical compounds
  * @param references - Collection of references
  * @param units - Collection of measurement units
  */
 export type Database = {
     elements: Element;
+    compounds: Compound;
     references: ReferenceCollection;
     units: UnitCollection;
 };
