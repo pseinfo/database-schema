@@ -5,12 +5,12 @@
 
 import type { LiteralUnion } from 'devtypes/types/primitive';
 
-import type { Collection, Distinct, LangGroup } from '../abstract/collection';
+import type { Collection, Distinct } from '../abstract/collection';
 import type { FormCollection } from '../abstract/form';
 import type { ChemistryCollection } from '../collections/chemistry';
-import type { AbundanceGroup, DiscoveryGroup, MediaGroup, MetaData, WeblinksGroup } from '../collections/generic';
+import type { DescriptiveCollection } from '../collections/descriptive';
+import type { MetaData } from '../collections/generic';
 import type { PhysicsCollection } from '../collections/physics';
-import type { RegistryGroup, StructureGroup } from '../collections/registry';
 import type { SafetyCollection } from '../collections/safety';
 import type { CompoundCategory, CompoundProperty, ElementSymbol, NaturalOccurrence, Phase } from '../utils/const';
 
@@ -34,34 +34,6 @@ type CompoundComponent = Distinct< {
     massFraction?: Distinct< number >;
     atomicFraction?: Distinct< number >;
     charge?: Distinct< number >;
-} >;
-
-/**
- * Descriptive
- * Collections for descriptive properties of chemical compounds.
- * 
- * @param registry - Registry information group
- * @param structure - Structural information group
- * @param names - Names in different languages
- * @param description - Descriptions in different languages
- * @param appearance - Appearance descriptions in different languages
- * @param abundance - Natural abundance information group
- * @param discovery - Discovery information group
- * @param properties - List of compound properties
- * @param media - Media information group
- * @param weblinks - Weblinks information group
- */
-type Descriptive = Collection< {
-    registry: RegistryGroup;
-    structure: StructureGroup;
-    names: LangGroup< 'en' | 'la' >;
-    description?: LangGroup;
-    appearance?: LangGroup;
-    abundance?: AbundanceGroup;
-    discovery?: DiscoveryGroup;
-    properties?: Distinct< CompoundProperty[] >;
-    media?: MediaGroup;
-    weblinks?: WeblinksGroup;
 } >;
 
 /**
@@ -129,14 +101,16 @@ type Composition = Collection< {
  * @param composition - Compositional collections for the compound
  * @param physics - Optional physics properties collection
  * @param chemistry - Optional chemistry properties collection
+ * @param properties - Optional list of compound properties
  * @param safety - Optional safety properties collection
  */
 type SingleCompound = Collection< {
-    descriptive: Descriptive;
+    descriptive: DescriptiveCollection;
     classification: Classification;
     composition: Composition;
     physics?: PhysicsCollection;
     chemistry?: ChemistryCollection;
+    properties?: Distinct< CompoundProperty[] >;
     safety?: SafetyCollection;
 } >;
 
