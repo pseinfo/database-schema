@@ -37,7 +37,7 @@ type CompoundComponent = Distinct< {
 } >;
 
 /**
- * Classification
+ * CompoundClassification
  * Collections for classification properties of chemical compounds.
  * 
  * @param category - Category of the compound (e.g., organic, inorganic)
@@ -46,7 +46,7 @@ type CompoundComponent = Distinct< {
  * @param phase - Standard phase at room temperature
  * @param naturalOccurrence - Natural occurrence type
  */
-type Classification = Collection< {
+type CompoundClassification = Collection< {
     category: Distinct< CompoundCategory >;
     family?: Distinct< string >;
     radioactive: Distinct< boolean >;
@@ -55,7 +55,7 @@ type Classification = Collection< {
 } >;
 
 /**
- * Composition
+ * CompoundComposition
  * Collections for compositional properties of chemical compounds.
  * 
  * @param components - List of components that make up the compound
@@ -73,7 +73,7 @@ type Classification = Collection< {
  * @param hydration - Number of water molecules in hydrates
  * @param functionalGroups - List of functional groups present in the compound
  */
-type Composition = Collection< {
+type CompoundComposition = Collection< {
     components: Distinct< CompoundComponent[] >;
     formula: Distinct< string >;
     empiricalFormula?: Distinct< string >;
@@ -106,8 +106,8 @@ type Composition = Collection< {
  */
 type SingleCompound = Collection< {
     descriptive: DescriptiveCollection;
-    classification: Classification;
-    composition: Composition;
+    classification: CompoundClassification;
+    composition: CompoundComposition;
     physics?: PhysicsCollection;
     chemistry?: ChemistryCollection;
     properties?: Distinct< CompoundProperty[] >;

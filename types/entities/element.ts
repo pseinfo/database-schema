@@ -16,7 +16,7 @@ import type { ElementBlock, ElementGroup, ElementProperty, ElementSet, ElementSy
 /** Element collections */
 
 /**
- * Classification
+ * ElementClassification
  * Collection for classification properties of elements.
  * 
  * @param symbol - Chemical symbol of the element
@@ -32,7 +32,7 @@ import type { ElementBlock, ElementGroup, ElementProperty, ElementSet, ElementSy
  * @param goldschmidt - Goldschmidt classification
  * @param superconductivity - Superconductivity type
  */
-type Classification = Collection< {
+type ElementClassification = Collection< {
     symbol: Distinct< string >;
     atomicNumber: Distinct< number >;
     block: Distinct< ElementBlock >;
@@ -63,7 +63,7 @@ type Classification = Collection< {
  */
 type SingleElement = Collection< {
     descriptive: DescriptiveCollection;
-    classification: Classification;
+    classification: ElementClassification;
     physics?: PhysicsCollection;
     chemistry?: ChemistryCollection;
     atomics?: AtomicsCollection;
