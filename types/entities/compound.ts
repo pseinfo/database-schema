@@ -12,7 +12,7 @@ import type { AbundanceGroup, DiscoveryGroup, MediaGroup, MetaData, WeblinksGrou
 import type { PhysicsCollection } from '../collections/physics';
 import type { RegistryGroup, StructureGroup } from '../collections/registry';
 import type { SafetyCollection } from '../collections/safety';
-import type { CompoundCategory, CompoundProperty, ElementSymbol, Phase } from '../utils/const';
+import type { CompoundCategory, CompoundProperty, ElementSymbol, NaturalOccurrence, Phase } from '../utils/const';
 
 /** Compound collections */
 
@@ -70,12 +70,16 @@ type Descriptive = Collection< {
  * 
  * @param category - Category of the compound (e.g., organic, inorganic)
  * @param family - Optional family classification of the compound (e.g., alcohols, ketones)
+ * @param radioactive - Whether the compound is radioactive
  * @param phase - Standard phase at room temperature
+ * @param naturalOccurrence - Natural occurrence type
  */
 type Classification = Collection< {
-    category?: Distinct< CompoundCategory >;
+    category: Distinct< CompoundCategory >;
     family?: Distinct< string >;
+    radioactive: Distinct< boolean >;
     phase?: Distinct< Phase >;
+    naturalOccurrence?: Distinct< NaturalOccurrence >;
 } >;
 
 /**
