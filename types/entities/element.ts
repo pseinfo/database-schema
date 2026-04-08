@@ -58,6 +58,7 @@ type Classification = Collection< {
  * @param physics - Physics properties collection
  * @param chemistry - Chemistry properties collection
  * @param atomics - Atomics properties collection
+ * @param properties - Distinct list of element properties
  * @param safety - Safety properties collection
  */
 type SingleElement = Collection< {

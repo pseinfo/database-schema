@@ -47,6 +47,7 @@ Records of chemical elements are structured as follows:
 - Physics properties collection
 - Chemistry properties collection
 - Atomics properties collection
+- Distinct list of element properties
 - Safety properties collection
 
 ### Compounds
@@ -58,6 +59,7 @@ Records of chemical compounds are structured as follows:
 - Composition properties collection
 - Physics properties collection
 - Chemistry properties collection
+- Distinct list of compound properties
 - Safety properties collection
 
 ### Nuclides

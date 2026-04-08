@@ -101,7 +101,7 @@ type Composition = Collection< {
  * @param composition - Compositional collections for the compound
  * @param physics - Optional physics properties collection
  * @param chemistry - Optional chemistry properties collection
- * @param properties - Optional list of compound properties
+ * @param properties - Distinct list of compound properties
  * @param safety - Optional safety properties collection
  */
 type SingleCompound = Collection< {
