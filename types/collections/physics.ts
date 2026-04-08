@@ -3,9 +3,9 @@
  * Defines a set of physical properties for elements, materials and substances.
  */
 
-import { Collection, Group, Single } from '../abstract/collection';
-import { CoupledNumberProperty, NumberProperty, PrimitiveProperty } from '../abstract/property';
-import { Phase } from '../utils/const';
+import type { Collection, Group, Single } from '../abstract/collection';
+import type { CoupledNumberProperty, NumberProperty, PrimitiveProperty } from '../abstract/property';
+import type { Phase } from '../utils/const';
 
 /**
  * PhysicsCollection

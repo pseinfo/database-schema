@@ -3,16 +3,16 @@
  * Defines the structure for various form types of substances.
  */
 
-import { RequireFrom, StrictSubset } from 'devtypes/types/constraint';
-import { DeepPartial } from 'devtypes/types/transform';
-import { Brand } from 'devtypes/types/util';
+import type { RequireFrom, StrictSubset } from 'devtypes/types/constraint';
+import type { DeepPartial } from 'devtypes/types/transform';
+import type { Brand } from 'devtypes/types/util';
 
-import { CrystalStructure, Phase } from '../utils/const';
-import { Collection, Distinct } from './collection';
+import type { CrystalStructure, Phase } from '../utils/const';
+import type { Collection, Distinct } from './collection';
 
 /** Form types for substances */
-export const FormType = [ 'allotrope', 'molecular', 'phase', 'polymorph', 'amorphous', 'other' ] as const;
 export type FormType = ( typeof FormType )[ number ];
+export const FormType = [ 'allotrope', 'molecular', 'phase', 'polymorph', 'amorphous', 'other' ] as const;
 
 /**
  * BaseFields

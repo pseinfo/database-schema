@@ -2,7 +2,7 @@
 
 TypeScript type definitions for the [@pseinfo database](https://github.com/pseinfo/database).
 
-**Status:** Elements only. Compounds, nuclides, minerals planned for later versions.
+> **Status:** Database schema is currently in development and subject to change. Not all entities are implemented yet, and the structure of collections and properties may be modified in the future. The current state of the schema is a work in progress, and feedback is welcome.
 
 ## Architecture
 
@@ -51,7 +51,14 @@ Records of chemical elements are structured as follows:
 
 ### Compounds
 
-Yet not implemented.
+Records of chemical compounds are structured as follows:
+
+- Descriptive properties collection
+- Classification properties collection
+- Composition properties collection
+- Physics properties collection
+- Chemistry properties collection
+- Safety properties collection
 
 ### Nuclides
 
