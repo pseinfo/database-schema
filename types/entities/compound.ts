@@ -127,16 +127,16 @@ type Composition = Collection< {
  * @param descriptive - Descriptive collections for the compound
  * @param classification - Classification collections for the compound
  * @param composition - Compositional collections for the compound
- * @param chemistry - Optional chemistry properties collection
  * @param physics - Optional physics properties collection
+ * @param chemistry - Optional chemistry properties collection
  * @param safety - Optional safety properties collection
  */
 type SingleCompound = Collection< {
     descriptive: Descriptive;
     classification: Classification;
     composition: Composition;
-    chemistry?: ChemistryCollection;
     physics?: PhysicsCollection;
+    chemistry?: ChemistryCollection;
     safety?: SafetyCollection;
 } >;
 
