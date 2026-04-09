@@ -16,6 +16,8 @@ type NuclideIdentifier = `${number}` | `${number}m` | `${number}m${number}`;
 
 /** Main nuclide entity */
 
+type SingleNuclide = {};
+
 /**
  * Nuclide
  * Entity type for nuclear isotopes, indexed by element symbol and nuclide identifier.
