@@ -6,6 +6,16 @@
  * plus optional metastable state identifiers (e.g. "99", "99m", "99m1").
  */
 
+import type { MetaData } from '../collections/generic';
+import type { ElementSymbol } from '../utils/const';
+
+/** Valid nuclide identifiers with optional metastable state suffix. */
+type NuclideIdentifier = `${number}` | `${number}m` | `${number}m${number}`;
+
+/** Nuclide collections */
+
+/** Main nuclide entity */
+
 /**
  * Nuclide
  * Entity type for nuclear isotopes, indexed by element symbol and nuclide identifier.
