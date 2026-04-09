@@ -6,9 +6,9 @@
  * plus optional metastable state identifiers (e.g. "99", "99m", "99m1").
  */
 
-import { Collection, Distinct, Single } from '../abstract/collection';
-import { NumberProperty } from '../abstract/property';
-import { DescriptiveCollection } from '../collections/descriptive';
+import type { Collection, Distinct, Single } from '../abstract/collection';
+import type { NumberProperty } from '../abstract/property';
+import type { DescriptiveCollection } from '../collections/descriptive';
 import type { MetaData } from '../collections/generic';
 import type { DecayMode, ElementSymbol, NuclideProperty, NuclideStability, NuclideState, RadiationType } from '../utils/const';
 
