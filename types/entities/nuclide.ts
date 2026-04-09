@@ -91,6 +91,10 @@ type NMRCollection = Collection< {
     chemicalShiftReference?: Distinct< string >;
 } >;
 
+type DecayCollection = Collection< {
+    halfLife?: Single< NumberProperty< 'time' > >;
+} >;
+
 /** Main nuclide entity */
 
 /**
@@ -101,6 +105,7 @@ type NMRCollection = Collection< {
  * @param classification - Classification properties collection
  * @param nuclear - Nuclear properties collection
  * @param nmr - NMR properties collection
+ * @param decay - Decay properties collection
  * @param properties - Distinct list of nuclide properties
  */
 type SingleNuclide = {
@@ -108,6 +113,7 @@ type SingleNuclide = {
     classification: NuclideClassification;
     nuclear?: NuclearCollection;
     nmr?: NMRCollection;
+    decay?: DecayCollection;
     properties?: Distinct< NuclideProperty[] >;
 };
 
