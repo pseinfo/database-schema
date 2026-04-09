@@ -55,6 +55,7 @@ type NuclideClassification = Collection< {
  * @param nuclearChargeRadius - Nuclear charge radius
  * @param excitationEnergy - Excitation energy levels
  * @param isomericTransitionEnergy - Isomeric transition energy for metastable states
+ * @param qValue - Q value for electron capture
  */
 type NuclearCollection = Collection< {
     atomicMass?: Single< NumberProperty< 'mass' > >;
@@ -65,6 +66,7 @@ type NuclearCollection = Collection< {
     nuclearChargeRadius?: Single< NumberProperty< 'length' > >;
     excitationEnergy?: Single< NumberProperty< 'energy' > >;
     isomericTransitionEnergy?: Single< NumberProperty< 'energy' > >;
+    qValue?: Single< NumberProperty< 'energy' > >;
 } >;
 
 /**
