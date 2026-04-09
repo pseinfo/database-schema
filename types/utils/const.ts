@@ -84,6 +84,13 @@ export const NuclideStability = [
     'stable', 'unstable', 'primordial', 'synthetic', 'artificial'
 ] as const;
 
+/** Nuclide Properties */
+export type NuclideProperty = ( typeof NuclideProperty )[ number ];
+export const NuclideProperty = [
+    'stable', 'unstable', 'primordial', 'synthetic', 'artificial', 'mononuclide',
+    'radioactive', 'naturallyOccurring', 'metastable'
+] as const;
+
 /** Crystal structure */
 export type CrystalStructure = ( typeof CrystalStructure )[ number ];
 export const CrystalStructure = [
