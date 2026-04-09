@@ -10,7 +10,7 @@ import { Collection, Distinct, Single } from '../abstract/collection';
 import { NumberProperty } from '../abstract/property';
 import { DescriptiveCollection } from '../collections/descriptive';
 import type { MetaData } from '../collections/generic';
-import type { ElementSymbol, NuclideStability, NuclideState } from '../utils/const';
+import type { ElementSymbol, NuclideProperty, NuclideStability, NuclideState } from '../utils/const';
 
 /** Valid nuclide identifiers with optional metastable state suffix. */
 type NuclideIdentifier = `${number}` | `${number}m` | `${number}m${number}`;
@@ -101,12 +101,14 @@ type NMRCollection = Collection< {
  * @param classification - Classification properties collection
  * @param nuclear - Nuclear properties collection
  * @param nmr - NMR properties collection
+ * @param properties - Distinct list of nuclide properties
  */
 type SingleNuclide = {
     descriptive: DescriptiveCollection;
     classification: NuclideClassification;
     nuclear?: NuclearCollection;
     nmr?: NMRCollection;
+    properties?: Distinct< NuclideProperty[] >;
 };
 
 /**
