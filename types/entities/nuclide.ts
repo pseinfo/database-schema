@@ -91,17 +91,38 @@ type NMRCollection = Collection< {
     chemicalShiftReference?: Distinct< string >;
 } >;
 
+/**
+ * DecayChannel
+ * Type for a single radioactive decay channel of a nuclide.
+ * 
+ * @param mode - Decay mode (e.g. alpha, beta minus, etc.)
+ * @param probability - Optional probability or branching ratio for this decay channel
+ * @param product - Optional daughter nuclide produced by this decay channel
+ * @param energy - Optional decay energy for this channel
+ * @param radiation - Optional list of radiation types emitted during this decay channel
+ */
 type DecayChannel = {
     mode: Distinct< DecayMode >;
     probability?: Single< NumberProperty< 'quantity' > >;
+    product?: Distinct< string >;
     energy?: Single< NumberProperty< 'energy' > >;
-    radiationTypes?: Distinct< RadiationType[] >;
-    daughterNuclide?: Distinct< string >;
+    radiation?: Distinct< RadiationType[] >;
 };
 
+/**
+ * DecayCollection
+ * Collection for decay properties of nuclides.
+ * 
+ * @param halfLife - Half-life of the nuclide
+ * @param decayChannels - List of decay channels for the nuclide
+ * @param delayedNeutronEmission - Optional delayed neutron emission probability
+ * @param delayedProtonEmission - Optional delayed proton emission probability
+ */
 type DecayCollection = Collection< {
     halfLife?: Single< NumberProperty< 'time' > >;
     decayChannels?: Distinct< DecayChannel[] >;
+    delayedNeutronEmission?: Single< NumberProperty< 'quantity' > >;
+    delayedProtonEmission?: Single< NumberProperty< 'quantity' > >;
 } >;
 
 /** Main nuclide entity */
