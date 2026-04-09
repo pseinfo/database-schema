@@ -6,7 +6,8 @@
  * plus optional metastable state identifiers (e.g. "99", "99m", "99m1").
  */
 
-import { Collection, Distinct } from '../abstract/collection';
+import { Collection, Distinct, Single } from '../abstract/collection';
+import { NumberProperty } from '../abstract/property';
 import { DescriptiveCollection } from '../collections/descriptive';
 import type { MetaData } from '../collections/generic';
 import type { ElementSymbol, NuclideStability, NuclideState } from '../utils/const';
@@ -42,6 +43,54 @@ type NuclideClassification = Collection< {
     isomericLevel?: Distinct< string >;
 } >;
 
+/**
+ * NuclearCollection
+ * Collection for nuclear properties of nuclides.
+ * 
+ * @param atomicMass - Atomic mass of the nuclide
+ * @param massExcess - Mass excess of the nuclide
+ * @param bindingEnergyPerNucleon - Binding energy per nucleon
+ * @param neutronSeparationEnergy - Neutron separation energy
+ * @param protonSeparationEnergy - Proton separation energy
+ * @param nuclearChargeRadius - Nuclear charge radius
+ * @param excitationEnergy - Excitation energy levels
+ * @param isomericTransitionEnergy - Isomeric transition energy for metastable states
+ */
+type NuclearCollection = Collection< {
+    atomicMass?: Single< NumberProperty< 'mass' > >;
+    massExcess?: Single< NumberProperty< 'energy' > >;
+    bindingEnergyPerNucleon?: Single< NumberProperty< 'energy' > >;
+    neutronSeparationEnergy?: Single< NumberProperty< 'energy' > >;
+    protonSeparationEnergy?: Single< NumberProperty< 'energy' > >;
+    nuclearChargeRadius?: Single< NumberProperty< 'length' > >;
+    excitationEnergy?: Single< NumberProperty< 'energy' > >;
+    isomericTransitionEnergy?: Single< NumberProperty< 'energy' > >;
+} >;
+
+/**
+ * NMRCollection
+ * Collection for NMR properties of nuclides.
+ * 
+ * @param resonanceSpin - Resonance spin information
+ * @param gyromagneticRatio - Gyromagnetic ratio of the nuclide
+ * @param magneticMoment - Magnetic moment of the nuclide
+ * @param quadrupoleMoment - Quadrupole moment of the nuclide
+ * @param resonanceFrequency - NMR resonance frequency
+ * @param referenceField - Reference magnetic field strength for NMR measurements
+ * @param relativeSensitivity - Relative sensitivity of the nuclide in NMR
+ * @param chemicalShiftReference - Chemical shift reference information
+ */
+type NMRCollection = Collection< {
+    resonanceSpin?: Distinct< string >;
+    gyromagneticRatio?: Single< NumberProperty< 'quantity' > >;
+    magneticMoment?: Single< NumberProperty< 'magneticMoment' > >;
+    quadrupoleMoment?: Single< NumberProperty< 'quantity' > >;
+    resonanceFrequency?: Single< NumberProperty< 'frequency' > >;
+    referenceField?: Single< NumberProperty< 'magneticFieldStrength' > >;
+    relativeSensitivity?: Single< NumberProperty< 'quantity' > >;
+    chemicalShiftReference?: Distinct< string >;
+} >;
+
 /** Main nuclide entity */
 
 /**
@@ -50,10 +99,14 @@ type NuclideClassification = Collection< {
  * 
  * @param descriptive - Descriptive properties collection
  * @param classification - Classification properties collection
+ * @param nuclear - Nuclear properties collection
+ * @param nmr - NMR properties collection
  */
 type SingleNuclide = {
     descriptive: DescriptiveCollection;
     classification: NuclideClassification;
+    nuclear?: NuclearCollection;
+    nmr?: NMRCollection;
 };
 
 /**
