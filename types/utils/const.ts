@@ -59,10 +59,9 @@ export const ElementProperty = [
 /** Radioactive decay modes */
 export type DecayMode = ( typeof DecayMode )[ number ];
 export const DecayMode = [
-    'alpha', 'betaMinus', 'betaPlus', 'electronCapture', 'positronEmission',
-    'protonEmission', 'neutronEmission', 'spontaneousFission', 'clusterDecay',
-    'isomericTransition', 'internalConversion', 'doubleBetaMinus', 'doubleBetaPlus',
-    'betaDelayedNeutron', 'betaDelayedProton'
+    '2B+', '2B-', '2EC', '2N', '2P', 'A', 'B+', 'B+2P', 'B+A', 'B+P', 'B-', 'B-2N',
+    'B-3N', 'B-4N', 'B-5N', 'B-6N', 'B-7N', 'B-A', 'B-N', 'B-P', 'B-SF', 'EC', 'EC+B+',
+    'EC2P', 'ECA', 'ECP', 'ECSF', 'IT', 'N', 'P', 'SF', 'SF+EC+B+', 'unknown'
 ] as const;
 
 /** Radiation emission types */
