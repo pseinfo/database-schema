@@ -56,6 +56,28 @@ export const ElementProperty = [
     'semiconductor', 'stable', 'synthetic', 'vital'
 ] as const;
 
+/** Radioactive decay modes */
+export type DecayMode = ( typeof DecayMode )[ number ];
+export const DecayMode = [
+    'alpha', 'betaMinus', 'betaPlus', 'electronCapture', 'positronEmission',
+    'protonEmission', 'neutronEmission', 'spontaneousFission', 'clusterDecay',
+    'isomericTransition', 'internalConversion', 'doubleBetaMinus', 'doubleBetaPlus',
+    'betaDelayedNeutron', 'betaDelayedProton'
+] as const;
+
+/** Radiation emission types */
+export type RadiationType = ( typeof RadiationType )[ number ];
+export const RadiationType = [
+    'alpha', 'beta', 'gamma', 'xray', 'conversionElectron', 'positron',
+    'neutron', 'proton', 'cluster'
+] as const;
+
+/** Nuclide state identifiers */
+export type NuclideState = ( typeof NuclideState )[ number ];
+export const NuclideState = [
+    'ground', 'metastable', 'm', 'm1', 'm2', 'm3', 'm4', 'unknown'
+] as const;
+
 /** Crystal structure */
 export type CrystalStructure = ( typeof CrystalStructure )[ number ];
 export const CrystalStructure = [
