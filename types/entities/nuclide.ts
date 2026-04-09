@@ -10,7 +10,7 @@ import { Collection, Distinct, Single } from '../abstract/collection';
 import { NumberProperty } from '../abstract/property';
 import { DescriptiveCollection } from '../collections/descriptive';
 import type { MetaData } from '../collections/generic';
-import type { ElementSymbol, NuclideProperty, NuclideStability, NuclideState } from '../utils/const';
+import type { DecayMode, ElementSymbol, NuclideProperty, NuclideStability, NuclideState, RadiationType } from '../utils/const';
 
 /** Valid nuclide identifiers with optional metastable state suffix. */
 type NuclideIdentifier = `${number}` | `${number}m` | `${number}m${number}`;
@@ -91,8 +91,17 @@ type NMRCollection = Collection< {
     chemicalShiftReference?: Distinct< string >;
 } >;
 
+type DecayChannel = {
+    mode: Distinct< DecayMode >;
+    probability?: Single< NumberProperty< 'quantity' > >;
+    energy?: Single< NumberProperty< 'energy' > >;
+    radiationTypes?: Distinct< RadiationType[] >;
+    daughterNuclide?: Distinct< string >;
+};
+
 type DecayCollection = Collection< {
     halfLife?: Single< NumberProperty< 'time' > >;
+    decayChannels?: Distinct< DecayChannel[] >;
 } >;
 
 /** Main nuclide entity */
