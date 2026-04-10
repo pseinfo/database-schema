@@ -140,14 +140,14 @@ type DecayCollection = Collection< {
  * @param decay - Decay properties collection
  * @param properties - Distinct list of nuclide properties
  */
-type SingleNuclide = {
+type SingleNuclide = Collection< {
     descriptive: DescriptiveCollection;
     classification: NuclideClassification;
     nuclear?: NuclearCollection;
     nmr?: NMRCollection;
     decay?: DecayCollection;
     properties?: Distinct< NuclideProperty[] >;
-};
+} >;
 
 /**
  * Nuclides
@@ -158,11 +158,11 @@ type SingleNuclide = {
  * state suffix), and the values are SingleNuclide objects containing all relevant
  * properties for each nuclide.
  */
-type Nuclides = {
+type Nuclides = Collection< {
     [ K in ElementSymbol ]?: {
         [ A in NuclideIdentifier ]?: MetaData & SingleNuclide;
     };
-};
+} >;
 
 /** Nuclide index */
 
@@ -183,7 +183,7 @@ type Nuclides = {
  *   - atomicMass: Optional atomic mass category
  *   - bindingEnergy: Optional binding energy category
  */
-type NuclideIndexEntry< Z extends number, N extends number > = Distinct< {
+type NuclideIndexEntry< Z extends number, N extends number > = Collection< {
     z: Distinct< Z >;
     n: Distinct< N >;
     m: Distinct< number >;
@@ -207,11 +207,11 @@ type NuclideIndexEntry< Z extends number, N extends number > = Distinct< {
  * the second level keys are neutron numbers (N), and the values are NuclideIndexEntry objects
  * containing the relevant properties for each nuclide.
  */
-type NuclideIndex = {
+type NuclideIndex = Collection< {
     [ Z in number ]?: {
         [ N in number ]?: NuclideIndexEntry< Z, N >;
     };
-};
+} >;
 
 /** Decay chains */
 
