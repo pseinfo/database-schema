@@ -213,10 +213,21 @@ type NuclideIndex = {
     };
 };
 
+/** Decay chains */
+
+type DecayChains = {};
+
 /**
  * Nuclide
+ * Main nuclide entity type containing the main nuclide collection, the generated nuclide index,
+ * and the generated decay chain export.
+ * 
+ * @param nuclides - Main collection of nuclides grouped by element and nuclide identifier
+ * @param index - Generated nuclide index keyed by z,n coordinate
+ * @param decayChains - Generated decay chain export containing decay chain information for all nuclides
  */
 export type Nuclide = {
     nuclides: Nuclides;
     index: NuclideIndex;
+    decayChains: DecayChains;
 };
