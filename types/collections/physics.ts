@@ -73,7 +73,7 @@ export type PhysicsCollection = Collection< {
         mohsHardness?: Single< PrimitiveProperty< number > >;
         vickersHardness?: Single< PrimitiveProperty< number > >;
         rockwellHardness?: Single< PrimitiveProperty< number > >;
-        knooHardness?: Single< PrimitiveProperty< number > >;
+        knoopHardness?: Single< PrimitiveProperty< number > >;
     } >;
 
     // Elasticity and mechanical properties
