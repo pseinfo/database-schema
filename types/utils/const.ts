@@ -90,6 +90,12 @@ export const NuclideProperty = [
     'radioactive', 'naturallyOccurring', 'metastable'
 ] as const;
 
+/** Nuclide index layers */
+export type NuclideLayer = ( typeof NuclideLayer )[ number ];
+export const NuclideLayer = [
+    'halfLife', 'mainDecayMode', 'nuclearRadius', 'massExcess', 'atomicMass', 'bindingEnergy'
+] as const;
+
 /** Crystal structure */
 export type CrystalStructure = ( typeof CrystalStructure )[ number ];
 export const CrystalStructure = [
