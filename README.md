@@ -1,86 +1,51 @@
-# Database Schema
+# @pseinfo/database-schema
 
 TypeScript type definitions for the [@pseinfo database](https://github.com/pseinfo/database).
 
-Visit [technical documentation](https://pseinfo.github.io/database-schema) for detailed information on the architecture and design decisions.
+[![npm version](https://img.shields.io/npm/v/@pseinfo/database-schema.svg)](https://npmjs.com/@pseinfo/database-schema)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/pseinfo/database-schema/blob/master/LICENSE)
 
-> **Status:** Database schema is currently in development and subject to change. Not all entities are implemented yet, and the structure of collections and properties may be modified in the future. The current state of the schema is a work in progress, and feedback is welcome.
+Visit [technical documentation](https://pseinfo.github.io/database-schema) for detailed information on the architecture and design decisions. This package provides strict TypeScript typing and a generated JSON schema for building and querying the pseinfo chemistry database.
 
-## Architecture
+## Architecture & Structure
 
-The main `Database` type exposes all major entities (elements, chemical compounds, nuclides, etc.) as well as technically necessary components such as references (standardized citation management) and a flexible physical unit system.
-
-### Core
-
-The abstract kernel of this project involves type definitions of physical values, properties, and the structure of collections as a gathering of related properties.
-
-Most entries are branded, which allows for validation at runtime, as well as pure type-based validity checks and auto-completion in IDEs.
-
-### Values & Properties
-
-To ensure extensive recording of physical and chemical properties, the database features a complex type system that strictly types and monitors the definition of numerical values. Various property types, such as single numbers, ranges, arrays, or even more complex correlated physical properties, ensure precise specification in different applications. Furthermore, parameters are responsible for specifying measurement uncertainty, confidence ratings, conditions under which the properties are valid, and more.
-
-In addition to physics data, simple strings, numeric values, booleans, etc. can be stored using a primitive type. Apart from that, some collections define their own more complex structures, which, however, refer to or use basic types whenever possible.
+The schema defines a central `Database` type composed of major scientific entities. To maintain consistency, properties are organized into reusable **Collections**.
 
 ### Collections
 
-Database entries are organized into several collections, grouping properties that are similar or thematically related. Collections represent sets of properties from various scientific disciplines (physics, chemistry) or define frequently used, complex data structures (hazard information, registry, media, etc.).
+Collections gather related properties from various scientific data sets:
+- **`DescriptiveCollection`**: Names, symbols, appearances, discovery information, web links.
+- **`PhysicsCollection`**: Densities, temperatures, thermodynamics, states of matter, mechanics.
+- **`ChemistryCollection`**: Molar masses, electronegativity, solubilities, oxidation states.
+- **`SafetyCollection`**: GHS pictograms, hazard statements, toxicologies.
+- **`AtomicsCollection`** & **`NuclearCollection`**: Deep atomic structures, electron configurations, and nuclear models.
 
-Collections usually define far more properties than needed, therefore these fields are mostly optional. Entities (e.g., chemical elements) define their own collections too, based on their own needs.
+### Values & Properties
 
-Properties in collections are defined either as `Single< T >` using above-described physical values or `Distinct< T >` as a special data type. Properties in collections can be grouped using `Group< {...} >`. The `Collection< T >` is defined as an enclosing generic collection mapper that safely converts a collection definition into the corresponding internal structure.
+Numerical values are strictly tracked via generic types like `NumberProperty<Quantity, Condition>`. This ensures you can explicitly store exact physical conditions (e.g., "Density at 20 °C") alongside the raw value, its unit of measurement, confidence rating, and statistical uncertainty. 
 
-### Units & References
-
-The physical unit system describes all physical quantities and their units, is based on the SI unit system, and allows the definition of multiple units per quantity. The system includes conversion factors and base units, describes their relationship to SI quantities, and is referenced in the database schema using the tuple `[ Quantity, Unit ]`.
-
-The reference system for consistent bibliographic indexing is based on BibTeX. All BibTeX types, e.g., `book`, `article`, `misc`, `journal`, have exact definitions of required and optional fields.
-
-## Entities
-
-The chemical database consists of several entities (including elements, chemical compounds, nuclides), each of which stores all relevant data in a strictly typed manner. The entities are implemented at the top level alongside the unit system and references. Each entry consists of detailed structures and properties.
+## Supported Entities
 
 ### Elements
 
-Records of chemical elements are structured as follows:
-
-- Descriptive properties collection
-- Classification properties collection
-- Physics properties collection
-- Chemistry properties collection
-- Atomics properties collection
-- Distinct list of element properties
-- Safety properties collection
+Chemical elements of the periodic table (`Database['elements']`).
+Provides datasets encompassing everything from atomics and basic physics to element classifications.
 
 ### Compounds
 
-Records of chemical compounds are structured as follows:
-
-- Descriptive properties collection
-- Classification properties collection
-- Composition properties collection
-- Physics properties collection
-- Chemistry properties collection
-- Distinct list of compound properties
-- Safety properties collection
-
-### Nuclides
-
-The nuclide entity is structured as follows:
-
-- Main collection of nuclides grouped by element and nuclide identifier
-- Generated nuclide index keyed by z,n coordinate
-- Generated decay chain export containing decay chain information for all nuclides
-
-The main collection contains:
-
-- Descriptive properties collection
-- Classification properties collection
-- Nuclear properties collection
-- NMR properties collection
-- Decay properties collection
-- Distinct list of nuclide properties
+Chemical compounds and molecules (`Database['compounds']`).
+Extends elements by introducing stoichiometric data, bonding features, functional groups, and structure identifiers (e.g., SMILES, InChI).
 
 ### Minerals
 
-Yet not implemented.
+Naturally occurring minerals and mineraloids (`Database['minerals']`).
+Features precise crystal habits, geological classifications (using established systems like Strunz), and specialized physical traits (such as Cleavage, Tenacity, or Luster).
+
+### Nuclides
+
+Nuclear isotopes and metastable states (`Database['nuclides']`).
+Groups nuclides by element and traces down to specific nucleon combinations to hold their respective binding energies, half-lives, exact decay channels, and specific isomer transitions.
+
+## Using the JSON Schema
+
+A comprehensive JSON Draft-07 schema is bundled in `src/schema.json`. While primarily built for TypeScript validity checks and IDE auto-completion, the generated JSON schema enables runtime data-validation environments across any programming language interacting with the PSEinfo ecosystem.
