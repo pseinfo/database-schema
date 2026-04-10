@@ -160,7 +160,7 @@ type SingleNuclide = Collection< {
  */
 type Nuclides = Collection< {
     [ K in ElementSymbol ]?: {
-        [ A in NuclideIdentifier ]?: MetaData & SingleNuclide;
+        [ N in NuclideIdentifier ]?: MetaData & SingleNuclide;
     };
 } >;
 
@@ -215,7 +215,18 @@ type NuclideIndex = Collection< {
 
 /** Decay chains */
 
-type DecayChains = {};
+type NuclideDecayChainEntry< N extends NuclideIdentifier > = Collection< {
+    nuclide: N;
+    z: Distinct< number >;
+    n: Distinct< number >;
+    m: Distinct< number >;
+    element: Distinct< ElementSymbol >;
+    symbol: Distinct< string >;
+} >;
+
+type NuclideDecayChains = Collection< {
+    [ N in NuclideIdentifier ]?: NuclideDecayChainEntry< N >;
+} >;
 
 /**
  * Nuclide
@@ -229,5 +240,5 @@ type DecayChains = {};
 export type Nuclide = {
     nuclides: Nuclides;
     index: NuclideIndex;
-    decayChains: DecayChains;
+    decayChains: NuclideDecayChains;
 };
