@@ -20,9 +20,13 @@
     "database",
     "schema",
     "chemistry",
+    "periodic-table",
+    "elements",
+    "compounds",
+    "minerals",
+    "nuclides",
     "types",
     "typescript",
-    "periodic-table",
     "type-definitions",
     "pseinfo"
   ],
@@ -31,19 +35,29 @@
   "main": "types/index.ts",
   "exports": {
     ".": {
-      "types": "./types/index.ts"
+      "types": "./types/index.ts",
+      "import": "./types/index.ts",
+      "default": "./types/index.ts"
     },
     "./abstract/*": {
-      "types": "./types/abstract/*.ts"
+      "types": "./types/abstract/*.ts",
+      "import": "./types/abstract/*.ts",
+      "default": "./types/abstract/*.ts"
     },
     "./collections/*": {
-      "types": "./types/collections/*.ts"
+      "types": "./types/collections/*.ts",
+      "import": "./types/collections/*.ts",
+      "default": "./types/collections/*.ts"
     },
     "./entities/*": {
-      "types": "./types/entities/*.ts"
+      "types": "./types/entities/*.ts",
+      "import": "./types/entities/*.ts",
+      "default": "./types/entities/*.ts"
     },
     "./utils/*": {
-      "types": "./types/utils/*.ts"
+      "types": "./types/utils/*.ts",
+      "import": "./types/utils/*.ts",
+      "default": "./types/utils/*.ts"
     }
   },
   "files": [
