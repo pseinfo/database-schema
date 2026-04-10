@@ -6,7 +6,7 @@
  * plus optional metastable state identifiers (e.g. "99", "99m", "99m1").
  */
 
-import type { Collection, Distinct, Single } from '../abstract/collection';
+import type { Collection, Distinct, Group, Single } from '../abstract/collection';
 import type { NumberProperty } from '../abstract/property';
 import type { DescriptiveCollection } from '../collections/descriptive';
 import type { MetaData } from '../collections/generic';
@@ -172,6 +172,14 @@ type NuclideIndexEntry< Z extends number, N extends number > = Distinct< {
     m: Distinct< number >;
     element: Distinct< ElementSymbol >;
     symbol: Distinct< string >;
+    layer: Group< {
+        halfLife?: Distinct< number >;
+        mainDecayMode?: Distinct< DecayMode >;
+        nuclearRadius?: Distinct< number >;
+        massExcess?: Distinct< number >;
+        atomicMass?: Distinct< number >;
+        bindingEnergy?: Distinct< number >;
+    } >;
 } >;
 
 /**
