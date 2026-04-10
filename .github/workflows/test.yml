@@ -1,4 +1,4 @@
-name: Lint
+name: Test
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   lint:
-    name: TypeScript Linting
+    name: Test
     runs-on: ubuntu-latest
 
     steps:
@@ -24,5 +24,8 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: Type Checking with `tsc`
+      - name: Lint
         run: npm run lint
+
+      - name: Generate Schema
+        run: npm run schema
