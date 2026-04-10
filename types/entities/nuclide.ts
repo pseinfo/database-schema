@@ -215,8 +215,14 @@ type NuclideIndex = Collection< {
 
 /** Decay chains */
 
+type NuclideDecayChainLink = Group< {
+    nuclide: Distinct< NuclideIdentifier >;
+    mode: Distinct< DecayMode >;
+    probability: Distinct< number | undefined >;
+} >;
+
 type NuclideDecayChainEntry< N extends NuclideIdentifier > = Collection< {
-    nuclide: N;
+    nuclide: Distinct< N >;
     z: Distinct< number >;
     n: Distinct< number >;
     m: Distinct< number >;
@@ -224,6 +230,8 @@ type NuclideDecayChainEntry< N extends NuclideIdentifier > = Collection< {
     symbol: Distinct< string >;
     halfLife: Distinct< number | undefined >;
     stable: Distinct< boolean >;
+    daughterChains: Distinct< NuclideDecayChainLink[] >;
+    parentChains: Distinct< NuclideDecayChainLink[] >;
     chainDepth: Distinct< number >;
     isTerminal: Distinct< boolean >;
 } >;
