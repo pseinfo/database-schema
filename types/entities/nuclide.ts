@@ -164,6 +164,22 @@ type Nuclides = {
     };
 };
 
+/** Nuclide index */
+
+/**
+ * NuclideIndex
+ * Type for the generated nuclide index, keyed by z,n coordinate.
+ * 
+ * The index is structured as a nested record where the first level keys are atomic numbers (Z),
+ * the second level keys are neutron numbers (N), and the values are NuclideIndexEntry objects
+ * containing the relevant properties for each nuclide.
+ */
+type NuclideIndex = {
+    [ Z in number ]?: {
+        [ N in number ]?: NuclideIndexEntry< Z, N >;
+    };
+};
+
 /**
  * Nuclide
  */
