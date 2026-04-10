@@ -64,7 +64,13 @@ Records of chemical compounds are structured as follows:
 
 ### Nuclides
 
-Records of nuclides are structured as follows:
+The nuclide entity is structured as follows:
+
+- Main collection of nuclides grouped by element and nuclide identifier
+- Generated nuclide index keyed by z,n coordinate
+- Generated decay chain export containing decay chain information for all nuclides
+
+The main collection contains:
 
 - Descriptive properties collection
 - Classification properties collection
