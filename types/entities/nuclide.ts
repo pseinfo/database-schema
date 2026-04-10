@@ -103,13 +103,13 @@ type NMRCollection = Collection< {
  * @param energy - Optional decay energy for this channel
  * @param radiation - Optional list of radiation types emitted during this decay channel
  */
-type DecayChannel = {
+type DecayChannel = Distinct< {
     mode: Distinct< DecayMode >;
     probability?: Single< NumberProperty< 'quantity' > >;
     product?: Distinct< string >;
     energy?: Single< NumberProperty< 'energy' > >;
     radiation?: Distinct< RadiationType[] >;
-};
+} >;
 
 /**
  * DecayCollection
