@@ -150,14 +150,23 @@ type SingleNuclide = {
 };
 
 /**
- * Nuclide
- * Entity type for nuclear isotopes, indexed by element symbol and nuclide identifier.
+ * Nuclides
+ * Type for the main nuclide collection grouped by element symbol and nuclide identifier.
  * 
- * Each nuclide will have descriptive, classification, decay, NMR and
- * nuclear properties, as well as metadata.
+ * The structure is a nested record where the first level keys are element symbols,
+ * the second level keys are nuclide identifiers (mass number with optional metastable
+ * state suffix), and the values are SingleNuclide objects containing all relevant
+ * properties for each nuclide.
  */
-export type Nuclide = {
+type Nuclides = {
     [ K in ElementSymbol ]?: {
         [ A in NuclideIdentifier ]?: MetaData & SingleNuclide;
     };
+};
+
+/**
+ * Nuclide
+ */
+export type Nuclide = {
+    nuclides: Nuclides;
 };
