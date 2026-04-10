@@ -120,3 +120,17 @@ export const CompoundProperty = [
     'colorless', 'colored', 'corrosive', 'explosive', 'flammable', 'highlyToxic',
     'radioactive', 'toxic', 'volatile'
 ] as const;
+
+/** Mineral classes */
+export type MineralClass = ( typeof MineralClass )[ number ];
+export const MineralClass = [
+    'elements', 'sulfides', 'halides', 'oxides', 'carbonates', 'borates',
+    'sulfates', 'phosphates', 'silicates', 'organic'
+] as const;
+
+/** Mineral properties */
+export type MineralProperty = ( typeof MineralProperty )[ number ];
+export const MineralProperty = [
+    'radioactive', 'luminescent', 'fluorescent', 'phosphorescent', 'magnetic',
+    'piezoelectric', 'pyroelectric', 'toxic', 'synthetic'
+] as const;
