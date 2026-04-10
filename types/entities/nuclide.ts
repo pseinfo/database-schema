@@ -222,6 +222,10 @@ type NuclideDecayChainEntry< N extends NuclideIdentifier > = Collection< {
     m: Distinct< number >;
     element: Distinct< ElementSymbol >;
     symbol: Distinct< string >;
+    halfLife: Distinct< number | undefined >;
+    stable: Distinct< boolean >;
+    chainDepth: Distinct< number >;
+    isTerminal: Distinct< boolean >;
 } >;
 
 type NuclideDecayChains = Collection< {
