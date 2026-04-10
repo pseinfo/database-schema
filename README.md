@@ -64,7 +64,14 @@ Records of chemical compounds are structured as follows:
 
 ### Nuclides
 
-Yet not implemented.
+Records of nuclides are structured as follows:
+
+- Descriptive properties collection
+- Classification properties collection
+- Nuclear properties collection
+- NMR properties collection
+- Decay properties collection
+- Distinct list of nuclide properties
 
 ### Minerals
 

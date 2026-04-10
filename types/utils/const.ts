@@ -56,6 +56,40 @@ export const ElementProperty = [
     'semiconductor', 'stable', 'synthetic', 'vital'
 ] as const;
 
+/** Radioactive decay modes */
+export type DecayMode = ( typeof DecayMode )[ number ];
+export const DecayMode = [
+    '2B+', '2B-', '2EC', '2N', '2P', 'A', 'B+', 'B+2P', 'B+A', 'B+P', 'B-', 'B-2N',
+    'B-3N', 'B-4N', 'B-5N', 'B-6N', 'B-7N', 'B-A', 'B-N', 'B-P', 'B-SF', 'EC', 'EC+B+',
+    'EC2P', 'ECA', 'ECP', 'ECSF', 'IT', 'N', 'P', 'SF', 'SF+EC+B+', 'unknown'
+] as const;
+
+/** Radiation emission types */
+export type RadiationType = ( typeof RadiationType )[ number ];
+export const RadiationType = [
+    'alpha', 'beta', 'gamma', 'xray', 'conversionElectron', 'positron',
+    'neutron', 'proton', 'cluster'
+] as const;
+
+/** Nuclide state identifiers */
+export type NuclideState = ( typeof NuclideState )[ number ];
+export const NuclideState = [
+    'ground', 'metastable', 'm', 'm1', 'm2', 'm3', 'm4', 'unknown'
+] as const;
+
+/** Nuclide stability */
+export type NuclideStability = ( typeof NuclideStability )[ number ];
+export const NuclideStability = [
+    'stable', 'unstable', 'primordial', 'synthetic', 'artificial'
+] as const;
+
+/** Nuclide Properties */
+export type NuclideProperty = ( typeof NuclideProperty )[ number ];
+export const NuclideProperty = [
+    'stable', 'unstable', 'primordial', 'synthetic', 'artificial', 'mononuclide',
+    'radioactive', 'naturallyOccurring', 'metastable'
+] as const;
+
 /** Crystal structure */
 export type CrystalStructure = ( typeof CrystalStructure )[ number ];
 export const CrystalStructure = [
