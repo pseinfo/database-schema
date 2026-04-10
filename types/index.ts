@@ -12,6 +12,7 @@ import type { UnitCollection } from './abstract/unit';
 
 import type { Compound } from './entities/compound';
 import type { Element } from './entities/element';
+import type { Mineral } from './entities/mineral';
 import type { Nuclide } from './entities/nuclide';
 
 /**
@@ -20,6 +21,7 @@ import type { Nuclide } from './entities/nuclide';
  * 
  * @param elements - Collection of chemical elements
  * @param compounds - Collection of chemical compounds
+ * @param minerals - Collection of minerals and mineraloids
  * @param nuclides - Collection of nuclear isotopes
  * @param references - Collection of references
  * @param units - Collection of measurement units
@@ -27,6 +29,7 @@ import type { Nuclide } from './entities/nuclide';
 export type Database = {
     elements: Element;
     compounds: Compound;
+    minerals: Mineral;
     nuclides: Nuclide;
     references: ReferenceCollection;
     units: UnitCollection;
