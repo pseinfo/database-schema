@@ -2,6 +2,8 @@
 
 TypeScript type definitions for the [@pseinfo database](https://github.com/pseinfo/database).
 
+Visit [technical documentation](https://pseinfo.github.io/database-schema) for detailed information on the architecture and design decisions.
+
 > **Status:** Database schema is currently in development and subject to change. Not all entities are implemented yet, and the structure of collections and properties may be modified in the future. The current state of the schema is a work in progress, and feedback is welcome.
 
 ## Architecture
