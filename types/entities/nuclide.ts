@@ -166,6 +166,23 @@ type Nuclides = {
 
 /** Nuclide index */
 
+/**
+ * NuclideIndexEntry
+ * Type for a single entry in the generated nuclide index, keyed by z,n coordinate.
+ * 
+ * @param z - Atomic number (Z)
+ * @param n - Neutron number (N)
+ * @param m - Mass number (A)
+ * @param element - Element symbol for the nuclide
+ * @param symbol - Parsed nuclide symbol (e.g. "99mTc")
+ * @param layer - Group of layer values for this nuclide in the generated index, including:
+ *   - halfLife: Half-life bucket category
+ *   - mainDecayMode: Main decay mode category
+ *   - nuclearRadius: Optional nuclear radius category
+ *   - massExcess: Optional mass excess category
+ *   - atomicMass: Optional atomic mass category
+ *   - bindingEnergy: Optional binding energy category
+ */
 type NuclideIndexEntry< Z extends number, N extends number > = Distinct< {
     z: Distinct< Z >;
     n: Distinct< N >;
