@@ -185,4 +185,5 @@ type NuclideIndex = {
  */
 export type Nuclide = {
     nuclides: Nuclides;
+    index: NuclideIndex;
 };
