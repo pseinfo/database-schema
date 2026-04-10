@@ -48,6 +48,7 @@
   },
   "files": [
     "types",
+    "src",
     "README.md",
     "LICENSE"
   ],
