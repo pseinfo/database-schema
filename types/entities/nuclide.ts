@@ -215,12 +215,37 @@ type NuclideIndex = Collection< {
 
 /** Decay chains */
 
+/**
+ * NuclideDecayChainLink
+ * Type for a single decay chain link in the generated decay chain export.
+ * 
+ * @param nuclide - Identifier of the nuclide in this decay chain link
+ * @param mode - Decay mode for this link (null if stable)
+ * @param probability - Optional decay probability for this link
+ */
 type NuclideDecayChainLink = Group< {
     nuclide: Distinct< NuclideIdentifier >;
     mode: Distinct< DecayMode >;
-    probability: Distinct< number | undefined >;
+    probability: Distinct< number | null >;
 } >;
 
+/**
+ * NuclideDecayChainEntry
+ * Type for a single decay chain entry in the generated decay chain export.
+ * 
+ * @param nuclide - Identifier of the nuclide for this decay chain entry
+ * @param z - Atomic number (Z) of the nuclide
+ * @param n - Neutron number (N) of the nuclide
+ * @param m - Mass number (A) of the nuclide
+ * @param element - Element symbol for the nuclide
+ * @param symbol - Parsed nuclide symbol (e.g. "99mTc")
+ * @param halfLife - Half-life of the nuclide (null if stable)
+ * @param stable - Whether the nuclide is stable or not
+ * @param daughterChains - List of daughter decay chain links for this nuclide
+ * @param parentChains - List of parent decay chain links for this nuclide
+ * @param chainDepth - Depth of this nuclide in the decay chain (0 for primordial)
+ * @param isTerminal - Whether this nuclide is a terminal node
+ */
 type NuclideDecayChainEntry< N extends NuclideIdentifier > = Collection< {
     nuclide: Distinct< N >;
     z: Distinct< number >;
@@ -228,7 +253,7 @@ type NuclideDecayChainEntry< N extends NuclideIdentifier > = Collection< {
     m: Distinct< number >;
     element: Distinct< ElementSymbol >;
     symbol: Distinct< string >;
-    halfLife: Distinct< number | undefined >;
+    halfLife: Distinct< number | null >;
     stable: Distinct< boolean >;
     daughterChains: Distinct< NuclideDecayChainLink[] >;
     parentChains: Distinct< NuclideDecayChainLink[] >;
@@ -236,6 +261,14 @@ type NuclideDecayChainEntry< N extends NuclideIdentifier > = Collection< {
     isTerminal: Distinct< boolean >;
 } >;
 
+/**
+ * NuclideDecayChains
+ * Type for the generated decay chain export containing decay chain information for all nuclides.
+ * 
+ * The structure is a record where the keys are nuclide identifiers (e.g. "99mTc") and
+ * the values are NuclideDecayChainEntry objects containing the relevant decay chain
+ * information for each nuclide.
+ */
 type NuclideDecayChains = Collection< {
     [ N in NuclideIdentifier ]?: NuclideDecayChainEntry< N >;
 } >;
