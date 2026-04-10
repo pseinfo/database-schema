@@ -4,14 +4,15 @@ on:
   push:
     branches: [ master ]
 
+permissions:
+  security-events: write
+  actions: read
+  contents: read
+
 jobs:
   analyze:
     name: Analyze with CodeQL
     runs-on: ubuntu-latest
-    permissions:
-      security-events: write
-      actions: read
-      contents: read
 
     strategy:
       fail-fast: false
@@ -22,11 +23,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v6
 
-      - name: Use Node.js 20.x
+      - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 20
-          cache: 'npm'
+          node-version: 24
+          cache: npm
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v4
