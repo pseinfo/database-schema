@@ -166,6 +166,14 @@ type Nuclides = {
 
 /** Nuclide index */
 
+type NuclideIndexEntry< Z extends number, N extends number > = Distinct< {
+    z: Distinct< Z >;
+    n: Distinct< N >;
+    m: Distinct< number >;
+    element: Distinct< ElementSymbol >;
+    symbol: Distinct< string >;
+} >;
+
 /**
  * NuclideIndex
  * Type for the generated nuclide index, keyed by z,n coordinate.
