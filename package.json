@@ -54,7 +54,7 @@
   ],
   "scripts": {
     "lint": "tsc",
-    "schema": "npx ts-json-schema-generator --path types/**/*.ts --type Database -o src/schema.json",
+    "schema": "ts-json-schema-generator --path types/**/*.ts --type Database -o src/schema.json",
     "docs": "typedoc --logLevel Verbose --options typedoc.json"
   },
   "dependencies": {
