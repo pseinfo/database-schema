@@ -95,8 +95,8 @@ export type PhysicsCollection = Collection< {
             quality: Distinct< CleavageQuality >;
             direction?: Distinct< string >;
         }[] >;
-        parting?: Distinct< string | string[] >;
-        fracture?: Distinct< FractureType | FractureType[] >;
+        parting?: Distinct< string[] >;
+        fracture?: Distinct< FractureType[] >;
         tenacity?: Distinct< TenacityType >;
     } >;
 
