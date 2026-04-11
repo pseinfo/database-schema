@@ -18,11 +18,6 @@ class SchemaPostProcessor {
     sharedId = 0;
     replacedRefs = 0;
 
-    log ( message ) {
-        const date = new Date().toISOString().split( '.' )[ 0 ].replace( 'T', ' ' );
-        console.log( `[${ date }] ${ message }` );
-    }
-
     async readSchema () {
         this.schema = JSON.parse( await readFile( this.INPUT_FILE, 'utf8' ) );
     }
@@ -201,43 +196,43 @@ class SchemaPostProcessor {
     }
 
     async run () {
-        this.log( 'Reading raw schema ...' );
+        console.log( '[schema-postprocess] Reading raw schema ...' );
         await this.readSchema();
         this.setDefinitions();
 
-        this.log( 'Collecting nodes ...' );
+        console.log( '[schema-postprocess] Collecting nodes ...' );
         this.collect( this.schema, null );
 
-        this.log( 'Collecting existing definitions ...' );
+        console.log( '[schema-postprocess] Collecting existing definitions ...' );
         this.collectExistingDefinitions();
 
-        this.log( `Collected ${ this.nodesByHash.size } unique node hashes` );
+        console.log( `[schema-postprocess] Collected ${ this.nodesByHash.size } unique node hashes` );
 
-        this.log( 'Building shared definition map ...' );
+        console.log( '[schema-postprocess] Building shared definition map ...' );
         const sharedMap = this.buildDefinitionMap();
 
-        this.log( `Shared definition map size: ${ sharedMap.size }` );
+        console.log( `[schema-postprocess] Shared definition map size: ${ sharedMap.size }` );
         for ( const [ hash, name ] of sharedMap.entries() ) if ( ! this.schema.definitions[ name ] ) {
             const entry = this.nodesByHash.get( hash );
             if ( entry ) this.schema.definitions[ name ] = entry.node;
         }
 
-        this.log( 'Replacing duplicate subtrees with $ref pointers ...' );
+        console.log( '[schema-postprocess] Replacing duplicate subtrees with $ref pointers ...' );
         const reduced = this.replace( this.schema, null, sharedMap );
-        this.log( `Replaced ${ this.replacedRefs } duplicate subtrees` );
+        console.log( `[schema-postprocess] Replaced ${ this.replacedRefs } duplicate subtrees` );
 
-        this.log( 'Normalizing all $ref values ...' );
+        console.log( '[schema-postprocess] Normalizing all $ref values ...' );
         this.schema = this.normalizeRefs( reduced );
 
-        this.log( 'Writing normalized schema ...' );
+        console.log( '[schema-postprocess] Writing normalized schema ...' );
         await this.writeSchema();
-        this.log( `Processed schema saved to ${ this.OUTPUT_FILE }` );
+        console.log( `[schema-postprocess] Processed schema saved to ${ this.OUTPUT_FILE }` );
     }
 
 }
 
 const processor = new SchemaPostProcessor();
 processor.run().catch( ( error ) => {
-    console.error( error );
+    console.error( '[schema-postprocess] Error:', error.message );
     process.exit( 1 );
 } );
