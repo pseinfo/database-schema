@@ -106,8 +106,9 @@ export const ValidUnits = {
     frequency: { base: [ 'Hz', 'rpm', 'rps' ] as const, prefixable: [ 'Hz' ] as const },
     angle: { base: [ '°', 'rad', 'ʹ', 'ʺ', 'grad', 'turn' ] as const, prefixable: [] as const },
     massFraction: { base: [ '%', '‰', '*', 'ppm', 'ppb', 'ppt' ] as const, prefixable: [] as const },
-    area: { base: [ 'm[2]', 'cm[2]', 'b' ] as const, prefixable: [ 'm[2]', 'b' ] as const },
-    quantity: { base: [ '*', '%', '‰', 'mol' ] as const, prefixable: [] as const }
+    area: { base: [ 'm[2]', 'b' ] as const, prefixable: [ 'm[2]', 'b' ] as const },
+    quantity: { base: [ '*', '%', '‰', 'mol' ] as const, prefixable: [] as const },
+    currency: { base: [ 'USD' ] as const, prefixable: [] as const }
 
 } as const;
 

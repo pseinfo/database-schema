@@ -95,8 +95,8 @@ export type PhysicsCollection = Collection< {
             quality: Distinct< CleavageQuality >;
             direction?: Distinct< string >;
         }[] >;
-        parting?: Distinct< string | string[] >;
-        fracture?: Distinct< FractureType | FractureType[] >;
+        parting?: Distinct< string[] >;
+        fracture?: Distinct< FractureType[] >;
         tenacity?: Distinct< TenacityType >;
     } >;
 
@@ -142,6 +142,8 @@ export type PhysicsCollection = Collection< {
         luster?: Single< PrimitiveProperty< 'metallic' | 'vitreous' | 'pearly' | 'dull' | 'adamantine' | 'greasy' | 'silky' > >;
         pleochroism?: Single< PrimitiveProperty< string > >;
         axisAngle2V?: Single< NumberProperty< 'angle' > >;
+        specificRotation?: Single< PrimitiveProperty< number > >;
+        opticalRotation?: Single< PrimitiveProperty< 'dextrorotatory' | 'levorotatory' | 'racemic' > >;
     } >;
 
     // Acoustic properties

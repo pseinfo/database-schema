@@ -29,3 +29,9 @@ jobs:
 
       - name: Generate Schema
         run: npm run schema
+
+      - name: Upload Schema
+        uses: actions/upload-artifact@v7
+        with:
+          name: database-schema
+          path: src/schema.json

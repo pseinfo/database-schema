@@ -38,6 +38,7 @@ export type ChemistryCollection = Collection< {
         > >;
         pKa?: Single< PrimitiveProperty< number > >;
         pKb?: Single< PrimitiveProperty< number > >;
+        isoelectricPoint?: Single< PrimitiveProperty< number > >;
         lewisAcidity?: Single< PrimitiveProperty< 'strong' | 'moderate' | 'weak' | 'none' > >;
         lewisBasicity?: Single< PrimitiveProperty< 'strong' | 'moderate' | 'weak' | 'none' > >;
         hsab?: Single< PrimitiveProperty< 'hard' | 'borderline' | 'soft' > >;
@@ -88,6 +89,7 @@ export type ChemistryCollection = Collection< {
     // Solubility
     solubility?: Group< {
         waterSolubility?: Single< NumberProperty< 'concentration' > >;
+        solubilityProduct?: Single< PrimitiveProperty< number > >;
         henryConstant?: Single< NumberProperty< 'pressure' > >;
     } >;
 

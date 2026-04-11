@@ -1,16 +1,21 @@
 /**
- * Mineral Entity
- * Defines the database entity for minerals and mineraloids.
+ * Mineral
+ * Entity type for minerals, indexed by a unique identifier.
+ * 
+ * Each mineral entry includes metadata, descriptive content, classification,
+ * composition details, chemical and physical properties, safety data, and
+ * optional specialized forms.
  */
 
-import type { Collection, Distinct } from '../abstract/collection';
+import type { Collection, Distinct, Group } from '../abstract/collection';
 import type { FormCollection } from '../abstract/form';
 import type { ChemistryCollection } from '../collections/chemistry';
+import type { CompositionCollection } from '../collections/composition';
 import type { DescriptiveCollection } from '../collections/descriptive';
 import type { MetaData } from '../collections/generic';
 import type { PhysicsCollection } from '../collections/physics';
 import type { SafetyCollection } from '../collections/safety';
-import type { MineralClass, MineralProperty, NaturalOccurrence, Phase } from '../utils/const';
+import type { IMAStatus, MineralClass, MineralProperty, NaturalOccurrence, Phase } from '../utils/const';
 
 /** Mineral collections */
 
@@ -18,15 +23,31 @@ import type { MineralClass, MineralProperty, NaturalOccurrence, Phase } from '..
  * MineralClassification
  * Collections for classification properties of minerals.
  * 
- * @param class - Classification of the mineral (e.g., Strunz class)
- * @param group - Optional group classification of the mineral
+ * @param class - Global mineral class
+ * @param group - Mineral group (generic)
+ * @param ima - International Mineralogical Association data
+ * @param systematics - Classification systems (Strunz, Dana, Lapis)
+ * @param similarMinerals - List of similar minerals
  * @param radioactive - Whether the mineral is radioactive
- * @param phase - Standard phase at room temperature (usually solid)
+ * @param phase - Standard phase at room temperature
  * @param naturalOccurrence - Natural occurrence type
  */
 type MineralClassification = Collection< {
     class: Distinct< MineralClass >;
     group?: Distinct< string >;
+    ima?: Group< {
+        symbol?: Distinct< string >;
+        status?: Distinct< IMAStatus >;
+        year?: Distinct< number >;
+        notes?: Distinct< string >;
+    } >;
+    systematics?: Group< {
+        strunz8?: Distinct< string >;
+        strunz9?: Distinct< string >;
+        dana?: Distinct< string >;
+        lapis?: Distinct< string >;
+    } >;
+    similarMinerals?: Distinct< string[] >;
     radioactive: Distinct< boolean >;
     phase?: Distinct< Phase >;
     naturalOccurrence?: Distinct< NaturalOccurrence >;
@@ -36,18 +57,14 @@ type MineralClassification = Collection< {
  * MineralComposition
  * Collections for compositional properties of minerals.
  * 
- * @param elements - Distinct list of elementary components in the mineral
- * @param formula - Chemical formula of the mineral
- * @param empiricalFormula - Empirical formula of the mineral
- * @param structuralFormula - Structural formula of the mineral
- * @param inclusions - Optional inclusions often found in the mineral
+ * @param inclusions - Optional inclusions
+ * @param varieties - List of major varieties
+ * @param alteration - Alteration products or processes
  */
-type MineralComposition = Collection< {
-    elements: Distinct< string[] >;
-    formula: Distinct< string >;
-    empiricalFormula?: Distinct< string >;
-    structuralFormula?: Distinct< string >;
+type MineralComposition = Collection< CompositionCollection & {
     inclusions?: Distinct< string[] >;
+    varieties?: Distinct< string[] >;
+    alteration?: Distinct< string[] >;
 } >;
 
 /** Main mineral entity */

@@ -68,13 +68,17 @@
   ],
   "scripts": {
     "lint": "tsc",
-    "schema": "ts-json-schema-generator --tsconfig tsconfig.json --type Database -o src/schema.json",
+    "schema:generate": "ts-json-schema-generator --tsconfig tsconfig.json --type Database -o src/schema.raw.json",
+    "schema:postprocess": "node scripts/schema-postprocess.mjs",
+    "schema:validate": "node scripts/schema-validate.mjs",
+    "schema": "npm run schema:generate && npm run schema:postprocess && npm run schema:validate",
     "docs": "typedoc --logLevel Verbose --options typedoc.json"
   },
   "dependencies": {
     "devtypes": "^2.0.0"
   },
   "devDependencies": {
+    "ajv": "^8.18.0",
     "ts-json-schema-generator": "^2.9.0",
     "typedoc": "^0.28.18",
     "typedoc-github-theme": "^0.4.0",
