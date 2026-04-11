@@ -27,7 +27,7 @@ import type { CompoundCategory, CompoundProperty, NaturalOccurrence, Phase } fro
  */
 type CompoundClassification = Collection< {
     category: Distinct< CompoundCategory >;
-    family?: Distinct< string >;
+    family?: Distinct< string[] >;
     radioactive: Distinct< boolean >;
     phase?: Distinct< Phase >;
     naturalOccurrence?: Distinct< NaturalOccurrence >;
