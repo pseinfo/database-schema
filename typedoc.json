@@ -22,6 +22,7 @@
   },
   "navigationLinks": {
     "Periodic Table": "https://pse-info.de",
+    "Schema": "https://unpkg.com/@pseinfo/database-schema/src/schema.json",
     "Database": "https://github.com/pseinfo/database",
     "npm": "https://npmjs.com/@pseinfo/database-schema",
     "Code": "https://github.com/pseinfo/database-schema"
