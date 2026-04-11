@@ -28,6 +28,12 @@ class SchemaPostProcessor {
 
     async writeSchema () {
         this.schema.version = JSON.parse( await readFile( new URL( '../package.json', import.meta.url ) ) ).version;
+        this.schema.title = 'PSEInfo Database Schema';
+        this.schema.description = 'Schema for the PSEInfo database';
+        this.schema.build = {
+            date: new Date().toISOString(),
+            commit: execSync( 'git rev-parse --short HEAD' ).toString().trim()
+        };
 
         this.schema.$id = `https://github.com/pseinfo/database-schema/blob/v${ this.schema.version }/src/schema.json`;
         this.schema.$schema = 'http://json-schema.org/draft-07/schema#';
@@ -244,7 +250,7 @@ class SchemaPostProcessor {
 
         console.log( '[schema-postprocess] Final Analysis:' );
         console.log( `    Version: ${ this.schema.version }` );
-        console.log( `    ID:      ${ this.schema.$id }` );
+        console.log( `    Build:   ${ this.schema.build.date } (${ this.schema.build.commit })` );
         console.log( `    Lines:   ${ originalLines } -> ${ finalLines }` );
         console.log( `    Size:    ${ ( originalBytes / 1024 ).toFixed( 1 ) } KB -> ${ ( finalBytes / 1024 ).toFixed( 1 ) } KB (${ percent }% saved)` );
         console.log( `    Nodes:   ${ this.nodesByHash.size } unique, ${ this.replacedRefs } replaced` );
