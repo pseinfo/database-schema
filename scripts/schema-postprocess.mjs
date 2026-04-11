@@ -123,6 +123,18 @@ class SchemaPostProcessor {
         return map;
     }
 
+    /** Rebuild definitions from the shared map. */
+    rebuildDefinitions () {
+        const nextDefinitions = {};
+
+        for ( const [ hash, name ] of this.sharedMap.entries() ) {
+            const entry = this.nodesByHash.get( hash );
+            if ( entry ) nextDefinitions[ name ] = entry.node;
+        }
+
+        this.schema.definitions = nextDefinitions;
+    }
+
     /** Normalize a ref to a canonical form. */
     normalizeRef ( ref ) {
         if ( typeof ref !== 'string' || ! ref.startsWith( '#/' ) ) return ref;
@@ -245,16 +257,9 @@ class SchemaPostProcessor {
 
         console.log( '[schema-postprocess] Building shared definition map ...' );
         this.sharedMap = this.buildDefinitionMap();
+        this.rebuildDefinitions();
 
         console.log( `[schema-postprocess] Shared definition map size: ${ this.sharedMap.size }` );
-
-        // 1. Rebuild definitions with the new stable names
-        const nextDefinitions = {};
-        for ( const [ hash, name ] of this.sharedMap.entries() ) {
-            const entry = this.nodesByHash.get( hash );
-            if ( entry ) nextDefinitions[ name ] = entry.node;
-        }
-        this.schema.definitions = nextDefinitions;
 
         console.log( '[schema-postprocess] Replacing duplicate subtrees with $ref pointers ...' );
         const reduced = this.replace( this.schema, null, this.sharedMap );
