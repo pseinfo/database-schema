@@ -216,6 +216,20 @@ class SchemaPostProcessor {
         return replacement;
     }
 
+    analyzeSavings () {
+        const originalBytes = JSON.stringify( this.original ).length;
+        const finalBytes = JSON.stringify( this.schema ).length;
+        const percent = ( ( ( originalBytes - finalBytes ) / originalBytes ) * 100 ).toFixed( 1 );
+
+        const originalLines = JSON.stringify( this.original, null, 2 ).split( '\n' ).length;
+        const finalLines = JSON.stringify( this.schema, null, 2 ).split( '\n' ).length;
+
+        console.log( '[schema-postprocess] Final Analysis:' );
+        console.log( `    Size:  ${ ( originalBytes / 1024 ).toFixed( 1 ) } KB -> ${ ( finalBytes / 1024 ).toFixed( 1 ) } KB (${ percent }% saved)` );
+        console.log( `    Lines: ${ originalLines } -> ${ finalLines }` );
+        console.log( `    Nodes: ${ this.nodesByHash.size } unique, ${ this.replacedRefs } replaced` );
+    }
+
     async run () {
         console.log( '[schema-postprocess] Reading raw schema ...' );
         await this.readSchema();
@@ -252,6 +266,8 @@ class SchemaPostProcessor {
         console.log( '[schema-postprocess] Writing normalized schema ...' );
         await this.writeSchema();
         console.log( `[schema-postprocess] Processed schema saved to ${ this.OUTPUT_FILE }` );
+
+        this.analyzeSavings();
     }
 
 }
