@@ -5,6 +5,8 @@ import { readFile, unlink, writeFile } from 'node:fs/promises';
 
 class SchemaPostProcessor {
 
+    HASH_PREFIX = 'pseinfo@';
+    HASH_LENGTH = 16;
     INPUT_FILE = 'src/schema.raw.json';
     OUTPUT_FILE = 'src/schema.json';
 
@@ -14,12 +16,13 @@ class SchemaPostProcessor {
     forbiddenParentKeys = new Set( [ 'definitions', '$defs', 'properties', 'patternProperties', 'dependencies' ] );
     hashMemo = new WeakMap();
     nodesByHash = new Map();
-    existingDefByHash = new Map();
-    sharedId = 0;
+    hashByOriginalName = new Map();
+    sharedMap = new Map();
     replacedRefs = 0;
 
     async readSchema () {
         this.schema = JSON.parse( await readFile( this.INPUT_FILE, 'utf8' ) );
+        this.original = JSON.parse( JSON.stringify( this.schema ) );
     }
 
     async writeSchema () {
@@ -84,34 +87,38 @@ class SchemaPostProcessor {
         return entry.count * entry.size - entry.count * refText - defText;
     }
 
-    createSharedName () {
-        return `pseinfo@${ String( this.sharedId++ ).padStart( 4, '0' ) }`;
+    createSharedName ( hash ) {
+        return `${ this.HASH_PREFIX }${ hash.slice( 0, this.HASH_LENGTH ) }`;
     }
 
     /** Collect existing definitions by hash. */
     collectExistingDefinitions () {
         for ( const [ name, def ] of Object.entries( this.definitions ) ) {
-            const hash = this.stableHash( def );
-            if ( ! this.existingDefByHash.has( hash ) ) this.existingDefByHash.set( hash, name );
+            this.hashByOriginalName.set( name, this.stableHash( def ) );
         }
     }
 
     /** Determine if a node should be shared. */
-    shouldShare ( hash, entry ) {
+    shouldShare ( entry ) {
         if ( entry.count < 3 || entry.size < 20 || ! entry.allowed ) return false;
         if ( this.isPlainRef( entry.node ) ) return false;
-        if ( this.existingDefByHash.has( hash ) ) return false;
 
-        const savings = this.estimateSavings( entry, 'pseinfo@XXXX' );
+        const savings = this.estimateSavings( entry, `${ this.HASH_PREFIX }${ 'X'.repeat( this.HASH_LENGTH ) }` );
         return savings > 20;
     }
 
     /** Build definition map to use for replacing nodes. */
     buildDefinitionMap () {
-        const map = new Map( this.existingDefByHash );
+        const map = new Map();
+
+        // 1. Any node that was previously a definition MUST remain one (just renamed)
+        for ( const hash of this.hashByOriginalName.values() )
+            if ( ! map.has( hash ) ) map.set( hash, this.createSharedName( hash ) );
+
+        // 2. Add extra shared nodes based on criteria
         for ( const [ hash, entry ] of this.nodesByHash.entries() )
-            if ( ! map.has( hash ) && this.shouldShare( hash, entry ) )
-                map.set( hash, this.createSharedName() );
+            if ( ! map.has( hash ) && this.shouldShare( entry ) )
+                map.set( hash, this.createSharedName( hash ) );
 
         return map;
     }
@@ -119,6 +126,20 @@ class SchemaPostProcessor {
     /** Normalize a ref to a canonical form. */
     normalizeRef ( ref ) {
         if ( typeof ref !== 'string' || ! ref.startsWith( '#/' ) ) return ref;
+
+        const internalRef = ref.match( /^#\/(definitions|\$defs)\/(.+)$/ );
+        if ( internalRef ) {
+            const oldToken = internalRef[ 2 ];
+            let oldName = oldToken;
+            try { oldName = decodeURIComponent( oldToken ).replace( /~1/g, '/' ).replace( /~0/g, '~' ) }
+            catch { /* keep raw */ }
+
+            const hash = this.hashByOriginalName.get( oldName );
+            if ( hash && this.sharedMap.has( hash ) ) return `#/definitions/${ this.sharedMap.get( hash ) }`;
+
+            // If it's an internal ref but not mapped, it might be pointing to a new name already
+            if ( oldName.startsWith( this.HASH_PREFIX ) ) return `#/definitions/${ oldName }`;
+        }
 
         const normalizeToken = ( token ) => {
             let decoded = token;
@@ -209,16 +230,20 @@ class SchemaPostProcessor {
         console.log( `[schema-postprocess] Collected ${ this.nodesByHash.size } unique node hashes` );
 
         console.log( '[schema-postprocess] Building shared definition map ...' );
-        const sharedMap = this.buildDefinitionMap();
+        this.sharedMap = this.buildDefinitionMap();
 
-        console.log( `[schema-postprocess] Shared definition map size: ${ sharedMap.size }` );
-        for ( const [ hash, name ] of sharedMap.entries() ) if ( ! this.schema.definitions[ name ] ) {
+        console.log( `[schema-postprocess] Shared definition map size: ${ this.sharedMap.size }` );
+
+        // 1. Rebuild definitions with the new stable names
+        const nextDefinitions = {};
+        for ( const [ hash, name ] of this.sharedMap.entries() ) {
             const entry = this.nodesByHash.get( hash );
-            if ( entry ) this.schema.definitions[ name ] = entry.node;
+            if ( entry ) nextDefinitions[ name ] = entry.node;
         }
+        this.schema.definitions = nextDefinitions;
 
         console.log( '[schema-postprocess] Replacing duplicate subtrees with $ref pointers ...' );
-        const reduced = this.replace( this.schema, null, sharedMap );
+        const reduced = this.replace( this.schema, null, this.sharedMap );
         console.log( `[schema-postprocess] Replaced ${ this.replacedRefs } duplicate subtrees` );
 
         console.log( '[schema-postprocess] Normalizing all $ref values ...' );
