@@ -29,6 +29,7 @@ import type { IMAStatus, MineralClass, MineralProperty, NaturalOccurrence, Phase
  * @param systematics - Classification systems (Strunz, Dana, Lapis)
  * @param similarMinerals - List of similar minerals
  * @param radioactive - Whether the mineral is radioactive
+ * @param phase - Standard phase at room temperature
  * @param naturalOccurrence - Natural occurrence type
  */
 type MineralClassification = Collection< {
@@ -63,7 +64,7 @@ type MineralClassification = Collection< {
 type MineralComposition = Collection< CompositionCollection & {
     inclusions?: Distinct< string[] >;
     varieties?: Distinct< string[] >;
-    alteration?: Distinct< string | string[] >;
+    alteration?: Distinct< string[] >;
 } >;
 
 /** Main mineral entity */
