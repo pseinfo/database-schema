@@ -35,7 +35,7 @@ class SchemaPostProcessor {
             commit: execSync( 'git rev-parse --short HEAD' ).toString().trim()
         };
 
-        this.schema.$id = `https://github.com/pseinfo/database-schema/blob/v${ this.schema.version }/src/schema.json`;
+        this.schema.$id = `https://unpkg.com/@pseinfo/database-schema@${ this.schema.version }/src/schema.json`;
         this.schema.$schema = 'http://json-schema.org/draft-07/schema#';
 
         await writeFile( this.OUTPUT_FILE, JSON.stringify( this.schema, null, 2 ), 'utf8' );
