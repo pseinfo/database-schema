@@ -14,6 +14,7 @@ class SchemaPostProcessor {
     nodesByHash = new Map();
     existingDefByHash = new Map();
     sharedId = 0;
+    replacedRefs = 0;
 
     log ( message ) {
         const date = new Date().toISOString().split( '.' )[ 0 ].replace( 'T', ' ' );
@@ -136,6 +137,14 @@ class SchemaPostProcessor {
         const parts = ref.slice( 2 ).split( '/' );
         const normalized = parts.map( normalizeToken );
         return `#/${ normalized.join( '/' ) }`;
+    }
+    
+    canReplace ( node, parentKey, parentIsDefinitionValue, hash, sharedMap ) {
+        if ( node === null || typeof node !== 'object' || Array.isArray( node ) || isPlainRef( node ) ) return false;
+        if ( ! sharedMap.has( hash ) ) return false;
+        if ( this.forbiddenParentKeys.has( parentKey ) ) return false;
+        if ( parentIsDefinitionValue && parentKey && sharedMap.get( hash ) === parentKey ) return false;
+        return true;
     }
 
     async run () {
