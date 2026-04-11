@@ -139,8 +139,7 @@ export const MineralClass = [
 export type MineralProperty = ( typeof MineralProperty )[ number ];
 export const MineralProperty = [
     'radioactive', 'luminescent', 'fluorescent', 'phosphorescent', 'magnetic',
-    'piezoelectric', 'pyroelectric', 'toxic', 'synthetic', 'streak', 'pleochroism',
-    'fluorescence', 'luminescence'
+    'piezoelectric', 'pyroelectric', 'toxic', 'synthetic', 'streak', 'pleochroism'
 ] as const;
 
 /** IMA Status */
