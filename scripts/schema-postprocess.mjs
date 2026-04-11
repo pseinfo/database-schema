@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { createHash } from 'node:crypto';
 import { readFile, unlink, writeFile } from 'node:fs/promises';
 
@@ -44,10 +46,10 @@ class SchemaPostProcessor {
         if ( this.hashMemo.has( node ) ) return this.hashMemo.get( node );
 
         let content;
-        if ( Array.isArray( node ) ) content = '[' + node.map( this.stableHash ).join( ',' ) + ']';
+        if ( Array.isArray( node ) ) content = '[' + node.map( i => this.stableHash( i ) ).join( ',' ) + ']';
         else {
             const keys = Object.keys( node ).sort();
-            content = '{' + keys.map( ( key ) => `${ JSON.stringify( key ) }:${ this.stableHash( node[ key ] ) }` ).join( ',' ) + '}';
+            content = '{' + keys.map( k => `${ JSON.stringify( k ) }:${ this.stableHash( node[ k ] ) }` ).join( ',' ) + '}';
         }
 
         const hash = createHash( 'sha1' ).update( content ).digest( 'hex' );
@@ -118,7 +120,7 @@ class SchemaPostProcessor {
         const normalizeToken = ( token ) => {
             let decoded = token;
             try { decoded = decodeURIComponent( token ) }
-            catch { /* token not percent-encoded, keep raw */ }
+            catch { /* keep raw */ }
 
             decoded = decoded.replace( /~1/g, '/' ).replace( /~0/g, '~' );
             const pointerSafe = decoded.replace( /~/g, '~0' ).replace( /\//g, '~1' );
@@ -214,13 +216,11 @@ class SchemaPostProcessor {
         this.log( `Replaced ${ this.replacedRefs } duplicate subtrees` );
 
         this.log( 'Normalizing all $ref values ...' );
-        const normalized = this.normalizeRefs( reduced );
+        this.schema = this.normalizeRefs( reduced );
 
         this.log( 'Writing normalized schema ...' );
-        const final = JSON.stringify( normalized, null, 2 );
-        await writeFile( this.OUTPUT_FILE, final );
-
-        this.log( `>> Wrote ${ this.OUTPUT_FILE } (${ final.split( '\n' ).length } lines)` );
+        await this.writeSchema();
+        this.log( `>> Processed schema saved to ${ this.OUTPUT_FILE }` );
     }
 
 }
