@@ -22,7 +22,6 @@ class SchemaPostProcessor {
     }
 
     async readSchema () {
-        this.log( `Reading schema from ${ this.INPUT_FILE } ...` );
         this.schema = JSON.parse( await readFile( this.INPUT_FILE, 'utf8' ) );
     }
 
@@ -139,8 +138,23 @@ class SchemaPostProcessor {
         return `#/${ normalized.join( '/' ) }`;
     }
     
+    normalizeRefs ( node ) {
+        if ( node === null || typeof node !== 'object' ) return node;
+        if ( Array.isArray( node ) ) return node.map( i => this.normalizeRefs( i ) );
+
+        if ( typeof node.$ref === 'string' ) {
+            const normalizedRef = this.normalizeRef( node.$ref );
+            if ( Object.keys( node ).length === 1 ) return { $ref: normalizedRef };
+            node = { ...node, $ref: normalizedRef };
+        }
+
+        const out = {};
+        for ( const [ key, value ] of Object.entries( node ) ) out[ key ] = this.normalizeRefs( value );
+        return out;
+    }
+    
     canReplace ( node, parentKey, parentIsDefinitionValue, hash, sharedMap ) {
-        if ( node === null || typeof node !== 'object' || Array.isArray( node ) || isPlainRef( node ) ) return false;
+        if ( node === null || typeof node !== 'object' || Array.isArray( node ) || this.isPlainRef( node ) ) return false;
         if ( ! sharedMap.has( hash ) ) return false;
         if ( this.forbiddenParentKeys.has( parentKey ) ) return false;
         if ( parentIsDefinitionValue && parentKey && sharedMap.get( hash ) === parentKey ) return false;
