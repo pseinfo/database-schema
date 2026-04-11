@@ -56,6 +56,13 @@ export const ElementProperty = [
     'semiconductor', 'stable', 'synthetic', 'vital'
 ] as const;
 
+/** Component roles */
+export type ComponentRole = ( typeof ComponentRole )[ number ];
+export const ComponentRole = [
+    'cation', 'anion', 'neutral', 'radical', 'complex', 'impurity', 'dopant', 'inclusion',
+    'matrix', 'solvent'
+] as const;
+
 /** Radioactive decay modes */
 export type DecayMode = ( typeof DecayMode )[ number ];
 export const DecayMode = [
