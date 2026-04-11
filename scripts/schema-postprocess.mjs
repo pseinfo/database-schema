@@ -111,6 +111,32 @@ class SchemaPostProcessor {
 
         return map;
     }
+    
+    normalizeRef ( ref ) {
+        if ( typeof ref !== 'string' || ! ref.startsWith( '#/' ) ) return ref;
+
+        const normalizeToken = ( token ) => {
+            let decoded = token;
+            try { decoded = decodeURIComponent( token ) }
+            catch { /* token not percent-encoded, keep raw */ }
+
+            decoded = decoded.replace( /~1/g, '/' ).replace( /~0/g, '~' );
+            const pointerSafe = decoded.replace( /~/g, '~0' ).replace( /\//g, '~1' );
+            return encodeURIComponent( pointerSafe );
+        };
+
+        const definitionsPrefix = '#/definitions/';
+        const defsPrefix = '#/$defs/';
+        if ( ref.startsWith( definitionsPrefix ) || ref.startsWith( defsPrefix ) ) {
+            const prefix = ref.startsWith( definitionsPrefix ) ? definitionsPrefix : defsPrefix;
+            const token = ref.slice( prefix.length );
+            return `${ prefix }${ normalizeToken( token ) }`;
+        }
+
+        const parts = ref.slice( 2 ).split( '/' );
+        const normalized = parts.map( normalizeToken );
+        return `#/${ normalized.join( '/' ) }`;
+    }
 
     async run () {
         await this.readSchema();
