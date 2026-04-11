@@ -41,6 +41,7 @@ class SchemaPostProcessor {
         }
     }
 
+    /** Create a stable hash of a node. */
     stableHash ( node ) {
         if ( node === null || typeof node !== 'object' ) return JSON.stringify( node );
         if ( this.hashMemo.has( node ) ) return this.hashMemo.get( node );
@@ -57,11 +58,13 @@ class SchemaPostProcessor {
         return hash;
     }
 
+    /** Check if a node is a plain ref. */
     isPlainRef ( node ) {
         return node && typeof node === 'object' && ! Array.isArray( node ) &&
             Object.keys( node ).length === 1 && typeof node.$ref === 'string';
     }
 
+    /** Collect nodes and their hashes. */
     collect ( node, parentKey = null ) {
         if ( node === null || typeof node !== 'object' ) return;
 
@@ -78,7 +81,8 @@ class SchemaPostProcessor {
         if ( Array.isArray( node ) ) node.forEach( ( item ) => this.collect( item, parentKey ) );
         else Object.entries( node ).forEach( ( [ key, value ] ) => this.collect( value, key ) );
     }
-    
+
+    /** Estimate savings of sharing a node. */
     estimateSavings ( entry, refName ) {
         const refText = JSON.stringify( { $ref: `#/definitions/${ refName }` } ).length;
         const defText = JSON.stringify( { [ refName ]: entry.node } ).length;
@@ -86,25 +90,28 @@ class SchemaPostProcessor {
     }
 
     createSharedName () {
-        return `Shared${ String( this.sharedId++ ).padStart( 4, '0' ) }`;
+        return `pseinfo@${ String( this.sharedId++ ).padStart( 4, '0' ) }`;
     }
 
+    /** Collect existing definitions by hash. */
     collectExistingDefinitions () {
         for ( const [ name, def ] of Object.entries( this.definitions ) ) {
             const hash = this.stableHash( def );
             if ( ! this.existingDefByHash.has( hash ) ) this.existingDefByHash.set( hash, name );
         }
     }
-    
+
+    /** Determine if a node should be shared. */
     shouldShare ( hash, entry ) {
         if ( entry.count < 3 || entry.size < 20 || ! entry.allowed ) return false;
         if ( this.isPlainRef( entry.node ) ) return false;
         if ( this.existingDefByHash.has( hash ) ) return false;
 
-        const savings = this.estimateSavings( entry, 'SharedXXXX' );
+        const savings = this.estimateSavings( entry, 'pseinfo@XXXX' );
         return savings > 20;
     }
 
+    /** Build definition map to use for replacing nodes. */
     buildDefinitionMap () {
         const map = new Map( this.existingDefByHash );
         for ( const [ hash, entry ] of this.nodesByHash.entries() )
@@ -113,7 +120,8 @@ class SchemaPostProcessor {
 
         return map;
     }
-    
+
+    /** Normalize a ref to a canonical form. */
     normalizeRef ( ref ) {
         if ( typeof ref !== 'string' || ! ref.startsWith( '#/' ) ) return ref;
 
@@ -139,7 +147,8 @@ class SchemaPostProcessor {
         const normalized = parts.map( normalizeToken );
         return `#/${ normalized.join( '/' ) }`;
     }
-    
+
+    /** Normalize all refs in a node. */
     normalizeRefs ( node ) {
         if ( node === null || typeof node !== 'object' ) return node;
         if ( Array.isArray( node ) ) return node.map( i => this.normalizeRefs( i ) );
@@ -154,7 +163,8 @@ class SchemaPostProcessor {
         for ( const [ key, value ] of Object.entries( node ) ) out[ key ] = this.normalizeRefs( value );
         return out;
     }
-    
+
+    /** Determine if a node can be replaced. */
     canReplace ( node, parentKey, parentIsDefinitionValue, hash, sharedMap ) {
         if ( node === null || typeof node !== 'object' || Array.isArray( node ) || this.isPlainRef( node ) ) return false;
         if ( ! sharedMap.has( hash ) ) return false;
@@ -162,7 +172,8 @@ class SchemaPostProcessor {
         if ( parentIsDefinitionValue && parentKey && sharedMap.get( hash ) === parentKey ) return false;
         return true;
     }
-    
+
+    /** Replace nodes with shared definitions. */
     replace ( node, parentKey, sharedMap, parentIsDefinitionValue = false ) {
         if ( node === null || typeof node !== 'object' ) return node;
 
@@ -220,7 +231,7 @@ class SchemaPostProcessor {
 
         this.log( 'Writing normalized schema ...' );
         await this.writeSchema();
-        this.log( `>> Processed schema saved to ${ this.OUTPUT_FILE }` );
+        this.log( `Processed schema saved to ${ this.OUTPUT_FILE }` );
     }
 
 }
