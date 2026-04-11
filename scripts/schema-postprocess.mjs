@@ -146,6 +146,32 @@ class SchemaPostProcessor {
         if ( parentIsDefinitionValue && parentKey && sharedMap.get( hash ) === parentKey ) return false;
         return true;
     }
+    
+    replace ( node, parentKey, sharedMap, parentIsDefinitionValue = false ) {
+        if ( node === null || typeof node !== 'object' ) return node;
+
+        if ( typeof node.$ref === 'string' ) {
+            const normalizedRef = this.normalizeRef( node.$ref );
+            if ( Object.keys( node ).length === 1 ) return { $ref: normalizedRef };
+            node = { ...node, $ref: normalizedRef };
+        }
+
+        if ( Array.isArray( node ) ) return node.map( ( item ) => this.replace( item, parentKey, sharedMap, false ) );
+
+        const hash = this.stableHash( node );
+        if ( this.canReplace( node, parentKey, parentIsDefinitionValue, hash, sharedMap ) ) {
+            this.replacedRefs += 1;
+            return { $ref: `#/definitions/${ sharedMap.get( hash ) }` };
+        }
+
+        const replacement = {};
+        for ( const [ key, value ] of Object.entries( node ) ) {
+            const childIsDefinitionValue = parentKey === 'definitions' || parentKey === '$defs';
+            replacement[ key ] = this.replace( value, key, sharedMap, childIsDefinitionValue );
+        }
+
+        return replacement;
+    }
 
     async run () {
         await this.readSchema();
