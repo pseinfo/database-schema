@@ -188,10 +188,39 @@ class SchemaPostProcessor {
     }
 
     async run () {
+        this.log( 'Reading raw schema ...' );
         await this.readSchema();
         this.setDefinitions();
 
-        await this.writeSchema();
+        this.log( 'Collecting nodes ...' );
+        this.collect( this.schema, null );
+
+        this.log( 'Collecting existing definitions ...' );
+        this.collectExistingDefinitions();
+
+        this.log( `Collected ${ this.nodesByHash.size } unique node hashes` );
+
+        this.log( 'Building shared definition map ...' );
+        const sharedMap = this.buildDefinitionMap();
+
+        this.log( `Shared definition map size: ${ sharedMap.size }` );
+        for ( const [ hash, name ] of sharedMap.entries() ) if ( ! this.schema.definitions[ name ] ) {
+            const entry = this.nodesByHash.get( hash );
+            if ( entry ) this.schema.definitions[ name ] = entry.node;
+        }
+
+        this.log( 'Replacing duplicate subtrees with $ref pointers ...' );
+        const reduced = this.replace( this.schema, null, sharedMap );
+        this.log( `Replaced ${ this.replacedRefs } duplicate subtrees` );
+
+        this.log( 'Normalizing all $ref values ...' );
+        const normalized = this.normalizeRefs( reduced );
+
+        this.log( 'Writing normalized schema ...' );
+        const final = JSON.stringify( normalized, null, 2 );
+        await writeFile( this.OUTPUT_FILE, final );
+
+        this.log( `>> Wrote ${ this.OUTPUT_FILE } (${ final.split( '\n' ).length } lines)` );
     }
 
 }
