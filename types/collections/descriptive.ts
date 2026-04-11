@@ -4,6 +4,7 @@
  */
 
 import type { Collection, LangGroup } from '../abstract/collection';
+import type { NumberProperty } from '../abstract/property';
 import type { AbundanceGroup, DiscoveryGroup, MediaGroup, WeblinksGroup } from '../collections/generic';
 import type { RegistryGroup, StructureGroup } from '../collections/registry';
 
@@ -20,6 +21,7 @@ import type { RegistryGroup, StructureGroup } from '../collections/registry';
  * @param discovery - Discovery information group
  * @param media - Media information group
  * @param weblinks - Weblinks information group
+ * @param pricing - Pricing information group
  */
 export type DescriptiveCollection = Collection< {
     registry: RegistryGroup;
@@ -31,4 +33,5 @@ export type DescriptiveCollection = Collection< {
     discovery?: DiscoveryGroup;
     media?: MediaGroup;
     weblinks?: WeblinksGroup;
+    pricing?: NumberProperty< 'currency' >;
 } >;
