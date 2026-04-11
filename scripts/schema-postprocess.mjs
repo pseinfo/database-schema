@@ -76,6 +76,23 @@ class SchemaPostProcessor {
         if ( Array.isArray( node ) ) node.forEach( ( item ) => this.collect( item, parentKey ) );
         else Object.entries( node ).forEach( ( [ key, value ] ) => this.collect( value, key ) );
     }
+    
+    estimateSavings ( entry, refName ) {
+        const refText = JSON.stringify( { $ref: `#/definitions/${ refName }` } ).length;
+        const defText = JSON.stringify( { [ refName ]: entry.node } ).length;
+        return entry.count * entry.size - entry.count * refText - defText;
+    }
+
+    createSharedName () {
+        return `Shared${ String( this.sharedId++ ).padStart( 4, '0' ) }`;
+    }
+
+    collectExistingDefinitions () {
+        for ( const [ name, def ] of Object.entries( this.definitions ) ) {
+            const hash = this.stableHash( def );
+            if ( ! this.existingDefByHash.has( hash ) ) this.existingDefByHash.set( hash, name );
+        }
+    }
 
     async run () {
         await this.readSchema();
