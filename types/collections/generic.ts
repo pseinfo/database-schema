@@ -144,17 +144,26 @@ export type WeblinksGroup = Group< {
  * Crystallographic properties for elements and compounds.
  * 
  * @param crystalStructure - Type of crystal structure
- * @param pearsonSymbol - Pearson symbol notation
+ * @param crystalClass - Crystal class
  * @param spaceGroup - Space group notation
  * @param spaceGroupNumber - Space group number
+ * @param spaceGroupSymbol - Space group symbol
+ * @param pearsonSymbol - Pearson symbol notation
+ * @param formulaUnitsZ - Formula units per unit cell
  * @param latticeConstant - Lattice constants group
+ * @param twinning - Twinning information
+ * @param habit - Habit information
+ * @param faces - Faces information
  * @param references - References related to crystallographic data
  */
 export type CrystalGroup = Group< {
     crystalStructure?: Distinct< CrystalStructure >;
-    pearsonSymbol?: Distinct< string >;
+    crystalClass?: Distinct< string >;
     spaceGroup?: Distinct< string >;
     spaceGroupNumber?: Distinct< number >;
+    spaceGroupSymbol?: Distinct< string >;
+    pearsonSymbol?: Distinct< string >;
+    formulaUnitsZ?: Distinct< number >;
     latticeConstant?: Group< {
         a?: Distinct< number >;
         b?: Distinct< number >;
@@ -163,5 +172,8 @@ export type CrystalGroup = Group< {
         beta?: Distinct< number >;
         gamma?: Distinct< number >;
     } >;
+    twinning?: Distinct< string | string[] >;
+    habit?: Distinct< string | string[] >;
+    faces?: Distinct< string[] >;
     references?: RefId[];
 } >;
