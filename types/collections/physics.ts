@@ -3,9 +3,9 @@
  * Defines a set of physical properties for elements, materials and substances.
  */
 
-import type { Collection, Group, Single } from '../abstract/collection';
+import type { Collection, Distinct, Group, Single } from '../abstract/collection';
 import type { CoupledNumberProperty, NumberProperty, PrimitiveProperty } from '../abstract/property';
-import type { Phase } from '../utils/const';
+import type { CleavageQuality, FractureType, Phase, TenacityType } from '../utils/const';
 
 /**
  * PhysicsCollection
@@ -18,6 +18,7 @@ import type { Phase } from '../utils/const';
  * @param heat - Heat properties
  * @param hardness - Hardness properties
  * @param elasticity - Elasticity and mechanical properties
+ * @param identification - Identification properties (for minerals/materials)
  * @param electricity - Electrical properties
  * @param magnetism - Magnetic properties
  * @param optics - Optical properties
@@ -88,6 +89,17 @@ export type PhysicsCollection = Collection< {
         ultimateStrength?: Single< NumberProperty< 'pressure' > >;
     } >;
 
+    // Identification and mechanical attributes
+    identification?: Group< {
+        cleavage?: Distinct< {
+            quality: Distinct< CleavageQuality >;
+            direction?: Distinct< string >;
+        }[] >;
+        parting?: Distinct< string | string[] >;
+        fracture?: Distinct< FractureType | FractureType[] >;
+        tenacity?: Distinct< TenacityType >;
+    } >;
+
     // Electrical properties
     electricity?: Group< {
         electricConductivity?: Single< NumberProperty< 'electricConductivity' > >;
@@ -117,14 +129,19 @@ export type PhysicsCollection = Collection< {
 
     // Optical properties
     optics?: Group< {
-        refractiveIndex?: Single< PrimitiveProperty< number > >;
+        refractiveIndex?: Single< NumberProperty< 'quantity' > | PrimitiveProperty< number > >;
+        birefringence?: Single< NumberProperty< 'quantity' > >;
+        opticalCharacter?: Single< PrimitiveProperty< string > >;
         reflectance?: Single< PrimitiveProperty< number > >;
         absorptionCoefficient?: Single< NumberProperty< 'absorptionCoefficient' > >;
         emissivity?: Single< PrimitiveProperty< number > >;
         transmittance?: Single< PrimitiveProperty< number > >;
         opacity?: Single< PrimitiveProperty< number > >;
         color?: Single< PrimitiveProperty< string > >;
-        luster?: Single< PrimitiveProperty< 'metallic' | 'vitreous' | 'pearly' | 'dull' | 'adamantine' > >;
+        streak?: Single< PrimitiveProperty< string > >;
+        luster?: Single< PrimitiveProperty< 'metallic' | 'vitreous' | 'pearly' | 'dull' | 'adamantine' | 'greasy' | 'silky' > >;
+        pleochroism?: Single< PrimitiveProperty< string > >;
+        axisAngle2V?: Single< NumberProperty< 'angle' > >;
     } >;
 
     // Acoustic properties
