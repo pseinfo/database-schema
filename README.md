@@ -9,7 +9,7 @@ Visit the [technical documentation](https://pseinfo.github.io/database-schema) f
 
 ## Scientific Design Principles
 
-This schema is engineered to encapsulate the true complexity of exact chemical and physical properties found in advanced laboratory reference materials (e.g. CRC Handbook, IMA mineralogical directories, ENSDF nuclide databases). 
+This schema is engineered to encapsulate the true complexity of exact chemical and physical properties found in advanced laboratory reference materials (e.g. CRC Handbook, IMA mineralogical directories, ENSDF nuclide databases).
 
 Theoretical and experimental values are tightly coupled with their context:
 1. **Physical Conditions**: Properties are explicitly bound to measurement conditions (e.g., standard temperature & pressure, variable temperatures, or specific concentrations).
@@ -44,5 +44,5 @@ Extensive radio-isotope models. Traces complete mass permutations and metastable
 
 ## Runtime Validation & Usage
 
-The project builds robust JSON Schemas formatted for Draft-07 directly from the strict TypeScript declarations. 
+The project builds robust JSON Schemas formatted for Draft-07 directly from the strict TypeScript declarations.
 `src/schema.json` guarantees strict API conformance tests and acts as the validation foundation for the overall the [@pseinfo](https://github.com/pseinfo) architecture across isolated programming stacks.
