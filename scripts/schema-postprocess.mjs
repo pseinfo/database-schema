@@ -33,6 +33,27 @@ class SchemaPostProcessor {
             delete this.schema.$defs;
         }
     }
+    
+    stableHash ( node ) {
+        if ( node === null || typeof node !== 'object' ) return JSON.stringify( node );
+        if ( this.hashMemo.has( node ) ) return this.hashMemo.get( node );
+
+        let content;
+        if ( Array.isArray( node ) ) content = '[' + node.map( this.stableHash ).join( ',' ) + ']';
+        else {
+            const keys = Object.keys( node ).sort();
+            content = '{' + keys.map( ( key ) => `${ JSON.stringify( key ) }:${ this.stableHash( node[ key ] ) }` ).join( ',' ) + '}';
+        }
+
+        const hash = createHash( 'sha1' ).update( content ).digest( 'hex' );
+        this.hashMemo.set( node, hash );
+        return hash;
+    }
+
+    isPlainRef ( node ) {
+        return node && typeof node === 'object' && ! Array.isArray( node ) &&
+            Object.keys( node ).length === 1 && typeof node.$ref === 'string';
+    }
 
     async writeSchema () {
         await writeFile( this.OUTPUT_FILE, JSON.stringify( this.schema, null, 2 ), 'utf8' );
