@@ -19,12 +19,17 @@ class SchemaPostProcessor {
         const date = new Date().toISOString().split( '.' )[ 0 ].replace( 'T', ' ' );
         console.log( `[${ date }] ${ message }` );
     }
-    
+
     async readSchema () {
         this.log( `Reading schema from ${ this.INPUT_FILE } ...` );
         this.schema = JSON.parse( await readFile( this.INPUT_FILE, 'utf8' ) );
     }
-    
+
+    async writeSchema () {
+        await writeFile( this.OUTPUT_FILE, JSON.stringify( this.schema, null, 2 ), 'utf8' );
+        await unlink( this.INPUT_FILE );
+    }
+
     setDefinitions () {
         this.definitions = this.schema.definitions || this.schema.$defs || {};
 
@@ -33,7 +38,7 @@ class SchemaPostProcessor {
             delete this.schema.$defs;
         }
     }
-    
+
     stableHash ( node ) {
         if ( node === null || typeof node !== 'object' ) return JSON.stringify( node );
         if ( this.hashMemo.has( node ) ) return this.hashMemo.get( node );
@@ -55,9 +60,21 @@ class SchemaPostProcessor {
             Object.keys( node ).length === 1 && typeof node.$ref === 'string';
     }
 
-    async writeSchema () {
-        await writeFile( this.OUTPUT_FILE, JSON.stringify( this.schema, null, 2 ), 'utf8' );
-        await unlink( this.INPUT_FILE );
+    collect ( node, parentKey = null ) {
+        if ( node === null || typeof node !== 'object' ) return;
+
+        if ( ! Array.isArray( node ) ) {
+            const hash = this.stableHash( node );
+            const size = JSON.stringify( node ).length;
+            const entry = this.nodesByHash.get( hash ) || { count: 0, size, node, allowed: false };
+            entry.count += 1;
+
+            if ( ! this.forbiddenParentKeys.has( parentKey ) ) entry.allowed = true;
+            this.nodesByHash.set( hash, entry );
+        }
+
+        if ( Array.isArray( node ) ) node.forEach( ( item ) => this.collect( item, parentKey ) );
+        else Object.entries( node ).forEach( ( [ key, value ] ) => this.collect( value, key ) );
     }
 
     async run () {
