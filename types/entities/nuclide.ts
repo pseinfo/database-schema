@@ -56,6 +56,7 @@ type NuclideClassification = Collection< {
  * @param excitationEnergy - Excitation energy levels
  * @param isomericTransitionEnergy - Isomeric transition energy for metastable states
  * @param qValue - Q value for electron capture
+ * @param crossSection - Cross section data
  */
 type NuclearCollection = Collection< {
     atomicMass?: Single< NumberProperty< 'mass' > >;
@@ -67,6 +68,11 @@ type NuclearCollection = Collection< {
     excitationEnergy?: Single< NumberProperty< 'energy' > >;
     isomericTransitionEnergy?: Single< NumberProperty< 'energy' > >;
     qValue?: Single< NumberProperty< 'energy' > >;
+    crossSection?: Group< {
+        thermalNeutronCapture?: Single< NumberProperty< 'area' > >;
+        resonanceIntegral?: Single< NumberProperty< 'area' > >;
+        fission?: Single< NumberProperty< 'area' > >;
+    } >;
 } >;
 
 /**
