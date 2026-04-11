@@ -26,6 +26,10 @@ class SchemaPostProcessor {
     }
 
     async writeSchema () {
+        this.schema.version = JSON.parse( await readFile( new URL( '../package.json', import.meta.url ) ) ).version;
+        this.schema.$id = `https://github.com/pseinfo/database-schema/blob/v${ this.schema.version }/src/schema.json`;
+        this.schema.$schema = 'http://json-schema.org/draft-07/schema#';
+
         await writeFile( this.OUTPUT_FILE, JSON.stringify( this.schema, null, 2 ), 'utf8' );
         await unlink( this.INPUT_FILE );
     }
@@ -237,8 +241,8 @@ class SchemaPostProcessor {
         const finalLines = JSON.stringify( this.schema, null, 2 ).split( '\n' ).length;
 
         console.log( '[schema-postprocess] Final Analysis:' );
-        console.log( `    Size:  ${ ( originalBytes / 1024 ).toFixed( 1 ) } KB -> ${ ( finalBytes / 1024 ).toFixed( 1 ) } KB (${ percent }% saved)` );
         console.log( `    Lines: ${ originalLines } -> ${ finalLines }` );
+        console.log( `    Size:  ${ ( originalBytes / 1024 ).toFixed( 1 ) } KB -> ${ ( finalBytes / 1024 ).toFixed( 1 ) } KB (${ percent }% saved)` );
         console.log( `    Nodes: ${ this.nodesByHash.size } unique, ${ this.replacedRefs } replaced` );
     }
 
