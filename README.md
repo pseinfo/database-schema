@@ -62,4 +62,4 @@ The schema is used to validate the database and ensure strict API compliance wit
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.  
-(c) 2025-2026 Paul Köhler (komed3). All rights reserved.
+Copyright © 2025–2026 Paul Köhler (komed3). All rights reserved.
