@@ -21,6 +21,8 @@ import type { CrystalGroup } from './generic';
  * @param bonding - Bonding properties group
  * @param solubility - Solubility properties group
  * @param thermochemistry - Thermochemical properties group
+ * @param reactivity - Reactivity properties group
+ * @param stability - Stability properties group
  */
 export type ChemistryCollection = Collection< {
 
@@ -93,6 +95,25 @@ export type ChemistryCollection = Collection< {
     thermochemistry?: Group< {
         standardGibbsEnergy?: Single< NumberProperty< 'energy' > >;
         bindingEnergy?: Single< NumberProperty< 'energy' > >;
+    } >;
+
+    // Chemical stability and reactivity
+    stability?: Group< {
+        airSensitive?: Single< PrimitiveProperty< boolean > >;
+        hygroscopic?: Single< PrimitiveProperty< boolean > >;
+        photosensitive?: Single< PrimitiveProperty< boolean > >;
+        deliquescent?: Single< PrimitiveProperty< boolean > >;
+        pyrophoric?: Single< PrimitiveProperty< boolean > >;
+        notes?: Distinct< string >;
+    } >;
+
+    // Reactivity properties
+    reactivity?: Group< {
+        corrosive?: Single< PrimitiveProperty< boolean > >;
+        explosive?: Single< PrimitiveProperty< boolean > >;
+        oxidizing?: Single< PrimitiveProperty< boolean > >;
+        flammable?: Single< PrimitiveProperty< boolean > >;
+        notes?: Distinct< string >;
     } >;
 
 } >;
