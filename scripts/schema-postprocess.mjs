@@ -42,6 +42,14 @@ class SchemaPostProcessor {
     async run () {
         await this.readSchema();
         this.setDefinitions();
+
+        await this.writeSchema();
     }
 
 }
+
+const processor = new SchemaPostProcessor();
+processor.run().catch( ( error ) => {
+    console.error( error );
+    process.exit( 1 );
+} );
