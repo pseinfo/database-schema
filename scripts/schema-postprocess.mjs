@@ -93,6 +93,24 @@ class SchemaPostProcessor {
             if ( ! this.existingDefByHash.has( hash ) ) this.existingDefByHash.set( hash, name );
         }
     }
+    
+    shouldShare ( hash, entry ) {
+        if ( entry.count < 3 || entry.size < 20 || ! entry.allowed ) return false;
+        if ( this.isPlainRef( entry.node ) ) return false;
+        if ( this.existingDefByHash.has( hash ) ) return false;
+
+        const savings = this.estimateSavings( entry, 'SharedXXXX' );
+        return savings > 20;
+    }
+
+    buildDefinitionMap () {
+        const map = new Map( this.existingDefByHash );
+        for ( const [ hash, entry ] of this.nodesByHash.entries() )
+            if ( ! map.has( hash ) && this.shouldShare( hash, entry ) )
+                map.set( hash, this.createSharedName() );
+
+        return map;
+    }
 
     async run () {
         await this.readSchema();
