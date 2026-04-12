@@ -10,7 +10,7 @@ import type { Primitive } from 'devtypes/types/primitive';
 import type { Brand } from 'devtypes/types/util';
 import type { Uncertainty } from '@/abstract/uncertainty';
 import type { PhysicalQuantity, UnitId } from '@/abstract/unit';
-import type { ValueType, ValueConfidence } from '@/enums/generic';
+import type { ValueType, ValueConfidence } from '@/enums/abstract';
 
 
 /**

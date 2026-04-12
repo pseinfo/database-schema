@@ -12,7 +12,7 @@
  */
 
 import type { Brand } from 'devtypes/types/util';
-import type { MetricSystem, SIDimension } from '@/enums/generic';
+import type { MetricSystem, SIDimension } from '@/enums/abstract';
 
 
 /** SI unit prefixes (metric system). */

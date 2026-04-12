@@ -7,7 +7,7 @@
 
 import type { RequireFrom } from 'devtypes/types/constraint';
 import type { Brand } from 'devtypes/types/util';
-import type { UncertaintyType } from '@/enums/generic';
+import type { UncertaintyType } from '@/enums/abstract';
 
 
 /**

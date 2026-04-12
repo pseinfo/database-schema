@@ -9,7 +9,8 @@ import type { RequireFrom, StrictSubset } from 'devtypes/types/constraint';
 import type { DeepPartial } from 'devtypes/types/transform';
 import type { Brand } from 'devtypes/types/util';
 import type { Collection, Distinct } from '@/abstract/collection';
-import type { CrystalStructure, Phase, FormType } from '@/enums/generic';
+import type { FormType } from '@/enums/abstract';
+import type { CrystalStructure, Phase } from '@/enums/generic';
 
 
 /**

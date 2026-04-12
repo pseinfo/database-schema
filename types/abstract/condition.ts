@@ -8,7 +8,7 @@
 import type { Primitive } from 'devtypes/types/primitive';
 import type { PhysicalQuantity } from '@/abstract/unit';
 import type { Value } from '@/abstract/value';
-import type { StandardCondition } from '@/enums/generic';
+import type { StandardCondition } from '@/enums/abstract';
 
 
 /**

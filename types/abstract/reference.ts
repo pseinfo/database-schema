@@ -7,7 +7,7 @@
 
 import type { ExtractFrom, RequireAtLeastOne, RequireExactlyOne, StrictSubset } from 'devtypes/types/constraint';
 import type { Brand } from 'devtypes/types/util';
-import type { ReferenceType } from '@/enums/generic';
+import type { ReferenceType } from '@/enums/abstract';
 
 
 /**
