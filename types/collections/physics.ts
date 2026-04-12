@@ -3,9 +3,33 @@
  * Defines a set of physical properties for elements, materials and substances.
  */
 
-import type { Collection, Distinct, Group, Single } from '../abstract/collection';
-import type { CoupledNumberProperty, NumberProperty, PrimitiveProperty } from '../abstract/property';
-import type { CleavageQuality, FractureType, Phase, TenacityType } from '../utils/const';
+import type { Collection, Group, Single } from '@/abstract/collection';
+import type { CoupledNumberProperty, NumberProperty, PrimitiveProperty, StructProperty } from '@/abstract/property';
+import type { CleavageQuality, Phase } from '@/utils/const';
+
+/** Fracture types */
+export type FractureType = ( typeof FractureType )[ number ];
+export const FractureType = [
+    'conchoidal', 'subConchoidal', 'uneven', 'splintery', 'fibrous', 'hackly', 'earthy', 'granular'
+] as const;
+
+/** Tenacity types */
+export type TenacityType = ( typeof TenacityType )[ number ];
+export const TenacityType = [ 'brittle', 'sectile', 'malleable', 'ductile', 'flexible', 'elastic' ] as const;
+
+/** Magnetic ordering */
+export type MagneticOrdering = ( typeof MagneticOrdering )[ number ];
+export const MagneticOrdering = [
+    'diamagnetic', 'paramagnetic', 'ferromagnetic', 'antiferromagnetic', 'ferrimagnetic', 'superparamagnetic'
+] as const;
+
+/** Luster types */
+export type Luster = ( typeof Luster )[ number ];
+export const Luster = [ 'metallic', 'vitreous', 'pearly', 'dull', 'adamantine', 'greasy', 'silky' ] as const;
+
+/** Optical rotation */
+export type OpticalRotation = ( typeof OpticalRotation )[ number ];
+export const OpticalRotation = [ 'dextrorotatory', 'levorotatory', 'racemic' ] as const;
 
 /**
  * PhysicsCollection
@@ -91,13 +115,13 @@ export type PhysicsCollection = Collection< {
 
     // Identification and mechanical attributes
     identification?: Group< {
-        cleavage?: Distinct< {
-            quality: Distinct< CleavageQuality >;
-            direction?: Distinct< string >;
-        }[] >;
-        parting?: Distinct< string[] >;
-        fracture?: Distinct< FractureType[] >;
-        tenacity?: Distinct< TenacityType >;
+        cleavage?: Single< StructProperty< {
+            quality: CleavageQuality;
+            direction?: string;
+        } > >;
+        parting?: Single< PrimitiveProperty< string > >;
+        fracture?: Single< PrimitiveProperty< FractureType > >;
+        tenacity?: Single< PrimitiveProperty< TenacityType > >;
     } >;
 
     // Electrical properties
@@ -112,10 +136,7 @@ export type PhysicsCollection = Collection< {
 
     // Magnetic properties
     magnetism?: Group< {
-        magneticOrdering?: Single< PrimitiveProperty<
-            'diamagnetic' | 'paramagnetic' | 'ferromagnetic' | 'antiferromagnetic' |
-            'ferrimagnetic' | 'superparamagnetic'
-        > >;
+        magneticOrdering?: Single< PrimitiveProperty< MagneticOrdering > >;
         magneticSusceptibility?: Single< NumberProperty< 'magneticSusceptibility' > >;
         molarMagneticSusceptibility?: Single< NumberProperty< 'molarMagneticSusceptibility' > >;
         massMagneticSusceptibility?: Single< NumberProperty< 'massMagneticSusceptibility' > >;
@@ -139,11 +160,11 @@ export type PhysicsCollection = Collection< {
         opacity?: Single< PrimitiveProperty< number > >;
         color?: Single< PrimitiveProperty< string > >;
         streak?: Single< PrimitiveProperty< string > >;
-        luster?: Single< PrimitiveProperty< 'metallic' | 'vitreous' | 'pearly' | 'dull' | 'adamantine' | 'greasy' | 'silky' > >;
+        luster?: Single< PrimitiveProperty< Luster > >;
         pleochroism?: Single< PrimitiveProperty< string > >;
         axisAngle2V?: Single< NumberProperty< 'angle' > >;
         specificRotation?: Single< PrimitiveProperty< number > >;
-        opticalRotation?: Single< PrimitiveProperty< 'dextrorotatory' | 'levorotatory' | 'racemic' > >;
+        opticalRotation?: Single< PrimitiveProperty< OpticalRotation > >;
     } >;
 
     // Acoustic properties
