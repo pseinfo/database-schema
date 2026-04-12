@@ -7,7 +7,7 @@
 
 import type { RequireFrom, StrictSubset } from 'devtypes/types/constraint';
 import type { DeepPartial } from 'devtypes/types/transform';
-import type { Brand } from 'devtypes/types/util';
+import type { Brand, Expand } from 'devtypes/types/util';
 import type { Collection, Distinct } from '@/abstract/collection';
 import type { FormType } from '@/enums/abstract';
 import type { CrystalStructure, Phase } from '@/enums/generic';
@@ -52,9 +52,10 @@ export interface FormFields {
  * 
  * @template C - Collection type for properties
  */
-export type AllotropeForm< C extends Collection< any > > =
+export type AllotropeForm< C extends Collection< any > > = Expand<
     BaseForm< FormType.ALLOTROPE | FormType.OTHER, C > &
-    FormFields;
+    FormFields
+>;
 
 /**
  * Form type for molecular forms.
@@ -62,9 +63,10 @@ export type AllotropeForm< C extends Collection< any > > =
  * 
  * @template C - Collection type for properties
  */
-export type MolecularForm< C extends Collection< any > > =
+export type MolecularForm< C extends Collection< any > > = Expand<
     BaseForm< FormType.MOLECULAR, C > &
-    RequireFrom< FormFields, 'formula' >;
+    RequireFrom< FormFields, 'formula' >
+>;
 
 /**
  * Form type for specific phases of substances.
@@ -72,9 +74,10 @@ export type MolecularForm< C extends Collection< any > > =
  * 
  * @template C - Collection type for properties
  */
-export type PhaseForm< C extends Collection< any > > =
+export type PhaseForm< C extends Collection< any > > = Expand<
     BaseForm< FormType.PHASE, C > &
-    RequireFrom< FormFields, 'phase' >;
+    RequireFrom< FormFields, 'phase' >
+>;
 
 /**
  * Form type for polymorphs and amorphous forms.
@@ -82,9 +85,10 @@ export type PhaseForm< C extends Collection< any > > =
  * 
  * @template C - Collection type for properties
  */
-export type PolymorphForm< C extends Collection< any > > =
+export type PolymorphForm< C extends Collection< any > > = Expand<
     BaseForm< FormType.POLYMORPH | FormType.AMORPHOUS, C > &
-    StrictSubset< FormFields, 'crystalStructure', 'pearsonSymbol' | 'spaceGroup' >;
+    StrictSubset< FormFields, 'crystalStructure', 'pearsonSymbol' | 'spaceGroup' >
+>;
 
 /** Branded form IDs used in other parts of the data model. */
 export type FormId = Brand< string, 'formId' >;
