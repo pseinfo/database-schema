@@ -8,6 +8,7 @@
  * @module entities/nuclide
  */
 
+import type { Expand } from 'devtypes/types/util';
 import type { Collection, Distinct, Group, Single } from '@/abstract/collection';
 import type { NumberProperty, PrimitiveProperty, StructProperty } from '@/abstract/property';
 import type { NumberValue } from '@/abstract/value';
@@ -141,7 +142,7 @@ export type SingleNuclide = Collection< {
  */
 export type Nuclides = Collection< {
     [ K in ElementSymbol ]?: {
-        [ N in NuclideIdentifier ]?: MetaData & SingleNuclide;
+        [ N in NuclideIdentifier ]?: Expand< MetaData & SingleNuclide >;
     };
 } >;
 
