@@ -11,7 +11,9 @@ import type { NumberProperty, PrimitiveProperty, StructProperty } from '@/abstra
 import type { NumberValue } from '@/abstract/value';
 import type { DescriptiveCollection } from '@/collections/descriptive';
 import type { MetaData, NMRGroup } from '@/collections/generic';
-import type * as consts from '../utils/const';
+import { ElementSymbol } from '@/enums/element';
+import { DecayMode, NuclideParity, NuclideProperty, NuclideStability, NuclideState, RadiationType } from '@/enums/nuclide';
+
 
 /** Valid nuclide identifiers with optional metastable state suffix. */
 export type NuclideIdentifier = `${number}` | `${number}m` | `${number}m${number}`;
@@ -33,13 +35,13 @@ export type NuclideIdentifier = `${number}` | `${number}m` | `${number}m${number
  * @param isomericLevel - Isomeric level information for metastable states
  */
 export type NuclideClassification = Collection< {
-    element: Distinct< consts.ElementSymbol >;
+    element: Distinct< ElementSymbol >;
     atomicNumber: Distinct< number >;
     neutronNumber: Distinct< number >;
     massNumber: Distinct< number >;
-    state?: Single< PrimitiveProperty< consts.NuclideState > >;
-    stability?: Single< PrimitiveProperty< consts.NuclideStability > >;
-    parity?: Single< PrimitiveProperty< consts.NuclideParity > >;
+    state?: Single< PrimitiveProperty< NuclideState > >;
+    stability?: Single< PrimitiveProperty< NuclideStability > >;
+    parity?: Single< PrimitiveProperty< NuclideParity > >;
     spinParity?: Single< PrimitiveProperty< string > >;
     isomericLevel?: Single< PrimitiveProperty< string > >;
 } >;
@@ -89,11 +91,11 @@ export type NuclearCollection = Collection< {
  * @param radiation - Optional list of radiation types emitted during this decay channel
  */
 export type DecayChannel = {
-    mode: consts.DecayMode;
+    mode: DecayMode;
     probability?: NumberValue< 'quantity' >;
     product?: NuclideIdentifier;
     energy?: NumberValue< 'energy' >;
-    radiation?: consts.RadiationType[];
+    radiation?: RadiationType[];
 };
 
 /**
@@ -129,7 +131,7 @@ export type SingleNuclide = Collection< {
     classification: NuclideClassification;
     nuclear?: NuclearCollection;
     decay?: DecayCollection;
-    properties?: Distinct< consts.NuclideProperty[] >;
+    properties?: Distinct< NuclideProperty[] >;
 } >;
 
 /**
@@ -142,7 +144,7 @@ export type SingleNuclide = Collection< {
  * properties for each nuclide.
  */
 export type Nuclides = Collection< {
-    [ K in consts.ElementSymbol ]?: {
+    [ K in ElementSymbol ]?: {
         [ N in NuclideIdentifier ]?: MetaData & SingleNuclide;
     };
 } >;
@@ -171,10 +173,10 @@ export type NuclideIndexEntry< Z extends number, N extends number > = Collection
     n: Distinct< N >;
     m: Distinct< number >;
     nuclide: Distinct< NuclideIdentifier >;
-    element: Distinct< consts.ElementSymbol >;
+    element: Distinct< ElementSymbol >;
     layer: Group< {
         halfLife?: Distinct< number >;
-        mainDecayMode?: Distinct< consts.DecayMode >;
+        mainDecayMode?: Distinct< DecayMode >;
         nuclearRadius?: Distinct< number >;
         massExcess?: Distinct< number >;
         atomicMass?: Distinct< number >;
@@ -208,7 +210,7 @@ export type NuclideIndex = Collection< {
  */
 export type NuclideDecayChainLink = Group< {
     nuclide: Distinct< NuclideIdentifier >;
-    mode: Distinct< consts.DecayMode >;
+    mode: Distinct< DecayMode >;
     probability: Distinct< number | null >;
 } >;
 
@@ -233,7 +235,7 @@ export type NuclideDecayChainEntry< N extends NuclideIdentifier > = Collection< 
     z: Distinct< number >;
     n: Distinct< number >;
     m: Distinct< number >;
-    element: Distinct< consts.ElementSymbol >;
+    element: Distinct< ElementSymbol >;
     halfLife: Distinct< number | null >;
     stable: Distinct< boolean >;
     daughterChains: Distinct< NuclideDecayChainLink[] >;
