@@ -25,6 +25,7 @@ export const SIPrefix = {
 } as const;
 
 /** List of valid quantities and their base unit symbols */
+export type ValidUnits = typeof ValidUnits;
 export const ValidUnits = {
 
     // SI base dimensions
@@ -112,8 +113,6 @@ export const ValidUnits = {
 
 } as const;
 
-export type ValidUnits = typeof ValidUnits;
-
 /** List of valid physical quantities */
 export type PhysicalQuantity = keyof typeof ValidUnits;
 
@@ -185,10 +184,20 @@ type Quantity< Q extends PhysicalQuantity > = {
     };
 };
 
-/** Collection of physical quantities and their units */
+/**
+ * UnitCollection
+ * Collection of physical quantities and their units
+ * 
+ * @template Q - Physical quantities used as conditions
+ */
 export type UnitCollection = {
     [ Q in PhysicalQuantity ]?: Quantity< Q >;
 };
 
-/** Unit reference used in other parts of the data model */
+/**
+ * UnitId
+ * Unit reference used in other parts of the data model
+ * 
+ * @template Q - Physical quantities used as conditions
+ */
 export type UnitId< Q extends PhysicalQuantity = PhysicalQuantity > = [ Q, PrefixedSymbols< Q > ];
