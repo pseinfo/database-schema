@@ -1,11 +1,14 @@
 /**
- * Condition Type
+ * Condition Types
  * Defines a mapping of physical quantities as conditions for properties.
+ * 
+ * @module abstract/condition
  */
 
 import type { Primitive } from 'devtypes/types/primitive';
 import type { PhysicalQuantity } from '@/abstract/unit';
 import type { Value } from '@/abstract/value';
+
 
 /** Definition of standard conditions */
 export type StandardCondition = ( typeof StandardCondition )[ number ];
@@ -29,7 +32,6 @@ export const StandardCondition = [
 ] as const;
 
 /**
- * Conditions
  * Type description of a mapping of physical quantities to values as conditions.
  * Either standard conditions or custom set of properties.
  * 

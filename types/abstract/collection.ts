@@ -1,9 +1,8 @@
 /**
  * Abstract Collection Types
- * 
  * Utility types for defining collections of properties with various structures.
  * 
- * @module types/abstract/collection
+ * @module abstract/collection
  */
 
 import type { Property } from '@/abstract/property';
