@@ -82,6 +82,38 @@ export enum StandardCondition {
     DIN_1343 = 'DIN_1343'
 };
 
+/** Enumeration of metric systems. */
+export enum MetricSystem {
+    /** Metric system */
+    METRIC = 'metric',
+    /** Imperial system */
+    IMPERIAL = 'imperial',
+    /** US system */
+    US = 'us',
+    /** Custom system */
+    CUSTOM = 'custom',
+    /** Unknown system */
+    UNKNOWN = 'unknown'
+};
+
+/** Enumeration of SI base dimensions. */
+export enum SIDimension {
+    /** Time */
+    TIME = 'time',
+    /** Length */
+    LENGTH = 'length',
+    /** Mass */
+    MASS = 'mass',
+    /** Electric current */
+    ELECTRIC_CURRENT = 'electricCurrent',
+    /** Temperature */
+    TEMPERATURE = 'temperature',
+    /** Amount of substance */
+    AMOUNT_OF_SUBSTANCE = 'amountOfSubstance',
+    /** Luminous intensity */
+    LUMINOUS_INTENSITY = 'luminousIntensity'
+};  
+
 /** Enumeration of reference types based on BibTeX. */
 export enum ReferenceType {
     /** Article reference */
