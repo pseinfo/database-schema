@@ -6,9 +6,8 @@
 import type { RequireAtLeastOne, RequireExactlyOne, StrictSubset } from 'devtypes/types/constraint';
 import type { Primitive } from 'devtypes/types/primitive';
 import type { Brand } from 'devtypes/types/util';
-
-import type { Uncertainty } from './uncertainty';
-import type { PhysicalQuantity, UnitId } from './unit';
+import type { Uncertainty } from '@/abstract/uncertainty';
+import type { PhysicalQuantity, UnitId } from '@/abstract/unit';
 
 /** Value types */
 export type ValueType = ( typeof ValueType )[ number ];
@@ -45,7 +44,10 @@ type BaseFields< T extends ValueType > = Brand< {
  * @param range - range with lower and upper bounds
  * @param unit - unit identifier for the value
  */
-interface ValueFields< Q extends PhysicalQuantity = PhysicalQuantity, T extends Primitive = Primitive > {
+interface ValueFields<
+    Q extends PhysicalQuantity = PhysicalQuantity,
+    T extends Primitive = Primitive
+> {
     value?: T;
     values?: T[];
     range?: RequireAtLeastOne< Record< 'lower' | 'upper', {
@@ -125,7 +127,10 @@ export type CoupledNumberValue< Q extends PhysicalQuantity = PhysicalQuantity > 
  * 
  * Fields: properties with primitive, single, array, or range values
  */
-export type CoupledValue< Q extends PhysicalQuantity = PhysicalQuantity, T extends Primitive = Primitive > =
+export type CoupledValue<
+    Q extends PhysicalQuantity = PhysicalQuantity,
+    T extends Primitive = Primitive
+> =
     BaseFields< 'coupled' > & {
         properties: RequireAtLeastOne< {
             [ K in Q ]?:
@@ -156,7 +161,10 @@ export type NumberValue< Q extends PhysicalQuantity = PhysicalQuantity > =
  * 
  * Fields: number-based, primitive-based, or coupled values
  */
-export type Value< Q extends PhysicalQuantity = PhysicalQuantity, T extends Primitive = Primitive > =
+export type Value<
+    Q extends PhysicalQuantity = PhysicalQuantity,
+    T extends Primitive = Primitive
+> =
     | NumberValue< Q >
     | PrimitiveValue< T >
     | CoupledValue< Q, T >;
