@@ -1,6 +1,8 @@
 /**
  * Physics Collection
  * Defines a set of physical properties for elements, materials and substances.
+ * 
+ * @module collections/physics
  */
 
 import type { Collection, Group, Single } from '@/abstract/collection';
@@ -10,8 +12,7 @@ import type { Luster, MagneticOrdering, OpticalRotation } from '@/enums/physics'
 
 
 /**
- * PhysicsCollection
- * Collection for physical properties of elements.
+ * Collection for physical properties of chemical elements.
  * 
  * @param density - Density of the element or substance
  * @param phase - Standard phase at room temperature
