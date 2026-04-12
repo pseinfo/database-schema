@@ -5,7 +5,7 @@
 
 import type { Collection, Group, Single } from '@/abstract/collection';
 import type { CoupledNumberProperty, NumberProperty, PrimitiveProperty } from '@/abstract/property';
-import type { Phase } from '@/utils/const';
+import type { Phase } from '@/enums/generic';
 
 /** Magnetic ordering */
 export type MagneticOrdering = ( typeof MagneticOrdering )[ number ];

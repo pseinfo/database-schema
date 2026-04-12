@@ -12,7 +12,8 @@ import type { DescriptiveCollection } from '@/collections/descriptive';
 import type { MetaData } from '@/collections/generic';
 import type { PhysicsCollection } from '@/collections/physics';
 import type { SafetyCollection } from '@/collections/safety';
-import type * as consts from '@/utils/const';
+import type { Phase } from '@/enums/generic';
+import type * as consts from '../utils/const';
 
 /** Compound collections */
 
@@ -30,7 +31,7 @@ export type CompoundClassification = Collection< {
     category: Single< PrimitiveProperty< consts.CompoundCategory > >;
     family?: Single< PrimitiveProperty< string > >;
     radioactive: Single< PrimitiveProperty< boolean > >;
-    phase?: Single< PrimitiveProperty< consts.Phase > >;
+    phase?: Single< PrimitiveProperty< Phase > >;
     naturalOccurrence?: Single< PrimitiveProperty< consts.NaturalOccurrence > >;
 } >;
 

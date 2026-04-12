@@ -7,7 +7,7 @@ import type { LiteralUnion } from 'devtypes/types/primitive';
 import type { Distinct, Group, Single } from '@/abstract/collection';
 import type { NumberProperty, PrimitiveProperty, StructProperty } from '@/abstract/property';
 import type { RefId } from '@/abstract/reference';
-import type { CrystalStructure } from '@/utils/const';
+import type { CrystalStructure } from '@/enums/generic';
 
 /** Image Formats */
 export type ImageFormat = ( typeof ImageFormat )[ number ];

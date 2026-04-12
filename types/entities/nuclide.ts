@@ -11,7 +11,7 @@ import type { NumberProperty, PrimitiveProperty, StructProperty } from '@/abstra
 import type { NumberValue } from '@/abstract/value';
 import type { DescriptiveCollection } from '@/collections/descriptive';
 import type { MetaData, NMRGroup } from '@/collections/generic';
-import type * as consts from '@/utils/const';
+import type * as consts from '../utils/const';
 
 /** Valid nuclide identifiers with optional metastable state suffix. */
 export type NuclideIdentifier = `${number}` | `${number}m` | `${number}m${number}`;

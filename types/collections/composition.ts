@@ -5,7 +5,7 @@
 
 import type { Collection, Distinct, Group, Single } from '@/abstract/collection';
 import type { PrimitiveProperty } from '@/abstract/property';
-import type { ElementSymbol, ComponentRole } from '@/utils/const';
+import type { ElementSymbol, ComponentRole } from '../utils/const';
 
 /**
  * CompositionComponent

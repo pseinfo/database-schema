@@ -12,7 +12,8 @@ import type { DescriptiveCollection } from '@/collections/descriptive';
 import type { MetaData } from '@/collections/generic';
 import type { PhysicsCollection } from '@/collections/physics';
 import type { SafetyCollection } from '@/collections/safety';
-import type * as consts from '@/utils/const';
+import type { Phase } from '@/enums/generic';
+import type * as consts from '../utils/const';
 
 /** Element collections */
 
@@ -40,7 +41,7 @@ export type ElementClassification = Collection< {
     group: Distinct< consts.ElementGroup >;
     column: Distinct< consts.ElementColumn >;
     period: Distinct< consts.ElementPeriod >;
-    phase: Distinct< consts.Phase >;
+    phase: Distinct< Phase >;
     set: Distinct< consts.ElementSet >;
     radioactive: Single< PrimitiveProperty< boolean > >;
     naturalOccurrence?: Single< PrimitiveProperty< consts.NaturalOccurrence > >;
