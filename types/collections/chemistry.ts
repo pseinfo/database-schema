@@ -3,9 +3,40 @@
  * Defined collection types for chemical properties and data.
  */
 
-import type { Collection, Distinct, Group, Single } from '../abstract/collection';
-import type { NumberProperty, PrimitiveProperty } from '../abstract/property';
-import type { CrystalGroup } from './generic';
+import type { Collection, Group, Single } from '@/abstract/collection';
+import type { NumberProperty, PrimitiveProperty } from '@/abstract/property';
+import type { CrystalGroup } from '@/collections/generic';
+
+/** Acid / base character */
+export type AcidBaseCharacter = ( typeof AcidBaseCharacter )[ number ];
+export const AcidBaseCharacter = [
+    'strongAcidic', 'acidic', 'moderateAcidic', 'weakAcidic', 'amphoteric', 'weakBasic',
+    'moderateBasic', 'basic', 'strongBasic', 'neutral'
+] as const;
+
+/** Lewis acidity */
+export type LewisAcidity = ( typeof LewisAcidity )[ number ];
+export const LewisAcidity = [ 'strong', 'moderate', 'weak', 'none' ] as const;
+
+/** Lewis basicity */
+export type LewisBasicity = ( typeof LewisBasicity )[ number ];
+export const LewisBasicity = [ 'strong', 'moderate', 'weak', 'none' ] as const;
+
+/** HSAB */
+export type HSAB = ( typeof HSAB )[ number ];
+export const HSAB = [ 'hard', 'borderline', 'soft' ] as const;
+
+/** Oxide character */
+export type OxideCharacter = ( typeof OxideCharacter )[ number ];
+export const OxideCharacter = [ 'acidic', 'amphoteric', 'basic' ] as const;
+
+/** Bond type */
+export type BondType = ( typeof BondType )[ number ];
+export const BondType = [ 'ionic', 'covalent', 'metallic', 'vdw', 'hydrogen' ] as const;
+
+/** Hybridization */
+export type Hybridization = ( typeof Hybridization )[ number ];
+export const Hybridization = [ 'sp', 'sp2', 'sp3', 'sp3d', 'sp3d2', 'sp3d3' ] as const;
 
 /**
  * ChemistryCollection
@@ -32,16 +63,13 @@ export type ChemistryCollection = Collection< {
 
     // Acid / base properties
     basicity?: Group< {
-        character?: Single< PrimitiveProperty<
-            'strongAcidic' | 'acidic' | 'moderateAcidic' | 'weakAcidic' | 'amphoteric' |
-            'weakBasic' | 'moderateBasic' | 'basic' | 'strongBasic' | 'neutral'
-        > >;
+        character?: Single< PrimitiveProperty< AcidBaseCharacter > >;
         pKa?: Single< PrimitiveProperty< number > >;
         pKb?: Single< PrimitiveProperty< number > >;
         isoelectricPoint?: Single< PrimitiveProperty< number > >;
-        lewisAcidity?: Single< PrimitiveProperty< 'strong' | 'moderate' | 'weak' | 'none' > >;
-        lewisBasicity?: Single< PrimitiveProperty< 'strong' | 'moderate' | 'weak' | 'none' > >;
-        hsab?: Single< PrimitiveProperty< 'hard' | 'borderline' | 'soft' > >;
+        lewisAcidity?: Single< PrimitiveProperty< LewisAcidity > >;
+        lewisBasicity?: Single< PrimitiveProperty< LewisBasicity > >;
+        hsab?: Single< PrimitiveProperty< HSAB > >;
     } >;
 
     // Electronegativity
@@ -72,18 +100,18 @@ export type ChemistryCollection = Collection< {
 
     // Oxidation properties
     oxidation?: Group< {
-        oxidationStates?: Distinct< string[] >;
-        oxideCharacter?: Single< PrimitiveProperty< 'acidic' | 'amphoteric' | 'basic' > >;
+        oxidationStates?: Single< PrimitiveProperty< string > >;
+        oxideCharacter?: Single< PrimitiveProperty< OxideCharacter > >;
     } >;
 
     // Bonding
     bonding?: Group< {
-        bondType?: Single< PrimitiveProperty< 'ionic' | 'covalent' | 'metallic' | 'vdw' | 'hydrogen' > >;
+        bondType?: Single< PrimitiveProperty< BondType > >;
         bondOrder?: Single< PrimitiveProperty< number > >;
         bondLength?: Single< NumberProperty< 'length' > >;
         bondEnergy?: Single< NumberProperty< 'energy' > >;
         bondAngle?: Single< NumberProperty< 'angle' > >;
-        hybridization?: Single< PrimitiveProperty< 'sp' | 'sp2' | 'sp3' | 'sp3d' | 'sp3d2' | 'sp3d3' > >;
+        hybridization?: Single< PrimitiveProperty< Hybridization > >;
     } >;
 
     // Solubility
@@ -106,7 +134,6 @@ export type ChemistryCollection = Collection< {
         photosensitive?: Single< PrimitiveProperty< boolean > >;
         deliquescent?: Single< PrimitiveProperty< boolean > >;
         pyrophoric?: Single< PrimitiveProperty< boolean > >;
-        notes?: Distinct< string >;
     } >;
 
     // Reactivity properties
@@ -115,7 +142,6 @@ export type ChemistryCollection = Collection< {
         explosive?: Single< PrimitiveProperty< boolean > >;
         oxidizing?: Single< PrimitiveProperty< boolean > >;
         flammable?: Single< PrimitiveProperty< boolean > >;
-        notes?: Distinct< string >;
     } >;
 
 } >;
