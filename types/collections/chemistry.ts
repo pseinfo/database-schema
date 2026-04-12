@@ -1,16 +1,17 @@
 /**
  * Chemistry Collection
  * Defined collection types for chemical properties and data.
+ * 
+ * @module collections/chemistry
  */
 
 import type { Collection, Group, Single } from '@/abstract/collection';
-import type { NumberProperty, PrimitiveProperty } from '@/abstract/property';
+import type { NumberProperty, PrimitiveProperty, StructProperty } from '@/abstract/property';
 import type { AcidBaseCharacter, BondType, HSAB, Hybridization, LewisAcidity, LewisBasicity, OxideCharacter } from '@/enums/chemistry';
-import type { CrystalGroup } from '@/collections/generic';
+import { CrystalStructure } from '@/enums/generic';
 
 
 /**
- * ChemistryCollection
  * Collection for chemical properties of elements.
  * 
  * @param molarMass - Molar mass of the substance
@@ -58,7 +59,26 @@ export type ChemistryCollection = Collection< {
     } >;
 
     // Crystallographic properties
-    crystal?: CrystalGroup;
+    crystal?: Group< {
+        crystalStructure?: Single< PrimitiveProperty< CrystalStructure > >;
+        crystalClass?: Single< PrimitiveProperty< string > >;
+        spaceGroup?: Single< PrimitiveProperty< string > >;
+        spaceGroupNumber?: Single< PrimitiveProperty< number > >;
+        spaceGroupSymbol?: Single< PrimitiveProperty< string > >;
+        pearsonSymbol?: Single< PrimitiveProperty< string > >;
+        formulaUnitsZ?: Single< PrimitiveProperty< number > >;
+        latticeConstant?: StructProperty< {
+            a?: number;
+            b?: number;
+            c?: number;
+            alpha?: number;
+            beta?: number;
+            gamma?: number;
+        } >;
+        twinning?: Single< PrimitiveProperty< string > >;
+        habit?: Single< PrimitiveProperty< string > >;
+        faces?: Single< PrimitiveProperty< string > >;
+    } >;
 
     // Electrochemical properties
     electrochemistry?: Group< {
