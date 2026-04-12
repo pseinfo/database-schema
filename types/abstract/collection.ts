@@ -5,6 +5,7 @@
  * @module abstract/collection
  */
 
+import type { Expand } from 'devtypes/types/util';
 import type { Property } from '@/abstract/property';
 
 
@@ -30,15 +31,24 @@ export type Distinct< T = unknown > = T;
 export type Group< T extends Record< string, Single< Property > | Distinct< unknown > > > = T;
 
 /**
- * Transforms a collection definition into its corresponding structure.
+ * Recursively transforms a collection definition into its corresponding structure.
+ * Handles Single, Group, Property, Distinct, and nested object types.
+ * 
+ * @template T - Collection definition
+ */
+export type CollectionValue< T > =
+    [ T ] extends [ Single< infer P > ] ? P :
+    [ T ] extends [ Group< infer G > ] ? { [ GK in keyof G ]: Collection< G[ GK ] > } :
+    [ T ] extends [ Property ] ? T :
+    [ T ] extends [ Distinct< infer D > ] ? Distinct< D > :
+    [ T ] extends [ object ] ? Expand< T > :
+    T;
+
+/**
+ * Main Collection type transforming a collection definition into its structure.
  * 
  * @template T - Collection definition
  */
 export type Collection< T > = {
-    [ K in keyof T ]:
-        T[ K ] extends Single< infer P > ? P :
-        T[ K ] extends Group< infer G > ? { [ GK in keyof G ]: Collection< G[ GK ] > } :
-        T[ K ] extends Distinct< infer D > ? Distinct< D > :
-        T[ K ] extends Property ? T[ K ] :
-        never;
+    [ K in keyof T ]: CollectionValue< T[ K ] >;
 };
