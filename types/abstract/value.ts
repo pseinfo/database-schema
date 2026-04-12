@@ -134,16 +134,18 @@ export type CoupledNumberValue< Q extends PhysicalQuantity = PhysicalQuantity > 
  * CoupledValue
  * Type description of a coupled value with generic primitives.
  * 
- * Fields: properties with primitive, single, array, or range values
+ * Fields: properties with primitive, struct, single, array, or range values
  */
 export type CoupledValue<
     Q extends PhysicalQuantity = PhysicalQuantity,
-    T extends Primitive = Primitive
+    T extends Primitive = Primitive,
+    S extends Record< PropertyKey, any > = Record< PropertyKey, any >
 > =
     BaseFields< 'coupled' > & {
         properties: RequireAtLeastOne< {
             [ K in Q ]?:
                 | PrimitiveValue< T >
+                | StructValue< S >
                 | SingleValue< K >
                 | ArrayValue< K >
                 | RangeValue< K >;
@@ -168,12 +170,14 @@ export type NumberValue< Q extends PhysicalQuantity = PhysicalQuantity > =
  * Value
  * Union type for all value types.
  * 
- * Fields: number-based, primitive-based, or coupled values
+ * Fields: number-based, primitive-based, struct-based, or coupled values
  */
 export type Value<
     Q extends PhysicalQuantity = PhysicalQuantity,
-    T extends Primitive = Primitive
+    T extends Primitive = Primitive,
+    S extends Record< PropertyKey, any > = Record< PropertyKey, any >
 > =
     | NumberValue< Q >
     | PrimitiveValue< T >
-    | CoupledValue< Q, T >;
+    | StructValue< S >
+    | CoupledValue< Q, T, S >;

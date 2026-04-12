@@ -124,8 +124,9 @@ export type CoupledProperty<
     Q extends PhysicalQuantity = PhysicalQuantity,
     P extends Primitive = Primitive,
     C extends PhysicalQuantity = PhysicalQuantity,
-    T extends Primitive = Primitive
-> = BaseFields< C, T > & value.CoupledValue< Q, P >;
+    T extends Primitive = Primitive,
+    S extends Record< PropertyKey, any > = Record< PropertyKey, any >
+> = BaseFields< C, T > & value.CoupledValue< Q, P, S >;
 
 /** Union property types */
 
@@ -156,5 +157,6 @@ export type Property<
     Q extends PhysicalQuantity = PhysicalQuantity,
     P extends Primitive = Primitive,
     C extends PhysicalQuantity = PhysicalQuantity,
-    T extends Primitive = Primitive
-> = BaseFields< C, T > & value.Value< Q, P >;
+    T extends Primitive = Primitive,
+    S extends Record< PropertyKey, any > = Record< PropertyKey, any >
+> = BaseFields< C, T > & value.Value< Q, P, S >;
