@@ -18,7 +18,7 @@ import * as value from '@/abstract/value';
  * @param conditions - optional conditions mapping physical quantities to values
  * @param references - optional array of reference IDs associated with the property
  */
-interface BaseFields< C extends PhysicalQuantity = PhysicalQuantity, T extends Primitive = Primitive > {
+export interface BaseFields< C extends PhysicalQuantity = PhysicalQuantity, T extends Primitive = Primitive > {
     conditions?: Conditions< C, T >;
     references?: RefId[];
 }

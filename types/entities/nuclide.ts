@@ -32,7 +32,7 @@ export type NuclideIdentifier = `${number}` | `${number}m` | `${number}m${number
  * @param spinParity - Spin and parity information
  * @param isomericLevel - Isomeric level information for metastable states
  */
-type NuclideClassification = Collection< {
+export type NuclideClassification = Collection< {
     element: Distinct< consts.ElementSymbol >;
     atomicNumber: Distinct< number >;
     neutronNumber: Distinct< number >;
@@ -60,7 +60,7 @@ type NuclideClassification = Collection< {
  * @param crossSection - Cross section data
  * @param nrm - NMR properties collection
  */
-type NuclearCollection = Collection< {
+export type NuclearCollection = Collection< {
     atomicMass?: Single< NumberProperty< 'mass' > >;
     massExcess?: Single< NumberProperty< 'energy' > >;
     bindingEnergyPerNucleon?: Single< NumberProperty< 'energy' > >;
@@ -88,7 +88,7 @@ type NuclearCollection = Collection< {
  * @param energy - Optional decay energy for this channel
  * @param radiation - Optional list of radiation types emitted during this decay channel
  */
-type DecayChannel = {
+export type DecayChannel = {
     mode: consts.DecayMode;
     probability?: NumberValue< 'quantity' >;
     product?: NuclideIdentifier;
@@ -105,7 +105,7 @@ type DecayChannel = {
  * @param delayedNeutronEmission - Optional delayed neutron emission probability
  * @param delayedProtonEmission - Optional delayed proton emission probability
  */
-type DecayCollection = Collection< {
+export type DecayCollection = Collection< {
     halfLife?: Single< NumberProperty< 'time' > >;
     decayChannels?: Single< StructProperty< DecayChannel > >;
     delayedNeutronEmission?: Single< NumberProperty< 'quantity' > >;
@@ -124,7 +124,7 @@ type DecayCollection = Collection< {
  * @param decay - Decay properties collection
  * @param properties - Distinct list of nuclide properties
  */
-type SingleNuclide = Collection< {
+export type SingleNuclide = Collection< {
     descriptive: DescriptiveCollection;
     classification: NuclideClassification;
     nuclear?: NuclearCollection;
@@ -141,7 +141,7 @@ type SingleNuclide = Collection< {
  * state suffix), and the values are SingleNuclide objects containing all relevant
  * properties for each nuclide.
  */
-type Nuclides = Collection< {
+export type Nuclides = Collection< {
     [ K in consts.ElementSymbol ]?: {
         [ N in NuclideIdentifier ]?: MetaData & SingleNuclide;
     };
@@ -166,7 +166,7 @@ type Nuclides = Collection< {
  *   - atomicMass: Optional atomic mass category
  *   - bindingEnergy: Optional binding energy category
  */
-type NuclideIndexEntry< Z extends number, N extends number > = Collection< {
+export type NuclideIndexEntry< Z extends number, N extends number > = Collection< {
     z: Distinct< Z >;
     n: Distinct< N >;
     m: Distinct< number >;
@@ -190,7 +190,7 @@ type NuclideIndexEntry< Z extends number, N extends number > = Collection< {
  * the second level keys are neutron numbers (N), and the values are NuclideIndexEntry objects
  * containing the relevant properties for each nuclide.
  */
-type NuclideIndex = Collection< {
+export type NuclideIndex = Collection< {
     [ Z in number ]?: {
         [ N in number ]?: NuclideIndexEntry< Z, N >;
     };
@@ -206,7 +206,7 @@ type NuclideIndex = Collection< {
  * @param mode - Decay mode for this link (null if stable)
  * @param probability - Optional decay probability for this link
  */
-type NuclideDecayChainLink = Group< {
+export type NuclideDecayChainLink = Group< {
     nuclide: Distinct< NuclideIdentifier >;
     mode: Distinct< consts.DecayMode >;
     probability: Distinct< number | null >;
@@ -228,7 +228,7 @@ type NuclideDecayChainLink = Group< {
  * @param chainDepth - Depth of this nuclide in the decay chain (0 for primordial)
  * @param isTerminal - Whether this nuclide is a terminal node
  */
-type NuclideDecayChainEntry< N extends NuclideIdentifier > = Collection< {
+export type NuclideDecayChainEntry< N extends NuclideIdentifier > = Collection< {
     nuclide: Distinct< N >;
     z: Distinct< number >;
     n: Distinct< number >;
@@ -250,7 +250,7 @@ type NuclideDecayChainEntry< N extends NuclideIdentifier > = Collection< {
  * the values are NuclideDecayChainEntry objects containing the relevant decay chain
  * information for each nuclide.
  */
-type NuclideDecayChains = Collection< {
+export type NuclideDecayChains = Collection< {
     [ N in NuclideIdentifier ]?: NuclideDecayChainEntry< N >;
 } >;
 

@@ -26,7 +26,7 @@ import type * as consts from '@/utils/const';
  * @param phase - Standard phase at room temperature
  * @param naturalOccurrence - Natural occurrence type
  */
-type CompoundClassification = Collection< {
+export type CompoundClassification = Collection< {
     category: Single< PrimitiveProperty< consts.CompoundCategory > >;
     family?: Single< PrimitiveProperty< string > >;
     radioactive: Single< PrimitiveProperty< boolean > >;
@@ -48,7 +48,7 @@ type CompoundClassification = Collection< {
  * @param hydration - Number of water molecules in hydrates
  * @param functionalGroups - List of functional groups present in the compound
  */
-type CompoundComposition = Collection< CompositionCollection & {
+export type CompoundComposition = Collection< CompositionCollection & {
     molecularFormula?: Single< PrimitiveProperty< string > >;
     simplifiedFormula?: Single< PrimitiveProperty< string > >;
     multiplicity?: Single< PrimitiveProperty< number > >;
@@ -74,7 +74,7 @@ type CompoundComposition = Collection< CompositionCollection & {
  * @param properties - Distinct list of compound properties
  * @param safety - Optional safety properties collection
  */
-type SingleCompound = Collection< {
+export type SingleCompound = Collection< {
     descriptive: DescriptiveCollection;
     classification: CompoundClassification;
     composition: CompoundComposition;

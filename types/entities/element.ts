@@ -33,7 +33,7 @@ import type * as consts from '@/utils/const';
  * @param goldschmidt - Goldschmidt classification
  * @param superconductivity - Superconductivity type
  */
-type ElementClassification = Collection< {
+export type ElementClassification = Collection< {
     symbol: Distinct< string >;
     atomicNumber: Distinct< number >;
     block: Distinct< consts.ElementBlock >;
@@ -62,7 +62,7 @@ type ElementClassification = Collection< {
  * @param properties - Distinct list of element properties
  * @param safety - Safety properties collection
  */
-type SingleElement = Collection< {
+export type SingleElement = Collection< {
     descriptive: DescriptiveCollection;
     classification: ElementClassification;
     physics?: PhysicsCollection;

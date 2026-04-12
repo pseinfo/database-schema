@@ -117,11 +117,11 @@ export const ValidUnits = {
 export type PhysicalQuantity = keyof typeof ValidUnits;
 
 /* Base and prefixable unit types for physical quantities */
-type BaseUnitSymbols< Q extends PhysicalQuantity > = ValidUnits[ Q ][ 'base' ][ number ];
-type PrefixableUnitSymbols< Q extends PhysicalQuantity > = ValidUnits[ Q ][ 'prefixable' ][ number ];
+export type BaseUnitSymbols< Q extends PhysicalQuantity > = ValidUnits[ Q ][ 'base' ][ number ];
+export type PrefixableUnitSymbols< Q extends PhysicalQuantity > = ValidUnits[ Q ][ 'prefixable' ][ number ];
 
 /** Allowed unit symbols with SI prefixes */
-type PrefixedSymbols< Q extends PhysicalQuantity > =
+export type PrefixedSymbols< Q extends PhysicalQuantity > =
     | BaseUnitSymbols< Q >
     | `${ SIPrefix }${ PrefixableUnitSymbols< Q > }`;
 
@@ -130,7 +130,7 @@ type PrefixedSymbols< Q extends PhysicalQuantity > =
  * Represents the powers of each base dimension in the order:
  * [time, length, mass, electricCurrent, temperature, amountOfSubstance, luminousIntensity]
  */
-type DimensionVector = [ number, number, number, number, number, number, number ];
+export type DimensionVector = [ number, number, number, number, number, number, number ];
 
 /**
  * Unit
@@ -147,7 +147,7 @@ type DimensionVector = [ number, number, number, number, number, number, number 
  *  - factor - multiplication factor to convert to the base unit
  *  - offset - optional offset for units like Celsius to Kelvin
  */
-type Unit< Q extends PhysicalQuantity, U extends BaseUnitSymbols< Q > > = Brand< {
+export type Unit< Q extends PhysicalQuantity, U extends BaseUnitSymbols< Q > > = Brand< {
     name?: string;
     isBase?: boolean;
     prefixable?: U extends PrefixableUnitSymbols< Q > ? true : false;
@@ -171,7 +171,7 @@ type Unit< Q extends PhysicalQuantity, U extends BaseUnitSymbols< Q > > = Brand<
  * @param baseUnit - symbol of the base unit for this quantity
  * @param units - record of units associated with this quantity
  */
-type Quantity< Q extends PhysicalQuantity > = {
+export type Quantity< Q extends PhysicalQuantity > = {
     dimension?: {
         symbol: string;
         name: string;

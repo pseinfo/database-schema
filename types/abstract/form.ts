@@ -23,7 +23,7 @@ export const FormType = [ 'allotrope', 'molecular', 'phase', 'polymorph', 'amorp
  * @param properties - Partial collection of properties specific to the form
  * @param note - Additional notes about the form
  */
-type BaseFields< T extends FormType, C extends Collection< any > > = Brand< {
+export type BaseFields< T extends FormType, C extends Collection< any > > = Brand< {
     properties?: DeepPartial< C >;
     note?: Distinct< string >;
 }, T, 'type', true >;
@@ -38,7 +38,7 @@ type BaseFields< T extends FormType, C extends Collection< any > > = Brand< {
  * @param pearsonSymbol - Pearson symbol notation
  * @param spaceGroup - Space group notation
  */
-interface FormFields {
+export interface FormFields {
     formula?: Distinct< string >;
     phase?: Distinct< Phase >;
     crystalStructure?: Distinct< CrystalStructure >;

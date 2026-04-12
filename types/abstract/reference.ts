@@ -24,7 +24,7 @@ export const ReferenceType = [
  * @param url - URL of the reference
  * @param doi - DOI of the reference
  */
-type BaseFields< T extends ReferenceType > = Brand< {
+export type BaseFields< T extends ReferenceType > = Brand< {
     accessed?: string;
     url?: string;
     doi?: string;
@@ -57,7 +57,7 @@ type BaseFields< T extends ReferenceType > = Brand< {
  * @param volume - volume number
  * @param year - year of publication
  */
-interface BibTeXFields {
+export interface BibTeXFields {
     address?: string;
     author?: string | string[];
     booktitle?: string;
@@ -83,7 +83,7 @@ interface BibTeXFields {
 }
 
 /** Helper types for specific reference types */
-type Thesis< T extends 'mastersthesis' | 'thesis' | 'phdthesis' > =
+export type Thesis< T extends 'mastersthesis' | 'thesis' | 'phdthesis' > =
     BaseFields< T > &
     StrictSubset<
         BibTeXFields,
@@ -91,7 +91,7 @@ type Thesis< T extends 'mastersthesis' | 'thesis' | 'phdthesis' > =
         'type' | 'address' | 'month' | 'note'
     >;
 
-type Conference< T extends 'conference' | 'inproceedings' > =
+export type Conference< T extends 'conference' | 'inproceedings' > =
     BaseFields< T > &
     StrictSubset<
         BibTeXFields,

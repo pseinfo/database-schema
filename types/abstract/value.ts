@@ -27,7 +27,7 @@ export const ValueConfidence = [ 'measured', 'calculated', 'estimated', 'theoret
  * @param uncertainty - uncertainty associated with the value
  * @param note - optional note or comment about the value
  */
-type BaseFields< T extends ValueType > = Brand< {
+export type BaseFields< T extends ValueType > = Brand< {
     confidence?: ValueConfidence;
     uncertainty?: Uncertainty;
     note?: string;
@@ -44,7 +44,7 @@ type BaseFields< T extends ValueType > = Brand< {
  * @param range - range with lower and upper bounds
  * @param unit - unit identifier for the value
  */
-interface ValueFields<
+export interface ValueFields<
     Q extends PhysicalQuantity = PhysicalQuantity,
     T extends Primitive = Primitive
 > {

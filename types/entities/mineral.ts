@@ -33,7 +33,7 @@ import type * as consts from '@/utils/const';
  * @param phase - Standard phase at room temperature
  * @param naturalOccurrence - Natural occurrence type
  */
-type MineralClassification = Collection< {
+export type MineralClassification = Collection< {
     class: Single< PrimitiveProperty< consts.MineralClass > >;
     group?: Single< PrimitiveProperty< string > >;
     ima?: Group< {
@@ -63,7 +63,7 @@ type MineralClassification = Collection< {
  * @param fracture - Fracture properties
  * @param tenacity - Tenacity properties
  */
-type IdentificationGroup = Group< {
+export type IdentificationGroup = Group< {
     cleavage?: Single< StructProperty< {
         quality: consts.CleavageQuality;
         direction?: string;
@@ -81,7 +81,7 @@ type IdentificationGroup = Group< {
  * @param varieties - List of major varieties
  * @param alteration - Alteration products or processes
  */
-type MineralComposition = Collection< CompositionCollection & {
+export type MineralComposition = Collection< CompositionCollection & {
     inclusions?: Single< PrimitiveProperty< string > >;
     varieties?: Single< PrimitiveProperty< string > >;
     alteration?: Single< PrimitiveProperty< string > >;
@@ -101,7 +101,7 @@ type MineralComposition = Collection< CompositionCollection & {
  * @param properties - Distinct list of mineral properties
  * @param safety - Optional safety properties collection
  */
-type SingleMineral = Collection< {
+export type SingleMineral = Collection< {
     descriptive: DescriptiveCollection;
     classification: MineralClassification;
     composition: MineralComposition;

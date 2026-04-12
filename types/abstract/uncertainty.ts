@@ -19,7 +19,7 @@ export const UncertaintyType = [ 'absolute', 'relative', 'asymmetrical' ] as con
  * @param confidence - optional confidence level (0 to 1)
  * @param note - optional note about the uncertainty
  */
-type BaseFields< T extends UncertaintyType > = Brand< {
+export type BaseFields< T extends UncertaintyType > = Brand< {
     confidence?: number;
     note?: string;
 }, T, 'type', true >;
@@ -33,7 +33,7 @@ type BaseFields< T extends UncertaintyType > = Brand< {
  * @param plus - positive deviation for asymmetrical uncertainty
  * @param minus - negative deviation for asymmetrical uncertainty
  */
-interface UncertaintyFields {
+export interface UncertaintyFields {
     absolute?: number;
     relative?: number;
     plus?: number;
