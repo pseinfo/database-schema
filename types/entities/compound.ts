@@ -5,6 +5,7 @@
  * @module entities/compound
  */
 
+import type { Expand } from 'devtypes/types/util';
 import type { Collection, Distinct, Single } from '@/abstract/collection';
 import type { FormCollection } from '@/abstract/form';
 import type { PrimitiveProperty } from '@/abstract/property';
@@ -93,7 +94,7 @@ export type SingleCompound = Collection< {
  * optional specialized forms such as polymorphs, solvates, or phase variants.
  */
 export type Compound = Collection< {
-    [ key: string ]: MetaData & SingleCompound & {
+    [ key: string ]: Expand< MetaData & SingleCompound & {
         forms?: FormCollection< SingleCompound >;
-    };
+    } >;
 } >;
