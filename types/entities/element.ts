@@ -13,7 +13,7 @@ import type { MetaData } from '@/collections/generic';
 import type { PhysicsCollection } from '@/collections/physics';
 import type { SafetyCollection } from '@/collections/safety';
 import type { ElementBlock, ElementGroup, ElementProperty, ElementSet, ElementSymbol } from '@/enums/element';
-import type { Phase } from '@/enums/generic';
+import type { Goldschmidt, NaturalOccurrence, Phase, Superconductivity } from '@/enums/generic';
 
 /** Element collections */
 

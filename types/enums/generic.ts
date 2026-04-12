@@ -20,6 +20,40 @@ export enum Phase {
     UNKNOWN = 'unknown'
 };
 
+/** Enumeration of natural occurrence types. */
+export enum NaturalOccurrence {
+    /** Primordial */
+    PRIMORDIAL = 'primordial',
+    /** Decay product */
+    DECAY_PRODUCT = 'decayProduct',
+    /** Synthetic */
+    SYNTHETIC = 'synthetic'
+};
+
+/** Enumeration of Goldschmidt classification. */
+export enum Goldschmidt {
+    /** Atmophile */
+    ATMOPHILE = 'atmophile',
+    /** Chalcophile */
+    CHALCOPHILE = 'chalcophile',
+    /** Lithophile */
+    LITHOPHILE = 'lithophile',
+    /** Siderophile */
+    SIDEROPHILE = 'siderophile',
+    /** Synthetic */
+    SYNTHETIC = 'synthetic'
+};
+
+/** Enumeration of superconductivity types. */
+export enum Superconductivity {
+    /** Normal */
+    NORMAL = 'normal',
+    /** Special */
+    SPECIAL = 'special',
+    /** None */
+    NONE = 'none'
+};
+
 /** Enumeration of crystal structures. */
 export enum CrystalStructure {
     /** Hexagonal crystal system */
