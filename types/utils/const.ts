@@ -154,15 +154,3 @@ export type CleavageQuality = ( typeof CleavageQuality )[ number ];
 export const CleavageQuality = [
     'perfect', 'veryGood', 'good', 'fair', 'distinct', 'poor', 'indistinct', 'none'
 ] as const;
-
-/** Fracture types */
-export type FractureType = ( typeof FractureType )[ number ];
-export const FractureType = [
-    'conchoidal', 'subConchoidal', 'uneven', 'splintery', 'fibrous', 'hackly', 'earthy', 'granular'
-] as const;
-
-/** Tenacity types */
-export type TenacityType = ( typeof TenacityType )[ number ];
-export const TenacityType = [
-    'brittle', 'sectile', 'malleable', 'ductile', 'flexible', 'elastic'
-] as const;
