@@ -6,7 +6,7 @@
 import type { Collection, Group, Single } from '@/abstract/collection';
 import type { ArrayProperty, NumberProperty, PrimitiveProperty, StructProperty } from '@/abstract/property';
 import type { NMRGroup } from '@/collections/generic';
-import type { ShellModel } from '@/utils/const';
+import type { ShellModel } from '@/enums/element';
 
 /**
  * AtomicsCollection

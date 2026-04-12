@@ -12,7 +12,8 @@ import type { DescriptiveCollection } from '@/collections/descriptive';
 import type { MetaData } from '@/collections/generic';
 import type { PhysicsCollection } from '@/collections/physics';
 import type { SafetyCollection } from '@/collections/safety';
-import type * as consts from '@/utils/const';
+import type { ElementBlock, ElementGroup, ElementProperty, ElementSet, ElementSymbol } from '@/enums/element';
+import type { Goldschmidt, NaturalOccurrence, Phase, Superconductivity } from '@/enums/generic';
 
 /** Element collections */
 
@@ -36,16 +37,16 @@ import type * as consts from '@/utils/const';
 export type ElementClassification = Collection< {
     symbol: Distinct< string >;
     atomicNumber: Distinct< number >;
-    block: Distinct< consts.ElementBlock >;
-    group: Distinct< consts.ElementGroup >;
-    column: Distinct< consts.ElementColumn >;
-    period: Distinct< consts.ElementPeriod >;
-    phase: Distinct< consts.Phase >;
-    set: Distinct< consts.ElementSet >;
+    block: Distinct< ElementBlock >;
+    group: Distinct< ElementGroup >;
+    column: Distinct< 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 >;
+    period: Distinct< 1 | 2 | 3 | 4 | 5 | 6 | 7 >;
+    phase: Distinct< Phase >;
+    set: Distinct< ElementSet >;
     radioactive: Single< PrimitiveProperty< boolean > >;
-    naturalOccurrence?: Single< PrimitiveProperty< consts.NaturalOccurrence > >;
-    goldschmidt?: Single< PrimitiveProperty< consts.Goldschmidt > >;
-    superconductivity?: Single< PrimitiveProperty< consts.Superconductivity > >;
+    naturalOccurrence?: Single< PrimitiveProperty< NaturalOccurrence > >;
+    goldschmidt?: Single< PrimitiveProperty< Goldschmidt > >;
+    superconductivity?: Single< PrimitiveProperty< Superconductivity > >;
 } >;
 
 /** Main element entity */
@@ -68,7 +69,7 @@ export type SingleElement = Collection< {
     physics?: PhysicsCollection;
     chemistry?: ChemistryCollection;
     atomics?: AtomicsCollection;
-    properties?: Distinct< consts.ElementProperty[] >;
+    properties?: Distinct< ElementProperty[] >;
     safety?: SafetyCollection;
 } >;
 
@@ -80,7 +81,7 @@ export type SingleElement = Collection< {
  * Forms are alternative representations or variations of the element data.
  */
 export type Element = Collection< {
-    [ K in consts.ElementSymbol ]: MetaData & SingleElement & {
+    [ K in ElementSymbol ]: MetaData & SingleElement & {
         forms?: FormCollection< SingleElement >;
     };
 } >;

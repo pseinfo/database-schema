@@ -5,38 +5,9 @@
 
 import type { Collection, Group, Single } from '@/abstract/collection';
 import type { NumberProperty, PrimitiveProperty } from '@/abstract/property';
+import type { AcidBaseCharacter, BondType, HSAB, Hybridization, LewisAcidity, LewisBasicity, OxideCharacter } from '@/enums/chemistry';
 import type { CrystalGroup } from '@/collections/generic';
 
-/** Acid / base character */
-export type AcidBaseCharacter = ( typeof AcidBaseCharacter )[ number ];
-export const AcidBaseCharacter = [
-    'strongAcidic', 'acidic', 'moderateAcidic', 'weakAcidic', 'amphoteric', 'weakBasic',
-    'moderateBasic', 'basic', 'strongBasic', 'neutral'
-] as const;
-
-/** Lewis acidity */
-export type LewisAcidity = ( typeof LewisAcidity )[ number ];
-export const LewisAcidity = [ 'strong', 'moderate', 'weak', 'none' ] as const;
-
-/** Lewis basicity */
-export type LewisBasicity = ( typeof LewisBasicity )[ number ];
-export const LewisBasicity = [ 'strong', 'moderate', 'weak', 'none' ] as const;
-
-/** HSAB */
-export type HSAB = ( typeof HSAB )[ number ];
-export const HSAB = [ 'hard', 'borderline', 'soft' ] as const;
-
-/** Oxide character */
-export type OxideCharacter = ( typeof OxideCharacter )[ number ];
-export const OxideCharacter = [ 'acidic', 'amphoteric', 'basic' ] as const;
-
-/** Bond type */
-export type BondType = ( typeof BondType )[ number ];
-export const BondType = [ 'ionic', 'covalent', 'metallic', 'vdw', 'hydrogen' ] as const;
-
-/** Hybridization */
-export type Hybridization = ( typeof Hybridization )[ number ];
-export const Hybridization = [ 'sp', 'sp2', 'sp3', 'sp3d', 'sp3d2', 'sp3d3' ] as const;
 
 /**
  * ChemistryCollection

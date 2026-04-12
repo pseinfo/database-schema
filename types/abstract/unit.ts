@@ -1,22 +1,21 @@
 /**
  * Physical Units System
- * Type system for physical units.
+ * High-level type system for modeling physical quantities and units.
+ * 
+ * Defines basic units for each physical quantity and uses prefixes for derived units
+ * without defining all possible combinations.
+ * 
+ * The unit system provides dimension vectors for physical quantities, conversion factors
+ * between units, and checks for unit compatibility.
+ * 
+ * @module abstract/unit
  */
 
 import type { Brand } from 'devtypes/types/util';
+import type { MetricSystem, SIDimension } from '@/enums/abstract';
 
-/** Metric systems */
-export type MetricSystem = ( typeof MetricSystem )[ number ];
-export const MetricSystem = [ 'metric', 'imperial', 'us', 'custom', 'unknown' ] as const;
 
-/** SI base dimensions */
-export type SIDimension = ( typeof SIDimension )[ number ];
-export const SIDimension = [
-    'time', 'length', 'mass', 'electricCurrent', 'temperature',
-    'amountOfSubstance', 'luminousIntensity'
-] as const;
-
-/** SI unit prefixes (metric system) */
+/** SI unit prefixes (metric system). */
 export type SIPrefix = keyof typeof SIPrefix;
 export const SIPrefix = {
     Y: 1e24, Z: 1e21, E: 1e18, P: 1e15, T: 1e12, G: 1e9, M: 1e6, k: 1e3,
@@ -24,7 +23,7 @@ export const SIPrefix = {
     f: 1e-15, a: 1e-18, z: 1e-21, y: 1e-24
 } as const;
 
-/** List of valid quantities and their base unit symbols */
+/** List of valid quantities and their base unit symbols. */
 export type ValidUnits = typeof ValidUnits;
 export const ValidUnits = {
 
@@ -113,39 +112,37 @@ export const ValidUnits = {
 
 } as const;
 
-/** List of valid physical quantities */
+/** List of valid physical quantities. */
 export type PhysicalQuantity = keyof typeof ValidUnits;
 
-/* Base and prefixable unit types for physical quantities */
+/** Base and prefixable unit types for physical quantities. */
 export type BaseUnitSymbols< Q extends PhysicalQuantity > = ValidUnits[ Q ][ 'base' ][ number ];
 export type PrefixableUnitSymbols< Q extends PhysicalQuantity > = ValidUnits[ Q ][ 'prefixable' ][ number ];
 
-/** Allowed unit symbols with SI prefixes */
+/** Allowed unit symbols with SI prefixes. */
 export type PrefixedSymbols< Q extends PhysicalQuantity > =
     | BaseUnitSymbols< Q >
     | `${ SIPrefix }${ PrefixableUnitSymbols< Q > }`;
 
 /**
- * Dimension Vector
- * Represents the powers of each base dimension in the order:
+ * Vector representing the powers of each base dimension in the order:
  * [time, length, mass, electricCurrent, temperature, amountOfSubstance, luminousIntensity]
  */
 export type DimensionVector = [ number, number, number, number, number, number, number ];
 
 /**
- * Unit
- * Type description of a single physical unit.
+ * Branded type description of a single physical unit.
  * 
- * @template Q - physical quantity type
- * @template U - unit symbol type
- * @param symbol - unit symbol (e.g., "m" for meters; branding)
- * @param name - optional full name of the unit (e.g., "meter")
- * @param isBase - whether this unit is a base unit
- * @param prefixable - whether unit prefixes are allowed
- * @param system - metric system the unit belongs to
- * @param conversion - conversion factor to the base unit
- *  - factor - multiplication factor to convert to the base unit
- *  - offset - optional offset for units like Celsius to Kelvin
+ * @template Q - Physical quantity type
+ * @template U - Unit symbol type
+ * @param symbol - Unit symbol (e.g., "m" for meters; branding)
+ * @param name - Optional full name of the unit (e.g., "meter")
+ * @param isBase - Whether this unit is a base unit
+ * @param prefixable - Whether unit prefixes are allowed
+ * @param system - Metric system the unit belongs to
+ * @param conversion - Conversion factor to the base unit
+ *  - factor - Multiplication factor to convert to the base unit
+ *  - offset - Optional offset for units like Celsius to Kelvin
  */
 export type Unit< Q extends PhysicalQuantity, U extends BaseUnitSymbols< Q > > = Brand< {
     name?: string;
@@ -159,17 +156,16 @@ export type Unit< Q extends PhysicalQuantity, U extends BaseUnitSymbols< Q > > =
 }, U, 'symbol', true >;
 
 /**
- * Quantity
  * Type description of a physical quantity and its units.
  * 
- * @template Q - physical quantity type
- * @param dimension - optional dimension information
- *  - symbol - dimension symbol (e.g., "L" for length)
- *  - name - full name of the dimension (e.g., "Length")
- *  - si - whether this dimension is an SI base dimension
- *  - vector - dimension vector representing the powers of base dimensions
- * @param baseUnit - symbol of the base unit for this quantity
- * @param units - record of units associated with this quantity
+ * @template Q - Physical quantity type
+ * @param dimension - Optional dimension information
+ *  - symbol - Dimension symbol (e.g., "L" for length)
+ *  - name - Full name of the dimension (e.g., "Length")
+ *  - si - Whether this dimension is an SI base dimension
+ *  - vector - Dimension vector representing the powers of base dimensions
+ * @param baseUnit - Symbol of the base unit for this quantity
+ * @param units - Record of units associated with this quantity
  */
 export type Quantity< Q extends PhysicalQuantity > = {
     dimension?: {
@@ -184,20 +180,17 @@ export type Quantity< Q extends PhysicalQuantity > = {
     };
 };
 
-/**
- * UnitCollection
- * Collection of physical quantities and their units
- * 
- * @template Q - Physical quantities used as conditions
- */
+/** Collection of physical quantities and their units. */
 export type UnitCollection = {
     [ Q in PhysicalQuantity ]?: Quantity< Q >;
 };
 
 /**
- * UnitId
- * Unit reference used in other parts of the data model
+ * Branded unit reference used in other parts of the data model.
  * 
  * @template Q - Physical quantities used as conditions
  */
-export type UnitId< Q extends PhysicalQuantity = PhysicalQuantity > = [ Q, PrefixedSymbols< Q > ];
+export type UnitId< Q extends PhysicalQuantity = PhysicalQuantity > = Brand<
+    [ Q, PrefixedSymbols< Q > ],
+    'unitId'
+>;

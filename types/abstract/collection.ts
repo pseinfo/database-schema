@@ -11,28 +11,28 @@ import type { Property } from '@/abstract/property';
 /**
  * Represents a single property or an array of properties.
  * 
- * @template T - The property type
+ * @template T -Property type
  */
 export type Single< T extends Property > = T | T[];
 
 /**
  * Represents a distinct value or collection of values.
  * 
- * @template T - The distinct value type (default: unknown)
+ * @template T - Distinct value type (default: unknown)
  */
 export type Distinct< T = unknown > = T;
 
 /**
  * Represents a group of properties.
  * 
- * @template T - The group definition mapping string keys to Single or Distinct types
+ * @template T - Group definition mapping string keys to Single or Distinct types
  */
 export type Group< T extends Record< string, Single< Property > | Distinct< unknown > > > = T;
 
 /**
  * Transforms a collection definition into its corresponding structure.
  * 
- * @template T - The collection definition
+ * @template T - Collection definition
  */
 export type Collection< T > = {
     [ K in keyof T ]:

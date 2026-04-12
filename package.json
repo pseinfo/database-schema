@@ -54,10 +54,10 @@
       "import": "./types/entities/*.ts",
       "default": "./types/entities/*.ts"
     },
-    "./utils/*": {
-      "types": "./types/utils/*.ts",
-      "import": "./types/utils/*.ts",
-      "default": "./types/utils/*.ts"
+    "./enums/*": {
+      "types": "./types/enums/*.ts",
+      "import": "./types/enums/*.ts",
+      "default": "./types/enums/*.ts"
     }
   },
   "files": [

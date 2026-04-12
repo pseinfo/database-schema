@@ -7,45 +7,13 @@ import type { Collection, Distinct, Group, Single } from '@/abstract/collection'
 import type { StructProperty } from '@/abstract/property';
 import type { RefId } from '@/abstract/reference';
 import type { RangeValue, SingleValue } from '@/abstract/value';
+import type { ADRClass, DOTClass, GHSClass, GHSPictogram, SignalWord, ToxicityApplication, ToxicityType, WHMISClass } from '@/enums/safety';
+
 
 /** Hazard statements */
 export type HStatement = `H${ '2' | '3' | '4' | '5' }${ string }`;
 export type PStatement = `P${ '1' | '2' | '3' | '4' | '5' }${ string }`;
 export type EUHStatement = `EUH${ '0' | '2' | '3' | '4' }${ string }`;
-
-/** Hazard signal words */
-export type SignalWord = ( typeof SignalWord )[ number ];
-export const SignalWord = [ 'danger', 'warning', 'caution' ] as const;
-
-/** GHS pictograms */
-export type GHSPictogram = ( typeof GHSPictogram )[ number ];
-export const GHSPictogram = [
-    'explosive', 'flammable', 'oxidizing', 'compressedGas', 'corrosive', 'toxic',
-    'harmful', 'healthHazard', 'environmentalHazard'
-] as const;
-
-/** GHS hazard classes */
-export type GHSClass = ( typeof GHSClass )[ number ];
-export const GHSClass = [ '01', '02', '03', '04', '05', '06', '07', '08', '09' ] as const;
-
-/** WHMIS classes */
-export type WHMISClass = ( typeof WHMISClass )[ number ];
-export const WHMISClass = [ 'A', 'B', 'C', 'D-1', 'D-2', 'D-3', 'E', 'F' ] as const;
-
-/** ADR hazard classes */
-export type ADRClass = ( typeof ADRClass )[ number ];
-export const ADRClass = [
-    '1', '1.1', '1.2', '1.3', '1.4', '1.5', '1.6', '2.1', '2.2', '2.3',
-    '3', '4.1', '4.2', '4.3', '5.1', '5.2', '6.1', '6.2', '7A', '7B', '7C',
-    '7E', '8', '9', '9A', 'HOT', 'POL'
-] as const;
-
-/** DOT hazard classes */
-export type DOTClass = ( typeof DOTClass )[ number ];
-export const DOTClass = [
-    '1.1', '1.2', '1.3', '1.4', '1.5', '1.6', '2.1', '2.2', '2.3', '3',
-    '4.1', '4.2', '4.3', '5.1', '5.2', '6.1', '6.2', '7', '8', '9'
-] as const;
 
 /** (ADR) warning label */
 export type HazardIdentification = `${ 'X' | '' }${ number }`;
@@ -103,16 +71,6 @@ export type HazardGroup = Group< {
     note?: Distinct< string >;
     references?: RefId[];
 } >;
-
-/** Toxicity types */
-export type ToxicityType = ( typeof ToxicityType )[ number ];
-export const ToxicityType = [ 'EC50', 'LC50', 'LD50', 'TD50', 'LOAEL', 'LOEL', 'NOAEL', 'NOEL' ] as const;
-
-/** Toxicity applications */
-export type ToxicityApplication = ( typeof ToxicityApplication )[ number ];
-export const ToxicityApplication = [
-    'oral', 'dermal', 'inhalation', 'intravenous', 'intraperitoneal', 'subcutaneous'
-] as const;
 
 /**
  * Toxicity

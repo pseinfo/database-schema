@@ -12,7 +12,8 @@ import type { DescriptiveCollection } from '@/collections/descriptive';
 import type { MetaData } from '@/collections/generic';
 import type { PhysicsCollection } from '@/collections/physics';
 import type { SafetyCollection } from '@/collections/safety';
-import type * as consts from '@/utils/const';
+import type { CompoundCategory, CompoundPolarity, CompoundProperty } from '@/enums/compound';
+import type { NaturalOccurrence, Phase } from '@/enums/generic';
 
 /** Compound collections */
 
@@ -27,11 +28,11 @@ import type * as consts from '@/utils/const';
  * @param naturalOccurrence - Natural occurrence type
  */
 export type CompoundClassification = Collection< {
-    category: Single< PrimitiveProperty< consts.CompoundCategory > >;
+    category: Single< PrimitiveProperty< CompoundCategory > >;
     family?: Single< PrimitiveProperty< string > >;
     radioactive: Single< PrimitiveProperty< boolean > >;
-    phase?: Single< PrimitiveProperty< consts.Phase > >;
-    naturalOccurrence?: Single< PrimitiveProperty< consts.NaturalOccurrence > >;
+    phase?: Single< PrimitiveProperty< Phase > >;
+    naturalOccurrence?: Single< PrimitiveProperty< NaturalOccurrence > >;
 } >;
 
 /**
@@ -53,7 +54,7 @@ export type CompoundComposition = Collection< CompositionCollection & {
     simplifiedFormula?: Single< PrimitiveProperty< string > >;
     multiplicity?: Single< PrimitiveProperty< number > >;
     aromatic?: Single< PrimitiveProperty< boolean > >;
-    polarity?: Single< PrimitiveProperty< consts.CompoundPolarity > >;
+    polarity?: Single< PrimitiveProperty< CompoundPolarity > >;
     stoichiometry?: Single< PrimitiveProperty< string > >;
     repeatUnit?: Single< PrimitiveProperty< string > >;
     hydration?: Single< PrimitiveProperty< number > >;
@@ -80,7 +81,7 @@ export type SingleCompound = Collection< {
     composition: CompoundComposition;
     physics?: PhysicsCollection;
     chemistry?: ChemistryCollection;
-    properties?: Distinct< consts.CompoundProperty[] >;
+    properties?: Distinct< CompoundProperty[] >;
     safety?: SafetyCollection;
 } >;
 
