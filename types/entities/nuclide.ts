@@ -4,6 +4,8 @@
  * 
  * Nuclides are grouped by their parent chemical element and then by mass number
  * plus optional metastable state identifiers (e.g. "99", "99m", "99m1").
+ * 
+ * @module entities/nuclide
  */
 
 import type { Collection, Distinct, Group, Single } from '@/abstract/collection';
@@ -21,7 +23,6 @@ export type NuclideIdentifier = `${number}` | `${number}m` | `${number}m${number
 /** Nuclide collections */
 
 /**
- * NuclideClassification
  * Collection for classification properties of nuclides.
  * 
  * @param element - Distinct parent element symbol
@@ -47,7 +48,6 @@ export type NuclideClassification = Collection< {
 } >;
 
 /**
- * NuclearCollection
  * Collection for nuclear properties of nuclides.
  * 
  * @param atomicMass - Atomic mass of the nuclide
@@ -81,8 +81,7 @@ export type NuclearCollection = Collection< {
 } >;
 
 /**
- * DecayChannel
- * Type for a single radioactive decay channel of a nuclide.
+ * Type definition for a single radioactive decay channel of a nuclide.
  * 
  * @param mode - Decay mode (e.g. alpha, beta minus, etc.)
  * @param probability - Optional probability or branching ratio for this decay channel
@@ -99,7 +98,6 @@ export type DecayChannel = {
 };
 
 /**
- * DecayCollection
  * Collection for decay properties of nuclides.
  * 
  * @param halfLife - Half-life of the nuclide
@@ -117,7 +115,6 @@ export type DecayCollection = Collection< {
 /** Main nuclide entity */
 
 /**
- * SingleNuclide
  * Type for a single nuclide entry (all properties).
  * 
  * @param descriptive - Descriptive properties collection
@@ -135,7 +132,6 @@ export type SingleNuclide = Collection< {
 } >;
 
 /**
- * Nuclides
  * Type for the main nuclide collection grouped by element symbol and nuclide identifier.
  * 
  * The structure is a nested record where the first level keys are element symbols,
@@ -152,7 +148,6 @@ export type Nuclides = Collection< {
 /** Nuclide index */
 
 /**
- * NuclideIndexEntry
  * Type for a single entry in the generated nuclide index, keyed by z,n coordinate.
  * 
  * @param z - Atomic number (Z)
@@ -185,7 +180,6 @@ export type NuclideIndexEntry< Z extends number, N extends number > = Collection
 } >;
 
 /**
- * NuclideIndex
  * Type for the generated nuclide index, keyed by z,n coordinate.
  * 
  * The index is structured as a nested record where the first level keys are atomic numbers (Z),
@@ -201,8 +195,7 @@ export type NuclideIndex = Collection< {
 /** Decay chains */
 
 /**
- * NuclideDecayChainLink
- * Type for a single decay chain link in the generated decay chain export.
+ * Type definition for a single decay chain link in the generated decay chain export.
  * 
  * @param nuclide - Identifier of the nuclide in this decay chain link
  * @param mode - Decay mode for this link (null if stable)
@@ -215,7 +208,6 @@ export type NuclideDecayChainLink = Group< {
 } >;
 
 /**
- * NuclideDecayChainEntry
  * Type for a single decay chain entry in the generated decay chain export.
  * 
  * @param nuclide - Identifier of the nuclide for this decay chain entry
@@ -245,7 +237,6 @@ export type NuclideDecayChainEntry< N extends NuclideIdentifier > = Collection< 
 } >;
 
 /**
- * NuclideDecayChains
  * Type for the generated decay chain export containing decay chain information for all nuclides.
  * 
  * The structure is a record where the keys are nuclide identifiers (e.g. "99mTc") and
@@ -257,7 +248,6 @@ export type NuclideDecayChains = Collection< {
 } >;
 
 /**
- * Nuclide
  * Main nuclide entity type containing the main nuclide collection, the generated nuclide index,
  * and the generated decay chain export.
  * 
