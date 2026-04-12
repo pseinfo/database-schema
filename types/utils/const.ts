@@ -28,6 +28,16 @@ export const ElementSymbol = [
     'bh', 'hs', 'mt', 'ds', 'rg', 'cn', 'nh', 'fl', 'mc', 'lv', 'ts', 'og'
 ] as const;
 
+/** Element columns */
+export type ElementColumn = ( typeof ElementColumn )[ number ];
+export const ElementColumn = [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18
+] as const;
+
+/** Element periods */
+export type ElementPeriod = ( typeof ElementPeriod )[ number ];
+export const ElementPeriod = [ 1, 2, 3, 4, 5, 6, 7 ] as const;
+
 /** Element blocks */
 export type ElementBlock = ( typeof ElementBlock )[ number ];
 export const ElementBlock = [ 's', 'p', 'd', 'f' ] as const;
@@ -55,6 +65,16 @@ export const ElementProperty = [
     'natural', 'noble', 'platinumMetal', 'radioactive', 'rareEarths', 'refractorMetal',
     'semiconductor', 'stable', 'synthetic', 'vital'
 ] as const;
+
+/** Goldschmidt classification */
+export type Goldschmidt = ( typeof Goldschmidt )[ number ];
+export const Goldschmidt = [
+    'atmophile', 'chalcophile', 'lithophile', 'siderophile', 'synthetic'
+] as const;
+
+/** Superconductivity type */
+export type Superconductivity = ( typeof Superconductivity )[ number ];
+export const Superconductivity = [ 'none', 'normal', 'special' ] as const;
 
 /** Component roles */
 export type ComponentRole = ( typeof ComponentRole )[ number ];
