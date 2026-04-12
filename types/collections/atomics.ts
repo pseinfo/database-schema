@@ -3,9 +3,10 @@
  * Collection of atomic properties for chemical elements.
  */
 
-import type { Collection, Distinct, Group, Single } from '../abstract/collection';
-import type { ArrayProperty, NumberProperty, PrimitiveProperty } from '../abstract/property';
-import type { ShellModel } from '../utils/const';
+import type { Collection, Group, Single } from '@/abstract/collection';
+import type { ArrayProperty, NumberProperty, PrimitiveProperty } from '@/abstract/property';
+import type { NMRGroup } from '@/collections/generic';
+import type { ShellModel } from '@/utils/const';
 
 /**
  * AtomicsCollection
@@ -23,12 +24,14 @@ import type { ShellModel } from '../utils/const';
 export type AtomicsCollection = Collection< {
 
     // Basic atomic properties
-    atomicNumber?: Distinct< number >;
-    massNumber?: Distinct< number >;
+    atomicNumber?: Single< PrimitiveProperty< number > >;
+    massNumber?: Single< PrimitiveProperty< number > >;
 
     // Electron configuration
     electronConfig?: Single< PrimitiveProperty< string > >;
-    shellModel?: Distinct< { [ K in ShellModel ]?: number } >;
+    shellModel?: Group< {
+        [ K in ShellModel ]: Single< PrimitiveProperty< number > >;
+    } >;
 
     // Ionization energy
     ionizationEnergies?: Single< ArrayProperty< 'energy' > >;
@@ -50,12 +53,6 @@ export type AtomicsCollection = Collection< {
     } >;
 
     // Nuclear magnetic resonance
-    nmr?: Group< {
-        spin?: Single< PrimitiveProperty< number > >;
-        gyromagneticRatio?: Single< NumberProperty< 'magneticMoment' > >;
-        magneticMoment?: Single< NumberProperty< 'magneticMoment' > >;
-        larmorPrecession?: Single< NumberProperty< 'frequency' > >;
-        sensitivity?: Single< PrimitiveProperty< number > >;
-    } >;
+    nmr?: NMRGroup;
 
 } >;
