@@ -18,7 +18,7 @@ import type { UncertaintyType } from '@/enums/abstract';
  * @param confidence - Optional confidence level (0 to 1)
  * @param note - Optional note about the uncertainty
  */
-export type BaseFields< T extends UncertaintyType > = Brand< {
+export type BaseUncertainty< T extends UncertaintyType > = Brand< {
     confidence?: number;
     note?: string;
 }, T, 'type', true >;
@@ -45,7 +45,7 @@ export interface UncertaintyFields {
  * Includes required absolute field.
  */
 export type AbsoluteUncertainty =
-    BaseFields< UncertaintyType.ABSOLUTE > &
+    BaseUncertainty< UncertaintyType.ABSOLUTE > &
     RequireFrom< UncertaintyFields, 'absolute' >;
 
 /**
@@ -53,7 +53,7 @@ export type AbsoluteUncertainty =
  * Includes required relative field.
  */
 export type RelativeUncertainty =
-    BaseFields< UncertaintyType.RELATIVE > &
+    BaseUncertainty< UncertaintyType.RELATIVE > &
     RequireFrom< UncertaintyFields, 'relative' >;
 
 /**
@@ -61,7 +61,7 @@ export type RelativeUncertainty =
  * Includes required plus and minus fields.
  */
 export type AsymmetricalUncertainty =
-    BaseFields< UncertaintyType.ASYMMETRICAL > &
+    BaseUncertainty< UncertaintyType.ASYMMETRICAL > &
     RequireFrom< UncertaintyFields, 'plus' | 'minus' >;
 
 /** Union type for all uncertainty types. */

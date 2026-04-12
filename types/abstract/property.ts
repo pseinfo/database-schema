@@ -20,7 +20,7 @@ import * as value from '@/abstract/value';
  * @param conditions - Optional conditions mapping physical quantities to values
  * @param references - Optional array of reference IDs associated with the property
  */
-export interface BaseFields<
+export interface BaseProperty<
     C extends PhysicalQuantity = PhysicalQuantity,
     T extends Primitive = Primitive
 > {
@@ -41,7 +41,7 @@ export type PrimitiveProperty<
     P extends Primitive = Primitive,
     C extends PhysicalQuantity = PhysicalQuantity,
     T extends Primitive = Primitive
-> = BaseFields< C, T > & value.PrimitiveValue< P >;
+> = BaseProperty< C, T > & value.PrimitiveValue< P >;
 
 /**
  * Property wrapper for structure values (e.g. objects, arrays).
@@ -54,7 +54,7 @@ export type StructProperty<
     S extends value.StructType = value.StructType,
     C extends PhysicalQuantity = PhysicalQuantity,
     T extends Primitive = Primitive
-> = BaseFields< C, T > & value.StructValue< S >;
+> = BaseProperty< C, T > & value.StructValue< S >;
 
 /**
  * Property wrapper for single values.
@@ -67,7 +67,7 @@ export type SingleProperty<
     Q extends PhysicalQuantity = PhysicalQuantity,
     C extends PhysicalQuantity = PhysicalQuantity,
     T extends Primitive = Primitive
-> = BaseFields< C, T > & value.SingleValue< Q >;
+> = BaseProperty< C, T > & value.SingleValue< Q >;
 
 /**
  * Property wrapper for array values.
@@ -80,7 +80,7 @@ export type ArrayProperty<
     Q extends PhysicalQuantity = PhysicalQuantity,
     C extends PhysicalQuantity = PhysicalQuantity,
     T extends Primitive = Primitive
-> = BaseFields< C, T > & value.ArrayValue< Q >;
+> = BaseProperty< C, T > & value.ArrayValue< Q >;
 
 /**
  * Property wrapper for range values.
@@ -93,7 +93,7 @@ export type RangeProperty<
     Q extends PhysicalQuantity = PhysicalQuantity,
     C extends PhysicalQuantity = PhysicalQuantity,
     T extends Primitive = Primitive
-> = BaseFields< C, T > & value.RangeValue< Q >;
+> = BaseProperty< C, T > & value.RangeValue< Q >;
 
 /** Coupled property type definitions */
 
@@ -108,7 +108,7 @@ export type CoupledNumberProperty<
     Q extends PhysicalQuantity = PhysicalQuantity,
     C extends PhysicalQuantity = PhysicalQuantity,
     T extends Primitive = Primitive
-> = BaseFields< C, T > & value.CoupledNumberValue< Q >;
+> = BaseProperty< C, T > & value.CoupledNumberValue< Q >;
 
 /**
  * Property wrapper for coupled values.
@@ -125,7 +125,7 @@ export type CoupledProperty<
     C extends PhysicalQuantity = PhysicalQuantity,
     T extends Primitive = Primitive,
     S extends value.StructType = value.StructType
-> = BaseFields< C, T > & value.CoupledValue< Q, P, S >;
+> = BaseProperty< C, T > & value.CoupledValue< Q, P, S >;
 
 /** Union property types */
 
@@ -140,7 +140,7 @@ export type NumberProperty<
     Q extends PhysicalQuantity = PhysicalQuantity,
     C extends PhysicalQuantity = PhysicalQuantity,
     T extends Primitive = Primitive
-> = BaseFields< C, T > & value.NumberValue< Q >;
+> = BaseProperty< C, T > & value.NumberValue< Q >;
 
 /**
  * Union property wrapper for general values.
@@ -157,4 +157,4 @@ export type Property<
     C extends PhysicalQuantity = PhysicalQuantity,
     T extends Primitive = Primitive,
     S extends value.StructType = value.StructType
-> = BaseFields< C, T > & value.Value< Q, P, S >;
+> = BaseProperty< C, T > & value.Value< Q, P, S >;

@@ -22,7 +22,7 @@ import type { CrystalStructure, Phase } from '@/enums/generic';
  * @param properties - Partial collection of properties specific to the form
  * @param note - Additional notes about the form
  */
-export type BaseFields< T extends FormType, C extends Collection< any > > = Brand< {
+export type BaseForm< T extends FormType, C extends Collection< any > > = Brand< {
     properties?: DeepPartial< C >;
     note?: Distinct< string >;
 }, T, 'type', true >;
@@ -53,7 +53,7 @@ export interface FormFields {
  * @template C - Collection type for properties
  */
 export type AllotropeForm< C extends Collection< any > > =
-    BaseFields< FormType.ALLOTROPE | FormType.OTHER, C > &
+    BaseForm< FormType.ALLOTROPE | FormType.OTHER, C > &
     FormFields;
 
 /**
@@ -63,7 +63,7 @@ export type AllotropeForm< C extends Collection< any > > =
  * @template C - Collection type for properties
  */
 export type MolecularForm< C extends Collection< any > > =
-    BaseFields< FormType.MOLECULAR, C > &
+    BaseForm< FormType.MOLECULAR, C > &
     RequireFrom< FormFields, 'formula' >;
 
 /**
@@ -73,7 +73,7 @@ export type MolecularForm< C extends Collection< any > > =
  * @template C - Collection type for properties
  */
 export type PhaseForm< C extends Collection< any > > =
-    BaseFields< FormType.PHASE, C > &
+    BaseForm< FormType.PHASE, C > &
     RequireFrom< FormFields, 'phase' >;
 
 /**
@@ -83,7 +83,7 @@ export type PhaseForm< C extends Collection< any > > =
  * @template C - Collection type for properties
  */
 export type PolymorphForm< C extends Collection< any > > =
-    BaseFields< FormType.POLYMORPH | FormType.AMORPHOUS, C > &
+    BaseForm< FormType.POLYMORPH | FormType.AMORPHOUS, C > &
     StrictSubset< FormFields, 'crystalStructure', 'pearsonSymbol' | 'spaceGroup' >;
 
 /** Branded form IDs used in other parts of the data model. */

@@ -22,7 +22,7 @@ import type { ValueType, ValueConfidence } from '@/enums/abstract';
  * @param uncertainty - Uncertainty associated with the value
  * @param note - Optional note or comment about the value
  */
-export type BaseFields< T extends ValueType > = Brand< {
+export type BaseValue< T extends ValueType > = Brand< {
     confidence?: ValueConfidence;
     uncertainty?: Uncertainty;
     note?: string;
@@ -65,7 +65,7 @@ export interface ValueFields<
  * @template T - Primitive type
  */
 export type PrimitiveValue< T extends Primitive = Primitive > =
-    BaseFields< ValueType.PRIMITIVE > &
+    BaseValue< ValueType.PRIMITIVE > &
     RequireExactlyOne< ValueFields< never, T >, 'value' | 'values' >;
 
 /** Struct key type. */
@@ -81,7 +81,7 @@ export type StructType = Record< StructKey, any >;
  * @template T - Struct type
  */
 export type StructValue< T extends StructType = StructType > =
-    BaseFields< ValueType.STRUCT > &
+    BaseValue< ValueType.STRUCT > &
     RequireAtLeastOne< ValueFields< never, never, T >, 'struct' >; 
 
 /**
@@ -91,7 +91,7 @@ export type StructValue< T extends StructType = StructType > =
  * @template Q - Physical quantity type
  */
 export type SingleValue< Q extends PhysicalQuantity = PhysicalQuantity > =
-    BaseFields< ValueType.SINGLE > &
+    BaseValue< ValueType.SINGLE > &
     StrictSubset< ValueFields< Q, number >, 'value', 'unit' >;
 
 /**
@@ -101,7 +101,7 @@ export type SingleValue< Q extends PhysicalQuantity = PhysicalQuantity > =
  * @template Q - Physical quantity type
  */
 export type ArrayValue< Q extends PhysicalQuantity = PhysicalQuantity > =
-    BaseFields< ValueType.ARRAY > &
+    BaseValue< ValueType.ARRAY > &
     StrictSubset< ValueFields< Q, number >, 'values', 'unit' >;
 
 /**
@@ -111,7 +111,7 @@ export type ArrayValue< Q extends PhysicalQuantity = PhysicalQuantity > =
  * @template Q - Physical quantity type
  */
 export type RangeValue< Q extends PhysicalQuantity = PhysicalQuantity > =
-    BaseFields< ValueType.RANGE > &
+    BaseValue< ValueType.RANGE > &
     StrictSubset< ValueFields< Q, number >, 'range', 'value' | 'unit' >;
 
 /** Coupled value type definitions */
@@ -122,7 +122,7 @@ export type RangeValue< Q extends PhysicalQuantity = PhysicalQuantity > =
  * @template Q - Physical quantity type
  */
 export type CoupledNumberValue< Q extends PhysicalQuantity = PhysicalQuantity > =
-    BaseFields< ValueType.COUPLED > & {
+    BaseValue< ValueType.COUPLED > & {
         properties: RequireAtLeastOne< {
             [ K in Q ]?:
                 | SingleValue< K >
@@ -143,7 +143,7 @@ export type CoupledValue<
     T extends Primitive = Primitive,
     S extends StructType = StructType
 > =
-    BaseFields< ValueType.COUPLED > & {
+    BaseValue< ValueType.COUPLED > & {
         properties: RequireAtLeastOne< {
             [ K in Q ]?:
                 | PrimitiveValue< T >
