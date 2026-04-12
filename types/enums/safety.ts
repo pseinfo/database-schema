@@ -6,7 +6,7 @@
  */
 
 
-/** Enumeration of hazard signal words. */
+/** Enumeration of GHS signal words. */
 export enum SignalWord {
     /** Danger signal word */
     DANGER = 'danger',
@@ -103,21 +103,21 @@ export enum GHSClass {
 /** Enumeration of WHMIS (Workplace Hazardous Materials Information System) classes. */
 export enum WHMISClass {
     /** Compressed gas */
-    A = 'A',
+    COMPRESSED_GAS = 'A',
     /** Flammable and combustible material */
-    B = 'B',
+    FLAMMABLE = 'B',
     /** Oxidizing material */
-    C = 'C',
+    OXIDIZING = 'C',
     /** Poisonous and infectious material (Immediate and serious toxic effects) */
-    D1 = 'D-1',
+    TOXIC_ACUTE = 'D-1',
     /** Poisonous and infectious material (Other toxic effects) */
-    D2 = 'D-2',
+    TOXIC_OTHER = 'D-2',
     /** Poisonous and infectious material (Biohazardous infectious material) */
-    D3 = 'D-3',
+    BIOHAZARDOUS = 'D-3',
     /** Corrosive material */
-    E = 'E',
+    CORROSIVE = 'E',
     /** Dangerously reactive material */
-    F = 'F'
+    DANGEROUSLY_REACTIVE = 'F'
 };
 
 /** Enumeration of ADR (European Agreement concerning the International Carriage of Dangerous Goods by Road) hazard classes. */
