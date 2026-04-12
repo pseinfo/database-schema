@@ -57,3 +57,13 @@ export type Collection< T > = {
         T[ K ] extends Property ? T[ K ] :
         never;
 };
+
+/**
+ * Entity
+ * A collection that represents a single entity.
+ * 
+ * It's just an alias for Collection, but it's used to represent a single entity in the database.
+ * 
+ * @template T - The entity definition
+ */
+export type Entity< T > = Collection< T >;
