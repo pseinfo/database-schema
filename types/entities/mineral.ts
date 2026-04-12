@@ -16,8 +16,8 @@ import type { DescriptiveCollection } from '@/collections/descriptive';
 import type { MetaData } from '@/collections/generic';
 import type { PhysicsCollection } from '@/collections/physics';
 import type { SafetyCollection } from '@/collections/safety';
-import type * as consts from '../utils/const';
-import type { Phase } from '@/enums/generic';
+import type { CleavageQuality, FractureType, IMAStatus, MineralClass, MineralProperty, TenacityType } from '@/enums/mineral';
+import type { NaturalOccurrence, Phase } from '@/enums/generic';
 
 /** Mineral collections */
 
@@ -35,11 +35,11 @@ import type { Phase } from '@/enums/generic';
  * @param naturalOccurrence - Natural occurrence type
  */
 export type MineralClassification = Collection< {
-    class: Single< PrimitiveProperty< consts.MineralClass > >;
+    class: Single< PrimitiveProperty< MineralClass > >;
     group?: Single< PrimitiveProperty< string > >;
     ima?: Group< {
         symbol?: Single< PrimitiveProperty< string > >;
-        status?: Single< PrimitiveProperty< consts.IMAStatus > >;
+        status?: Single< PrimitiveProperty< IMAStatus > >;
         year?: Single< PrimitiveProperty< number > >;
         notes?: Single< PrimitiveProperty< string > >;
     } >;
@@ -52,7 +52,7 @@ export type MineralClassification = Collection< {
     similarMinerals?: Single< PrimitiveProperty< string > >;
     radioactive: Single< PrimitiveProperty< boolean > >;
     phase?: Single< PrimitiveProperty< Phase > >;
-    naturalOccurrence?: Single< PrimitiveProperty< consts.NaturalOccurrence > >;
+    naturalOccurrence?: Single< PrimitiveProperty< NaturalOccurrence > >;
 } >;
 
 /**
@@ -66,12 +66,12 @@ export type MineralClassification = Collection< {
  */
 export type IdentificationGroup = Group< {
     cleavage?: Single< StructProperty< {
-        quality: consts.CleavageQuality;
+        quality: CleavageQuality;
         direction?: string;
     } > >;
     parting?: Single< PrimitiveProperty< string > >;
-    fracture?: Single< PrimitiveProperty< consts.FractureType > >;
-    tenacity?: Single< PrimitiveProperty< consts.TenacityType > >;
+    fracture?: Single< PrimitiveProperty< FractureType > >;
+    tenacity?: Single< PrimitiveProperty< TenacityType > >;
 } >;
 
 /**
@@ -110,7 +110,7 @@ export type SingleMineral = Collection< {
         identification?: IdentificationGroup;
     };
     chemistry?: ChemistryCollection;
-    properties?: Distinct< consts.MineralProperty[] >;
+    properties?: Distinct< MineralProperty[] >;
     safety?: SafetyCollection;
 } >;
 
