@@ -6,6 +6,35 @@
  */
 
 
+export enum ValueType {
+    /** Primitive value */
+    PRIMITIVE = 'primitive',
+    /** Struct value */
+    STRUCT = 'struct',
+    /** Single value */
+    SINGLE = 'single',
+    /** Array value */
+    ARRAY = 'array',
+    /** Range value */
+    RANGE = 'range',
+    /** Coupled value */
+    COUPLED = 'coupled'
+};
+
+/** Confidence levels */
+export enum ValueConfidence {
+    /** Measured value */
+    MEASURED = 'measured',
+    /** Calculated value */
+    CALCULATED = 'calculated',
+    /** Estimated value */
+    ESTIMATED = 'estimated',
+    /** Theoretical value */
+    THEORETICAL = 'theoretical',
+    /** Experimental value */
+    EXPERIMENTAL = 'experimental'
+};
+
 /** Enumeration of standard conditions for physical quantities. */
 export enum StandardCondition {
     /** T=0     P=100       IUPAC (STP) since 1982 */
