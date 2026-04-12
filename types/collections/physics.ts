@@ -4,18 +4,8 @@
  */
 
 import type { Collection, Group, Single } from '@/abstract/collection';
-import type { CoupledNumberProperty, NumberProperty, PrimitiveProperty, StructProperty } from '@/abstract/property';
-import type { CleavageQuality, Phase } from '@/utils/const';
-
-/** Fracture types */
-export type FractureType = ( typeof FractureType )[ number ];
-export const FractureType = [
-    'conchoidal', 'subConchoidal', 'uneven', 'splintery', 'fibrous', 'hackly', 'earthy', 'granular'
-] as const;
-
-/** Tenacity types */
-export type TenacityType = ( typeof TenacityType )[ number ];
-export const TenacityType = [ 'brittle', 'sectile', 'malleable', 'ductile', 'flexible', 'elastic' ] as const;
+import type { CoupledNumberProperty, NumberProperty, PrimitiveProperty } from '@/abstract/property';
+import type { Phase } from '@/utils/const';
 
 /** Magnetic ordering */
 export type MagneticOrdering = ( typeof MagneticOrdering )[ number ];
@@ -42,7 +32,6 @@ export const OpticalRotation = [ 'dextrorotatory', 'levorotatory', 'racemic' ] a
  * @param heat - Heat properties
  * @param hardness - Hardness properties
  * @param elasticity - Elasticity and mechanical properties
- * @param identification - Identification properties (for minerals/materials)
  * @param electricity - Electrical properties
  * @param magnetism - Magnetic properties
  * @param optics - Optical properties
@@ -111,17 +100,6 @@ export type PhysicsCollection = Collection< {
         tensileStrength?: Single< NumberProperty< 'pressure' > >;
         yieldStrength?: Single< NumberProperty< 'pressure' > >;
         ultimateStrength?: Single< NumberProperty< 'pressure' > >;
-    } >;
-
-    // Identification and mechanical attributes
-    identification?: Group< {
-        cleavage?: Single< StructProperty< {
-            quality: CleavageQuality;
-            direction?: string;
-        } > >;
-        parting?: Single< PrimitiveProperty< string > >;
-        fracture?: Single< PrimitiveProperty< FractureType > >;
-        tenacity?: Single< PrimitiveProperty< TenacityType > >;
     } >;
 
     // Electrical properties

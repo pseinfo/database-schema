@@ -148,9 +148,3 @@ export const IMAStatus = [
     'approved', 'grandfathered', 'questionable', 'rejected', 'pending',
     'published', 'redefined', 'discredited', 'unnamed', 'groupName'
 ] as const;
-
-/** Cleavage quality */
-export type CleavageQuality = ( typeof CleavageQuality )[ number ];
-export const CleavageQuality = [
-    'perfect', 'veryGood', 'good', 'fair', 'distinct', 'poor', 'indistinct', 'none'
-] as const;
