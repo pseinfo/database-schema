@@ -5,7 +5,7 @@
  * @module collections/descriptive
  */
 
-import type { Collection } from '@/abstract/collection';
+import type { Collection, Single } from '@/abstract/collection';
 import type { NumberProperty } from '@/abstract/property';
 import type { AbundanceGroup, DiscoveryGroup, LangGroup, MediaGroup, WeblinksGroup } from '@/collections/generic';
 import type { RegistryGroup, StructureGroup } from '@/collections/registry';
@@ -35,5 +35,5 @@ export type DescriptiveCollection = Collection< {
     discovery?: DiscoveryGroup;
     media?: MediaGroup;
     weblinks?: WeblinksGroup;
-    pricing?: NumberProperty< 'currency' >;
+    pricing?: Single< NumberProperty< 'currency' > >;
 } >;
