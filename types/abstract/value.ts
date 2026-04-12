@@ -70,13 +70,15 @@ export type PrimitiveValue< T extends Primitive = Primitive > =
     BaseFields< 'primitive' > &
     RequireExactlyOne< ValueFields< never, T >, 'value' | 'values' >;
 
+export type StructKey = string | number;
+
 /**
  * StructValue
  * Type description of a struct value (e.g. objects, arrays).
  * 
  * Fields: properties
  */
-export type StructValue< T extends Record< PropertyKey, any > = Record< PropertyKey, any > > =
+export type StructValue< T extends Record< StructKey, any > = Record< StructKey, any > > =
     BaseFields< 'struct' > & { properties: T };
 
 /**
