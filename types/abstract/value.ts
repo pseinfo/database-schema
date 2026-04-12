@@ -11,7 +11,7 @@ import type { PhysicalQuantity, UnitId } from '@/abstract/unit';
 
 /** Value types */
 export type ValueType = ( typeof ValueType )[ number ];
-export const ValueType = [ 'primitive', 'single', 'array', 'range', 'coupled' ] as const;
+export const ValueType = [ 'primitive', 'struct', 'single', 'array', 'range', 'coupled' ] as const;
 
 /** Confidence levels */
 export type ValueConfidence = ( typeof ValueConfidence )[ number ];
@@ -69,6 +69,15 @@ interface ValueFields<
 export type PrimitiveValue< T extends Primitive = Primitive > =
     BaseFields< 'primitive' > &
     RequireExactlyOne< ValueFields< never, T >, 'value' | 'values' >;
+
+/**
+ * StructValue
+ * Type description of a struct value (e.g. objects, arrays).
+ * 
+ * Fields: properties
+ */
+export type StructValue< T extends Record< PropertyKey, any > = Record< PropertyKey, any > > =
+    BaseFields< 'struct' > & { properties: T };
 
 /**
  * SingleValue

@@ -40,6 +40,20 @@ export type PrimitiveProperty<
 > = BaseFields< C, T > & value.PrimitiveValue< P >;
 
 /**
+ * StructProperty
+ * Property type for structure values (e.g. objects, arrays).
+ * 
+ * @template P - Primitive types for the property values
+ * @template C - Physical quantities used as conditions
+ * @template T - Primitive types for the condition values
+ */
+export type StructProperty<
+    P extends Record< PropertyKey, any > = Record< PropertyKey, any >,
+    C extends PhysicalQuantity = PhysicalQuantity,
+    T extends Primitive = Primitive
+> = BaseFields< C, T > & value.StructValue< P >;
+
+/**
  * SingleProperty
  * Type description of a single value property.
  * 
