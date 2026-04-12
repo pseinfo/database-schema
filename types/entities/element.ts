@@ -5,6 +5,7 @@
  * @module entities/element
  */
 
+import type { Expand } from 'devtypes/types/util';
 import type { Collection, Distinct, Single } from '@/abstract/collection';
 import type { FormCollection } from '@/abstract/form';
 import type { PrimitiveProperty } from '@/abstract/property';
@@ -81,7 +82,7 @@ export type SingleElement = Collection< {
  * Forms are alternative representations or variations of the element data.
  */
 export type Element = Collection< {
-    [ K in ElementSymbol ]: MetaData & SingleElement & {
+    [ K in ElementSymbol ]: Expand< MetaData & SingleElement & {
         forms?: FormCollection< SingleElement >;
-    };
+    } >;
 } >;
