@@ -7,15 +7,8 @@ import type { LiteralUnion } from 'devtypes/types/primitive';
 import type { Distinct, Group, Single } from '@/abstract/collection';
 import type { NumberProperty, PrimitiveProperty, StructProperty } from '@/abstract/property';
 import type { RefId } from '@/abstract/reference';
-import type { CrystalStructure } from '@/enums/generic';
+import type { CrystalStructure, D3Format, ImageFormat } from '@/enums/generic';
 
-/** Image Formats */
-export type ImageFormat = ( typeof ImageFormat )[ number ];
-export const ImageFormat = [ 'jpg', 'png', 'svg', 'webp' ] as const;
-
-/** 3D Structure Formats */
-export type D3Format = ( typeof D3Format )[ number ];
-export const D3Format = [ 'pdb', 'mol', 'sdf', 'xyz', 'cif' ] as const;
 
 /**
  * MetaData

@@ -81,3 +81,29 @@ export enum CrystalStructure {
     /** Triclinic crystal system */
     TRICLINIC = 'triclinic'
 };
+
+/** Enumeration of image formats. */
+export enum ImageFormat {
+    /** JPG format */
+    JPG = 'jpg',
+    /** PNG format */
+    PNG = 'png',
+    /** SVG format */
+    SVG = 'svg',
+    /** WebP format */
+    WEBP = 'webp'
+};
+
+/** Enumeration of 3D structure formats. */
+export enum D3Format {
+    /** PDB format */
+    PDB = 'pdb',
+    /** MOL format */
+    MOL = 'mol',
+    /** SDF format */
+    SDF = 'sdf',
+    /** XYZ format */
+    XYZ = 'xyz',
+    /** CIF format */
+    CIF = 'cif'
+};

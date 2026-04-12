@@ -11,8 +11,8 @@ import type { NumberProperty, PrimitiveProperty, StructProperty } from '@/abstra
 import type { NumberValue } from '@/abstract/value';
 import type { DescriptiveCollection } from '@/collections/descriptive';
 import type { MetaData, NMRGroup } from '@/collections/generic';
-import { ElementSymbol } from '@/enums/element';
-import { DecayMode, NuclideParity, NuclideProperty, NuclideStability, NuclideState, RadiationType } from '@/enums/nuclide';
+import type { ElementSymbol } from '@/enums/element';
+import type { DecayMode, NuclideParity, NuclideProperty, NuclideStability, NuclideState, RadiationType } from '@/enums/nuclide';
 
 
 /** Valid nuclide identifiers with optional metastable state suffix. */
