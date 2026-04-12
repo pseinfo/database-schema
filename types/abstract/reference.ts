@@ -1,26 +1,21 @@
 /**
  * Reference System
  * Types and structures for bibliographic references based on BibTeX.
+ * 
+ * @module abstract/reference
  */
 
 import type { ExtractFrom, RequireAtLeastOne, RequireExactlyOne, StrictSubset } from 'devtypes/types/constraint';
 import type { Brand } from 'devtypes/types/util';
+import type { ReferenceType } from '@/enums/generic';
 
-/** Reference types based on BibTeX */
-export type ReferenceType = ( typeof ReferenceType )[ number ];
-export const ReferenceType = [
-    'article', 'book', 'booklet', 'conference', 'inbook', 'incollection', 'inproceedings',
-    'manual', 'mastersthesis', 'thesis', 'misc', 'phdthesis', 'proceedings', 'techreport',
-    'unpublished'
-] as const;
 
 /**
- * BaseFields
- * Common fields for all reference types.
+ * Branded common fields for all reference types.
  * 
  * @template T - Reference type
- * @param type - type of reference (branding)
- * @param accessed - date when the reference was accessed (for online resources)
+ * @param type - Type of reference (branding)
+ * @param accessed - Date when the reference was accessed (for online resources)
  * @param url - URL of the reference
  * @param doi - DOI of the reference
  */
@@ -31,31 +26,30 @@ export type BaseFields< T extends ReferenceType > = Brand< {
 }, T, 'type', true >;
 
 /**
- * BibTeXFields
  * Fields for bibliographic references based on BibTeX.
  * 
- * @param address - address of the publisher or institution
- * @param author - author(s) of the work
- * @param booktitle - title of the book or conference proceedings
- * @param chapter - chapter number or name
- * @param edition - edition of the book
- * @param editor - editor(s) of the work
- * @param howpublished - how the work was published
- * @param institution - institution associated with the work
+ * @param address - Address of the publisher or institution
+ * @param author - Author(s) of the work
+ * @param booktitle - Title of the book or conference proceedings
+ * @param chapter - Chapter number or name
+ * @param edition - Edition of the book
+ * @param editor - Editor(s) of the work
+ * @param howpublished - How the work was published
+ * @param institution - Institution associated with the work
  * @param isbn - ISBN number of the book
- * @param journal - journal name
- * @param month - month of publication
- * @param note - additional notes about the reference
- * @param number - number of the journal, volume, or report
- * @param organization - organization associated with the work
- * @param pages - page numbers
- * @param publisher - publisher of the work
- * @param school - school associated with the thesis
- * @param series - series name
- * @param title - title of the work
- * @param type - type of report or thesis
- * @param volume - volume number
- * @param year - year of publication
+ * @param journal - Journal name
+ * @param month - Month of publication
+ * @param note - Additional notes about the reference
+ * @param number - Number of the journal, volume, or report
+ * @param organization - Organization associated with the work
+ * @param pages - Page numbers
+ * @param publisher - Publisher of the work
+ * @param school - School associated with the thesis
+ * @param series - Series name
+ * @param title - Title of the work
+ * @param type - Type of report or thesis
+ * @param volume - Volume number
+ * @param year - Year of publication
  */
 export interface BibTeXFields {
     address?: string;
@@ -83,7 +77,8 @@ export interface BibTeXFields {
 }
 
 /** Helper types for specific reference types */
-export type Thesis< T extends 'mastersthesis' | 'thesis' | 'phdthesis' > =
+
+export type Thesis< T extends ReferenceType.MASTERSTHESIS | ReferenceType.THESIS | ReferenceType.PHDTHESIS > =
     BaseFields< T > &
     StrictSubset<
         BibTeXFields,
@@ -91,7 +86,7 @@ export type Thesis< T extends 'mastersthesis' | 'thesis' | 'phdthesis' > =
         'type' | 'address' | 'month' | 'note'
     >;
 
-export type Conference< T extends 'conference' | 'inproceedings' > =
+export type Conference< T extends ReferenceType.CONFERENCE | ReferenceType.INPROCEEDINGS > =
     BaseFields< T > &
     StrictSubset<
         BibTeXFields,
@@ -102,14 +97,12 @@ export type Conference< T extends 'conference' | 'inproceedings' > =
 /** Specific reference types */
 
 /**
- * ArticleReference
  * Type description of an article reference.
- * 
- * Fields: author, title, journal, year
- * Optional Fields: volume, number, pages, month, note
+ * Includes required fields for author, title, journal, and year.
+ * Optional fields include volume, number, pages, month, and note.
  */
 export type ArticleReference =
-    BaseFields< 'article' > &
+    BaseFields< ReferenceType.ARTICLE > &
     StrictSubset<
         BibTeXFields,
         'author' | 'title' | 'journal' | 'year',
@@ -117,14 +110,12 @@ export type ArticleReference =
     >;
 
 /**
- * BookReference
  * Type description of a book reference.
- * 
- * Fields: author/editor, title, publisher, year
- * Optional Fields: volume, number, series, address, edition, month, note, isbn
+ * Includes required fields for author/editor, title, publisher, and year.
+ * Optional fields include volume, number, series, address, edition, month, note, and isbn.
  */
 export type BookReference =
-    BaseFields< 'book' > &
+    BaseFields< ReferenceType.BOOK > &
     RequireExactlyOne< BibTeXFields, 'author' | 'editor' > &
     StrictSubset<
         BibTeXFields,
@@ -133,13 +124,11 @@ export type BookReference =
     >;
 
 /**
- * BookletReference
  * Type description of a booklet reference.
- * 
- * Fields: title
- * Optional Fields: author, howpublished, address, month, year, note
+ * Includes required fields for title.
+ * Optional fields include author, howpublished, address, month, year, and note.
  */
-export type BookletReference = BaseFields< 'booklet' > &
+export type BookletReference = BaseFields< ReferenceType.BOOKLET > &
     StrictSubset<
         BibTeXFields,
         'title',
@@ -147,23 +136,19 @@ export type BookletReference = BaseFields< 'booklet' > &
     >;
 
 /**
- * ConferenceReference
  * Type description of a conference reference.
- * 
- * Fields: author, title, booktitle, year
- * Optional Fields: editor, volume, number, series, pages, address, month, organization, publisher, note
+ * Includes required fields for author, title, booktitle, and year.
+ * Optional fields include editor, volume, number, series, pages, address, month, organization, publisher, and note.
  */
-export type ConferenceReference = Conference< 'conference' >;
+export type ConferenceReference = Conference< ReferenceType.CONFERENCE >;
 
 /**
- * InbookReference
  * Type description of an inbook reference.
- * 
- * Fields: author/editor, title, booktitle, chapter/pages, publisher, year
- * Optional Fields: volume, number, series, type, address, edition, month, note
+ * Includes required fields for author/editor, title, booktitle, chapter/pages, publisher, and year.
+ * Optional fields include volume, number, series, type, address, edition, month, and note.
  */
 export type InbookReference =
-    BaseFields< 'inbook' > &
+    BaseFields< ReferenceType.INBOOK > &
     RequireExactlyOne< BibTeXFields, 'author' | 'editor' > &
     RequireAtLeastOne<
         StrictSubset<
@@ -175,14 +160,12 @@ export type InbookReference =
     >;
 
 /**
- * IncollectionReference
  * Type description of an incollection reference.
- * 
- * Fields: author, title, booktitle, publisher, year
- * Optional Fields: editor, volume, number, series, type, chapter, pages, address, edition, month, note
+ * Includes required fields for author, title, booktitle, publisher, and year.
+ * Optional fields include editor, volume, number, series, type, chapter, pages, address, edition, month, and note.
  */
 export type IncollectionReference =
-    BaseFields< 'incollection' > &
+    BaseFields< ReferenceType.INCOLLECTION > &
     StrictSubset<
         BibTeXFields,
         'author' | 'title' | 'booktitle' | 'publisher' | 'year',
@@ -190,23 +173,19 @@ export type IncollectionReference =
     >;
 
 /**
- * InproceedingsReference
  * Type description of an inproceedings reference.
- * 
- * Fields: author, title, booktitle, year
- * Optional Fields: editor, volume, number, series, pages, address, month, organization, publisher, note
+ * Includes required fields for author, title, booktitle, and year.
+ * Optional fields include editor, volume, number, series, pages, address, month, organization, publisher, and note.
  */
-export type InproceedingsReference = Conference< 'inproceedings' >;
+export type InproceedingsReference = Conference< ReferenceType.INPROCEEDINGS >;
 
 /**
- * ManualReference
  * Type description of a manual reference.
- * 
- * Fields: title
- * Optional Fields: author, organization, address, edition, month, year, note
+ * Includes required fields for title.
+ * Optional fields include author, organization, address, edition, month, year, and note.
  */
 export type ManualReference =
-    BaseFields< 'manual' > &
+    BaseFields< ReferenceType.MANUAL > &
     StrictSubset<
         BibTeXFields,
         'title',
@@ -214,54 +193,44 @@ export type ManualReference =
     >;
 
 /**
- * MastersthesisReference
  * Type description of a mastersthesis reference.
- * 
- * Fields: author, title, school, year
- * Optional Fields: type, address, month, note
+ * Includes required fields for author, title, school, and year.
+ * Optional fields include type, address, month, and note.
  */
-export type MastersthesisReference = Thesis< 'mastersthesis' >;
+export type MastersthesisReference = Thesis< ReferenceType.MASTERSTHESIS >;
 
 /**
- * ThesisReference
  * Type description of a thesis reference.
- * 
- * Fields: author, title, school, year
- * Optional Fields: type, address, month, note
+ * Includes required fields for author, title, school, and year.
+ * Optional fields include type, address, month, and note.
  */
-export type ThesisReference = Thesis< 'thesis' >;
+export type ThesisReference = Thesis< ReferenceType.THESIS >;
 
 /**
- * MiscReference
  * Type description of a miscellaneous reference.
- * 
- * Optional Fields: author, title, howpublished, month, year, note
+ * Optional fields include author, title, howpublished, month, year, and note.
  */
 export type MiscReference =
-    BaseFields< 'misc' > &
+    BaseFields< ReferenceType.MISC > &
     ExtractFrom<
         BibTeXFields,
         'author' | 'title' | 'howpublished' | 'month' | 'year' | 'note'
     >;
 
 /**
- * PhdthesisReference
  * Type description of a phdthesis reference.
- * 
- * Fields: author, title, school, year
- * Optional Fields: type, address, month, note
+ * Includes required fields for author, title, school, and year.
+ * Optional fields include type, address, month, and note.
  */
-export type PhdthesisReference = Thesis< 'phdthesis' >;
+export type PhdthesisReference = Thesis< ReferenceType.PHDTHESIS >;
 
 /**
- * ProceedingsReference
  * Type description of a proceedings reference.
- * 
- * Fields: title, year
- * Optional Fields: editor, volume, number, series, address, month, organization, publisher, note
+ * Includes required fields for title and year.
+ * Optional fields include editor, volume, number, series, address, month, organization, publisher, and note.
  */
 export type ProceedingsReference =
-    BaseFields< 'proceedings' > &
+    BaseFields< ReferenceType.PROCEEDINGS > &
     StrictSubset<
         BibTeXFields,
         'title' | 'year',
@@ -269,14 +238,12 @@ export type ProceedingsReference =
     >;
 
 /**
- * TechreportReference
  * Type description of a techreport reference.
- * 
- * Fields: author, title, institution, year
- * Optional Fields: type, number, address, month, note
+ * Includes required fields for author, title, institution, and year.
+ * Optional fields include type, number, address, month, and note.
  */
 export type TechreportReference =
-    BaseFields< 'techreport' > &
+    BaseFields< ReferenceType.TECHREPORT > &
     StrictSubset<
         BibTeXFields,
         'author' | 'title' | 'institution' | 'year',
@@ -284,21 +251,21 @@ export type TechreportReference =
     >;
 
 /**
- * UnpublishedReference
  * Type description of an unpublished reference.
- * 
- * Fields: author, title, note
- * Optional Fields: month, year
+ * Includes required fields for author, title, and note.
+ * Optional fields include month and year.
  */
 export type UnpublishedReference =
-    BaseFields< 'unpublished' > &
+    BaseFields< ReferenceType.UNPUBLISHED > &
     StrictSubset<
         BibTeXFields,
         'author' | 'title' | 'note',
         'month' | 'year'
     >;
 
-/** Union type for any reference */
+/** Common types for the reference system */
+
+/** Union type for any BibTeX reference. */
 export type Reference =
     | ArticleReference
     | BookReference
@@ -316,8 +283,8 @@ export type Reference =
     | TechreportReference
     | UnpublishedReference;
 
-/** Reference IDs used in other parts of the data model */
-export type RefId = string;
+/** Branded reference IDs used in other parts of the data model. */
+export type RefId = Brand< string, 'refId' >; 
 
-/** Collection of references indexed by a unique key */
+/** Collection of references indexed by a unique key. */
 export type ReferenceCollection = Record< RefId, Reference >;

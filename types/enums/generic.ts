@@ -82,6 +82,40 @@ export enum StandardCondition {
     DIN_1343 = 'DIN_1343'
 };
 
+/** Enumeration of reference types based on BibTeX. */
+export enum ReferenceType {
+    /** Article reference */
+    ARTICLE = 'article',
+    /** Book reference */
+    BOOK = 'book',
+    /** Booklet reference */
+    BOOKLET = 'booklet',
+    /** Conference reference */
+    CONFERENCE = 'conference',
+    /** Inbook reference */
+    INBOOK = 'inbook',
+    /** Incollection reference */
+    INCOLLECTION = 'incollection',
+    /** Inproceedings reference */
+    INPROCEEDINGS = 'inproceedings',
+    /** Manual reference */
+    MANUAL = 'manual',
+    /** Master's thesis reference */
+    MASTERSTHESIS = 'mastersthesis',
+    /** Thesis reference */
+    THESIS = 'thesis',
+    /** Miscellaneous reference */
+    MISC = 'misc',
+    /** PhD thesis reference */
+    PHDTHESIS = 'phdthesis',
+    /** Proceedings reference */
+    PROCEEDINGS = 'proceedings',
+    /** Technical report reference */
+    TECHREPORT = 'techreport',
+    /** Unpublished reference */
+    UNPUBLISHED = 'unpublished'
+};
+
 /** Enumeration of phases of matter. */
 export enum Phase {
     /** Solid phase */
