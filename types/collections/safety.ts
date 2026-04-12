@@ -25,9 +25,7 @@ export type HazardIdentification = `${ 'X' | '' }${ number }`;
 export type UNNumber = `${ '0' | '1' | '2' | '3' | '8' | '9' }${ number }`;
 
 /**
- * NFPA 704 standard
- * The NFPA 704 standard is a hazard rating system used to identify the risks
- * associated with hazardous materials.
+ * The NFPA 704 standard is a hazard rating system used to identify the risks associated with hazardous materials.
  * 
  * @param health - Health hazard rating
  * @param fire - Fire hazard rating
@@ -42,7 +40,6 @@ export type NFPA = {
 };
 
 /**
- * HazardGroup
  * Group for hazard information of substances.
  * 
  * @param statements - Hazard, precautionary, and EU hazard statements
@@ -78,8 +75,7 @@ export type HazardGroup = Group< {
 } >;
 
 /**
- * Toxicity
- * Represents toxicity data for substances.
+ * Type definition for toxicity data.
  * 
  * @param type - Type of toxicity measurement (e.g., LD50, LC50)
  * @param organism - Organism used in the toxicity test
@@ -96,7 +92,6 @@ export type Toxicity = {
 };
 
 /**
- * SafetyCollection
  * Safety collection combining hazard and toxicity information.
  * 
  * @param hazard - Hazard information group
