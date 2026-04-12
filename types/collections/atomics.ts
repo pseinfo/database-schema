@@ -4,7 +4,7 @@
  */
 
 import type { Collection, Group, Single } from '@/abstract/collection';
-import type { ArrayProperty, NumberProperty, PrimitiveProperty } from '@/abstract/property';
+import type { ArrayProperty, NumberProperty, PrimitiveProperty, StructProperty } from '@/abstract/property';
 import type { NMRGroup } from '@/collections/generic';
 import type { ShellModel } from '@/utils/const';
 
@@ -29,9 +29,9 @@ export type AtomicsCollection = Collection< {
 
     // Electron configuration
     electronConfig?: Single< PrimitiveProperty< string > >;
-    shellModel?: Group< {
-        [ K in ShellModel ]: Single< PrimitiveProperty< number > >;
-    } >;
+    shellModel?: Single< StructProperty< {
+        [ K in ShellModel ]: number;
+    } > >;
 
     // Ionization energy
     ionizationEnergies?: Single< ArrayProperty< 'energy' > >;
