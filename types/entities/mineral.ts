@@ -7,7 +7,7 @@
  * optional specialized forms.
  */
 
-import type { Collection, Distinct, Entity, Group, Single } from '@/abstract/collection';
+import type { Collection, Distinct, Group, Single } from '@/abstract/collection';
 import type { FormCollection } from '@/abstract/form';
 import type { PrimitiveProperty, StructProperty } from '@/abstract/property';
 import type { ChemistryCollection } from '@/collections/chemistry';
@@ -101,7 +101,7 @@ type MineralComposition = Collection< CompositionCollection & {
  * @param properties - Distinct list of mineral properties
  * @param safety - Optional safety properties collection
  */
-type SingleMineral = Entity< {
+type SingleMineral = Collection< {
     descriptive: DescriptiveCollection;
     classification: MineralClassification;
     composition: MineralComposition;
@@ -121,7 +121,7 @@ type SingleMineral = Entity< {
  * composition details, chemical and physical properties, safety data, and
  * optional specialized forms.
  */
-export type Mineral = Entity< {
+export type Mineral = Collection< {
     [ key: string ]: MetaData & SingleMineral & {
         forms?: FormCollection< SingleMineral >;
     };
