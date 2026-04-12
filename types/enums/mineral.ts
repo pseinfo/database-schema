@@ -73,11 +73,7 @@ export enum IMAStatus {
     /** Redefined */
     REDEFINED = 'redefined',
     /** Discredited */
-    DISCREDITED = 'discredited',
-    /** Unnamed */
-    UNNAMED = 'unnamed',
-    /** Group name */
-    GROUP_NAME = 'groupName'
+    DISCREDITED = 'discredited'
 };
 
 /** Enumeration of cleavage quality. */

@@ -65,9 +65,7 @@ export enum CompoundCategory {
     /** Natural */
     NATURAL = 'natural',
     /** Synthetic */
-    SYNTHETIC = 'synthetic',
-    /** Unknown */
-    UNKNOWN = 'unknown'
+    SYNTHETIC = 'synthetic'
 };
 
 /** Enumeration of compound polarities. */
