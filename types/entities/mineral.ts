@@ -7,15 +7,16 @@
  * optional specialized forms.
  */
 
-import type { Collection, Distinct, Group } from '../abstract/collection';
-import type { FormCollection } from '../abstract/form';
-import type { ChemistryCollection } from '../collections/chemistry';
-import type { CompositionCollection } from '../collections/composition';
-import type { DescriptiveCollection } from '../collections/descriptive';
-import type { MetaData } from '../collections/generic';
-import type { PhysicsCollection } from '../collections/physics';
-import type { SafetyCollection } from '../collections/safety';
-import type { IMAStatus, MineralClass, MineralProperty, NaturalOccurrence, Phase } from '../utils/const';
+import type { Collection, Distinct, Group, Single } from '@/abstract/collection';
+import type { FormCollection } from '@/abstract/form';
+import type { PrimitiveProperty, StructProperty } from '@/abstract/property';
+import type { ChemistryCollection } from '@/collections/chemistry';
+import type { CompositionCollection } from '@/collections/composition';
+import type { DescriptiveCollection } from '@/collections/descriptive';
+import type { MetaData } from '@/collections/generic';
+import type { PhysicsCollection } from '@/collections/physics';
+import type { SafetyCollection } from '@/collections/safety';
+import type * as consts from '@/utils/const';
 
 /** Mineral collections */
 
@@ -33,24 +34,43 @@ import type { IMAStatus, MineralClass, MineralProperty, NaturalOccurrence, Phase
  * @param naturalOccurrence - Natural occurrence type
  */
 type MineralClassification = Collection< {
-    class: Distinct< MineralClass >;
-    group?: Distinct< string >;
+    class: Single< PrimitiveProperty< consts.MineralClass > >;
+    group?: Single< PrimitiveProperty< string > >;
     ima?: Group< {
-        symbol?: Distinct< string >;
-        status?: Distinct< IMAStatus >;
-        year?: Distinct< number >;
-        notes?: Distinct< string >;
+        symbol?: Single< PrimitiveProperty< string > >;
+        status?: Single< PrimitiveProperty< consts.IMAStatus > >;
+        year?: Single< PrimitiveProperty< number > >;
+        notes?: Single< PrimitiveProperty< string > >;
     } >;
     systematics?: Group< {
-        strunz8?: Distinct< string >;
-        strunz9?: Distinct< string >;
-        dana?: Distinct< string >;
-        lapis?: Distinct< string >;
+        strunz8?: Single< PrimitiveProperty< string > >;
+        strunz9?: Single< PrimitiveProperty< string > >;
+        dana?: Single< PrimitiveProperty< string > >;
+        lapis?: Single< PrimitiveProperty< string > >;
     } >;
-    similarMinerals?: Distinct< string[] >;
-    radioactive: Distinct< boolean >;
-    phase?: Distinct< Phase >;
-    naturalOccurrence?: Distinct< NaturalOccurrence >;
+    similarMinerals?: Single< PrimitiveProperty< string > >;
+    radioactive: Single< PrimitiveProperty< boolean > >;
+    phase?: Single< PrimitiveProperty< consts.Phase > >;
+    naturalOccurrence?: Single< PrimitiveProperty< consts.NaturalOccurrence > >;
+} >;
+
+/**
+ * IdentificationGroup
+ * Collections for identification properties of minerals.
+ * 
+ * @param cleavage - Cleavage properties
+ * @param parting - Parting properties
+ * @param fracture - Fracture properties
+ * @param tenacity - Tenacity properties
+ */
+type IdentificationGroup = Group< {
+    cleavage?: Single< StructProperty< {
+        quality: consts.CleavageQuality;
+        direction?: string;
+    } > >;
+    parting?: Single< PrimitiveProperty< string > >;
+    fracture?: Single< PrimitiveProperty< consts.FractureType > >;
+    tenacity?: Single< PrimitiveProperty< consts.TenacityType > >;
 } >;
 
 /**
@@ -62,9 +82,9 @@ type MineralClassification = Collection< {
  * @param alteration - Alteration products or processes
  */
 type MineralComposition = Collection< CompositionCollection & {
-    inclusions?: Distinct< string[] >;
-    varieties?: Distinct< string[] >;
-    alteration?: Distinct< string[] >;
+    inclusions?: Single< PrimitiveProperty< string > >;
+    varieties?: Single< PrimitiveProperty< string > >;
+    alteration?: Single< PrimitiveProperty< string > >;
 } >;
 
 /** Main mineral entity */
@@ -85,9 +105,11 @@ type SingleMineral = Collection< {
     descriptive: DescriptiveCollection;
     classification: MineralClassification;
     composition: MineralComposition;
-    physics?: PhysicsCollection;
+    physics?: PhysicsCollection & {
+        identification?: IdentificationGroup;
+    };
     chemistry?: ChemistryCollection;
-    properties?: Distinct< MineralProperty[] >;
+    properties?: Distinct< consts.MineralProperty[] >;
     safety?: SafetyCollection;
 } >;
 
