@@ -3,49 +3,33 @@
  * Utility types for defining collections of properties with various structures.
  */
 
-import type { LiteralUnion } from 'devtypes/types/primitive';
 import type { Property } from '@/abstract/property';
 
 /** Utility types */
 
 /**
- * Single
- * A type representing a single property or an array of properties.
+ * Represents a single property or an array of properties.
  * 
- * @template T - The type of the property
+ * @template T - The property type
  */
 export type Single< T extends Property > = T | T[];
 
 /**
- * Distinct
- * A type representing a distinct value or collection of values.
+ * Represents a distinct value or collection of values.
  * 
- * @template T - The type of the distinct value (default is unknown)
+ * @template T - The distinct value type (default: unknown)
  */
 export type Distinct< T = unknown > = T;
 
 /**
- * Group
- * A collection of properties grouped by string keys.
+ * Represents a group of properties.
  * 
  * @template T - The group definition mapping string keys to Single or Distinct types
  */
 export type Group< T extends Record< string, Single< Property > | Distinct< unknown > > > = T;
 
 /**
- * Language Group
- * A specialized group type for handling language-specific collections.
- * 
- * @template L - The language code type (default is 'en')
- * @template T - The type of the values in the group (default is string)
- */
-export type LangGroup< L extends string = 'en', T = string > = Group< {
-    [ K in LiteralUnion< L > ]: Distinct< T >;
-} >;
-
-/**
- * Collection
- * Generic collection mapper that transforms a collection definition into its corresponding structure.
+ * Transforms a collection definition into its corresponding structure.
  * 
  * @template T - The collection definition
  */
