@@ -3,6 +3,7 @@
 import { execSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { readFile, unlink, writeFile } from 'node:fs/promises';
+import stringify from 'json-stable-stringify';
 
 class SchemaPostProcessor {
 
@@ -23,7 +24,7 @@ class SchemaPostProcessor {
 
     async readSchema () {
         this.schema = JSON.parse( await readFile( this.INPUT_FILE, 'utf8' ) );
-        this.original = JSON.parse( JSON.stringify( this.schema ) );
+        this.original = JSON.parse( stringify( this.schema ) );
     }
 
     async writeSchema () {
@@ -38,7 +39,7 @@ class SchemaPostProcessor {
         this.schema.$id = `https://unpkg.com/@pseinfo/database-schema@${ this.schema.version }/src/schema.json`;
         this.schema.$schema = 'http://json-schema.org/draft-07/schema#';
 
-        await writeFile( this.OUTPUT_FILE, JSON.stringify( this.schema, null, 2 ), 'utf8' );
+        await writeFile( this.OUTPUT_FILE, stringify( this.schema, { space: 2 } ), 'utf8' );
         await unlink( this.INPUT_FILE );
     }
 
@@ -53,14 +54,14 @@ class SchemaPostProcessor {
 
     /** Create a stable hash of a node. */
     stableHash ( node ) {
-        if ( node === null || typeof node !== 'object' ) return JSON.stringify( node );
+        if ( node === null || typeof node !== 'object' ) return stringify( node );
         if ( this.hashMemo.has( node ) ) return this.hashMemo.get( node );
 
         let content;
         if ( Array.isArray( node ) ) content = '[' + node.map( i => this.stableHash( i ) ).join( ',' ) + ']';
         else {
             const keys = Object.keys( node ).sort();
-            content = '{' + keys.map( k => `${ JSON.stringify( k ) }:${ this.stableHash( node[ k ] ) }` ).join( ',' ) + '}';
+            content = '{' + keys.map( k => `${ stringify( k ) }:${ this.stableHash( node[ k ] ) }` ).join( ',' ) + '}';
         }
 
         const hash = createHash( 'sha1' ).update( content ).digest( 'hex' );
@@ -80,7 +81,7 @@ class SchemaPostProcessor {
 
         if ( ! Array.isArray( node ) ) {
             const hash = this.stableHash( node );
-            const size = JSON.stringify( node ).length;
+            const size = stringify( node ).length;
             const entry = this.nodesByHash.get( hash ) || { count: 0, size, node, allowed: false };
             entry.count += 1;
 
@@ -94,8 +95,8 @@ class SchemaPostProcessor {
 
     /** Estimate savings of sharing a node. */
     estimateSavings ( entry, refName ) {
-        const refText = JSON.stringify( { $ref: `#/definitions/${ refName }` } ).length;
-        const defText = JSON.stringify( { [ refName ]: entry.node } ).length;
+        const refText = stringify( { $ref: `#/definitions/${ refName }` } ).length;
+        const defText = stringify( { [ refName ]: entry.node } ).length;
         return entry.count * entry.size - entry.count * refText - defText;
     }
 
@@ -241,18 +242,19 @@ class SchemaPostProcessor {
     }
 
     analyzeSavings () {
-        const originalBytes = JSON.stringify( this.original ).length;
-        const finalBytes = JSON.stringify( this.schema ).length;
-        const percent = ( ( ( originalBytes - finalBytes ) / originalBytes ) * 100 ).toFixed( 1 );
+        const originalBytes = stringify( this.original ).length;
+        const finalBytes = stringify( this.schema ).length;
+        const percentBytes = ( ( ( originalBytes - finalBytes ) / originalBytes ) * 100 ).toFixed( 1 );
 
-        const originalLines = JSON.stringify( this.original, null, 2 ).split( '\n' ).length;
-        const finalLines = JSON.stringify( this.schema, null, 2 ).split( '\n' ).length;
+        const originalLines = stringify( this.original, { space: 2 } ).split( '\n' ).length;
+        const finalLines = stringify( this.schema, { space: 2 } ).split( '\n' ).length;
+        const percentLines = ( ( ( originalLines - finalLines ) / originalLines ) * 100 ).toFixed( 1 );
 
         console.log( '[schema-postprocess] Final Analysis:' );
         console.log( `    Version: ${ this.schema.version }` );
         console.log( `    Build:   ${ this.schema.build.date } (${ this.schema.build.commit })` );
-        console.log( `    Lines:   ${ originalLines } -> ${ finalLines }` );
-        console.log( `    Size:    ${ ( originalBytes / 1024 ).toFixed( 1 ) } KB -> ${ ( finalBytes / 1024 ).toFixed( 1 ) } KB (${ percent }% saved)` );
+        console.log( `    Lines:   ${ originalLines } -> ${ finalLines } (${ percentLines }% saved)` );
+        console.log( `    Size:    ${ ( originalBytes / 1024 ).toFixed( 1 ) } KB -> ${ ( finalBytes / 1024 ).toFixed( 1 ) } KB (${ percentBytes }% saved)` );
         console.log( `    Nodes:   ${ this.nodesByHash.size } unique, ${ this.replacedRefs } replaced` );
     }
 
