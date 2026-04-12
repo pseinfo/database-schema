@@ -239,7 +239,10 @@ export type ThesisReference = Thesis< 'thesis' >;
  */
 export type MiscReference =
     BaseFields< 'misc' > &
-    ExtractFrom< BibTeXFields, 'author' | 'title' | 'howpublished' | 'month' | 'year' | 'note' >;
+    ExtractFrom<
+        BibTeXFields,
+        'author' | 'title' | 'howpublished' | 'month' | 'year' | 'note'
+    >;
 
 /**
  * PhdthesisReference
