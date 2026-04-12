@@ -143,6 +143,10 @@ export const CompoundCategory = [
     'supramolecular', 'natural', 'synthetic', 'unknown'
 ] as const;
 
+/** Compound polarities */
+export type CompoundPolarity = ( typeof CompoundPolarity )[ number ];
+export const CompoundPolarity = [ 'nonpolar', 'polar', 'amphipathic' ] as const;
+
 /** Compound Properties */
 export type CompoundProperty = ( typeof CompoundProperty )[ number ];
 export const CompoundProperty = [

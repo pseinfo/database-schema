@@ -3,15 +3,16 @@
  * Defines the database entity for chemical compounds and substances.
  */
 
-import type { Collection, Distinct } from '../abstract/collection';
-import type { FormCollection } from '../abstract/form';
-import type { ChemistryCollection } from '../collections/chemistry';
-import type { CompositionCollection } from '../collections/composition';
-import type { DescriptiveCollection } from '../collections/descriptive';
-import type { MetaData } from '../collections/generic';
-import type { PhysicsCollection } from '../collections/physics';
-import type { SafetyCollection } from '../collections/safety';
-import type { CompoundCategory, CompoundProperty, NaturalOccurrence, Phase } from '../utils/const';
+import type { Collection, Distinct, Single } from '@/abstract/collection';
+import type { FormCollection } from '@/abstract/form';
+import type { PrimitiveProperty } from '@/abstract/property';
+import type { ChemistryCollection } from '@/collections/chemistry';
+import type { CompositionCollection } from '@/collections/composition';
+import type { DescriptiveCollection } from '@/collections/descriptive';
+import type { MetaData } from '@/collections/generic';
+import type { PhysicsCollection } from '@/collections/physics';
+import type { SafetyCollection } from '@/collections/safety';
+import type * as consts from '@/utils/const';
 
 /** Compound collections */
 
@@ -26,11 +27,11 @@ import type { CompoundCategory, CompoundProperty, NaturalOccurrence, Phase } fro
  * @param naturalOccurrence - Natural occurrence type
  */
 type CompoundClassification = Collection< {
-    category: Distinct< CompoundCategory >;
-    family?: Distinct< string[] >;
-    radioactive: Distinct< boolean >;
-    phase?: Distinct< Phase >;
-    naturalOccurrence?: Distinct< NaturalOccurrence >;
+    category: Single< PrimitiveProperty< consts.CompoundCategory > >;
+    family?: Single< PrimitiveProperty< string > >;
+    radioactive: Single< PrimitiveProperty< boolean > >;
+    phase?: Single< PrimitiveProperty< consts.Phase > >;
+    naturalOccurrence?: Single< PrimitiveProperty< consts.NaturalOccurrence > >;
 } >;
 
 /**
@@ -48,15 +49,15 @@ type CompoundClassification = Collection< {
  * @param functionalGroups - List of functional groups present in the compound
  */
 type CompoundComposition = Collection< CompositionCollection & {
-    molecularFormula?: Distinct< string >;
-    simplifiedFormula?: Distinct< string >;
-    multiplicity?: Distinct< number >;
-    aromatic?: Distinct< boolean >;
-    polarity?: Distinct< 'nonpolar' | 'polar' | 'amphipathic' >;
-    stoichiometry?: Distinct< string >;
-    repeatUnit?: Distinct< string >;
-    hydration?: Distinct< number >;
-    functionalGroups?: Distinct< string[] >;
+    molecularFormula?: Single< PrimitiveProperty< string > >;
+    simplifiedFormula?: Single< PrimitiveProperty< string > >;
+    multiplicity?: Single< PrimitiveProperty< number > >;
+    aromatic?: Single< PrimitiveProperty< boolean > >;
+    polarity?: Single< PrimitiveProperty< consts.CompoundPolarity > >;
+    stoichiometry?: Single< PrimitiveProperty< string > >;
+    repeatUnit?: Single< PrimitiveProperty< string > >;
+    hydration?: Single< PrimitiveProperty< number > >;
+    functionalGroups?: Single< PrimitiveProperty< string > >;
 } >;
 
 /** Main compound entity */
@@ -79,7 +80,7 @@ type SingleCompound = Collection< {
     composition: CompoundComposition;
     physics?: PhysicsCollection;
     chemistry?: ChemistryCollection;
-    properties?: Distinct< CompoundProperty[] >;
+    properties?: Distinct< consts.CompoundProperty[] >;
     safety?: SafetyCollection;
 } >;
 
@@ -91,8 +92,8 @@ type SingleCompound = Collection< {
  * composition details, chemical and physical properties, safety data, and
  * optional specialized forms such as polymorphs, solvates, or phase variants.
  */
-export type Compound = {
+export type Compound = Collection< {
     [ key: string ]: MetaData & SingleCompound & {
         forms?: FormCollection< SingleCompound >;
     };
-};
+} >;

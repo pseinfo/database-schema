@@ -26,9 +26,9 @@ import type * as consts from '@/utils/const';
  * @param group - Distinct group of the periodic table
  * @param column - Distinct column number in the periodic table
  * @param period - Distinct period number in the periodic table
+ * @param phase - Standard phase at room temperature
  * @param set - Distinct set classification of the element
  * @param radioactive - Whether the element is radioactive
- * @param phase - Standard phase at room temperature
  * @param naturalOccurrence - Natural occurrence type
  * @param goldschmidt - Goldschmidt classification
  * @param superconductivity - Superconductivity type
@@ -40,9 +40,9 @@ type ElementClassification = Collection< {
     group: Distinct< consts.ElementGroup >;
     column: Distinct< consts.ElementColumn >;
     period: Distinct< consts.ElementPeriod >;
+    phase: Distinct< consts.Phase >;
     set: Distinct< consts.ElementSet >;
     radioactive: Single< PrimitiveProperty< boolean > >;
-    phase?: Single< PrimitiveProperty< consts.Phase > >;
     naturalOccurrence?: Single< PrimitiveProperty< consts.NaturalOccurrence > >;
     goldschmidt?: Single< PrimitiveProperty< consts.Goldschmidt > >;
     superconductivity?: Single< PrimitiveProperty< consts.Superconductivity > >;
