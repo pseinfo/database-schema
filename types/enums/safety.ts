@@ -16,6 +16,46 @@ export enum SignalWord {
     CAUTION = 'caution'
 };
 
+/** Enumeration of NFPA (National Fire Protection Association) codes. */
+export enum NFPACode {
+    /** No hazard */
+    NONE = 0,
+    /** Slight hazard */
+    SLIGHT = 1,
+    /** Moderate hazard */
+    MODERATE = 2,
+    /** Serious hazard */
+    SERIOUS = 3,
+    /** Severe hazard */
+    SEVERE = 4
+};
+
+/** Enumeration of NFPA (National Fire Protection Association) notices. */
+export enum NFPANotice {
+    /** Oxidizer */
+    OXIDIZER = 'OX',
+    /** Water reactive */
+    WATER_REACTIVE = 'W',
+    /** Simple asphyxiant gas */
+    SIMPLE_ASPHYXIANT = 'SA',
+    /** Corrosive */
+    CORROSIVE = 'COR',
+    /** Acid */
+    ACID = 'ACID',
+    /** Alkaline */
+    ALKALINE = 'ALK',
+    /** Biohazardous */
+    BIOHAZARDOUS = 'BIO',
+    /** Poisonous */
+    POISONOUS = 'POI',
+    /** Radioactive */
+    RADIOACTIVE = 'RAD',
+    /** Cryogenic */
+    CRYOGENIC = 'CRY',
+    /** Oxygen gas */
+    OXYGEN_GAS = 'G OX'
+};
+
 /** Enumeration of GHS pictograms. */
 export enum GHSPictogram {
     /** Explosive pictogram */

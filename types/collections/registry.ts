@@ -1,9 +1,12 @@
 /**
  * Chemical Registry and Structure Types
  * Property groups for various chemical identifiers and structure representations.
+ * 
+ * @module collections/registry
  */
 
 import type { Distinct, Group } from '@/abstract/collection';
+
 
 /** Define types for various chemical registry identifiers */
 export type CASNumber = `${number}-${number}-${number}`;
@@ -24,8 +27,7 @@ export type PDBID = string;
 export type WikidataID = `Q${number}`;
 
 /**
- * RegistryGroup
- * Group type for chemical registry identifiers.
+ * Group for chemical registry identifiers.
  * 
  * @param cas - CAS number
  * @param cid - PubChem ID
@@ -93,8 +95,7 @@ export type WLN = string;
 export type IUPACName = string;
 
 /**
- * StructureGroup
- * Group type for chemical structure representations.
+ * Group for chemical structure representations.
  * 
  * @param inChI - IUPAC International Chemical Identifier
  * @param inChIkey - Hashed version of the InChI

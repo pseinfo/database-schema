@@ -1,13 +1,18 @@
 /**
  * Safety Collection
  * Defines the structure for safety-related information in the database schema.
+ * 
+ * @module collections/safety
  */
 
 import type { Collection, Distinct, Group, Single } from '@/abstract/collection';
 import type { StructProperty } from '@/abstract/property';
 import type { RefId } from '@/abstract/reference';
 import type { RangeValue, SingleValue } from '@/abstract/value';
-import type { ADRClass, DOTClass, GHSClass, GHSPictogram, SignalWord, ToxicityApplication, ToxicityType, WHMISClass } from '@/enums/safety';
+import type {
+    ADRClass, DOTClass, GHSClass, GHSPictogram, NFPACode, NFPANotice, SignalWord,
+    ToxicityApplication, ToxicityType, WHMISClass
+} from '@/enums/safety';
 
 
 /** Hazard statements */
@@ -30,10 +35,10 @@ export type UNNumber = `${ '0' | '1' | '2' | '3' | '8' | '9' }${ number }`;
  * @param specific - Specific hazard rating
  */
 export type NFPA = {
-    health: 0 | 1 | 2 | 3 | 4;
-    fire: 0 | 1 | 2 | 3 | 4;
-    reactivity: 0 | 1 | 2 | 3 | 4;
-    specific?: 'W' | 'OX' | 'SA' | 'COR' | 'ACID' | 'ALK' | 'BIO' | 'POI' | 'RAD' | 'CRY';
+    health: NFPACode;
+    fire: NFPACode;
+    reactivity: NFPACode;
+    specific?: NFPANotice;
 };
 
 /**
@@ -83,11 +88,11 @@ export type HazardGroup = Group< {
  * @param duration - Duration of exposure
  */
 export type Toxicity = {
-    type: Distinct< ToxicityType >;  
-    organism: Distinct< string >;  
+    type: Distinct< ToxicityType >;
+    organism: Distinct< string >;
     value: SingleValue< 'massFraction' > | RangeValue< 'massFraction' >;
-    application?: Distinct< ToxicityApplication >;  
-    duration?: Distinct< string >;  
+    application?: Distinct< ToxicityApplication >;
+    duration?: SingleValue< 'time' > | RangeValue< 'time' >;
 };
 
 /**
