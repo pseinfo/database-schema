@@ -6,7 +6,7 @@
  */
 
 import type { RequireFrom } from 'devtypes/types/constraint';
-import type { Brand } from 'devtypes/types/util';
+import type { Brand, Expand } from 'devtypes/types/util';
 import type { UncertaintyType } from '@/enums/abstract';
 
 
@@ -44,25 +44,28 @@ export interface UncertaintyFields {
  * Type description of an absolute uncertainty.
  * Includes required absolute field.
  */
-export type AbsoluteUncertainty =
+export type AbsoluteUncertainty = Expand<
     BaseUncertainty< UncertaintyType.ABSOLUTE > &
-    RequireFrom< UncertaintyFields, 'absolute' >;
+    RequireFrom< UncertaintyFields, 'absolute' >
+>;
 
 /**
  * Type description of a relative uncertainty.
  * Includes required relative field.
  */
-export type RelativeUncertainty =
+export type RelativeUncertainty = Expand<
     BaseUncertainty< UncertaintyType.RELATIVE > &
-    RequireFrom< UncertaintyFields, 'relative' >;
+    RequireFrom< UncertaintyFields, 'relative' >
+>;
 
 /**
  * Type description of an asymmetrical uncertainty.
  * Includes required plus and minus fields.
  */
-export type AsymmetricalUncertainty =
+export type AsymmetricalUncertainty = Expand<
     BaseUncertainty< UncertaintyType.ASYMMETRICAL > &
-    RequireFrom< UncertaintyFields, 'plus' | 'minus' >;
+    RequireFrom< UncertaintyFields, 'plus' | 'minus' >
+>;
 
 /** Union type for all uncertainty types. */
 export type Uncertainty =
