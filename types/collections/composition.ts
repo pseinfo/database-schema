@@ -1,15 +1,17 @@
 /**
  * Composition Collection
  * Defines the structure for chemical components and composition of substances.
+ * 
+ * @module collections/composition
  */
 
 import type { Collection, Distinct, Group, Single } from '@/abstract/collection';
 import type { PrimitiveProperty } from '@/abstract/property';
-import type { ElementSymbol } from '@/enums/element';
 import type { ComponentRole } from '@/enums/compound';
+import type { ElementSymbol } from '@/enums/element';
+
 
 /**
- * CompositionComponent
  * Defines the structure for a single component of a chemical substance or mineral.
  * 
  * @param element - Distinct chemical symbol of the element
@@ -31,8 +33,7 @@ export type CompositionComponent = Group< {
 } >;
 
 /**
- * CompositionCollection
- * Group for compositional properties.
+ * Collection for compositional properties.
  * 
  * @param components - List of components that make up the substance
  * @param formula - Chemical formula

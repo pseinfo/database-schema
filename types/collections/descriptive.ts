@@ -1,6 +1,8 @@
 /**
  * Descriptive Collection
  * Defines the structure for descriptive properties of chemical elements and compounds.
+ * 
+ * @module collections/descriptive
  */
 
 import type { Collection } from '@/abstract/collection';
@@ -8,8 +10,8 @@ import type { NumberProperty } from '@/abstract/property';
 import type { AbundanceGroup, DiscoveryGroup, LangGroup, MediaGroup, WeblinksGroup } from '@/collections/generic';
 import type { RegistryGroup, StructureGroup } from '@/collections/registry';
 
+
 /**
- * DescriptiveCollection
  * Collection for descriptive properties of elements and compounds.
  * 
  * @param registry - Registry information group
