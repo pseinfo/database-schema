@@ -1,6 +1,8 @@
 /**
  * Element Entity
  * Defines the database entity for chemical elements of the periodic table.
+ * 
+ * @module entities/element
  */
 
 import type { Collection, Distinct, Single } from '@/abstract/collection';
@@ -13,12 +15,12 @@ import type { MetaData } from '@/collections/generic';
 import type { PhysicsCollection } from '@/collections/physics';
 import type { SafetyCollection } from '@/collections/safety';
 import type { ElementBlock, ElementGroup, ElementProperty, ElementSet, ElementSymbol } from '@/enums/element';
-import type { Goldschmidt, NaturalOccurrence, Phase, Superconductivity } from '@/enums/generic';
+import type { Goldschmidt, NaturalOccurrence, Phase, PTColumn, PTPeriod, Superconductivity } from '@/enums/generic';
+
 
 /** Element collections */
 
 /**
- * ElementClassification
  * Collection for classification properties of elements.
  * 
  * @param symbol - Distinct chemical symbol of the element
@@ -39,8 +41,8 @@ export type ElementClassification = Collection< {
     atomicNumber: Distinct< number >;
     block: Distinct< ElementBlock >;
     group: Distinct< ElementGroup >;
-    column: Distinct< 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 >;
-    period: Distinct< 1 | 2 | 3 | 4 | 5 | 6 | 7 >;
+    column: Distinct< PTColumn >;
+    period: Distinct< PTPeriod >;
     phase: Distinct< Phase >;
     set: Distinct< ElementSet >;
     radioactive: Single< PrimitiveProperty< boolean > >;
@@ -52,7 +54,6 @@ export type ElementClassification = Collection< {
 /** Main element entity */
 
 /**
- * SingleElement
  * Type for a single element entry (all properties).
  * 
  * @param descriptive - Descriptive properties collection
@@ -74,7 +75,6 @@ export type SingleElement = Collection< {
 } >;
 
 /**
- * Element
  * Entity type for all elements, indexed by their symbol.
  * 
  * This includes metadata, collections for a single element, and optional forms.
