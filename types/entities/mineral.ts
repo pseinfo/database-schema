@@ -9,6 +9,7 @@
  * @module entities/mineral
  */
 
+import type { Expand } from 'devtypes/types/util';
 import type { Collection, Distinct, Group, Single } from '@/abstract/collection';
 import type { FormCollection } from '@/abstract/form';
 import type { PrimitiveProperty, StructProperty } from '@/abstract/property';
@@ -105,9 +106,9 @@ export type SingleMineral = Collection< {
     descriptive: DescriptiveCollection;
     classification: MineralClassification;
     composition: MineralComposition;
-    physics?: PhysicsCollection & {
+    physics?: Expand< PhysicsCollection & {
         identification?: IdentificationGroup;
-    };
+    } >;
     chemistry?: ChemistryCollection;
     properties?: Distinct< MineralProperty[] >;
     safety?: SafetyCollection;
@@ -121,7 +122,7 @@ export type SingleMineral = Collection< {
  * optional specialized forms.
  */
 export type Mineral = Collection< {
-    [ key: string ]: MetaData & SingleMineral & {
+    [ key: string ]: Expand< MetaData & SingleMineral & {
         forms?: FormCollection< SingleMineral >;
-    };
+    } >;
 } >;

@@ -6,6 +6,7 @@
  */
 
 import type { Primitive } from 'devtypes/types/primitive';
+import type { Expand } from 'devtypes/types/util';
 import type { Conditions } from '@/abstract/condition';
 import type { RefId } from '@/abstract/reference';
 import type { PhysicalQuantity } from '@/abstract/unit';
@@ -41,7 +42,7 @@ export type PrimitiveProperty<
     P extends Primitive = Primitive,
     C extends PhysicalQuantity = PhysicalQuantity,
     T extends Primitive = Primitive
-> = BaseProperty< C, T > & value.PrimitiveValue< P >;
+> = Expand< BaseProperty< C, T > & value.PrimitiveValue< P > >; 
 
 /**
  * Property wrapper for structure values (e.g. objects, arrays).
@@ -54,7 +55,7 @@ export type StructProperty<
     S extends value.StructType = value.StructType,
     C extends PhysicalQuantity = PhysicalQuantity,
     T extends Primitive = Primitive
-> = BaseProperty< C, T > & value.StructValue< S >;
+> = Expand< BaseProperty< C, T > & value.StructValue< S > >; 
 
 /**
  * Property wrapper for single values.
@@ -67,7 +68,7 @@ export type SingleProperty<
     Q extends PhysicalQuantity = PhysicalQuantity,
     C extends PhysicalQuantity = PhysicalQuantity,
     T extends Primitive = Primitive
-> = BaseProperty< C, T > & value.SingleValue< Q >;
+> = Expand< BaseProperty< C, T > & value.SingleValue< Q > >; 
 
 /**
  * Property wrapper for array values.
@@ -80,7 +81,7 @@ export type ArrayProperty<
     Q extends PhysicalQuantity = PhysicalQuantity,
     C extends PhysicalQuantity = PhysicalQuantity,
     T extends Primitive = Primitive
-> = BaseProperty< C, T > & value.ArrayValue< Q >;
+> = Expand< BaseProperty< C, T > & value.ArrayValue< Q > >; 
 
 /**
  * Property wrapper for range values.
@@ -93,7 +94,7 @@ export type RangeProperty<
     Q extends PhysicalQuantity = PhysicalQuantity,
     C extends PhysicalQuantity = PhysicalQuantity,
     T extends Primitive = Primitive
-> = BaseProperty< C, T > & value.RangeValue< Q >;
+> = Expand< BaseProperty< C, T > & value.RangeValue< Q > >; 
 
 /** Coupled property type definitions */
 
@@ -108,7 +109,7 @@ export type CoupledNumberProperty<
     Q extends PhysicalQuantity = PhysicalQuantity,
     C extends PhysicalQuantity = PhysicalQuantity,
     T extends Primitive = Primitive
-> = BaseProperty< C, T > & value.CoupledNumberValue< Q >;
+> = Expand< BaseProperty< C, T > & value.CoupledNumberValue< Q > >; 
 
 /**
  * Property wrapper for coupled values.
@@ -125,7 +126,7 @@ export type CoupledProperty<
     C extends PhysicalQuantity = PhysicalQuantity,
     T extends Primitive = Primitive,
     S extends value.StructType = value.StructType
-> = BaseProperty< C, T > & value.CoupledValue< Q, P, S >;
+> = Expand< BaseProperty< C, T > & value.CoupledValue< Q, P, S > >; 
 
 /** Union property types */
 
@@ -140,7 +141,7 @@ export type NumberProperty<
     Q extends PhysicalQuantity = PhysicalQuantity,
     C extends PhysicalQuantity = PhysicalQuantity,
     T extends Primitive = Primitive
-> = BaseProperty< C, T > & value.NumberValue< Q >;
+> = Expand< BaseProperty< C, T > & value.NumberValue< Q > >; 
 
 /**
  * Union property wrapper for general values.
@@ -157,4 +158,4 @@ export type Property<
     C extends PhysicalQuantity = PhysicalQuantity,
     T extends Primitive = Primitive,
     S extends value.StructType = value.StructType
-> = BaseProperty< C, T > & value.Value< Q, P, S >;
+> = Expand< BaseProperty< C, T > & value.Value< Q, P, S > >; 

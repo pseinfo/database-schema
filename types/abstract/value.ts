@@ -7,7 +7,7 @@
 
 import type { RequireAtLeastOne, RequireExactlyOne, StrictSubset } from 'devtypes/types/constraint';
 import type { Primitive } from 'devtypes/types/primitive';
-import type { Brand } from 'devtypes/types/util';
+import type { Brand, Expand } from 'devtypes/types/util';
 import type { Uncertainty } from '@/abstract/uncertainty';
 import type { PhysicalQuantity, UnitId } from '@/abstract/unit';
 import type { ValueType, ValueConfidence } from '@/enums/abstract';
@@ -64,9 +64,10 @@ export interface ValueFields<
  * 
  * @template T - Primitive type
  */
-export type PrimitiveValue< T extends Primitive = Primitive > =
+export type PrimitiveValue< T extends Primitive = Primitive > = Expand<
     BaseValue< ValueType.PRIMITIVE > &
-    RequireExactlyOne< ValueFields< never, T >, 'value' | 'values' >;
+    RequireExactlyOne< ValueFields< never, T >, 'value' | 'values' >
+>; 
 
 /** Struct key type. */
 export type StructKey = string | number;
@@ -80,9 +81,10 @@ export type StructType = Record< StructKey, any >;
  * 
  * @template T - Struct type
  */
-export type StructValue< T extends StructType = StructType > =
+export type StructValue< T extends StructType = StructType > = Expand<
     BaseValue< ValueType.STRUCT > &
-    RequireAtLeastOne< ValueFields< never, never, T >, 'struct' >; 
+    RequireAtLeastOne< ValueFields< never, never, T >, 'struct' >
+>; 
 
 /**
  * Type description of a single numeric value.
@@ -90,9 +92,10 @@ export type StructValue< T extends StructType = StructType > =
  * 
  * @template Q - Physical quantity type
  */
-export type SingleValue< Q extends PhysicalQuantity = PhysicalQuantity > =
+export type SingleValue< Q extends PhysicalQuantity = PhysicalQuantity > = Expand<
     BaseValue< ValueType.SINGLE > &
-    StrictSubset< ValueFields< Q, number >, 'value', 'unit' >;
+    StrictSubset< ValueFields< Q, number >, 'value', 'unit' >
+>;
 
 /**
  * Type description of an numeric array value.
@@ -100,9 +103,10 @@ export type SingleValue< Q extends PhysicalQuantity = PhysicalQuantity > =
  * 
  * @template Q - Physical quantity type
  */
-export type ArrayValue< Q extends PhysicalQuantity = PhysicalQuantity > =
+export type ArrayValue< Q extends PhysicalQuantity = PhysicalQuantity > = Expand<
     BaseValue< ValueType.ARRAY > &
-    StrictSubset< ValueFields< Q, number >, 'values', 'unit' >;
+    StrictSubset< ValueFields< Q, number >, 'values', 'unit' >
+>;
 
 /**
  * Type description of a numeric range value.
@@ -110,9 +114,10 @@ export type ArrayValue< Q extends PhysicalQuantity = PhysicalQuantity > =
  * 
  * @template Q - Physical quantity type
  */
-export type RangeValue< Q extends PhysicalQuantity = PhysicalQuantity > =
+export type RangeValue< Q extends PhysicalQuantity = PhysicalQuantity > = Expand<
     BaseValue< ValueType.RANGE > &
-    StrictSubset< ValueFields< Q, number >, 'range', 'value' | 'unit' >;
+    StrictSubset< ValueFields< Q, number >, 'range', 'value' | 'unit' >
+>;
 
 /** Coupled value type definitions */
 
@@ -121,7 +126,7 @@ export type RangeValue< Q extends PhysicalQuantity = PhysicalQuantity > =
  * 
  * @template Q - Physical quantity type
  */
-export type CoupledNumberValue< Q extends PhysicalQuantity = PhysicalQuantity > =
+export type CoupledNumberValue< Q extends PhysicalQuantity = PhysicalQuantity > = Expand<
     BaseValue< ValueType.COUPLED > & {
         properties: RequireAtLeastOne< {
             [ K in Q ]?:
@@ -129,7 +134,8 @@ export type CoupledNumberValue< Q extends PhysicalQuantity = PhysicalQuantity > 
                 | ArrayValue< K >
                 | RangeValue< K >;
         } >;
-    };
+    }
+>;
 
 /**
  * Type description of a coupled value with generic primitives.
@@ -142,7 +148,7 @@ export type CoupledValue<
     Q extends PhysicalQuantity = PhysicalQuantity,
     T extends Primitive = Primitive,
     S extends StructType = StructType
-> =
+> = Expand<
     BaseValue< ValueType.COUPLED > & {
         properties: RequireAtLeastOne< {
             [ K in Q ]?:
@@ -152,7 +158,8 @@ export type CoupledValue<
                 | ArrayValue< K >
                 | RangeValue< K >;
         } >;
-    };
+    }
+>;
 
 /** Union value types */
 

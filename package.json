@@ -68,7 +68,7 @@
   ],
   "scripts": {
     "lint": "tsc",
-    "schema:generate": "ts-json-schema-generator --tsconfig tsconfig.json --type Database -o src/schema.raw.json",
+    "schema:generate": "ts-json-schema-generator --tsconfig tsconfig.json --type Database -o src/schema.raw.json --expose all",
     "schema:postprocess": "node scripts/schema-postprocess.mjs",
     "schema:validate": "node scripts/schema-validate.mjs",
     "schema": "npm run schema:generate && npm run schema:postprocess && npm run schema:validate",

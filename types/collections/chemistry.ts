@@ -8,7 +8,7 @@
 import type { Collection, Group, Single } from '@/abstract/collection';
 import type { NumberProperty, PrimitiveProperty, StructProperty } from '@/abstract/property';
 import type { AcidBaseCharacter, BondType, HSAB, Hybridization, LewisAcidity, LewisBasicity, OxideCharacter } from '@/enums/chemistry';
-import { CrystalStructure } from '@/enums/generic';
+import type { CrystalStructure } from '@/enums/generic';
 
 
 /**
