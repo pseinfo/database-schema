@@ -3,7 +3,8 @@
  * Defined common collection types for various data groups.
  */
 
-import type { Distinct, Group, LangGroup, Single } from '@/abstract/collection';
+import type { LiteralUnion } from 'devtypes/types/primitive';
+import type { Distinct, Group, Single } from '@/abstract/collection';
 import type { NumberProperty, PrimitiveProperty, StructProperty } from '@/abstract/property';
 import type { RefId } from '@/abstract/reference';
 import type { CrystalStructure } from '@/utils/const';
@@ -28,6 +29,16 @@ export type MetaData = Distinct< {
         schemaVersion: 1;
         lastModified: string;
     };
+} >;
+
+/**
+ * Represents a group of properties for different languages.
+ * 
+ * @template L - The required language codes (default: 'en')
+ * @template T - The value type (default: string)
+ */
+export type LangGroup< L extends string = 'en', T = string > = Group< {
+    [ K in LiteralUnion< L > ]: Distinct< T >;
 } >;
 
 /**
