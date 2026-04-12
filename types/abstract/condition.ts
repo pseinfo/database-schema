@@ -4,11 +4,11 @@
  */
 
 import type { Primitive } from 'devtypes/types/primitive';
-
-import type { PhysicalQuantity } from './unit';
-import type { Value } from './value';
+import type { PhysicalQuantity } from '@/abstract/unit';
+import type { Value } from '@/abstract/value';
 
 /** Definition of standard conditions */
+export type StandardCondition = ( typeof StandardCondition )[ number ];
 export const StandardCondition = [
     'STP',          // T=0     P=100      IUPAC (STP) since 1982
     'STP_ATM',      // T=0     P=101.325  NIST, ISO 10780, former IUPAC STP
@@ -27,8 +27,6 @@ export const StandardCondition = [
     'ISO_13443',    // T=15    P=101.325  ISO 2533, ISO 13443, ISO 7504
     'DIN_1343'      // T=0     P=101.325  DIN 1343:1990
 ] as const;
-
-export type StandardCondition = ( typeof StandardCondition )[ number ];
 
 /**
  * Conditions
