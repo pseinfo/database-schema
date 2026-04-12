@@ -36,6 +36,16 @@ export enum ValueConfidence {
     EXPERIMENTAL = 'experimental'
 };
 
+/** Enumeration of uncertainty types. */
+export enum UncertaintyType {
+    /** Absolute uncertainty */
+    ABSOLUTE = 'absolute',
+    /** Relative uncertainty */
+    RELATIVE = 'relative',
+    /** Asymmetrical uncertainty */
+    ASYMMETRICAL = 'asymmetrical'
+};
+
 /** Enumeration of standard conditions for physical quantities. */
 export enum StandardCondition {
     /** T=0     P=100       IUPAC (STP) since 1982 */
