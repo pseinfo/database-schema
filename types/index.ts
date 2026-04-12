@@ -5,18 +5,20 @@
  * This type describes the main entities contained within the database,
  * including elements, chemical compounds, minerals, nuclides, as well as
  * references, and units.
+ * 
+ * @author Paul Köhler (komed3)
+ * @license MIT
  */
 
-import type { ReferenceCollection } from './abstract/reference';
-import type { UnitCollection } from './abstract/unit';
+import type { ReferenceCollection } from '@/abstract/reference';
+import type { UnitCollection } from '@/abstract/unit';
 
-import type { Compound } from './entities/compound';
-import type { Element } from './entities/element';
-import type { Mineral } from './entities/mineral';
-import type { Nuclide } from './entities/nuclide';
+import type { Compound } from '@/entities/compound';
+import type { Element } from '@/entities/element';
+import type { Mineral } from '@/entities/mineral';
+import type { Nuclide } from '@/entities/nuclide';
 
 /**
- * Database
  * Root database schema type containing all main entities.
  * 
  * @param elements - Collection of chemical elements

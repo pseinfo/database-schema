@@ -1,6 +1,8 @@
 /**
  * Compound Entity
  * Defines the database entity for chemical compounds and substances.
+ * 
+ * @module entities/compound
  */
 
 import type { Collection, Distinct, Single } from '@/abstract/collection';
@@ -12,12 +14,13 @@ import type { DescriptiveCollection } from '@/collections/descriptive';
 import type { MetaData } from '@/collections/generic';
 import type { PhysicsCollection } from '@/collections/physics';
 import type { SafetyCollection } from '@/collections/safety';
-import type * as consts from '@/utils/const';
+import type { CompoundCategory, CompoundPolarity, CompoundProperty } from '@/enums/compound';
+import type { NaturalOccurrence, Phase } from '@/enums/generic';
+
 
 /** Compound collections */
 
 /**
- * CompoundClassification
  * Collections for classification properties of chemical compounds.
  * 
  * @param category - Category of the compound (e.g., organic, inorganic)
@@ -27,15 +30,14 @@ import type * as consts from '@/utils/const';
  * @param naturalOccurrence - Natural occurrence type
  */
 export type CompoundClassification = Collection< {
-    category: Single< PrimitiveProperty< consts.CompoundCategory > >;
+    category: Single< PrimitiveProperty< CompoundCategory > >;
     family?: Single< PrimitiveProperty< string > >;
     radioactive: Single< PrimitiveProperty< boolean > >;
-    phase?: Single< PrimitiveProperty< consts.Phase > >;
-    naturalOccurrence?: Single< PrimitiveProperty< consts.NaturalOccurrence > >;
+    phase?: Single< PrimitiveProperty< Phase > >;
+    naturalOccurrence?: Single< PrimitiveProperty< NaturalOccurrence > >;
 } >;
 
 /**
- * CompoundComposition
  * Collections for compositional properties of chemical compounds.
  * 
  * @param molecularFormula - Molecular formula of the compound
@@ -53,7 +55,7 @@ export type CompoundComposition = Collection< CompositionCollection & {
     simplifiedFormula?: Single< PrimitiveProperty< string > >;
     multiplicity?: Single< PrimitiveProperty< number > >;
     aromatic?: Single< PrimitiveProperty< boolean > >;
-    polarity?: Single< PrimitiveProperty< consts.CompoundPolarity > >;
+    polarity?: Single< PrimitiveProperty< CompoundPolarity > >;
     stoichiometry?: Single< PrimitiveProperty< string > >;
     repeatUnit?: Single< PrimitiveProperty< string > >;
     hydration?: Single< PrimitiveProperty< number > >;
@@ -63,7 +65,6 @@ export type CompoundComposition = Collection< CompositionCollection & {
 /** Main compound entity */
 
 /**
- * SingleCompound
  * Entity type for a single chemical compound, indexed by a unique identifier.
  * 
  * @param descriptive - Descriptive collections for the compound
@@ -80,12 +81,11 @@ export type SingleCompound = Collection< {
     composition: CompoundComposition;
     physics?: PhysicsCollection;
     chemistry?: ChemistryCollection;
-    properties?: Distinct< consts.CompoundProperty[] >;
+    properties?: Distinct< CompoundProperty[] >;
     safety?: SafetyCollection;
 } >;
 
 /**
- * Compound
  * Entity type for chemical compounds, indexed by a unique identifier.
  * 
  * Each compound entry includes metadata, descriptive content, classification,

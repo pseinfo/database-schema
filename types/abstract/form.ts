@@ -1,36 +1,34 @@
 /**
  * Abstract Form Collection
  * Defines the structure for various form types of substances.
+ * 
+ * @module abstract/form
  */
 
 import type { RequireFrom, StrictSubset } from 'devtypes/types/constraint';
 import type { DeepPartial } from 'devtypes/types/transform';
 import type { Brand } from 'devtypes/types/util';
 import type { Collection, Distinct } from '@/abstract/collection';
-import type { CrystalStructure, Phase } from '@/utils/const';
+import type { FormType } from '@/enums/abstract';
+import type { CrystalStructure, Phase } from '@/enums/generic';
 
-/** Form types for substances */
-export type FormType = ( typeof FormType )[ number ];
-export const FormType = [ 'allotrope', 'molecular', 'phase', 'polymorph', 'amorphous', 'other' ] as const;
 
 /**
- * BaseFields
- * Common fields for all form types
+ * Branded common fields for all form types.
  * 
  * @template T - Form type
  * @template C - Collection type for properties
- * @param type - type for substance form (branding)
+ * @param type - Type for substance form (branding)
  * @param properties - Partial collection of properties specific to the form
  * @param note - Additional notes about the form
  */
-export type BaseFields< T extends FormType, C extends Collection< any > > = Brand< {
+export type BaseForm< T extends FormType, C extends Collection< any > > = Brand< {
     properties?: DeepPartial< C >;
     note?: Distinct< string >;
 }, T, 'type', true >;
 
 /**
- * FormFields
- * Specific fields for form properties
+ * Specific fields for form properties.
  * 
  * @param formula - Chemical formula of the form
  * @param phase - Phase of the substance (solid, liquid, gas, plasma)
@@ -49,52 +47,50 @@ export interface FormFields {
 /** Specific form types */
 
 /**
- * AllotropeForm
- * Form type for allotropes and other unspecified forms
+ * Form type for allotropes and other unspecified forms.
+ * Includes required fields for formula, phase, crystal structure, pearson symbol, and space group.
  * 
- * Fields: properties, note, formula, phase, crystalStructure, pearsonSymbol, spaceGroup
+ * @template C - Collection type for properties
  */
 export type AllotropeForm< C extends Collection< any > > =
-    BaseFields< 'allotrope' | 'other', C > &
+    BaseForm< FormType.ALLOTROPE | FormType.OTHER, C > &
     FormFields;
 
 /**
- * MolecularForm
- * Form type for molecular forms
+ * Form type for molecular forms.
+ * Includes required fields for formula.
  * 
- * Fields: properties, note, formula
+ * @template C - Collection type for properties
  */
 export type MolecularForm< C extends Collection< any > > =
-    BaseFields< 'molecular', C > &
+    BaseForm< FormType.MOLECULAR, C > &
     RequireFrom< FormFields, 'formula' >;
 
 /**
- * PhaseForm
- * Form type for specific phases of substances
+ * Form type for specific phases of substances.
+ * Includes required fields for phase.
  * 
- * Fields: properties, note, phase
+ * @template C - Collection type for properties
  */
 export type PhaseForm< C extends Collection< any > > =
-    BaseFields< 'phase', C > &
+    BaseForm< FormType.PHASE, C > &
     RequireFrom< FormFields, 'phase' >;
 
 /**
- * PolymorphForm
- * Form type for polymorphs and amorphous forms
+ * Form type for polymorphs and amorphous forms.
+ * Includes required fields for crystal structure, optionally pearson symbol and space group.
  * 
- * Fields: properties, note, crystalStructure
- * Optional fields: pearsonSymbol, spaceGroup
+ * @template C - Collection type for properties
  */
 export type PolymorphForm< C extends Collection< any > > =
-    BaseFields< 'polymorph' | 'amorphous', C > &
+    BaseForm< FormType.POLYMORPH | FormType.AMORPHOUS, C > &
     StrictSubset< FormFields, 'crystalStructure', 'pearsonSymbol' | 'spaceGroup' >;
 
-/** Form IDs used in other parts of the data model */
-export type FormId = string;
+/** Branded form IDs used in other parts of the data model. */
+export type FormId = Brand< string, 'formId' >;
 
 /**
- * FormCollection
- * Collection of forms for substances
+ * Collection of forms for substances.
  * 
  * @template C - Collection type for properties
  */

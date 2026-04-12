@@ -1,45 +1,17 @@
 /**
  * Chemistry Collection
  * Defined collection types for chemical properties and data.
+ * 
+ * @module collections/chemistry
  */
 
 import type { Collection, Group, Single } from '@/abstract/collection';
-import type { NumberProperty, PrimitiveProperty } from '@/abstract/property';
-import type { CrystalGroup } from '@/collections/generic';
+import type { NumberProperty, PrimitiveProperty, StructProperty } from '@/abstract/property';
+import type { AcidBaseCharacter, BondType, HSAB, Hybridization, LewisAcidity, LewisBasicity, OxideCharacter } from '@/enums/chemistry';
+import { CrystalStructure } from '@/enums/generic';
 
-/** Acid / base character */
-export type AcidBaseCharacter = ( typeof AcidBaseCharacter )[ number ];
-export const AcidBaseCharacter = [
-    'strongAcidic', 'acidic', 'moderateAcidic', 'weakAcidic', 'amphoteric', 'weakBasic',
-    'moderateBasic', 'basic', 'strongBasic', 'neutral'
-] as const;
-
-/** Lewis acidity */
-export type LewisAcidity = ( typeof LewisAcidity )[ number ];
-export const LewisAcidity = [ 'strong', 'moderate', 'weak', 'none' ] as const;
-
-/** Lewis basicity */
-export type LewisBasicity = ( typeof LewisBasicity )[ number ];
-export const LewisBasicity = [ 'strong', 'moderate', 'weak', 'none' ] as const;
-
-/** HSAB */
-export type HSAB = ( typeof HSAB )[ number ];
-export const HSAB = [ 'hard', 'borderline', 'soft' ] as const;
-
-/** Oxide character */
-export type OxideCharacter = ( typeof OxideCharacter )[ number ];
-export const OxideCharacter = [ 'acidic', 'amphoteric', 'basic' ] as const;
-
-/** Bond type */
-export type BondType = ( typeof BondType )[ number ];
-export const BondType = [ 'ionic', 'covalent', 'metallic', 'vdw', 'hydrogen' ] as const;
-
-/** Hybridization */
-export type Hybridization = ( typeof Hybridization )[ number ];
-export const Hybridization = [ 'sp', 'sp2', 'sp3', 'sp3d', 'sp3d2', 'sp3d3' ] as const;
 
 /**
- * ChemistryCollection
  * Collection for chemical properties of elements.
  * 
  * @param molarMass - Molar mass of the substance
@@ -87,7 +59,26 @@ export type ChemistryCollection = Collection< {
     } >;
 
     // Crystallographic properties
-    crystal?: CrystalGroup;
+    crystal?: Group< {
+        crystalStructure?: Single< PrimitiveProperty< CrystalStructure > >;
+        crystalClass?: Single< PrimitiveProperty< string > >;
+        spaceGroup?: Single< PrimitiveProperty< string > >;
+        spaceGroupNumber?: Single< PrimitiveProperty< number > >;
+        spaceGroupSymbol?: Single< PrimitiveProperty< string > >;
+        pearsonSymbol?: Single< PrimitiveProperty< string > >;
+        formulaUnitsZ?: Single< PrimitiveProperty< number > >;
+        latticeConstant?: StructProperty< {
+            a?: number;
+            b?: number;
+            c?: number;
+            alpha?: number;
+            beta?: number;
+            gamma?: number;
+        } >;
+        twinning?: Single< PrimitiveProperty< string > >;
+        habit?: Single< PrimitiveProperty< string > >;
+        faces?: Single< PrimitiveProperty< string > >;
+    } >;
 
     // Electrochemical properties
     electrochemistry?: Group< {

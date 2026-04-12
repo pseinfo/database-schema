@@ -1,16 +1,18 @@
 /**
  * Atomics Collection
  * Collection of atomic properties for chemical elements.
+ * 
+ * @module collections/atomics
  */
 
 import type { Collection, Group, Single } from '@/abstract/collection';
 import type { ArrayProperty, NumberProperty, PrimitiveProperty, StructProperty } from '@/abstract/property';
 import type { NMRGroup } from '@/collections/generic';
-import type { ShellModel } from '@/utils/const';
+import type { ShellModel } from '@/enums/element';
+
 
 /**
- * AtomicsCollection
- * Collection for atomic properties of elements.
+ * Collection for atomic properties of chemical elements.
  * 
  * @param atomicNumber - Atomic number of the element
  * @param massNumber - Mass number of the element

@@ -3,18 +3,12 @@
  * Defined common collection types for various data groups.
  */
 
-import type { Distinct, Group, LangGroup, Single } from '@/abstract/collection';
-import type { NumberProperty, PrimitiveProperty, StructProperty } from '@/abstract/property';
+import type { LiteralUnion } from 'devtypes/types/primitive';
+import type { Distinct, Group, Single } from '@/abstract/collection';
+import type { NumberProperty, PrimitiveProperty } from '@/abstract/property';
 import type { RefId } from '@/abstract/reference';
-import type { CrystalStructure } from '@/utils/const';
+import type { D3Format, ImageFormat } from '@/enums/generic';
 
-/** Image Formats */
-export type ImageFormat = ( typeof ImageFormat )[ number ];
-export const ImageFormat = [ 'jpg', 'png', 'svg', 'webp' ] as const;
-
-/** 3D Structure Formats */
-export type D3Format = ( typeof D3Format )[ number ];
-export const D3Format = [ 'pdb', 'mol', 'sdf', 'xyz', 'cif' ] as const;
 
 /**
  * MetaData
@@ -28,6 +22,16 @@ export type MetaData = Distinct< {
         schemaVersion: 1;
         lastModified: string;
     };
+} >;
+
+/**
+ * Represents a group of properties for different languages.
+ * 
+ * @template L - The required language codes (default: 'en')
+ * @template T - The value type (default: string)
+ */
+export type LangGroup< L extends string = 'en', T = string > = Group< {
+    [ K in LiteralUnion< L > ]: Distinct< T >;
 } >;
 
 /**
@@ -145,43 +149,6 @@ export type WeblinksGroup = Group< {
         language?: string;
     }[] >;
     wiki?: LangGroup;
-} >;
-
-/**
- * CrystalGroup
- * Crystallographic properties for elements and compounds.
- * 
- * @param crystalStructure - Type of crystal structure
- * @param crystalClass - Crystal class
- * @param spaceGroup - Space group notation
- * @param spaceGroupNumber - Space group number
- * @param spaceGroupSymbol - Space group symbol
- * @param pearsonSymbol - Pearson symbol notation
- * @param formulaUnitsZ - Formula units per unit cell
- * @param latticeConstant - Lattice constants group
- * @param twinning - Twinning information
- * @param habit - Habit information
- * @param faces - Faces information
- */
-export type CrystalGroup = Group< {
-    crystalStructure?: Single< PrimitiveProperty< CrystalStructure > >;
-    crystalClass?: Single< PrimitiveProperty< string > >;
-    spaceGroup?: Single< PrimitiveProperty< string > >;
-    spaceGroupNumber?: Single< PrimitiveProperty< number > >;
-    spaceGroupSymbol?: Single< PrimitiveProperty< string > >;
-    pearsonSymbol?: Single< PrimitiveProperty< string > >;
-    formulaUnitsZ?: Single< PrimitiveProperty< number > >;
-    latticeConstant?: StructProperty< {
-        a?: number;
-        b?: number;
-        c?: number;
-        alpha?: number;
-        beta?: number;
-        gamma?: number;
-    } >;
-    twinning?: Single< PrimitiveProperty< string > >;
-    habit?: Single< PrimitiveProperty< string > >;
-    faces?: Single< PrimitiveProperty< string > >;
 } >;
 
 /**

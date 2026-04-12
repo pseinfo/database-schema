@@ -4,6 +4,8 @@
  * 
  * Nuclides are grouped by their parent chemical element and then by mass number
  * plus optional metastable state identifiers (e.g. "99", "99m", "99m1").
+ * 
+ * @module entities/nuclide
  */
 
 import type { Collection, Distinct, Group, Single } from '@/abstract/collection';
@@ -11,7 +13,9 @@ import type { NumberProperty, PrimitiveProperty, StructProperty } from '@/abstra
 import type { NumberValue } from '@/abstract/value';
 import type { DescriptiveCollection } from '@/collections/descriptive';
 import type { MetaData, NMRGroup } from '@/collections/generic';
-import type * as consts from '@/utils/const';
+import type { ElementSymbol } from '@/enums/element';
+import type { DecayMode, NuclideParity, NuclideProperty, NuclideStability, NuclideState, RadiationType } from '@/enums/nuclide';
+
 
 /** Valid nuclide identifiers with optional metastable state suffix. */
 export type NuclideIdentifier = `${number}` | `${number}m` | `${number}m${number}`;
@@ -19,7 +23,6 @@ export type NuclideIdentifier = `${number}` | `${number}m` | `${number}m${number
 /** Nuclide collections */
 
 /**
- * NuclideClassification
  * Collection for classification properties of nuclides.
  * 
  * @param element - Distinct parent element symbol
@@ -33,19 +36,18 @@ export type NuclideIdentifier = `${number}` | `${number}m` | `${number}m${number
  * @param isomericLevel - Isomeric level information for metastable states
  */
 export type NuclideClassification = Collection< {
-    element: Distinct< consts.ElementSymbol >;
+    element: Distinct< ElementSymbol >;
     atomicNumber: Distinct< number >;
     neutronNumber: Distinct< number >;
     massNumber: Distinct< number >;
-    state?: Single< PrimitiveProperty< consts.NuclideState > >;
-    stability?: Single< PrimitiveProperty< consts.NuclideStability > >;
-    parity?: Single< PrimitiveProperty< consts.NuclideParity > >;
+    state?: Single< PrimitiveProperty< NuclideState > >;
+    stability?: Single< PrimitiveProperty< NuclideStability > >;
+    parity?: Single< PrimitiveProperty< NuclideParity > >;
     spinParity?: Single< PrimitiveProperty< string > >;
     isomericLevel?: Single< PrimitiveProperty< string > >;
 } >;
 
 /**
- * NuclearCollection
  * Collection for nuclear properties of nuclides.
  * 
  * @param atomicMass - Atomic mass of the nuclide
@@ -79,8 +81,7 @@ export type NuclearCollection = Collection< {
 } >;
 
 /**
- * DecayChannel
- * Type for a single radioactive decay channel of a nuclide.
+ * Type definition for a single radioactive decay channel of a nuclide.
  * 
  * @param mode - Decay mode (e.g. alpha, beta minus, etc.)
  * @param probability - Optional probability or branching ratio for this decay channel
@@ -89,15 +90,14 @@ export type NuclearCollection = Collection< {
  * @param radiation - Optional list of radiation types emitted during this decay channel
  */
 export type DecayChannel = {
-    mode: consts.DecayMode;
+    mode: DecayMode;
     probability?: NumberValue< 'quantity' >;
     product?: NuclideIdentifier;
     energy?: NumberValue< 'energy' >;
-    radiation?: consts.RadiationType[];
+    radiation?: RadiationType[];
 };
 
 /**
- * DecayCollection
  * Collection for decay properties of nuclides.
  * 
  * @param halfLife - Half-life of the nuclide
@@ -115,7 +115,6 @@ export type DecayCollection = Collection< {
 /** Main nuclide entity */
 
 /**
- * SingleNuclide
  * Type for a single nuclide entry (all properties).
  * 
  * @param descriptive - Descriptive properties collection
@@ -129,11 +128,10 @@ export type SingleNuclide = Collection< {
     classification: NuclideClassification;
     nuclear?: NuclearCollection;
     decay?: DecayCollection;
-    properties?: Distinct< consts.NuclideProperty[] >;
+    properties?: Distinct< NuclideProperty[] >;
 } >;
 
 /**
- * Nuclides
  * Type for the main nuclide collection grouped by element symbol and nuclide identifier.
  * 
  * The structure is a nested record where the first level keys are element symbols,
@@ -142,7 +140,7 @@ export type SingleNuclide = Collection< {
  * properties for each nuclide.
  */
 export type Nuclides = Collection< {
-    [ K in consts.ElementSymbol ]?: {
+    [ K in ElementSymbol ]?: {
         [ N in NuclideIdentifier ]?: MetaData & SingleNuclide;
     };
 } >;
@@ -150,7 +148,6 @@ export type Nuclides = Collection< {
 /** Nuclide index */
 
 /**
- * NuclideIndexEntry
  * Type for a single entry in the generated nuclide index, keyed by z,n coordinate.
  * 
  * @param z - Atomic number (Z)
@@ -171,10 +168,10 @@ export type NuclideIndexEntry< Z extends number, N extends number > = Collection
     n: Distinct< N >;
     m: Distinct< number >;
     nuclide: Distinct< NuclideIdentifier >;
-    element: Distinct< consts.ElementSymbol >;
+    element: Distinct< ElementSymbol >;
     layer: Group< {
         halfLife?: Distinct< number >;
-        mainDecayMode?: Distinct< consts.DecayMode >;
+        mainDecayMode?: Distinct< DecayMode >;
         nuclearRadius?: Distinct< number >;
         massExcess?: Distinct< number >;
         atomicMass?: Distinct< number >;
@@ -183,7 +180,6 @@ export type NuclideIndexEntry< Z extends number, N extends number > = Collection
 } >;
 
 /**
- * NuclideIndex
  * Type for the generated nuclide index, keyed by z,n coordinate.
  * 
  * The index is structured as a nested record where the first level keys are atomic numbers (Z),
@@ -199,8 +195,7 @@ export type NuclideIndex = Collection< {
 /** Decay chains */
 
 /**
- * NuclideDecayChainLink
- * Type for a single decay chain link in the generated decay chain export.
+ * Type definition for a single decay chain link in the generated decay chain export.
  * 
  * @param nuclide - Identifier of the nuclide in this decay chain link
  * @param mode - Decay mode for this link (null if stable)
@@ -208,12 +203,11 @@ export type NuclideIndex = Collection< {
  */
 export type NuclideDecayChainLink = Group< {
     nuclide: Distinct< NuclideIdentifier >;
-    mode: Distinct< consts.DecayMode >;
+    mode: Distinct< DecayMode >;
     probability: Distinct< number | null >;
 } >;
 
 /**
- * NuclideDecayChainEntry
  * Type for a single decay chain entry in the generated decay chain export.
  * 
  * @param nuclide - Identifier of the nuclide for this decay chain entry
@@ -233,7 +227,7 @@ export type NuclideDecayChainEntry< N extends NuclideIdentifier > = Collection< 
     z: Distinct< number >;
     n: Distinct< number >;
     m: Distinct< number >;
-    element: Distinct< consts.ElementSymbol >;
+    element: Distinct< ElementSymbol >;
     halfLife: Distinct< number | null >;
     stable: Distinct< boolean >;
     daughterChains: Distinct< NuclideDecayChainLink[] >;
@@ -243,7 +237,6 @@ export type NuclideDecayChainEntry< N extends NuclideIdentifier > = Collection< 
 } >;
 
 /**
- * NuclideDecayChains
  * Type for the generated decay chain export containing decay chain information for all nuclides.
  * 
  * The structure is a record where the keys are nuclide identifiers (e.g. "99mTc") and
@@ -255,7 +248,6 @@ export type NuclideDecayChains = Collection< {
 } >;
 
 /**
- * Nuclide
  * Main nuclide entity type containing the main nuclide collection, the generated nuclide index,
  * and the generated decay chain export.
  * 

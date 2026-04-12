@@ -1,6 +1,8 @@
 /**
  * Element Entity
  * Defines the database entity for chemical elements of the periodic table.
+ * 
+ * @module entities/element
  */
 
 import type { Collection, Distinct, Single } from '@/abstract/collection';
@@ -12,12 +14,13 @@ import type { DescriptiveCollection } from '@/collections/descriptive';
 import type { MetaData } from '@/collections/generic';
 import type { PhysicsCollection } from '@/collections/physics';
 import type { SafetyCollection } from '@/collections/safety';
-import type * as consts from '@/utils/const';
+import type { ElementBlock, ElementGroup, ElementProperty, ElementSet, ElementSymbol } from '@/enums/element';
+import type { Goldschmidt, NaturalOccurrence, Phase, PTColumn, PTPeriod, Superconductivity } from '@/enums/generic';
+
 
 /** Element collections */
 
 /**
- * ElementClassification
  * Collection for classification properties of elements.
  * 
  * @param symbol - Distinct chemical symbol of the element
@@ -36,22 +39,21 @@ import type * as consts from '@/utils/const';
 export type ElementClassification = Collection< {
     symbol: Distinct< string >;
     atomicNumber: Distinct< number >;
-    block: Distinct< consts.ElementBlock >;
-    group: Distinct< consts.ElementGroup >;
-    column: Distinct< consts.ElementColumn >;
-    period: Distinct< consts.ElementPeriod >;
-    phase: Distinct< consts.Phase >;
-    set: Distinct< consts.ElementSet >;
+    block: Distinct< ElementBlock >;
+    group: Distinct< ElementGroup >;
+    column: Distinct< PTColumn >;
+    period: Distinct< PTPeriod >;
+    phase: Distinct< Phase >;
+    set: Distinct< ElementSet >;
     radioactive: Single< PrimitiveProperty< boolean > >;
-    naturalOccurrence?: Single< PrimitiveProperty< consts.NaturalOccurrence > >;
-    goldschmidt?: Single< PrimitiveProperty< consts.Goldschmidt > >;
-    superconductivity?: Single< PrimitiveProperty< consts.Superconductivity > >;
+    naturalOccurrence?: Single< PrimitiveProperty< NaturalOccurrence > >;
+    goldschmidt?: Single< PrimitiveProperty< Goldschmidt > >;
+    superconductivity?: Single< PrimitiveProperty< Superconductivity > >;
 } >;
 
 /** Main element entity */
 
 /**
- * SingleElement
  * Type for a single element entry (all properties).
  * 
  * @param descriptive - Descriptive properties collection
@@ -68,19 +70,18 @@ export type SingleElement = Collection< {
     physics?: PhysicsCollection;
     chemistry?: ChemistryCollection;
     atomics?: AtomicsCollection;
-    properties?: Distinct< consts.ElementProperty[] >;
+    properties?: Distinct< ElementProperty[] >;
     safety?: SafetyCollection;
 } >;
 
 /**
- * Element
  * Entity type for all elements, indexed by their symbol.
  * 
  * This includes metadata, collections for a single element, and optional forms.
  * Forms are alternative representations or variations of the element data.
  */
 export type Element = Collection< {
-    [ K in consts.ElementSymbol ]: MetaData & SingleElement & {
+    [ K in ElementSymbol ]: MetaData & SingleElement & {
         forms?: FormCollection< SingleElement >;
     };
 } >;

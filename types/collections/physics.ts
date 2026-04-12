@@ -1,29 +1,18 @@
 /**
  * Physics Collection
  * Defines a set of physical properties for elements, materials and substances.
+ * 
+ * @module collections/physics
  */
 
 import type { Collection, Group, Single } from '@/abstract/collection';
 import type { CoupledNumberProperty, NumberProperty, PrimitiveProperty } from '@/abstract/property';
-import type { Phase } from '@/utils/const';
+import type { Phase } from '@/enums/generic';
+import type { Luster, MagneticOrdering, OpticalRotation } from '@/enums/physics';
 
-/** Magnetic ordering */
-export type MagneticOrdering = ( typeof MagneticOrdering )[ number ];
-export const MagneticOrdering = [
-    'diamagnetic', 'paramagnetic', 'ferromagnetic', 'antiferromagnetic', 'ferrimagnetic', 'superparamagnetic'
-] as const;
-
-/** Luster types */
-export type Luster = ( typeof Luster )[ number ];
-export const Luster = [ 'metallic', 'vitreous', 'pearly', 'dull', 'adamantine', 'greasy', 'silky' ] as const;
-
-/** Optical rotation */
-export type OpticalRotation = ( typeof OpticalRotation )[ number ];
-export const OpticalRotation = [ 'dextrorotatory', 'levorotatory', 'racemic' ] as const;
 
 /**
- * PhysicsCollection
- * Collection for physical properties of elements.
+ * Collection for physical properties of chemical elements.
  * 
  * @param density - Density of the element or substance
  * @param phase - Standard phase at room temperature
