@@ -6,14 +6,15 @@
  * plus optional metastable state identifiers (e.g. "99", "99m", "99m1").
  */
 
-import type { Collection, Distinct, Group, Single } from '../abstract/collection';
-import type { NumberProperty } from '../abstract/property';
-import type { DescriptiveCollection } from '../collections/descriptive';
-import type { MetaData } from '../collections/generic';
-import type { DecayMode, ElementSymbol, NuclideProperty, NuclideStability, NuclideState, RadiationType } from '../utils/const';
+import type { Collection, Distinct, Group, Single } from '@/abstract/collection';
+import type { NumberProperty, PrimitiveProperty, StructProperty } from '@/abstract/property';
+import type { NumberValue } from '@/abstract/value';
+import type { DescriptiveCollection } from '@/collections/descriptive';
+import type { MetaData, NMRGroup } from '@/collections/generic';
+import type * as consts from '@/utils/const';
 
 /** Valid nuclide identifiers with optional metastable state suffix. */
-type NuclideIdentifier = `${number}` | `${number}m` | `${number}m${number}`;
+export type NuclideIdentifier = `${number}` | `${number}m` | `${number}m${number}`;
 
 /** Nuclide collections */
 
@@ -21,26 +22,26 @@ type NuclideIdentifier = `${number}` | `${number}m` | `${number}m${number}`;
  * NuclideClassification
  * Collection for classification properties of nuclides.
  * 
- * @param element - Parent element symbol
- * @param atomicNumber - Atomic number (Z)
- * @param neutronNumber - Neutron number (N)
- * @param massNumber - Mass number (A)
+ * @param element - Distinct parent element symbol
+ * @param atomicNumber - Distinct atomic number (Z)
+ * @param neutronNumber - Distinct neutron number (N)
+ * @param massNumber - Distinct mass number (A)
  * @param state - Nuclide state (ground, metastable, etc.)
  * @param stability - Nuclide stability classification
- * @param spinParity - Spin and parity information
  * @param parity - Parity classification
+ * @param spinParity - Spin and parity information
  * @param isomericLevel - Isomeric level information for metastable states
  */
 type NuclideClassification = Collection< {
-    element: Distinct< ElementSymbol >;
+    element: Distinct< consts.ElementSymbol >;
     atomicNumber: Distinct< number >;
     neutronNumber: Distinct< number >;
     massNumber: Distinct< number >;
-    state?: Distinct< NuclideState >;
-    stability?: Distinct< NuclideStability >;
-    spinParity?: Distinct< string >;
-    parity?: Distinct< '+' | '-' | 'unknown' >;
-    isomericLevel?: Distinct< string >;
+    state?: Single< PrimitiveProperty< consts.NuclideState > >;
+    stability?: Single< PrimitiveProperty< consts.NuclideStability > >;
+    parity?: Single< PrimitiveProperty< consts.NuclideParity > >;
+    spinParity?: Single< PrimitiveProperty< string > >;
+    isomericLevel?: Single< PrimitiveProperty< string > >;
 } >;
 
 /**
@@ -57,6 +58,7 @@ type NuclideClassification = Collection< {
  * @param isomericTransitionEnergy - Isomeric transition energy for metastable states
  * @param qValue - Q value for electron capture
  * @param crossSection - Cross section data
+ * @param nrm - NMR properties collection
  */
 type NuclearCollection = Collection< {
     atomicMass?: Single< NumberProperty< 'mass' > >;
@@ -73,30 +75,7 @@ type NuclearCollection = Collection< {
         resonanceIntegral?: Single< NumberProperty< 'area' > >;
         fission?: Single< NumberProperty< 'area' > >;
     } >;
-} >;
-
-/**
- * NMRCollection
- * Collection for NMR properties of nuclides.
- * 
- * @param resonanceSpin - Resonance spin information
- * @param gyromagneticRatio - Gyromagnetic ratio of the nuclide
- * @param magneticMoment - Magnetic moment of the nuclide
- * @param quadrupoleMoment - Quadrupole moment of the nuclide
- * @param resonanceFrequency - NMR resonance frequency
- * @param referenceField - Reference magnetic field strength for NMR measurements
- * @param relativeSensitivity - Relative sensitivity of the nuclide in NMR
- * @param chemicalShiftReference - Chemical shift reference information
- */
-type NMRCollection = Collection< {
-    resonanceSpin?: Distinct< string >;
-    gyromagneticRatio?: Single< NumberProperty< 'quantity' > >;
-    magneticMoment?: Single< NumberProperty< 'magneticMoment' > >;
-    quadrupoleMoment?: Single< NumberProperty< 'quantity' > >;
-    resonanceFrequency?: Single< NumberProperty< 'frequency' > >;
-    referenceField?: Single< NumberProperty< 'magneticFieldStrength' > >;
-    relativeSensitivity?: Single< NumberProperty< 'quantity' > >;
-    chemicalShiftReference?: Distinct< string >;
+    nrm?: NMRGroup;
 } >;
 
 /**
@@ -109,13 +88,13 @@ type NMRCollection = Collection< {
  * @param energy - Optional decay energy for this channel
  * @param radiation - Optional list of radiation types emitted during this decay channel
  */
-type DecayChannel = Distinct< {
-    mode: Distinct< DecayMode >;
-    probability?: Single< NumberProperty< 'quantity' > >;
-    product?: Distinct< string >;
-    energy?: Single< NumberProperty< 'energy' > >;
-    radiation?: Distinct< RadiationType[] >;
-} >;
+type DecayChannel = {
+    mode: consts.DecayMode;
+    probability?: NumberValue< 'quantity' >;
+    product?: NuclideIdentifier;
+    energy?: NumberValue< 'energy' >;
+    radiation?: consts.RadiationType[];
+};
 
 /**
  * DecayCollection
@@ -128,7 +107,7 @@ type DecayChannel = Distinct< {
  */
 type DecayCollection = Collection< {
     halfLife?: Single< NumberProperty< 'time' > >;
-    decayChannels?: Distinct< DecayChannel[] >;
+    decayChannels?: Single< StructProperty< DecayChannel > >;
     delayedNeutronEmission?: Single< NumberProperty< 'quantity' > >;
     delayedProtonEmission?: Single< NumberProperty< 'quantity' > >;
 } >;
@@ -142,7 +121,6 @@ type DecayCollection = Collection< {
  * @param descriptive - Descriptive properties collection
  * @param classification - Classification properties collection
  * @param nuclear - Nuclear properties collection
- * @param nmr - NMR properties collection
  * @param decay - Decay properties collection
  * @param properties - Distinct list of nuclide properties
  */
@@ -150,9 +128,8 @@ type SingleNuclide = Collection< {
     descriptive: DescriptiveCollection;
     classification: NuclideClassification;
     nuclear?: NuclearCollection;
-    nmr?: NMRCollection;
     decay?: DecayCollection;
-    properties?: Distinct< NuclideProperty[] >;
+    properties?: Distinct< consts.NuclideProperty[] >;
 } >;
 
 /**
@@ -165,7 +142,7 @@ type SingleNuclide = Collection< {
  * properties for each nuclide.
  */
 type Nuclides = Collection< {
-    [ K in ElementSymbol ]?: {
+    [ K in consts.ElementSymbol ]?: {
         [ N in NuclideIdentifier ]?: MetaData & SingleNuclide;
     };
 } >;
@@ -179,8 +156,8 @@ type Nuclides = Collection< {
  * @param z - Atomic number (Z)
  * @param n - Neutron number (N)
  * @param m - Mass number (A)
+ * @param nuclide - Nuclide identifier
  * @param element - Element symbol for the nuclide
- * @param symbol - Parsed nuclide symbol (e.g. "99mTc")
  * @param layer - Group of layer values for this nuclide in the generated index, including:
  *   - halfLife: Half-life bucket category
  *   - mainDecayMode: Main decay mode category
@@ -193,11 +170,11 @@ type NuclideIndexEntry< Z extends number, N extends number > = Collection< {
     z: Distinct< Z >;
     n: Distinct< N >;
     m: Distinct< number >;
-    element: Distinct< ElementSymbol >;
-    symbol: Distinct< string >;
+    nuclide: Distinct< NuclideIdentifier >;
+    element: Distinct< consts.ElementSymbol >;
     layer: Group< {
         halfLife?: Distinct< number >;
-        mainDecayMode?: Distinct< DecayMode >;
+        mainDecayMode?: Distinct< consts.DecayMode >;
         nuclearRadius?: Distinct< number >;
         massExcess?: Distinct< number >;
         atomicMass?: Distinct< number >;
@@ -231,7 +208,7 @@ type NuclideIndex = Collection< {
  */
 type NuclideDecayChainLink = Group< {
     nuclide: Distinct< NuclideIdentifier >;
-    mode: Distinct< DecayMode >;
+    mode: Distinct< consts.DecayMode >;
     probability: Distinct< number | null >;
 } >;
 
@@ -244,7 +221,6 @@ type NuclideDecayChainLink = Group< {
  * @param n - Neutron number (N) of the nuclide
  * @param m - Mass number (A) of the nuclide
  * @param element - Element symbol for the nuclide
- * @param symbol - Parsed nuclide symbol (e.g. "99mTc")
  * @param halfLife - Half-life of the nuclide (null if stable)
  * @param stable - Whether the nuclide is stable or not
  * @param daughterChains - List of daughter decay chain links for this nuclide
@@ -257,8 +233,7 @@ type NuclideDecayChainEntry< N extends NuclideIdentifier > = Collection< {
     z: Distinct< number >;
     n: Distinct< number >;
     m: Distinct< number >;
-    element: Distinct< ElementSymbol >;
-    symbol: Distinct< string >;
+    element: Distinct< consts.ElementSymbol >;
     halfLife: Distinct< number | null >;
     stable: Distinct< boolean >;
     daughterChains: Distinct< NuclideDecayChainLink[] >;
@@ -288,8 +263,8 @@ type NuclideDecayChains = Collection< {
  * @param index - Generated nuclide index keyed by z,n coordinate
  * @param decayChains - Generated decay chain export containing decay chain information for all nuclides
  */
-export type Nuclide = {
+export type Nuclide = Collection< {
     nuclides: Nuclides;
     index: NuclideIndex;
     decayChains: NuclideDecayChains;
-};
+} >;

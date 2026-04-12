@@ -90,6 +90,10 @@ export const NuclideStability = [
     'stable', 'unstable', 'primordial', 'synthetic', 'artificial'
 ] as const;
 
+/** Nuclide parity classification */
+export type NuclideParity = ( typeof NuclideParity )[ number ];
+export const NuclideParity = [ 'positive', 'negative', 'unknown' ] as const;
+
 /** Nuclide Properties */
 export type NuclideProperty = ( typeof NuclideProperty )[ number ];
 export const NuclideProperty = [
