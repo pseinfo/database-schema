@@ -5,6 +5,8 @@
  * Each mineral entry includes metadata, descriptive content, classification,
  * composition details, chemical and physical properties, safety data, and
  * optional specialized forms.
+ * 
+ * @module entities/mineral
  */
 
 import type { Collection, Distinct, Group, Single } from '@/abstract/collection';
@@ -16,13 +18,13 @@ import type { DescriptiveCollection } from '@/collections/descriptive';
 import type { MetaData } from '@/collections/generic';
 import type { PhysicsCollection } from '@/collections/physics';
 import type { SafetyCollection } from '@/collections/safety';
-import type { CleavageQuality, FractureType, IMAStatus, MineralClass, MineralProperty, TenacityType } from '@/enums/mineral';
 import type { NaturalOccurrence, Phase } from '@/enums/generic';
+import type { CleavageQuality, FractureType, IMAStatus, MineralClass, MineralProperty, TenacityType } from '@/enums/mineral';
+
 
 /** Mineral collections */
 
 /**
- * MineralClassification
  * Collections for classification properties of minerals.
  * 
  * @param class - Global mineral class
@@ -56,7 +58,6 @@ export type MineralClassification = Collection< {
 } >;
 
 /**
- * IdentificationGroup
  * Collections for identification properties of minerals.
  * 
  * @param cleavage - Cleavage properties
@@ -75,7 +76,6 @@ export type IdentificationGroup = Group< {
 } >;
 
 /**
- * MineralComposition
  * Collections for compositional properties of minerals.
  * 
  * @param inclusions - Optional inclusions
@@ -91,7 +91,6 @@ export type MineralComposition = Collection< CompositionCollection & {
 /** Main mineral entity */
 
 /**
- * SingleMineral
  * Entity type for a single mineral, indexed by a unique identifier.
  * 
  * @param descriptive - Descriptive collections for the mineral
@@ -115,7 +114,6 @@ export type SingleMineral = Collection< {
 } >;
 
 /**
- * Mineral
  * Entity type for minerals, indexed by a unique identifier.
  * 
  * Each mineral entry includes metadata, descriptive content, classification,
