@@ -3,10 +3,6 @@
  * Defines constant values and enumerations used across the database schema.
  */
 
-/** Phase of matter */
-export type Phase = ( typeof Phase )[ number ];
-export const Phase = [ 'solid', 'gaseous', 'liquid', 'plasma', 'unknown' ] as const;
-
 /** Natural occurrence types */
 export type NaturalOccurrence = ( typeof NaturalOccurrence )[ number ];
 export const NaturalOccurrence = [ 'primordial', 'decayProduct', 'synthetic' ] as const;
@@ -125,14 +121,6 @@ export const NuclideProperty = [
 export type NuclideLayer = ( typeof NuclideLayer )[ number ];
 export const NuclideLayer = [
     'halfLife', 'mainDecayMode', 'nuclearRadius', 'massExcess', 'atomicMass', 'bindingEnergy'
-] as const;
-
-/** Crystal structure */
-export type CrystalStructure = ( typeof CrystalStructure )[ number ];
-export const CrystalStructure = [
-    'hexagonal', 'hexagonalClosePacked', 'bodyCenteredCubic', 'rhombohedral',
-    'simpleCubic', 'faceCenteredCubic', 'diamondCubic', 'orthorhombic', 'tetragonal',
-    'doubleHexagonalClosePacked', 'monoclinic', 'triclinic'
 ] as const;
 
 /** Compound categories */
