@@ -17,7 +17,7 @@ import type { CrystalStructure, Phase, FormType } from '@/enums/generic';
  * 
  * @template T - Form type
  * @template C - Collection type for properties
- * @param type - type for substance form (branding)
+ * @param type - Type for substance form (branding)
  * @param properties - Partial collection of properties specific to the form
  * @param note - Additional notes about the form
  */
@@ -47,8 +47,9 @@ export interface FormFields {
 
 /**
  * Form type for allotropes and other unspecified forms.
+ * Includes required fields for formula, phase, crystal structure, pearson symbol, and space group.
  * 
- * @required properties, note, formula, phase, crystalStructure, pearsonSymbol, spaceGroup
+ * @template C - Collection type for properties
  */
 export type AllotropeForm< C extends Collection< any > > =
     BaseFields< FormType.ALLOTROPE | FormType.OTHER, C > &
@@ -56,8 +57,9 @@ export type AllotropeForm< C extends Collection< any > > =
 
 /**
  * Form type for molecular forms.
+ * Includes required fields for formula.
  * 
- * @required properties, note, formula
+ * @template C - Collection type for properties
  */
 export type MolecularForm< C extends Collection< any > > =
     BaseFields< FormType.MOLECULAR, C > &
@@ -65,8 +67,9 @@ export type MolecularForm< C extends Collection< any > > =
 
 /**
  * Form type for specific phases of substances.
+ * Includes required fields for phase.
  * 
- * @required properties, note, phase
+ * @template C - Collection type for properties
  */
 export type PhaseForm< C extends Collection< any > > =
     BaseFields< FormType.PHASE, C > &
@@ -74,15 +77,15 @@ export type PhaseForm< C extends Collection< any > > =
 
 /**
  * Form type for polymorphs and amorphous forms.
+ * Includes required fields for crystal structure, optionally pearson symbol and space group.
  * 
- * @required properties, note, crystalStructure
- * @optional pearsonSymbol, spaceGroup
+ * @template C - Collection type for properties
  */
 export type PolymorphForm< C extends Collection< any > > =
     BaseFields< FormType.POLYMORPH | FormType.AMORPHOUS, C > &
     StrictSubset< FormFields, 'crystalStructure', 'pearsonSymbol' | 'spaceGroup' >;
 
-/** Branded form IDs used in other parts of the data model */
+/** Branded form IDs used in other parts of the data model. */
 export type FormId = Brand< string, 'formId' >;
 
 /**

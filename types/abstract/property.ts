@@ -17,8 +17,8 @@ import * as value from '@/abstract/value';
  * 
  * @template C - Physical quantities used as conditions
  * @template T - Primitive types for the condition values
- * @param conditions - optional conditions mapping physical quantities to values
- * @param references - optional array of reference IDs associated with the property
+ * @param conditions - Optional conditions mapping physical quantities to values
+ * @param references - Optional array of reference IDs associated with the property
  */
 export interface BaseFields<
     C extends PhysicalQuantity = PhysicalQuantity,
@@ -51,7 +51,7 @@ export type PrimitiveProperty<
  * @template T - Primitive types for the condition values
  */
 export type StructProperty<
-    S extends Record< value.StructKey, any > = Record< value.StructKey, any >,
+    S extends value.StructType = value.StructType,
     C extends PhysicalQuantity = PhysicalQuantity,
     T extends Primitive = Primitive
 > = BaseFields< C, T > & value.StructValue< S >;
@@ -124,7 +124,7 @@ export type CoupledProperty<
     P extends Primitive = Primitive,
     C extends PhysicalQuantity = PhysicalQuantity,
     T extends Primitive = Primitive,
-    S extends Record< value.StructKey, any > = Record< value.StructKey, any >
+    S extends value.StructType = value.StructType
 > = BaseFields< C, T > & value.CoupledValue< Q, P, S >;
 
 /** Union property types */
@@ -156,5 +156,5 @@ export type Property<
     P extends Primitive = Primitive,
     C extends PhysicalQuantity = PhysicalQuantity,
     T extends Primitive = Primitive,
-    S extends Record< value.StructKey, any > = Record< value.StructKey, any >
+    S extends value.StructType = value.StructType
 > = BaseFields< C, T > & value.Value< Q, P, S >;

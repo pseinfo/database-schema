@@ -1,6 +1,8 @@
 /**
  * Abstract Value Types
  * Definitions for various types of values used in the schema.
+ * 
+ * @module abstract/value
  */
 
 import type { RequireAtLeastOne, RequireExactlyOne, StrictSubset } from 'devtypes/types/constraint';
@@ -8,24 +10,17 @@ import type { Primitive } from 'devtypes/types/primitive';
 import type { Brand } from 'devtypes/types/util';
 import type { Uncertainty } from '@/abstract/uncertainty';
 import type { PhysicalQuantity, UnitId } from '@/abstract/unit';
+import type { ValueType, ValueConfidence } from '@/enums/generic';
 
-/** Value types */
-export type ValueType = ( typeof ValueType )[ number ];
-export const ValueType = [ 'primitive', 'struct', 'single', 'array', 'range', 'coupled' ] as const;
-
-/** Confidence levels */
-export type ValueConfidence = ( typeof ValueConfidence )[ number ];
-export const ValueConfidence = [ 'measured', 'calculated', 'estimated', 'theoretical', 'experimental' ] as const;
 
 /**
- * BaseFields
- * Common fields for all value types.
+ * Branded common fields for all value types.
  * 
- * @template T - value type brand
- * @param type - type for value (branding)
- * @param confidence - confidence level of the value
- * @param uncertainty - uncertainty associated with the value
- * @param note - optional note or comment about the value
+ * @template T - Value type
+ * @param type - Type for value (branding)
+ * @param confidence - Confidence level of the value
+ * @param uncertainty - Uncertainty associated with the value
+ * @param note - Optional note or comment about the value
  */
 export type BaseFields< T extends ValueType > = Brand< {
     confidence?: ValueConfidence;
@@ -34,19 +29,21 @@ export type BaseFields< T extends ValueType > = Brand< {
 }, T, 'type', true >;
 
 /**
- * ValueFields
- * Fields for different types of values.
+ * Specific fields for value types.
  * 
  * @template Q - Physical quantity type
  * @template T - Primitive type
- * @param value - single primitive value
- * @param values - array of primitive values
- * @param range - range with lower and upper bounds
- * @param unit - unit identifier for the value
+ * @template S - Struct types for the value
+ * @param value - Single primitive value
+ * @param values - Array of primitive values
+ * @param range - Range with lower and upper bounds
+ * @param unit - Unit identifier for the value
+ * @param struct - Struct value
  */
 export interface ValueFields<
     Q extends PhysicalQuantity = PhysicalQuantity,
-    T extends Primitive = Primitive
+    T extends Primitive = Primitive,
+    S extends Record< StructKey, any > = Record< StructKey, any >
 > {
     value?: T;
     values?: T[];
@@ -56,74 +53,76 @@ export interface ValueFields<
         inclusive?: boolean;
     } > >;
     unit?: UnitId< Q >;
+    struct?: S;
 }
 
 /** Specific value type definitions */
 
 /**
- * PrimitiveValue
  * Type description of a primitive value.
+ * Includes required fields for value or values.
  * 
- * Fields: value or values
+ * @template T - Primitive type
  */
 export type PrimitiveValue< T extends Primitive = Primitive > =
-    BaseFields< 'primitive' > &
+    BaseFields< ValueType.PRIMITIVE > &
     RequireExactlyOne< ValueFields< never, T >, 'value' | 'values' >;
 
+/** Struct key type. */
 export type StructKey = string | number;
 
-/**
- * StructValue
- * Type description of a struct value (e.g. objects, arrays).
- * 
- * Fields: properties
- */
-export type StructValue< T extends Record< StructKey, any > = Record< StructKey, any > > =
-    BaseFields< 'struct' > & { properties: T };
+/** Generic struct type. */
+export type StructType = Record< StructKey, any >; 
 
 /**
- * SingleValue
- * Type description of a single numeric value.
+ * Type description of a struct value (e.g. objects, arrays).
+ * Includes required fields for struct.
  * 
- * Fields: (numeric) value
- * Optional Fields: unit
+ * @template T - Struct type
+ */
+export type StructValue< T extends StructType = StructType > =
+    BaseFields< ValueType.STRUCT > &
+    RequireAtLeastOne< ValueFields< never, never, T >, 'struct' >; 
+
+/**
+ * Type description of a single numeric value.
+ * Includes required field for value and optional unit.
+ * 
+ * @template Q - Physical quantity type
  */
 export type SingleValue< Q extends PhysicalQuantity = PhysicalQuantity > =
-    BaseFields< 'single' > &
+    BaseFields< ValueType.SINGLE > &
     StrictSubset< ValueFields< Q, number >, 'value', 'unit' >;
 
 /**
- * ArrayValue
  * Type description of an numeric array value.
+ * Includes required field for values and optional unit.
  * 
- * Fields: (numeric) values
- * Optional Fields: unit
+ * @template Q - Physical quantity type
  */
 export type ArrayValue< Q extends PhysicalQuantity = PhysicalQuantity > =
-    BaseFields< 'array' > &
+    BaseFields< ValueType.ARRAY > &
     StrictSubset< ValueFields< Q, number >, 'values', 'unit' >;
 
 /**
- * RangeValue
  * Type description of a numeric range value.
+ * Includes required field for range, optional value and unit.
  * 
- * Fields: (numeric) range
- * Optional Fields: value, unit
+ * @template Q - Physical quantity type
  */
 export type RangeValue< Q extends PhysicalQuantity = PhysicalQuantity > =
-    BaseFields< 'range' > &
+    BaseFields< ValueType.RANGE > &
     StrictSubset< ValueFields< Q, number >, 'range', 'value' | 'unit' >;
 
 /** Coupled value type definitions */
 
 /**
- * CoupledNumberValue
  * Type description of a coupled value with number primitives.
  * 
- * Fields: properties with single, array, or range values
+ * @template Q - Physical quantity type
  */
 export type CoupledNumberValue< Q extends PhysicalQuantity = PhysicalQuantity > =
-    BaseFields< 'coupled' > & {
+    BaseFields< ValueType.COUPLED > & {
         properties: RequireAtLeastOne< {
             [ K in Q ]?:
                 | SingleValue< K >
@@ -133,17 +132,18 @@ export type CoupledNumberValue< Q extends PhysicalQuantity = PhysicalQuantity > 
     };
 
 /**
- * CoupledValue
  * Type description of a coupled value with generic primitives.
  * 
- * Fields: properties with primitive, struct, single, array, or range values
+ * @template Q - Physical quantity type
+ * @template T - Primitive type
+ * @template S - Struct type
  */
 export type CoupledValue<
     Q extends PhysicalQuantity = PhysicalQuantity,
     T extends Primitive = Primitive,
-    S extends Record< PropertyKey, any > = Record< PropertyKey, any >
+    S extends StructType = StructType
 > =
-    BaseFields< 'coupled' > & {
+    BaseFields< ValueType.COUPLED > & {
         properties: RequireAtLeastOne< {
             [ K in Q ]?:
                 | PrimitiveValue< T >
@@ -157,10 +157,9 @@ export type CoupledValue<
 /** Union value types */
 
 /**
- * NumberValue
  * Union type for all number-based value types.
  * 
- * Fields: single, array, range, or coupled number values
+ * @template Q - Physical quantity type
  */
 export type NumberValue< Q extends PhysicalQuantity = PhysicalQuantity > =
     | SingleValue< Q >
@@ -169,15 +168,16 @@ export type NumberValue< Q extends PhysicalQuantity = PhysicalQuantity > =
     | CoupledNumberValue< Q >;
 
 /**
- * Value
  * Union type for all value types.
  * 
- * Fields: number-based, primitive-based, struct-based, or coupled values
+ * @template Q - Physical quantity type
+ * @template T - Primitive type
+ * @template S - Struct type
  */
 export type Value<
     Q extends PhysicalQuantity = PhysicalQuantity,
     T extends Primitive = Primitive,
-    S extends Record< PropertyKey, any > = Record< PropertyKey, any >
+    S extends StructType = StructType
 > =
     | NumberValue< Q >
     | PrimitiveValue< T >

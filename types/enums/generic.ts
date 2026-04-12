@@ -6,6 +6,7 @@
  */
 
 
+/** Enumeration of value types. */
 export enum ValueType {
     /** Primitive value */
     PRIMITIVE = 'primitive',
@@ -21,7 +22,7 @@ export enum ValueType {
     COUPLED = 'coupled'
 };
 
-/** Confidence levels */
+/** Enumeration of value confidence levels. */
 export enum ValueConfidence {
     /** Measured value */
     MEASURED = 'measured',
@@ -71,7 +72,7 @@ export enum StandardCondition {
     DIN_1343 = 'DIN_1343'
 };
 
-/** Phase of matter */
+/** Enumeration of phases of matter. */
 export enum Phase {
     /** Solid phase */
     SOLID = 'solid',
@@ -85,7 +86,7 @@ export enum Phase {
     UNKNOWN = 'unknown'
 };
 
-/** Form types for substances */
+/** Enumeration of form types for substances. */
 export enum FormType {
     /** Allotropic form of an element */
     ALLOTROPE = 'allotrope',
@@ -101,7 +102,7 @@ export enum FormType {
     OTHER = 'other'
 };
 
-/** Crystal structure */
+/** Enumeration of crystal structures. */
 export enum CrystalStructure {
     /** Hexagonal crystal system */
     HEXAGONAL = 'hexagonal',
