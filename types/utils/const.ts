@@ -28,6 +28,16 @@ export const ElementSymbol = [
     'bh', 'hs', 'mt', 'ds', 'rg', 'cn', 'nh', 'fl', 'mc', 'lv', 'ts', 'og'
 ] as const;
 
+/** Element columns */
+export type ElementColumn = ( typeof ElementColumn )[ number ];
+export const ElementColumn = [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18
+] as const;
+
+/** Element periods */
+export type ElementPeriod = ( typeof ElementPeriod )[ number ];
+export const ElementPeriod = [ 1, 2, 3, 4, 5, 6, 7 ] as const;
+
 /** Element blocks */
 export type ElementBlock = ( typeof ElementBlock )[ number ];
 export const ElementBlock = [ 's', 'p', 'd', 'f' ] as const;
@@ -55,6 +65,16 @@ export const ElementProperty = [
     'natural', 'noble', 'platinumMetal', 'radioactive', 'rareEarths', 'refractorMetal',
     'semiconductor', 'stable', 'synthetic', 'vital'
 ] as const;
+
+/** Goldschmidt classification */
+export type Goldschmidt = ( typeof Goldschmidt )[ number ];
+export const Goldschmidt = [
+    'atmophile', 'chalcophile', 'lithophile', 'siderophile', 'synthetic'
+] as const;
+
+/** Superconductivity type */
+export type Superconductivity = ( typeof Superconductivity )[ number ];
+export const Superconductivity = [ 'none', 'normal', 'special' ] as const;
 
 /** Component roles */
 export type ComponentRole = ( typeof ComponentRole )[ number ];
@@ -90,6 +110,10 @@ export const NuclideStability = [
     'stable', 'unstable', 'primordial', 'synthetic', 'artificial'
 ] as const;
 
+/** Nuclide parity classification */
+export type NuclideParity = ( typeof NuclideParity )[ number ];
+export const NuclideParity = [ 'positive', 'negative', 'unknown' ] as const;
+
 /** Nuclide Properties */
 export type NuclideProperty = ( typeof NuclideProperty )[ number ];
 export const NuclideProperty = [
@@ -119,6 +143,10 @@ export const CompoundCategory = [
     'supramolecular', 'natural', 'synthetic', 'unknown'
 ] as const;
 
+/** Compound polarities */
+export type CompoundPolarity = ( typeof CompoundPolarity )[ number ];
+export const CompoundPolarity = [ 'nonpolar', 'polar', 'amphipathic' ] as const;
+
 /** Compound Properties */
 export type CompoundProperty = ( typeof CompoundProperty )[ number ];
 export const CompoundProperty = [
@@ -131,8 +159,8 @@ export const CompoundProperty = [
 /** Mineral classes */
 export type MineralClass = ( typeof MineralClass )[ number ];
 export const MineralClass = [
-    'elements', 'sulfides', 'halides', 'oxides', 'carbonates', 'borates',
-    'sulfates', 'phosphates', 'silicates', 'organic'
+    'elements', 'sulfides', 'halides', 'oxides', 'carbonates', 'borates', 'sulfates',
+    'phosphates', 'silicates', 'organic'
 ] as const;
 
 /** Mineral properties */
@@ -145,8 +173,8 @@ export const MineralProperty = [
 /** IMA Status */
 export type IMAStatus = ( typeof IMAStatus )[ number ];
 export const IMAStatus = [
-    'approved', 'grandfathered', 'questionable', 'rejected', 'pending',
-    'published', 'redefined', 'discredited', 'unnamed', 'groupName'
+    'approved', 'grandfathered', 'questionable', 'rejected', 'pending', 'published',
+    'redefined', 'discredited', 'unnamed', 'groupName'
 ] as const;
 
 /** Cleavage quality */
@@ -158,7 +186,8 @@ export const CleavageQuality = [
 /** Fracture types */
 export type FractureType = ( typeof FractureType )[ number ];
 export const FractureType = [
-    'conchoidal', 'subConchoidal', 'uneven', 'splintery', 'fibrous', 'hackly', 'earthy', 'granular'
+    'conchoidal', 'subConchoidal', 'uneven', 'splintery', 'fibrous', 'hackly',
+    'earthy', 'granular'
 ] as const;
 
 /** Tenacity types */

@@ -3,15 +3,16 @@
  * Defines the database entity for chemical elements of the periodic table.
  */
 
-import type { Collection, Distinct } from '../abstract/collection';
-import type { FormCollection } from '../abstract/form';
-import type { AtomicsCollection } from '../collections/atomics';
-import type { ChemistryCollection } from '../collections/chemistry';
-import type { DescriptiveCollection } from '../collections/descriptive';
-import type { MetaData } from '../collections/generic';
-import type { PhysicsCollection } from '../collections/physics';
-import type { SafetyCollection } from '../collections/safety';
-import type { ElementBlock, ElementGroup, ElementProperty, ElementSet, ElementSymbol, NaturalOccurrence, Phase } from '../utils/const';
+import type { Collection, Distinct, Single } from '@/abstract/collection';
+import type { FormCollection } from '@/abstract/form';
+import type { PrimitiveProperty } from '@/abstract/property';
+import type { AtomicsCollection } from '@/collections/atomics';
+import type { ChemistryCollection } from '@/collections/chemistry';
+import type { DescriptiveCollection } from '@/collections/descriptive';
+import type { MetaData } from '@/collections/generic';
+import type { PhysicsCollection } from '@/collections/physics';
+import type { SafetyCollection } from '@/collections/safety';
+import type * as consts from '@/utils/const';
 
 /** Element collections */
 
@@ -19,32 +20,32 @@ import type { ElementBlock, ElementGroup, ElementProperty, ElementSet, ElementSy
  * ElementClassification
  * Collection for classification properties of elements.
  * 
- * @param symbol - Chemical symbol of the element
- * @param atomicNumber - Atomic number of the element
- * @param block - Block of the periodic table
- * @param group - Group of the periodic table
- * @param column - Column number in the periodic table
- * @param period - Period number in the periodic table
- * @param radioactive - Whether the element is radioactive
- * @param set - Set classification of the element
+ * @param symbol - Distinct chemical symbol of the element
+ * @param atomicNumber - Distinct atomic number of the element
+ * @param block - Distinct block of the periodic table
+ * @param group - Distinct group of the periodic table
+ * @param column - Distinct column number in the periodic table
+ * @param period - Distinct period number in the periodic table
  * @param phase - Standard phase at room temperature
+ * @param set - Distinct set classification of the element
+ * @param radioactive - Whether the element is radioactive
  * @param naturalOccurrence - Natural occurrence type
  * @param goldschmidt - Goldschmidt classification
  * @param superconductivity - Superconductivity type
  */
-type ElementClassification = Collection< {
+export type ElementClassification = Collection< {
     symbol: Distinct< string >;
     atomicNumber: Distinct< number >;
-    block: Distinct< ElementBlock >;
-    group: Distinct< ElementGroup >;
-    column: Distinct< 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 >;
-    period: Distinct< 1 | 2 | 3 | 4 | 5 | 6 | 7 >;
-    radioactive: Distinct< boolean >;
-    set?: Distinct< ElementSet >;
-    phase?: Distinct< Phase >;
-    naturalOccurrence?: Distinct< NaturalOccurrence >;
-    goldschmidt?: Distinct< 'atmophile' | 'chalcophile' | 'lithophile' | 'siderophile' | 'synthetic' >;
-    superconductivity?: Distinct< 'none' | 'normal' | 'special' >;
+    block: Distinct< consts.ElementBlock >;
+    group: Distinct< consts.ElementGroup >;
+    column: Distinct< consts.ElementColumn >;
+    period: Distinct< consts.ElementPeriod >;
+    phase: Distinct< consts.Phase >;
+    set: Distinct< consts.ElementSet >;
+    radioactive: Single< PrimitiveProperty< boolean > >;
+    naturalOccurrence?: Single< PrimitiveProperty< consts.NaturalOccurrence > >;
+    goldschmidt?: Single< PrimitiveProperty< consts.Goldschmidt > >;
+    superconductivity?: Single< PrimitiveProperty< consts.Superconductivity > >;
 } >;
 
 /** Main element entity */
@@ -61,13 +62,13 @@ type ElementClassification = Collection< {
  * @param properties - Distinct list of element properties
  * @param safety - Safety properties collection
  */
-type SingleElement = Collection< {
+export type SingleElement = Collection< {
     descriptive: DescriptiveCollection;
     classification: ElementClassification;
     physics?: PhysicsCollection;
     chemistry?: ChemistryCollection;
     atomics?: AtomicsCollection;
-    properties?: Distinct< ElementProperty[] >;
+    properties?: Distinct< consts.ElementProperty[] >;
     safety?: SafetyCollection;
 } >;
 
@@ -78,8 +79,8 @@ type SingleElement = Collection< {
  * This includes metadata, collections for a single element, and optional forms.
  * Forms are alternative representations or variations of the element data.
  */
-export type Element = {
-    [ K in ElementSymbol ]: MetaData & SingleElement & {
+export type Element = Collection< {
+    [ K in consts.ElementSymbol ]: MetaData & SingleElement & {
         forms?: FormCollection< SingleElement >;
     };
-};
+} >;

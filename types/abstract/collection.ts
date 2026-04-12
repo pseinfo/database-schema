@@ -4,8 +4,7 @@
  */
 
 import type { LiteralUnion } from 'devtypes/types/primitive';
-
-import type { Property } from './property';
+import type { Property } from '@/abstract/property';
 
 /** Utility types */
 
@@ -56,5 +55,5 @@ export type Collection< T > = {
         T[ K ] extends Group< infer G > ? { [ GK in keyof G ]: Collection< G[ GK ] > } :
         T[ K ] extends Distinct< infer D > ? Distinct< D > :
         T[ K ] extends Property ? T[ K ] :
-        never
+        never;
 };

@@ -3,7 +3,7 @@
  * Property groups for various chemical identifiers and structure representations.
  */
 
-import type { Distinct, Group } from '../abstract/collection';
+import type { Distinct, Group } from '@/abstract/collection';
 
 /** Define types for various chemical registry identifiers */
 export type CASNumber = `${number}-${number}-${number}`;

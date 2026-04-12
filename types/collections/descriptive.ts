@@ -3,10 +3,10 @@
  * Defines the structure for descriptive properties of chemical elements and compounds.
  */
 
-import type { Collection, LangGroup } from '../abstract/collection';
-import type { NumberProperty } from '../abstract/property';
-import type { AbundanceGroup, DiscoveryGroup, MediaGroup, WeblinksGroup } from '../collections/generic';
-import type { RegistryGroup, StructureGroup } from '../collections/registry';
+import type { Collection, LangGroup } from '@/abstract/collection';
+import type { NumberProperty } from '@/abstract/property';
+import type { AbundanceGroup, DiscoveryGroup, MediaGroup, WeblinksGroup } from '@/collections/generic';
+import type { RegistryGroup, StructureGroup } from '@/collections/registry';
 
 /**
  * DescriptiveCollection

@@ -3,9 +3,23 @@
  * Defines a set of physical properties for elements, materials and substances.
  */
 
-import type { Collection, Distinct, Group, Single } from '../abstract/collection';
-import type { CoupledNumberProperty, NumberProperty, PrimitiveProperty } from '../abstract/property';
-import type { CleavageQuality, FractureType, Phase, TenacityType } from '../utils/const';
+import type { Collection, Group, Single } from '@/abstract/collection';
+import type { CoupledNumberProperty, NumberProperty, PrimitiveProperty } from '@/abstract/property';
+import type { Phase } from '@/utils/const';
+
+/** Magnetic ordering */
+export type MagneticOrdering = ( typeof MagneticOrdering )[ number ];
+export const MagneticOrdering = [
+    'diamagnetic', 'paramagnetic', 'ferromagnetic', 'antiferromagnetic', 'ferrimagnetic', 'superparamagnetic'
+] as const;
+
+/** Luster types */
+export type Luster = ( typeof Luster )[ number ];
+export const Luster = [ 'metallic', 'vitreous', 'pearly', 'dull', 'adamantine', 'greasy', 'silky' ] as const;
+
+/** Optical rotation */
+export type OpticalRotation = ( typeof OpticalRotation )[ number ];
+export const OpticalRotation = [ 'dextrorotatory', 'levorotatory', 'racemic' ] as const;
 
 /**
  * PhysicsCollection
@@ -18,7 +32,6 @@ import type { CleavageQuality, FractureType, Phase, TenacityType } from '../util
  * @param heat - Heat properties
  * @param hardness - Hardness properties
  * @param elasticity - Elasticity and mechanical properties
- * @param identification - Identification properties (for minerals/materials)
  * @param electricity - Electrical properties
  * @param magnetism - Magnetic properties
  * @param optics - Optical properties
@@ -89,17 +102,6 @@ export type PhysicsCollection = Collection< {
         ultimateStrength?: Single< NumberProperty< 'pressure' > >;
     } >;
 
-    // Identification and mechanical attributes
-    identification?: Group< {
-        cleavage?: Distinct< {
-            quality: Distinct< CleavageQuality >;
-            direction?: Distinct< string >;
-        }[] >;
-        parting?: Distinct< string[] >;
-        fracture?: Distinct< FractureType[] >;
-        tenacity?: Distinct< TenacityType >;
-    } >;
-
     // Electrical properties
     electricity?: Group< {
         electricConductivity?: Single< NumberProperty< 'electricConductivity' > >;
@@ -112,10 +114,7 @@ export type PhysicsCollection = Collection< {
 
     // Magnetic properties
     magnetism?: Group< {
-        magneticOrdering?: Single< PrimitiveProperty<
-            'diamagnetic' | 'paramagnetic' | 'ferromagnetic' | 'antiferromagnetic' |
-            'ferrimagnetic' | 'superparamagnetic'
-        > >;
+        magneticOrdering?: Single< PrimitiveProperty< MagneticOrdering > >;
         magneticSusceptibility?: Single< NumberProperty< 'magneticSusceptibility' > >;
         molarMagneticSusceptibility?: Single< NumberProperty< 'molarMagneticSusceptibility' > >;
         massMagneticSusceptibility?: Single< NumberProperty< 'massMagneticSusceptibility' > >;
@@ -139,11 +138,11 @@ export type PhysicsCollection = Collection< {
         opacity?: Single< PrimitiveProperty< number > >;
         color?: Single< PrimitiveProperty< string > >;
         streak?: Single< PrimitiveProperty< string > >;
-        luster?: Single< PrimitiveProperty< 'metallic' | 'vitreous' | 'pearly' | 'dull' | 'adamantine' | 'greasy' | 'silky' > >;
+        luster?: Single< PrimitiveProperty< Luster > >;
         pleochroism?: Single< PrimitiveProperty< string > >;
         axisAngle2V?: Single< NumberProperty< 'angle' > >;
         specificRotation?: Single< PrimitiveProperty< number > >;
-        opticalRotation?: Single< PrimitiveProperty< 'dextrorotatory' | 'levorotatory' | 'racemic' > >;
+        opticalRotation?: Single< PrimitiveProperty< OpticalRotation > >;
     } >;
 
     // Acoustic properties

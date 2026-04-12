@@ -6,9 +6,8 @@
 import type { RequireFrom, StrictSubset } from 'devtypes/types/constraint';
 import type { DeepPartial } from 'devtypes/types/transform';
 import type { Brand } from 'devtypes/types/util';
-
-import type { CrystalStructure, Phase } from '../utils/const';
-import type { Collection, Distinct } from './collection';
+import type { Collection, Distinct } from '@/abstract/collection';
+import type { CrystalStructure, Phase } from '@/utils/const';
 
 /** Form types for substances */
 export type FormType = ( typeof FormType )[ number ];
@@ -24,7 +23,7 @@ export const FormType = [ 'allotrope', 'molecular', 'phase', 'polymorph', 'amorp
  * @param properties - Partial collection of properties specific to the form
  * @param note - Additional notes about the form
  */
-type BaseFields< T extends FormType, C extends Collection< any > > = Brand< {
+export type BaseFields< T extends FormType, C extends Collection< any > > = Brand< {
     properties?: DeepPartial< C >;
     note?: Distinct< string >;
 }, T, 'type', true >;
@@ -39,7 +38,7 @@ type BaseFields< T extends FormType, C extends Collection< any > > = Brand< {
  * @param pearsonSymbol - Pearson symbol notation
  * @param spaceGroup - Space group notation
  */
-interface FormFields {
+export interface FormFields {
     formula?: Distinct< string >;
     phase?: Distinct< Phase >;
     crystalStructure?: Distinct< CrystalStructure >;
@@ -93,7 +92,12 @@ export type PolymorphForm< C extends Collection< any > > =
 /** Form IDs used in other parts of the data model */
 export type FormId = string;
 
-/** Collection of forms for substances */
+/**
+ * FormCollection
+ * Collection of forms for substances
+ * 
+ * @template C - Collection type for properties
+ */
 export type FormCollection< C extends Collection< any > > = Record< FormId, Collection<
     AllotropeForm< C > | MolecularForm< C > | PhaseForm< C > | PolymorphForm< C >
 > >;

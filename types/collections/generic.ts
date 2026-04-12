@@ -3,10 +3,18 @@
  * Defined common collection types for various data groups.
  */
 
-import type { Distinct, Group, LangGroup, Single } from '../abstract/collection';
-import type { NumberProperty, PrimitiveProperty } from '../abstract/property';
-import type { RefId } from '../abstract/reference';
-import type { CrystalStructure } from '../utils/const';
+import type { Distinct, Group, LangGroup, Single } from '@/abstract/collection';
+import type { NumberProperty, PrimitiveProperty, StructProperty } from '@/abstract/property';
+import type { RefId } from '@/abstract/reference';
+import type { CrystalStructure } from '@/utils/const';
+
+/** Image Formats */
+export type ImageFormat = ( typeof ImageFormat )[ number ];
+export const ImageFormat = [ 'jpg', 'png', 'svg', 'webp' ] as const;
+
+/** 3D Structure Formats */
+export type D3Format = ( typeof D3Format )[ number ];
+export const D3Format = [ 'pdb', 'mol', 'sdf', 'xyz', 'cif' ] as const;
 
 /**
  * MetaData
@@ -69,15 +77,15 @@ export type AbundanceGroup = Group< {
  * 
  * @param year - Year of discovery
  * @param discoverer - Name(s) of the discoverer(s)
- * @param country - Country of discovery
- * @param institute - Institute or organization of discovery
+ * @param country - Country/Countries of discovery
+ * @param institute - Institute(s) or organization(s) of discovery
  * @param references - References related to the discovery
  */
 export type DiscoveryGroup = Group< {
     year?: Distinct< number >;
     discoverer?: Distinct< string | string[] >;
-    country?: Distinct< string >;
-    institute?: Distinct< string >;
+    country?: Distinct< string | string[] >;
+    institute?: Distinct< string | string[] >;
     references?: RefId[];
 } >;
 
@@ -94,13 +102,13 @@ export type MediaGroup = Group< {
     // Images
     images?: Distinct< {
         url: string;
+        format?: ImageFormat;
         credits: string;
         license: string;
         author?: string;
         source?: string;
         width?: number;
         height?: number;
-        format?: 'jpg' | 'png' | 'svg' | 'webp';
     }[] >;
 
     // Spectral analyses
@@ -113,8 +121,8 @@ export type MediaGroup = Group< {
 
     // 3D structures
     structure3D?: Distinct< {
-        format: 'pdb' | 'mol' | 'sdf' | 'xyz' | 'cif';
         data: string;
+        format: D3Format;
         url?: string;
     }[] >;
 
@@ -154,26 +162,48 @@ export type WeblinksGroup = Group< {
  * @param twinning - Twinning information
  * @param habit - Habit information
  * @param faces - Faces information
- * @param references - References related to crystallographic data
  */
 export type CrystalGroup = Group< {
-    crystalStructure?: Distinct< CrystalStructure >;
-    crystalClass?: Distinct< string >;
-    spaceGroup?: Distinct< string >;
-    spaceGroupNumber?: Distinct< number >;
-    spaceGroupSymbol?: Distinct< string >;
-    pearsonSymbol?: Distinct< string >;
-    formulaUnitsZ?: Distinct< number >;
-    latticeConstant?: Group< {
-        a?: Distinct< number >;
-        b?: Distinct< number >;
-        c?: Distinct< number >;
-        alpha?: Distinct< number >;
-        beta?: Distinct< number >;
-        gamma?: Distinct< number >;
+    crystalStructure?: Single< PrimitiveProperty< CrystalStructure > >;
+    crystalClass?: Single< PrimitiveProperty< string > >;
+    spaceGroup?: Single< PrimitiveProperty< string > >;
+    spaceGroupNumber?: Single< PrimitiveProperty< number > >;
+    spaceGroupSymbol?: Single< PrimitiveProperty< string > >;
+    pearsonSymbol?: Single< PrimitiveProperty< string > >;
+    formulaUnitsZ?: Single< PrimitiveProperty< number > >;
+    latticeConstant?: StructProperty< {
+        a?: number;
+        b?: number;
+        c?: number;
+        alpha?: number;
+        beta?: number;
+        gamma?: number;
     } >;
-    twinning?: Distinct< string | string[] >;
-    habit?: Distinct< string | string[] >;
-    faces?: Distinct< string[] >;
-    references?: RefId[];
+    twinning?: Single< PrimitiveProperty< string > >;
+    habit?: Single< PrimitiveProperty< string > >;
+    faces?: Single< PrimitiveProperty< string > >;
+} >;
+
+/**
+ * NMRGroup
+ * Nuclear Magnetic Resonance properties for nuclides.
+ * 
+ * @param spin - Nuclear spin quantum number
+ * @param gyromagneticRatio - Gyromagnetic ratio of the nuclide
+ * @param magneticMoment - Magnetic moment of the nuclide
+ * @param larmorPrecession - Larmor precession frequency
+ * @param sensitivity - Relative sensitivity of the nuclide in NMR
+ * @param quadrupoleMoment - Quadrupole moment of the nuclide
+ * @param referenceField - Reference magnetic field strength for NMR measurements
+ * @param chemicalShiftReference - Chemical shift reference information
+ */
+export type NMRGroup = Group< {
+    spin?: Single< PrimitiveProperty< number > >;
+    gyromagneticRatio?: Single< NumberProperty< 'magneticMoment' > >;
+    magneticMoment?: Single< NumberProperty< 'magneticMoment' > >;
+    larmorPrecession?: Single< NumberProperty< 'frequency' > >;
+    sensitivity?: Single< PrimitiveProperty< number > >;
+    quadrupoleMoment?: Single< NumberProperty< 'quantity' > >;
+    referenceField?: Single< NumberProperty< 'magneticFieldStrength' > >;
+    chemicalShiftReference?: Single< PrimitiveProperty< string > >;
 } >;
