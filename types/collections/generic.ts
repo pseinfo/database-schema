@@ -177,3 +177,27 @@ export type CrystalGroup = Group< {
     faces?: Distinct< string[] >;
     references?: RefId[];
 } >;
+
+/**
+ * NMRGroup
+ * Nuclear Magnetic Resonance properties for nuclides.
+ * 
+ * @param spin - Nuclear spin quantum number
+ * @param gyromagneticRatio - Gyromagnetic ratio of the nuclide
+ * @param magneticMoment - Magnetic moment of the nuclide
+ * @param larmorPrecession - Larmor precession frequency
+ * @param sensitivity - Relative sensitivity of the nuclide in NMR
+ * @param quadrupoleMoment - Quadrupole moment of the nuclide
+ * @param referenceField - Reference magnetic field strength for NMR measurements
+ * @param chemicalShiftReference - Chemical shift reference information
+ */
+export type NMRGroup = Group< {
+    spin?: Single< PrimitiveProperty< number > >;
+    gyromagneticRatio?: Single< NumberProperty< 'magneticMoment' > >;
+    magneticMoment?: Single< NumberProperty< 'magneticMoment' > >;
+    larmorPrecession?: Single< NumberProperty< 'frequency' > >;
+    sensitivity?: Single< PrimitiveProperty< number > >;
+    quadrupoleMoment?: Single< NumberProperty< 'quantity' > >;
+    referenceField?: Single< NumberProperty< 'magneticFieldStrength' > >;
+    chemicalShiftReference?: Distinct< string >;
+} >;
