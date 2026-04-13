@@ -32,6 +32,7 @@ import type { Phase, PTColumn, PTPeriod } from '@/enums/generic';
  * @param phase - Standard phase at room temperature
  * @param set - Set classification of the element
  * @param radioactive - Whether the element is radioactive
+ * @param properties - List of element properties
  */
 export type ElementClassification = Collection< {
     symbol: Distinct< string >;
@@ -43,6 +44,7 @@ export type ElementClassification = Collection< {
     phase: Distinct< Phase >;
     set: Distinct< ElementSet >;
     radioactive: Distinct< boolean >;
+    properties: Distinct< ElementProperty[] >;
 } >;
 
 /** Main element entity */
@@ -55,7 +57,6 @@ export type ElementClassification = Collection< {
  * @param physics - Physics properties collection
  * @param chemistry - Chemistry properties collection
  * @param atomics - Atomics properties collection
- * @param properties - Distinct list of element properties
  * @param safety - Safety properties collection
  */
 export type SingleElement = Collection< {
@@ -64,7 +65,6 @@ export type SingleElement = Collection< {
     physics?: PhysicsCollection;
     chemistry?: ChemistryCollection;
     atomics?: AtomicsCollection;
-    properties?: Distinct< ElementProperty[] >;
     safety?: SafetyCollection;
 } >;
 

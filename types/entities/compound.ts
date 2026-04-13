@@ -27,12 +27,14 @@ import type { Phase } from '@/enums/generic';
  * @param family - Optional family classification of the compound (e.g., alcohols, ketones)
  * @param phase - Standard phase at room temperature
  * @param radioactive - Whether the compound is radioactive
+ * @param properties - List of compound properties
  */
 export type CompoundClassification = Collection< {
     category: Distinct< CompoundCategory >;
     family?: Distinct< string >;
     phase: Distinct< Phase >;
     radioactive: Distinct< boolean >;
+    properties: Distinct< CompoundProperty[] >;
 } >;
 
 /** Main compound entity */
@@ -45,7 +47,6 @@ export type CompoundClassification = Collection< {
  * @param composition - Compositional collections for the compound
  * @param physics - Optional physics properties collection
  * @param chemistry - Optional chemistry properties collection
- * @param properties - Distinct list of compound properties
  * @param safety - Optional safety properties collection
  */
 export type SingleCompound = Collection< {
@@ -54,7 +55,6 @@ export type SingleCompound = Collection< {
     composition: CompositionCollection;
     physics?: PhysicsCollection;
     chemistry?: ChemistryCollection;
-    properties?: Distinct< CompoundProperty[] >;
     safety?: SafetyCollection;
 } >;
 
