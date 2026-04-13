@@ -44,3 +44,12 @@ export type Quantity< Q extends PhysicalQuantity > = {
     [ U in BaseUnitSymbols< Q > ]: Unit< Q, U >;
   };
 };
+
+export type UnitId< Q extends PhysicalQuantity = PhysicalQuantity > = Brand<
+  [ Q, PrefixedSymbols< Q > ],
+  'unitId'
+>;
+
+export type UnitCollection = {
+  [ Q in PhysicalQuantity ]?: Quantity< Q >;
+};
