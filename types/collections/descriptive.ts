@@ -20,6 +20,7 @@ import type { LangCode } from '@/enums/generic';
  * @param names - Names in different languages
  * @param description - Descriptions in different languages
  * @param appearance - Appearance descriptions in different languages
+ * @param odor - Odor descriptions in different languages
  * @param abundance - Natural abundance information group
  * @param discovery - Discovery information group
  * @param media - Media information group
@@ -32,6 +33,7 @@ export type DescriptiveCollection = Collection< {
     names: LangGroup< LangCode.ENGLISH | LangCode.LATIN >;
     description?: LangGroup;
     appearance?: LangGroup;
+    odor?: LangGroup;
     abundance?: AbundanceGroup;
     discovery?: DiscoveryGroup;
     media?: MediaGroup;
