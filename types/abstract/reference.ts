@@ -1,4 +1,4 @@
-import type { ExtractFrom, RequireAtLeastOne, RequireExactlyOne, StrictSubset } from 'devtypes/types/constraint';
+import type { ExtractFrom, RequireAtLeastOne, RequireExactlyOneFrom, StrictSubset } from 'devtypes/types/constraint';
 import type { Brand, Expand } from 'devtypes/types/util';
 import type { ReferenceType } from '../enum/abstract';
 
@@ -62,7 +62,7 @@ export type ArticleReference = Expand<
 
 export type BookReference = Expand<
   BaseReference< ReferenceType.BOOK > &
-  RequireExactlyOne< BibTeXFields, 'author' | 'editor' > &
+  RequireExactlyOneFrom< BibTeXFields, 'author' | 'editor' > &
   StrictSubset<
     BibTeXFields,
     'publisher' | 'title' | 'year',
@@ -83,7 +83,7 @@ export type ConferenceReference = Conference< ReferenceType.CONFERENCE >;
 
 export type InbookReference = Expand<
   BaseReference< ReferenceType.INBOOK > &
-  RequireExactlyOne< BibTeXFields, 'author' | 'editor' > &
+  RequireExactlyOneFrom< BibTeXFields, 'author' | 'editor' > &
   RequireAtLeastOne<
     StrictSubset<
       BibTeXFields,
