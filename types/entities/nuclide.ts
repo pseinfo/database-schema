@@ -13,7 +13,8 @@ import type { Collection, Distinct, Group, Single } from '@/abstract/collection'
 import type { NumberProperty, PrimitiveProperty, StructProperty } from '@/abstract/property';
 import type { NumberValue } from '@/abstract/value';
 import type { DescriptiveCollection } from '@/collections/descriptive';
-import type { MetaData, NMRGroup } from '@/collections/generic';
+import type { MetaData } from '@/collections/generic';
+import type { NuclearCollection } from '@/collections/nuclear';
 import type { ElementSymbol } from '@/enums/element';
 import type { DecayMode, NuclideParity, NuclideProperty, NuclideStability, NuclideState, RadiationType } from '@/enums/nuclide';
 
@@ -46,39 +47,6 @@ export type NuclideClassification = Collection< {
     parity?: Single< PrimitiveProperty< NuclideParity > >;
     spinParity?: Single< PrimitiveProperty< string > >;
     isomericLevel?: Single< PrimitiveProperty< string > >;
-} >;
-
-/**
- * Collection for nuclear properties of nuclides.
- * 
- * @param atomicMass - Atomic mass of the nuclide
- * @param massExcess - Mass excess of the nuclide
- * @param bindingEnergyPerNucleon - Binding energy per nucleon
- * @param neutronSeparationEnergy - Neutron separation energy
- * @param protonSeparationEnergy - Proton separation energy
- * @param nuclearChargeRadius - Nuclear charge radius
- * @param excitationEnergy - Excitation energy levels
- * @param isomericTransitionEnergy - Isomeric transition energy for metastable states
- * @param qValue - Q value for electron capture
- * @param crossSection - Cross section data
- * @param nrm - NMR properties collection
- */
-export type NuclearCollection = Collection< {
-    atomicMass?: Single< NumberProperty< 'mass' > >;
-    massExcess?: Single< NumberProperty< 'energy' > >;
-    bindingEnergyPerNucleon?: Single< NumberProperty< 'energy' > >;
-    neutronSeparationEnergy?: Single< NumberProperty< 'energy' > >;
-    protonSeparationEnergy?: Single< NumberProperty< 'energy' > >;
-    nuclearChargeRadius?: Single< NumberProperty< 'length' > >;
-    excitationEnergy?: Single< NumberProperty< 'energy' > >;
-    isomericTransitionEnergy?: Single< NumberProperty< 'energy' > >;
-    qValue?: Single< NumberProperty< 'energy' > >;
-    crossSection?: Group< {
-        thermalNeutronCapture?: Single< NumberProperty< 'area' > >;
-        resonanceIntegral?: Single< NumberProperty< 'area' > >;
-        fission?: Single< NumberProperty< 'area' > >;
-    } >;
-    nrm?: NMRGroup;
 } >;
 
 /**
