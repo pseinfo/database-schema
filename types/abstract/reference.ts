@@ -25,10 +25,10 @@ export interface BibTeXFields {
   organization?: string;
   pages?: number | string;
   publisher?: string;
-  school?: string;
+  reportType?: string;
   series?: string;
+  school?: string;
   title?: string;
-  type?: string;
   volume?: number | string;
   year?: number | string;
 }
@@ -38,7 +38,7 @@ type Thesis< T extends ReferenceType.MASTERSTHESIS | ReferenceType.THESIS | Refe
   StrictSubset<
     BibTeXFields,
     'author' | 'school' | 'title' | 'year',
-    'address' | 'month' | 'note' | 'type'
+    'address' | 'month' | 'note' | 'reportType'
   >
 >;
 
@@ -88,7 +88,7 @@ export type InbookReference = Expand<
     StrictSubset<
       BibTeXFields,
       'booktitle' | 'chapter' | 'pages' | 'publisher' | 'title' | 'year',
-      'address' | 'edition' | 'month' | 'note' | 'number' | 'series' | 'type' | 'volume'
+      'address' | 'edition' | 'month' | 'note' | 'number' | 'reportType' | 'series' | 'volume'
     >,
     'chapter' | 'pages'
   >
@@ -99,7 +99,7 @@ export type IncollectionReference = Expand<
   StrictSubset<
     BibTeXFields,
     'author' | 'booktitle' | 'publisher' | 'title' | 'year',
-    'address' | 'chapter' | 'edition' | 'editor' | 'month' | 'note' | 'number' | 'pages' | 'series' | 'type' | 'volume'
+    'address' | 'chapter' | 'edition' | 'editor' | 'month' | 'note' | 'number' | 'pages' | 'reportType' | 'series' | 'volume'
   >
 >;
 
@@ -142,7 +142,7 @@ export type TechreportReference = Expand<
   StrictSubset<
     BibTeXFields,
     'author' | 'institution' | 'title' | 'year',
-    'address' | 'month' | 'note' | 'number' | 'type'
+    'address' | 'month' | 'note' | 'number' | 'reportType'
   >
 >;
 
