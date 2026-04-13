@@ -75,6 +75,11 @@ export type SingleElement = Collection< {
     safety?: SafetyCollection;
 } >;
 
+/** Type description for a single element entity. */
+export type ElementEntity = Expand< MetaData & SingleElement & {
+    forms?: FormCollection< SingleElement >;
+} >;
+
 /**
  * Entity type for all elements, indexed by their symbol.
  * 
@@ -82,7 +87,5 @@ export type SingleElement = Collection< {
  * Forms are alternative representations or variations of the element data.
  */
 export type Element = Collection< {
-    [ K in ElementSymbol ]: Expand< MetaData & SingleElement & {
-        forms?: FormCollection< SingleElement >;
-    } >;
+    [ K in ElementSymbol ]: ElementEntity;
 } >;

@@ -114,6 +114,11 @@ export type SingleMineral = Collection< {
     safety?: SafetyCollection;
 } >;
 
+/** Type description for a single mineral entity. */
+export type MineralEntity = Expand< MetaData & SingleMineral & {
+    forms?: FormCollection< SingleMineral >; 
+} >;
+
 /**
  * Entity type for minerals, indexed by a unique identifier.
  * 
@@ -122,7 +127,5 @@ export type SingleMineral = Collection< {
  * optional specialized forms.
  */
 export type Mineral = Collection< {
-    [ key: string ]: Expand< MetaData & SingleMineral & {
-        forms?: FormCollection< SingleMineral >;
-    } >;
+    [ key: string ]: MineralEntity;
 } >;

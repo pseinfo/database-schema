@@ -86,6 +86,11 @@ export type SingleCompound = Collection< {
     safety?: SafetyCollection;
 } >;
 
+/** Type description for a single compound entity. */
+export type CompoundEntity = Expand< MetaData & SingleCompound & {
+    forms?: FormCollection< SingleCompound >; 
+} >;
+
 /**
  * Entity type for chemical compounds, indexed by a unique identifier.
  * 
@@ -94,7 +99,5 @@ export type SingleCompound = Collection< {
  * optional specialized forms such as polymorphs, solvates, or phase variants.
  */
 export type Compound = Collection< {
-    [ key: string ]: Expand< MetaData & SingleCompound & {
-        forms?: FormCollection< SingleCompound >;
-    } >;
+    [ key: string ]: CompoundEntity;
 } >;

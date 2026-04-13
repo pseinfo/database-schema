@@ -132,6 +132,9 @@ export type SingleNuclide = Collection< {
     properties?: Distinct< NuclideProperty[] >;
 } >;
 
+/** Type description for a single nuclide entity. */
+export type NuclideEntity = Expand< MetaData & SingleNuclide >;
+
 /**
  * Type for the main nuclide collection grouped by element symbol and nuclide identifier.
  * 
@@ -142,7 +145,7 @@ export type SingleNuclide = Collection< {
  */
 export type Nuclides = Collection< {
     [ K in ElementSymbol ]?: {
-        [ N in NuclideIdentifier ]?: Expand< MetaData & SingleNuclide >;
+        [ N in NuclideIdentifier ]?: NuclideEntity;
     };
 } >;
 
