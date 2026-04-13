@@ -6,7 +6,7 @@
  */
 
 import type { Collection, Distinct, Group, Single } from '@/abstract/collection';
-import type { PrimitiveProperty } from '@/abstract/property';
+import type { NumberProperty, PrimitiveProperty } from '@/abstract/property';
 import type { ComponentRole } from '@/enums/compound';
 import type { ElementSymbol } from '@/enums/element';
 
@@ -27,8 +27,8 @@ export type CompositionComponent = Group< {
     amount: Distinct< number >;
     frequency?: Single< PrimitiveProperty< number > >;
     role?: Single< PrimitiveProperty< ComponentRole > >;
-    massFraction?: Single< PrimitiveProperty< number > >;
-    atomicFraction?: Single< PrimitiveProperty< number > >;
+    massFraction?: Single< NumberProperty< 'massFraction' > >;
+    atomicFraction?: Single< NumberProperty< 'massFraction' > >;
     charge?: Single< PrimitiveProperty< number > >;
 } >;
 
@@ -36,15 +36,15 @@ export type CompositionComponent = Group< {
  * Collection for compositional properties.
  * 
  * @param components - List of components that make up the substance
- * @param formula - Chemical formula
- * @param empiricalFormula - Empirical formula
- * @param structuralFormula - Structural formula (e.g. for minerals or complex compounds)
+ * @param formula - Distinct chemical formula
+ * @param empiricalFormula - Distinct empirical formula
+ * @param structuralFormula - Distinct structural formula (e.g. for minerals or complex compounds)
  * @param charge - Overall formal charge
  */
 export type CompositionCollection = Collection< {
     components: CompositionComponent[];
-    formula: Single< PrimitiveProperty< string > >;
-    empiricalFormula?: Single< PrimitiveProperty< string > >;
-    structuralFormula?: Single< PrimitiveProperty< string > >;
+    formula: Distinct< string >;
+    empiricalFormula?: Distinct< string >;
+    structuralFormula?: Distinct< string >;
     charge?: Single< PrimitiveProperty< number > >;
 } >;
