@@ -6,8 +6,8 @@ import type { Value } from './value';
 export type StandardCondition = keyof typeof stp;
 
 export type Conditions<
-    Q extends PhysicalQuantity = PhysicalQuantity,
-    T extends Primitive = Primitive
+  Q extends PhysicalQuantity = PhysicalQuantity,
+  T extends Primitive = Primitive
 > = StandardCondition | {
-    [ K in Q ]?: Value< K, T >;
+  [ K in Q ]?: Value< K, T >;
 };
