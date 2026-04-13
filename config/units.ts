@@ -1,4 +1,6 @@
-export const units = {
+import { UnitConfig } from '../types/abstract/config';
+
+export const units: UnitConfig = {
   time: { base: [ 's', 'min', 'h', 'd', 'a' ], prefixable: [ 's' ] },
   length: { base: [ 'm', 'in', 'ft', 'yd', 'mi', 'Å', 'Ø' ], prefixable: [ 'm' ] },
   mass: { base: [ 'g', 't', 'oz', 'lb', 'u', 'Da' ], prefixable: [ 'g' ] },
