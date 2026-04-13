@@ -13,7 +13,7 @@
 import type { ReferenceCollection } from '@/abstract/reference';
 import type { UnitCollection } from '@/abstract/unit';
 
-import type { Compound } from '@/entities/compound';
+import type { CompoundCollection } from '@/entities/compound';
 import type { ElementCollection } from '@/entities/element';
 import type { Mineral } from '@/entities/mineral';
 import type { Nuclide } from '@/entities/nuclide';
@@ -30,7 +30,7 @@ import type { Nuclide } from '@/entities/nuclide';
  */
 export type Database = {
     elements: ElementCollection;
-    compounds: Compound;
+    compounds: CompoundCollection;
     minerals: Mineral;
     nuclides: Nuclide;
     references: ReferenceCollection;
