@@ -7,7 +7,7 @@
 
 import type { Collection, Group, Single } from '@/abstract/collection';
 import type { CoupledNumberProperty, NumberProperty, PrimitiveProperty } from '@/abstract/property';
-import type { Phase } from '@/enums/generic';
+import type { Phase, Superconductivity } from '@/enums/generic';
 import type { Luster, MagneticOrdering, OpticalRotation } from '@/enums/physics';
 
 
@@ -96,6 +96,7 @@ export type PhysicsCollection = Collection< {
         electricConductivity?: Single< NumberProperty< 'electricConductivity' > >;
         electricResistivity?: Single< NumberProperty< 'electricResistivity' > >;
         temperatureCoefficient?: Single< NumberProperty< 'tempCoefficient' > >;
+        superconductivity?: Single< PrimitiveProperty< Superconductivity > >;
         superconductingPoint?: Single< NumberProperty< 'temperature' > >;
         bandGap?: Single< NumberProperty< 'energy' > >;
         dielectricConstant?: Single< PrimitiveProperty< number > >;

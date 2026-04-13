@@ -7,7 +7,7 @@ import type { Expand } from 'devtypes/types/util';
 import type { Distinct, Group, Single } from '@/abstract/collection';
 import type { NumberProperty, PrimitiveProperty } from '@/abstract/property';
 import type { RefId } from '@/abstract/reference';
-import type { D3Format, ImageFormat, LangCode } from '@/enums/generic';
+import type { D3Format, ImageFormat, LangCode, NaturalOccurrence } from '@/enums/generic';
 
 
 /**
@@ -39,6 +39,7 @@ export type LangGroup< L extends LangCode = LangCode.ENGLISH, T = string > = Gro
  * AbundanceGroup
  * Natural abundance data for elements, minerals, isotopes, etc.
  * 
+ * @param naturalOccurrence - Natural occurrence type
  * @param universeAbundance - Abundance in the universe
  * @param solarSystemAbundance - Abundance in the solar system
  * @param sunAbundance - Abundance in the sun
@@ -53,6 +54,9 @@ export type LangGroup< L extends LangCode = LangCode.ENGLISH, T = string > = Gro
  * @param oreAbundance - Abundance in ores
  */
 export type AbundanceGroup = Group< {
+    
+    // Natural occurrence
+    naturalOccurrence?: Single< PrimitiveProperty< NaturalOccurrence > >;
 
     // Cosmic abundance
     universeAbundance?: Single< NumberProperty< 'quantity' > >;

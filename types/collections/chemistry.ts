@@ -8,7 +8,7 @@
 import type { Collection, Group, Single } from '@/abstract/collection';
 import type { NumberProperty, PrimitiveProperty, StructProperty } from '@/abstract/property';
 import type { AcidBaseCharacter, BondType, HSAB, Hybridization, LewisAcidity, LewisBasicity, OxideCharacter } from '@/enums/chemistry';
-import type { CrystalSystem } from '@/enums/generic';
+import type { CrystalSystem, Goldschmidt } from '@/enums/generic';
 
 
 /**
@@ -41,6 +41,7 @@ export type ChemistryCollection = Collection< {
         isoelectricPoint?: Single< PrimitiveProperty< number > >;
         lewisAcidity?: Single< PrimitiveProperty< LewisAcidity > >;
         lewisBasicity?: Single< PrimitiveProperty< LewisBasicity > >;
+        goldschmidt?: Single< PrimitiveProperty< Goldschmidt > >;
         hsab?: Single< PrimitiveProperty< HSAB > >;
     } >;
 
