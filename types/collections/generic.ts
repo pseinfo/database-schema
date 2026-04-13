@@ -7,7 +7,7 @@ import type { Expand } from 'devtypes/types/util';
 import type { Distinct, Group, Single } from '@/abstract/collection';
 import type { NumberProperty, PrimitiveProperty } from '@/abstract/property';
 import type { RefId } from '@/abstract/reference';
-import type { D3Format, ImageFormat, LangCode } from '@/enums/generic';
+import type { D3Format, ImageFormat, LangCode, NaturalOccurrence } from '@/enums/generic';
 
 
 /**
@@ -39,6 +39,7 @@ export type LangGroup< L extends LangCode = LangCode.ENGLISH, T = string > = Gro
  * AbundanceGroup
  * Natural abundance data for elements, minerals, isotopes, etc.
  * 
+ * @param naturalOccurrence - Natural occurrence type
  * @param universeAbundance - Abundance in the universe
  * @param solarSystemAbundance - Abundance in the solar system
  * @param sunAbundance - Abundance in the sun
@@ -53,6 +54,9 @@ export type LangGroup< L extends LangCode = LangCode.ENGLISH, T = string > = Gro
  * @param oreAbundance - Abundance in ores
  */
 export type AbundanceGroup = Group< {
+    
+    // Natural occurrence
+    naturalOccurrence?: Single< PrimitiveProperty< NaturalOccurrence > >;
 
     // Cosmic abundance
     universeAbundance?: Single< NumberProperty< 'quantity' > >;
@@ -150,28 +154,4 @@ export type WeblinksGroup = Group< {
         language?: string;
     }[] >;
     wiki?: LangGroup;
-} >;
-
-/**
- * NMRGroup
- * Nuclear Magnetic Resonance properties for nuclides.
- * 
- * @param spin - Nuclear spin quantum number
- * @param gyromagneticRatio - Gyromagnetic ratio of the nuclide
- * @param magneticMoment - Magnetic moment of the nuclide
- * @param larmorPrecession - Larmor precession frequency
- * @param sensitivity - Relative sensitivity of the nuclide in NMR
- * @param quadrupoleMoment - Quadrupole moment of the nuclide
- * @param referenceField - Reference magnetic field strength for NMR measurements
- * @param chemicalShiftReference - Chemical shift reference information
- */
-export type NMRGroup = Group< {
-    spin?: Single< PrimitiveProperty< number > >;
-    gyromagneticRatio?: Single< NumberProperty< 'magneticMoment' > >;
-    magneticMoment?: Single< NumberProperty< 'magneticMoment' > >;
-    larmorPrecession?: Single< NumberProperty< 'frequency' > >;
-    sensitivity?: Single< PrimitiveProperty< number > >;
-    quadrupoleMoment?: Single< NumberProperty< 'quantity' > >;
-    referenceField?: Single< NumberProperty< 'magneticFieldStrength' > >;
-    chemicalShiftReference?: Single< PrimitiveProperty< string > >;
 } >;
