@@ -37,8 +37,8 @@ type Thesis< T extends ReferenceType.MASTERSTHESIS | ReferenceType.THESIS | Refe
   BaseReference< T > &
   StrictSubset<
     BibTeXFields,
-    'author' | 'title' | 'school' | 'year',
-    'type' | 'address' | 'month' | 'note'
+    'author' | 'school' | 'title' | 'year',
+    'address' | 'month' | 'note' | 'type'
   >
 >;
 
@@ -46,8 +46,8 @@ type Conference< T extends ReferenceType.CONFERENCE | ReferenceType.INPROCEEDING
   BaseReference< T > &
   StrictSubset<
     BibTeXFields,
-    'author' | 'title' | 'booktitle' | 'year',
-    'editor' | 'volume' | 'number' | 'series' | 'pages' | 'address' | 'month' | 'organization' | 'publisher' | 'note'
+    'author' | 'booktitle' | 'title' | 'year',
+    'address' | 'editor' | 'month' | 'note' | 'number' | 'organization' | 'pages' | 'publisher' | 'series' | 'volume'
   >
 >;
 
@@ -55,8 +55,8 @@ export type ArticleReference = Expand<
   BaseReference< ReferenceType.ARTICLE > &
   StrictSubset<
     BibTeXFields,
-    'author' | 'title' | 'journal' | 'year',
-    'volume' | 'number' | 'pages' | 'month' | 'note'
+    'author' | 'journal' | 'title' | 'year',
+    'month' | 'note' | 'number' | 'pages' | 'volume'
   >
 >;
 
@@ -65,8 +65,8 @@ export type BookReference = Expand<
   RequireExactlyOne< BibTeXFields, 'author' | 'editor' > &
   StrictSubset<
     BibTeXFields,
-    'title' | 'publisher' | 'year',
-    'volume' | 'number' | 'series' | 'address' | 'edition' | 'month' | 'note' | 'isbn'
+    'publisher' | 'title' | 'year',
+    'address' | 'edition' | 'isbn' | 'month' | 'note' | 'number' | 'series' | 'volume'
   >
 >;
 
@@ -75,7 +75,7 @@ export type BookletReference = Expand<
   StrictSubset<
     BibTeXFields,
     'title',
-    'author' | 'howpublished' | 'address' | 'month' | 'year' | 'note'
+    'address' | 'author' | 'howpublished' | 'month' | 'note' | 'year'
   >
 >;
 
@@ -87,8 +87,8 @@ export type InbookReference = Expand<
   RequireAtLeastOne<
     StrictSubset<
       BibTeXFields,
-      'title' | 'booktitle' | 'chapter' | 'pages' | 'publisher' | 'year',
-      'volume' | 'number' | 'series' | 'type' | 'address' | 'edition' | 'month' | 'note'
+      'booktitle' | 'chapter' | 'pages' | 'publisher' | 'title' | 'year',
+      'address' | 'edition' | 'month' | 'note' | 'number' | 'series' | 'type' | 'volume'
     >,
     'chapter' | 'pages'
   >
@@ -98,8 +98,8 @@ export type IncollectionReference = Expand<
   BaseReference< ReferenceType.INCOLLECTION > &
   StrictSubset<
     BibTeXFields,
-    'author' | 'title' | 'booktitle' | 'publisher' | 'year',
-    'editor' | 'volume' | 'number' | 'series' | 'type' | 'chapter' | 'pages' | 'address' | 'edition' | 'month' | 'note'
+    'author' | 'booktitle' | 'publisher' | 'title' | 'year',
+    'address' | 'chapter' | 'edition' | 'editor' | 'month' | 'note' | 'number' | 'pages' | 'series' | 'type' | 'volume'
   >
 >;
 
@@ -110,7 +110,7 @@ export type ManualReference = Expand<
   StrictSubset<
     BibTeXFields,
     'title',
-    'author' | 'organization' | 'address' | 'edition' | 'month' | 'year' | 'note'
+    'address' | 'author' | 'edition' | 'month' | 'note' | 'organization' | 'year'
   >
 >;
 
@@ -122,7 +122,7 @@ export type MiscReference = Expand<
   BaseReference< ReferenceType.MISC > &
   ExtractFrom<
     BibTeXFields,
-    'author' | 'title' | 'howpublished' | 'month' | 'year' | 'note'
+    'author' | 'howpublished' | 'month' | 'note' | 'title' | 'year'
   >
 >;
 
@@ -133,7 +133,7 @@ export type ProceedingsReference = Expand<
   StrictSubset<
     BibTeXFields,
     'title' | 'year',
-    'editor' | 'volume' | 'number' | 'series' | 'address' | 'month' | 'organization' | 'publisher' | 'note'
+    'address' | 'editor' | 'month' | 'note' | 'number' | 'organization' | 'publisher' | 'series' | 'volume'
   >
 >;
 
@@ -141,8 +141,8 @@ export type TechreportReference = Expand<
   BaseReference< ReferenceType.TECHREPORT > &
   StrictSubset<
     BibTeXFields,
-    'author' | 'title' | 'institution' | 'year',
-    'type' | 'number' | 'address' | 'month' | 'note'
+    'author' | 'institution' | 'title' | 'year',
+    'address' | 'month' | 'note' | 'number' | 'type'
   >
 >;
 
@@ -150,7 +150,7 @@ export type UnpublishedReference = Expand<
   BaseReference< ReferenceType.UNPUBLISHED > &
   StrictSubset<
     BibTeXFields,
-    'author' | 'title' | 'note',
+    'author' | 'note' | 'title',
     'month' | 'year'
   >
 >;
