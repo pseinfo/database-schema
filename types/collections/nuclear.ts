@@ -20,7 +20,7 @@ import type { NumberProperty, PrimitiveProperty } from '@/abstract/property';
  * @param sensitivity - Relative sensitivity of the nuclide in NMR
  * @param quadrupoleMoment - Quadrupole moment of the nuclide
  * @param referenceField - Reference magnetic field strength for NMR measurements
- * @param chemicalShiftReference - Chemical shift reference information
+ * @param chemicalShiftReference - Chemical shift reference
  */
 export type NMRGroup = Group< {
     spin?: Single< PrimitiveProperty< number > >;
