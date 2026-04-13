@@ -3,11 +3,11 @@
  * Defined common collection types for various data groups.
  */
 
-import type { LiteralUnion } from 'devtypes/types/primitive';
+import type { Expand } from 'devtypes/types/util';
 import type { Distinct, Group, Single } from '@/abstract/collection';
 import type { NumberProperty, PrimitiveProperty } from '@/abstract/property';
 import type { RefId } from '@/abstract/reference';
-import type { D3Format, ImageFormat } from '@/enums/generic';
+import type { D3Format, ImageFormat, LangCode } from '@/enums/generic';
 
 
 /**
@@ -30,9 +30,10 @@ export type MetaData = Distinct< {
  * @template L - The required language codes (default: 'en')
  * @template T - The value type (default: string)
  */
-export type LangGroup< L extends string = 'en', T = string > = Group< {
-    [ K in LiteralUnion< L > ]: Distinct< T >;
-} >;
+export type LangGroup< L extends LangCode = LangCode.ENGLISH, T = string > = Group< Expand<
+    Required< { [ K in L ]: Distinct< T > } > &
+    Partial< { [ K in Exclude< LangCode, L > ]: Distinct< T > } >
+> >;
 
 /**
  * AbundanceGroup

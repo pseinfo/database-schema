@@ -9,6 +9,7 @@ import type { Collection, Single } from '@/abstract/collection';
 import type { NumberProperty } from '@/abstract/property';
 import type { AbundanceGroup, DiscoveryGroup, LangGroup, MediaGroup, WeblinksGroup } from '@/collections/generic';
 import type { RegistryGroup, StructureGroup } from '@/collections/registry';
+import type { LangCode } from '@/enums/generic';
 
 
 /**
@@ -28,7 +29,7 @@ import type { RegistryGroup, StructureGroup } from '@/collections/registry';
 export type DescriptiveCollection = Collection< {
     registry: RegistryGroup;
     structure: StructureGroup;
-    names: LangGroup< 'en' | 'la' >;
+    names: LangGroup< LangCode.ENGLISH | LangCode.LATIN >;
     description?: LangGroup;
     appearance?: LangGroup;
     abundance?: AbundanceGroup;
