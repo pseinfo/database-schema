@@ -5,14 +5,14 @@
  * @module collections/safety
  */
 
-import type { Collection, Distinct, Group, Single } from '@/abstract/collection';
-import type { StructProperty } from '@/abstract/property';
-import type { RefId } from '@/abstract/reference';
-import type { RangeValue, SingleValue } from '@/abstract/value';
+import type { Collection, Distinct, Group, Single } from '../abstract/collection';
+import type { StructProperty } from '../abstract/property';
+import type { RefId } from '../abstract/reference';
+import type { RangeValue, SingleValue } from '../abstract/value';
 import type {
     ADRClass, DOTClass, GHSClass, GHSPictogram, NFPACode, NFPANotice, SignalWord,
     ToxicityApplication, ToxicityType, WHMISClass
-} from '@/enums/safety';
+} from '../enums/safety';
 
 
 /** Hazard statements */

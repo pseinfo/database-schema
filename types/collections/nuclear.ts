@@ -5,8 +5,8 @@
  * @module collections/nuclear
  */
 
-import type { Collection, Group, Single } from '@/abstract/collection';
-import type { NumberProperty, PrimitiveProperty } from '@/abstract/property';
+import type { Collection, Group, Single } from '../abstract/collection';
+import type { NumberProperty, PrimitiveProperty } from '../abstract/property';
 
 
 /**

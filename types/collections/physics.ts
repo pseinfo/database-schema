@@ -5,10 +5,10 @@
  * @module collections/physics
  */
 
-import type { Collection, Group, Single } from '@/abstract/collection';
-import type { CoupledNumberProperty, NumberProperty, PrimitiveProperty } from '@/abstract/property';
-import type { Phase, Superconductivity } from '@/enums/generic';
-import type { Luster, MagneticOrdering, OpticalRotation } from '@/enums/physics';
+import type { Collection, Group, Single } from '../abstract/collection';
+import type { CoupledNumberProperty, NumberProperty, PrimitiveProperty } from '../abstract/property';
+import type { Phase, Superconductivity } from '../enums/generic';
+import type { Luster, MagneticOrdering, OpticalRotation } from '../enums/physics';
 
 
 /**

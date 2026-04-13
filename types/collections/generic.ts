@@ -4,10 +4,10 @@
  */
 
 import type { Expand } from 'devtypes/types/util';
-import type { Distinct, Group, Single } from '@/abstract/collection';
-import type { NumberProperty, PrimitiveProperty } from '@/abstract/property';
-import type { RefId } from '@/abstract/reference';
-import type { D3Format, ImageFormat, LangCode, NaturalOccurrence } from '@/enums/generic';
+import type { Distinct, Group, Single } from '../abstract/collection';
+import type { NumberProperty, PrimitiveProperty } from '../abstract/property';
+import type { RefId } from '../abstract/reference';
+import type { D3Format, ImageFormat, LangCode, NaturalOccurrence } from '../enums/generic';
 
 
 /**

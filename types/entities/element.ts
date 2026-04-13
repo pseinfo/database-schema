@@ -6,16 +6,16 @@
  */
 
 import type { Expand } from 'devtypes/types/util';
-import type { Collection, Distinct } from '@/abstract/collection';
-import type { FormCollection } from '@/abstract/form';
-import type { AtomicsCollection } from '@/collections/atomics';
-import type { ChemistryCollection } from '@/collections/chemistry';
-import type { DescriptiveCollection } from '@/collections/descriptive';
-import type { MetaData } from '@/collections/generic';
-import type { PhysicsCollection } from '@/collections/physics';
-import type { SafetyCollection } from '@/collections/safety';
-import type { ElementBlock, ElementGroup, ElementProperty, ElementSet, ElementSymbol } from '@/enums/element';
-import type { Phase, PTColumn, PTPeriod } from '@/enums/generic';
+import type { Collection, Distinct } from '../abstract/collection';
+import type { FormCollection } from '../abstract/form';
+import type { AtomicsCollection } from '../collections/atomics';
+import type { ChemistryCollection } from '../collections/chemistry';
+import type { DescriptiveCollection } from '../collections/descriptive';
+import type { MetaData } from '../collections/generic';
+import type { PhysicsCollection } from '../collections/physics';
+import type { SafetyCollection } from '../collections/safety';
+import type { ElementBlock, ElementGroup, ElementProperty, ElementSet, ElementSymbol } from '../enums/element';
+import type { Phase, PTColumn, PTPeriod } from '../enums/generic';
 
 
 /** Element collections */

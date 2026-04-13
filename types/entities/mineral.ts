@@ -9,18 +9,18 @@
  * @module entities/mineral
  */
 
-import type { Expand } from 'devtypes/types/util';
-import type { Collection, Distinct, Group, Single } from '@/abstract/collection';
-import type { FormCollection } from '@/abstract/form';
-import type { PrimitiveProperty, StructProperty } from '@/abstract/property';
-import type { ChemistryCollection } from '@/collections/chemistry';
-import type { CompositionCollection } from '@/collections/composition';
-import type { DescriptiveCollection } from '@/collections/descriptive';
-import type { MetaData } from '@/collections/generic';
-import type { PhysicsCollection } from '@/collections/physics';
-import type { SafetyCollection } from '@/collections/safety';
-import type { NaturalOccurrence, Phase } from '@/enums/generic';
-import type { CleavageQuality, FractureType, IMAStatus, MineralClass, MineralProperty, TenacityType } from '@/enums/mineral';
+import type { Brand, Expand } from 'devtypes/types/util';
+import type { Collection, Distinct, Group, Single } from '../abstract/collection';
+import type { FormCollection } from '../abstract/form';
+import type { PrimitiveProperty, StructProperty } from '../abstract/property';
+import type { ChemistryCollection } from '../collections/chemistry';
+import type { CompositionCollection } from '../collections/composition';
+import type { DescriptiveCollection } from '../collections/descriptive';
+import type { MetaData } from '../collections/generic';
+import type { PhysicsCollection } from '../collections/physics';
+import type { SafetyCollection } from '../collections/safety';
+import type { NaturalOccurrence, Phase } from '../enums/generic';
+import type { CleavageQuality, FractureType, IMAStatus, MineralClass, MineralProperty, TenacityType } from '../enums/mineral';
 
 
 /** Mineral collections */
@@ -115,17 +115,20 @@ export type SingleMineral = Collection< {
 } >;
 
 /** Type description for a single mineral entity. */
-export type MineralEntity = Expand< MetaData & SingleMineral & {
+export type Mineral = Expand< MetaData & SingleMineral & {
     forms?: FormCollection< SingleMineral >; 
 } >;
 
+/** Branded unique identifier for indexing minerals */
+export type MineralID = Brand< string, 'mineralID' >;
+
 /**
- * Entity type for minerals, indexed by a unique identifier.
+ * Collection for minerals, indexed by a unique identifier.
  * 
  * Each mineral entry includes metadata, descriptive content, classification,
  * composition details, chemical and physical properties, safety data, and
  * optional specialized forms.
  */
-export type Mineral = Collection< {
-    [ key: string ]: MineralEntity;
+export type MineralCollection = Collection< {
+    [ key: MineralID ]: Mineral;
 } >;

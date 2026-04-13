@@ -10,13 +10,13 @@
  * @license MIT
  */
 
-import type { ReferenceCollection } from '@/abstract/reference';
-import type { UnitCollection } from '@/abstract/unit';
+import type { ReferenceCollection } from './abstract/reference';
+import type { UnitCollection } from './abstract/unit';
 
-import type { CompoundCollection } from '@/entities/compound';
-import type { ElementCollection } from '@/entities/element';
-import type { Mineral } from '@/entities/mineral';
-import type { Nuclide } from '@/entities/nuclide';
+import type { CompoundCollection } from './entities/compound';
+import type { ElementCollection } from './entities/element';
+import type { MineralCollection } from './entities/mineral';
+import type { NuclideCollection } from './entities/nuclide';
 
 /**
  * Root database schema type containing all main entities.
@@ -31,8 +31,8 @@ import type { Nuclide } from '@/entities/nuclide';
 export type Database = {
     elements: ElementCollection;
     compounds: CompoundCollection;
-    minerals: Mineral;
-    nuclides: Nuclide;
+    minerals: MineralCollection;
+    nuclides: NuclideCollection;
     references: ReferenceCollection;
     units: UnitCollection;
 };

@@ -8,19 +8,19 @@
  * @module entities/nuclide
  */
 
-import type { Expand } from 'devtypes/types/util';
-import type { Collection, Distinct, Group, Single } from '@/abstract/collection';
-import type { NumberProperty, PrimitiveProperty, StructProperty } from '@/abstract/property';
-import type { NumberValue } from '@/abstract/value';
-import type { DescriptiveCollection } from '@/collections/descriptive';
-import type { MetaData } from '@/collections/generic';
-import type { NuclearCollection } from '@/collections/nuclear';
-import type { ElementSymbol } from '@/enums/element';
-import type { DecayMode, NuclideParity, NuclideProperty, NuclideStability, NuclideState, RadiationType } from '@/enums/nuclide';
+import type { Brand, Expand } from 'devtypes/types/util';
+import type { Collection, Distinct, Group, Single } from '../abstract/collection';
+import type { NumberProperty, PrimitiveProperty, StructProperty } from '../abstract/property';
+import type { NumberValue } from '../abstract/value';
+import type { DescriptiveCollection } from '../collections/descriptive';
+import type { MetaData } from '../collections/generic';
+import type { NuclearCollection } from '../collections/nuclear';
+import type { ElementSymbol } from '../enums/element';
+import type { DecayMode, NuclideParity, NuclideProperty, NuclideStability, NuclideState, RadiationType } from '../enums/nuclide';
 
 
 /** Valid nuclide identifiers with optional metastable state suffix. */
-export type NuclideIdentifier = `${number}` | `${number}m` | `${number}m${number}`;
+export type NuclideIdentifier = Brand< `${number}` | `${number}m` | `${number}m${number}`, 'nuclideID' >;
 
 /** Nuclide collections */
 
@@ -101,7 +101,7 @@ export type SingleNuclide = Collection< {
 } >;
 
 /** Type description for a single nuclide entity. */
-export type NuclideEntity = Expand< MetaData & SingleNuclide >;
+export type Nuclide = Expand< MetaData & SingleNuclide >;
 
 /**
  * Type for the main nuclide collection grouped by element symbol and nuclide identifier.
@@ -113,7 +113,7 @@ export type NuclideEntity = Expand< MetaData & SingleNuclide >;
  */
 export type Nuclides = Collection< {
     [ K in ElementSymbol ]?: {
-        [ N in NuclideIdentifier ]?: NuclideEntity;
+        [ N in NuclideIdentifier ]?: Nuclide;
     };
 } >;
 
@@ -227,7 +227,7 @@ export type NuclideDecayChains = Collection< {
  * @param index - Generated nuclide index keyed by z,n coordinate
  * @param decayChains - Generated decay chain export containing decay chain information for all nuclides
  */
-export type Nuclide = Collection< {
+export type NuclideCollection = Collection< {
     nuclides: Nuclides;
     index: NuclideIndex;
     decayChains: NuclideDecayChains;

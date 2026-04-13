@@ -5,11 +5,11 @@
  * @module collections/descriptive
  */
 
-import type { Collection, Single } from '@/abstract/collection';
-import type { NumberProperty } from '@/abstract/property';
-import type { AbundanceGroup, DiscoveryGroup, LangGroup, MediaGroup, WeblinksGroup } from '@/collections/generic';
-import type { RegistryGroup, StructureGroup } from '@/collections/registry';
-import type { LangCode } from '@/enums/generic';
+import type { Collection, Single } from '../abstract/collection';
+import type { NumberProperty } from '../abstract/property';
+import type { LangCode } from '../enums/generic';
+import type { AbundanceGroup, DiscoveryGroup, LangGroup, MediaGroup, WeblinksGroup } from './generic';
+import type { RegistryGroup, StructureGroup } from './registry';
 
 
 /**

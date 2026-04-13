@@ -8,9 +8,9 @@
 import type { RequireAtLeastOne, RequireExactlyOne, StrictSubset } from 'devtypes/types/constraint';
 import type { Primitive } from 'devtypes/types/primitive';
 import type { Brand, Expand } from 'devtypes/types/util';
-import type { Uncertainty } from '@/abstract/uncertainty';
-import type { PhysicalQuantity, UnitId } from '@/abstract/unit';
-import type { ValueType, ValueConfidence } from '@/enums/abstract';
+import type { ValueType, ValueConfidence } from '../enums/abstract';
+import type { Uncertainty } from './uncertainty';
+import type { PhysicalQuantity, UnitId } from './unit';
 
 
 /** Generic struct type. */

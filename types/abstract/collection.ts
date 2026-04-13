@@ -6,7 +6,7 @@
  */
 
 import type { Expand } from 'devtypes/types/util';
-import type { Property } from '@/abstract/property';
+import type { Property } from './property';
 
 
 /**

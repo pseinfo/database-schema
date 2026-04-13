@@ -5,10 +5,10 @@
  * @module collections/atomics
  */
 
-import type { Collection, Group, Single } from '@/abstract/collection';
-import type { ArrayProperty, NumberProperty, PrimitiveProperty, StructProperty } from '@/abstract/property';
-import type { NMRGroup } from '@/collections/nuclear';
-import type { ShellModel } from '@/enums/element';
+import type { Collection, Group, Single } from '../abstract/collection';
+import type { ArrayProperty, NumberProperty, PrimitiveProperty, StructProperty } from '../abstract/property';
+import type { ShellModel } from '../enums/element';
+import type { NMRGroup } from './nuclear';
 
 
 /**

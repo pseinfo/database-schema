@@ -13,13 +13,7 @@
     "noUnusedLocals": true,
     "noImplicitOverride": true,
     "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "paths": {
-      "@/abstract/*": [ "./types/abstract/*" ],
-      "@/collections/*": [ "./types/collections/*" ],
-      "@/entities/*": [ "./types/entities/*" ],
-      "@/enums/*": [ "./types/enums/*" ]
-    }
+    "noImplicitThis": true
   },
   "include": [ "**/*.ts" ],
   "exclude": [ "node_modules" ]

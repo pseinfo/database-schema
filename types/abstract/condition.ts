@@ -6,9 +6,9 @@
  */
 
 import type { Primitive } from 'devtypes/types/primitive';
-import type { PhysicalQuantity } from '@/abstract/unit';
-import type { Value } from '@/abstract/value';
-import type { StandardCondition } from '@/enums/abstract';
+import type { StandardCondition } from '../enums/abstract';
+import type { PhysicalQuantity } from './unit';
+import type { Value } from './value';
 
 
 /**

@@ -5,8 +5,8 @@
  * @module collections/composition
  */
 
-import type { Collection, Distinct, Group } from '@/abstract/collection';
-import type { ElementSymbol } from '@/enums/element';
+import type { Collection, Distinct, Group } from '../abstract/collection';
+import type { ElementSymbol } from '../enums/element';
 
 
 /**

@@ -5,7 +5,7 @@
  * @module collections/registry
  */
 
-import type { Distinct, Group } from '@/abstract/collection';
+import type { Distinct, Group } from '../abstract/collection';
 
 
 /** Define types for various chemical registry identifiers */

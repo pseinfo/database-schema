@@ -6,16 +6,16 @@
  */
 
 import type { Brand, Expand } from 'devtypes/types/util';
-import type { Collection, Distinct } from '@/abstract/collection';
-import type { FormCollection } from '@/abstract/form';
-import type { ChemistryCollection } from '@/collections/chemistry';
-import type { CompositionCollection } from '@/collections/composition';
-import type { DescriptiveCollection } from '@/collections/descriptive';
-import type { MetaData } from '@/collections/generic';
-import type { PhysicsCollection } from '@/collections/physics';
-import type { SafetyCollection } from '@/collections/safety';
-import type { CompoundCategory, CompoundProperty } from '@/enums/compound';
-import type { Phase } from '@/enums/generic';
+import type { Collection, Distinct } from '../abstract/collection';
+import type { FormCollection } from '../abstract/form';
+import type { ChemistryCollection } from '../collections/chemistry';
+import type { CompositionCollection } from '../collections/composition';
+import type { DescriptiveCollection } from '../collections/descriptive';
+import type { MetaData } from '../collections/generic';
+import type { PhysicsCollection } from '../collections/physics';
+import type { SafetyCollection } from '../collections/safety';
+import type { CompoundCategory, CompoundProperty } from '../enums/compound';
+import type { Phase } from '../enums/generic';
 
 
 /** Compound collections */

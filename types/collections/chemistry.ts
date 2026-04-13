@@ -5,10 +5,10 @@
  * @module collections/chemistry
  */
 
-import type { Collection, Group, Single } from '@/abstract/collection';
-import type { NumberProperty, PrimitiveProperty, StructProperty } from '@/abstract/property';
-import type { AcidBaseCharacter, BondType, HSAB, Hybridization, LewisAcidity, LewisBasicity, OxideCharacter } from '@/enums/chemistry';
-import type { CrystalSystem, Goldschmidt } from '@/enums/generic';
+import type { Collection, Group, Single } from '../abstract/collection';
+import type { NumberProperty, PrimitiveProperty, StructProperty } from '../abstract/property';
+import type { AcidBaseCharacter, BondType, HSAB, Hybridization, LewisAcidity, LewisBasicity, OxideCharacter } from '../enums/chemistry';
+import type { CrystalSystem, Goldschmidt } from '../enums/generic';
 
 
 /**
