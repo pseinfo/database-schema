@@ -15,3 +15,15 @@ export enum ElementSymbol {
     Bh = 'bh', Hs = 'hs', Mt = 'mt', Ds = 'ds', Rg = 'rg', Cn = 'cn', Nh = 'nh', Fl = 'fl',
     Mc = 'mc', Lv = 'lv', Ts = 'ts', Og = 'og'
 }
+
+export enum PTColumn {
+    COLUMN_1 = 1, COLUMN_2 = 2, COLUMN_3 = 3, COLUMN_4 = 4, COLUMN_5 = 5, COLUMN_6 = 6,
+    COLUMN_7 = 7, COLUMN_8 = 8, COLUMN_9 = 9, COLUMN_10 = 10, COLUMN_11 = 11, COLUMN_12 = 12,
+    COLUMN_13 = 13, COLUMN_14 = 14, COLUMN_15 = 15, COLUMN_16 = 16, COLUMN_17 = 17,
+    COLUMN_18 = 18
+}
+
+export enum PTPeriod {
+    PERIOD_1 = 1, PERIOD_2 = 2, PERIOD_3 = 3, PERIOD_4 = 4, PERIOD_5 = 5, PERIOD_6 = 6,
+    PERIOD_7 = 7
+}
