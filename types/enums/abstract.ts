@@ -112,7 +112,7 @@ export enum SIDimension {
     AMOUNT_OF_SUBSTANCE = 'amountOfSubstance',
     /** Luminous intensity */
     LUMINOUS_INTENSITY = 'luminousIntensity'
-};  
+};
 
 /** Enumeration of reference types based on BibTeX. */
 export enum ReferenceType {

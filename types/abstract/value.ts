@@ -67,13 +67,13 @@ export interface ValueFields<
 export type PrimitiveValue< T extends Primitive = Primitive > = Expand<
     BaseValue< ValueType.PRIMITIVE > &
     RequireExactlyOne< ValueFields< never, T >, 'value' | 'values' >
->; 
+>;
 
 /** Struct key type. */
 export type StructKey = string | number;
 
 /** Generic struct type. */
-export type StructType = Record< StructKey, any >; 
+export type StructType = Record< StructKey, any >;
 
 /**
  * Type description of a struct value (e.g. objects, arrays).
@@ -84,7 +84,7 @@ export type StructType = Record< StructKey, any >;
 export type StructValue< T extends StructType = StructType > = Expand<
     BaseValue< ValueType.STRUCT > &
     RequireAtLeastOne< ValueFields< never, never, T >, 'struct' >
->; 
+>;
 
 /**
  * Type description of a single numeric value.

@@ -297,7 +297,7 @@ export type Reference =
     | UnpublishedReference;
 
 /** Branded reference IDs used in other parts of the data model. */
-export type RefId = Brand< string, 'refId' >; 
+export type RefId = Brand< string, 'refId' >;
 
 /** Collection of references indexed by a unique key. */
 export type ReferenceCollection = Record< RefId, Reference >;
