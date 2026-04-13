@@ -14,7 +14,7 @@ import type { ReferenceCollection } from '@/abstract/reference';
 import type { UnitCollection } from '@/abstract/unit';
 
 import type { Compound } from '@/entities/compound';
-import type { Element } from '@/entities/element';
+import type { ElementCollection } from '@/entities/element';
 import type { Mineral } from '@/entities/mineral';
 import type { Nuclide } from '@/entities/nuclide';
 
@@ -29,7 +29,7 @@ import type { Nuclide } from '@/entities/nuclide';
  * @param units - Collection of measurement units
  */
 export type Database = {
-    elements: Element;
+    elements: ElementCollection;
     compounds: Compound;
     minerals: Mineral;
     nuclides: Nuclide;
