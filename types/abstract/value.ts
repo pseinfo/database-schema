@@ -24,7 +24,7 @@ export interface ValueFields<
     value: number;
     uncertainty?: Uncertainty;
     inclusive?: boolean;
-  } >, 'lower' | 'upper' >;
+  } > >;
   unit?: UnitId< Q >;
   struct?: S;
 }
