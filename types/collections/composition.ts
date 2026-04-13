@@ -15,7 +15,7 @@ import type { ElementSymbol } from '@/enums/element';
  * Defines the structure for a single component of a chemical substance or mineral.
  * 
  * @param element - Distinct chemical symbol of the element
- * @param amount - Stoichiometric amount or number of atoms
+ * @param amount - Distinct stoichiometric amount or number of atoms
  * @param frequency - Optional occurrence frequency or probability
  * @param role - Role of the component (e.g., cation, anion, impurity)
  * @param massFraction - Optional mass fraction of the element
@@ -24,7 +24,7 @@ import type { ElementSymbol } from '@/enums/element';
  */
 export type CompositionComponent = Group< {
     element: Distinct< ElementSymbol >;
-    amount: Single< PrimitiveProperty< number > >;
+    amount: Distinct< number >;
     frequency?: Single< PrimitiveProperty< number > >;
     role?: Single< PrimitiveProperty< ComponentRole > >;
     massFraction?: Single< PrimitiveProperty< number > >;
