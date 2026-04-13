@@ -1,18 +1,18 @@
 export enum ValueType {
-    PRIMITIVE = 'primitive',
-    STRUCT = 'struct',
-    SINGLE = 'single',
-    ARRAY = 'array',
-    RANGE = 'range',
-    COUPLED = 'coupled'
+  PRIMITIVE = 'primitive',
+  STRUCT = 'struct',
+  SINGLE = 'single',
+  ARRAY = 'array',
+  RANGE = 'range',
+  COUPLED = 'coupled'
 };
 
 export enum ValueConfidence {
-    MEASURED = 'measured',
-    CALCULATED = 'calculated',
-    ESTIMATED = 'estimated',
-    EXPERIMENTAL = 'experimental',
-    THEORETICAL = 'theoretical'
+  MEASURED = 'measured',
+  CALCULATED = 'calculated',
+  ESTIMATED = 'estimated',
+  EXPERIMENTAL = 'experimental',
+  THEORETICAL = 'theoretical'
 };
 
 export enum MetricSystem {
