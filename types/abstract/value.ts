@@ -1,4 +1,4 @@
-import type { RequireAtLeastOne, RequireExactlyOne, RequireFrom, StrictSubset } from 'devtypes/types/constraint';
+import type { RequireAtLeastOne, RequireExactlyOneFrom, RequireFrom, StrictSubset } from 'devtypes/types/constraint';
 import type { Primitive } from 'devtypes/types/primitive';
 import type { Brand, Expand } from 'devtypes/types/util';
 import type { ValueType, ValueConfidence } from '../enum/abstract';
@@ -31,7 +31,7 @@ export interface ValueFields<
 
 export type PrimitiveValue< T extends Primitive = Primitive > = Expand<
   BaseValue< ValueType.PRIMITIVE > &
-  RequireExactlyOne< Pick< ValueFields< never, T >, 'value' | 'values' >, 'value' | 'values' >
+  RequireExactlyOneFrom< ValueFields< never, T >, 'value' | 'values' >
 >;
 
 export type StructValue< T extends StructType = StructType > = Expand<
