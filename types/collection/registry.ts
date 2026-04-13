@@ -18,32 +18,31 @@ export type PDBID = string;
 export type WikidataID = `Q${number}`;
 
 export type RegistryGroup = Group< {
-    cas: Distinct< CASNumber >;
-    cid: Distinct< PubChemCID >;
+  cas: Distinct< CASNumber >;
+  cid: Distinct< PubChemCID >;
 
-    chemspider?: Distinct< ChemSpiderID >;
-    chebi?: Distinct< ChEBIID >;
-    chembl?: Distinct< ChEMBLID >;
-    kegg?: Distinct< KEGGID >;
+  chemspider?: Distinct< ChemSpiderID >;
+  chebi?: Distinct< ChEBIID >;
+  chembl?: Distinct< ChEMBLID >;
+  kegg?: Distinct< KEGGID >;
 
-    echa?: Distinct< ECHAInfoCard >;
-    ec?: Distinct< ECNumber >;
-    einecs?: Distinct< ECNumber >;
-    elincs?: Distinct< ECNumber >;
+  echa?: Distinct< ECHAInfoCard >;
+  ec?: Distinct< ECNumber >;
+  einecs?: Distinct< ECNumber >;
+  elincs?: Distinct< ECNumber >;
 
-    rtecs?: Distinct< RTECSNumber >;
-    unii?: Distinct< UNII >;
-    nsc?: Distinct< NSCNumber >;
+  rtecs?: Distinct< RTECSNumber >;
+  unii?: Distinct< UNII >;
+  nsc?: Distinct< NSCNumber >;
 
-    drugbank?: Distinct< DrugBankID >;
+  drugbank?: Distinct< DrugBankID >;
 
-    beilstein?: Distinct< BeilsteinNumber >;
-    gmelin?: Distinct< GmelinNumber >;
+  beilstein?: Distinct< BeilsteinNumber >;
+  gmelin?: Distinct< GmelinNumber >;
 
-    pdb?: Distinct< PDBID[] >;
+  pdb?: Distinct< PDBID[] >;
 
-    wikidata?: Distinct< WikidataID >;
-
+  wikidata?: Distinct< WikidataID >;
 } >;
 
 export type InChI = `InChI=${string}`;
@@ -56,12 +55,12 @@ export type WLN = string;
 export type IUPACName = string;
 
 export type StructureGroup = Group< {
-    inChI: Distinct< InChI >;
-    inChIkey: Distinct< InChIKey >;
-    smiles?: Distinct< SMILES >;
-    smarts?: Distinct< SMARTS >;
-    canonicalSmiles?: Distinct< CanonicalSMILES >;
-    isomericSmiles?: Distinct< IsomericSMILES >;
-    wln?: Distinct< WLN >;
-    iupacName?: Distinct< IUPACName >;
+  inChI: Distinct< InChI >;
+  inChIkey: Distinct< InChIKey >;
+  smiles?: Distinct< SMILES >;
+  smarts?: Distinct< SMARTS >;
+  canonicalSmiles?: Distinct< CanonicalSMILES >;
+  isomericSmiles?: Distinct< IsomericSMILES >;
+  wln?: Distinct< WLN >;
+  iupacName?: Distinct< IUPACName >;
 } >;
