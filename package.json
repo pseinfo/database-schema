@@ -32,6 +32,6 @@
   ],
   "type": "module",
   "dependencies": {
-    "devtypes": "^2.0.0"
+    "devtypes": "^2.1.0"
   }
 }
