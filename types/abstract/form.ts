@@ -10,7 +10,7 @@ import type { DeepPartial } from 'devtypes/types/transform';
 import type { Brand, Expand } from 'devtypes/types/util';
 import type { Collection, Distinct } from '@/abstract/collection';
 import type { FormType } from '@/enums/abstract';
-import type { CrystalStructure, Phase } from '@/enums/generic';
+import type { CrystalSystem, Phase } from '@/enums/generic';
 
 
 /**
@@ -32,14 +32,14 @@ export type BaseForm< T extends FormType, C extends Collection< any > > = Brand<
  * 
  * @param formula - Chemical formula of the form
  * @param phase - Phase of the substance (solid, liquid, gas, plasma)
- * @param crystalStructure - Crystal structure type
+ * @param crystalSystem - Crystal structure type
  * @param pearsonSymbol - Pearson symbol notation
  * @param spaceGroup - Space group notation
  */
 export interface FormFields {
     formula?: Distinct< string >;
     phase?: Distinct< Phase >;
-    crystalStructure?: Distinct< CrystalStructure >;
+    crystalSystem?: Distinct< CrystalSystem >;
     pearsonSymbol?: Distinct< string >;
     spaceGroup?: Distinct< string >;
 }
@@ -87,7 +87,7 @@ export type PhaseForm< C extends Collection< any > > = Expand<
  */
 export type PolymorphForm< C extends Collection< any > > = Expand<
     BaseForm< FormType.POLYMORPH | FormType.AMORPHOUS, C > &
-    StrictSubset< FormFields, 'crystalStructure', 'pearsonSymbol' | 'spaceGroup' >
+    StrictSubset< FormFields, 'crystalSystem', 'pearsonSymbol' | 'spaceGroup' >
 >;
 
 /** Branded form IDs used in other parts of the data model. */

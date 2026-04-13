@@ -33,34 +33,14 @@ export enum Phase {
 
 /** Enumeration of periodic table columns. */
 export enum PTColumn {
-    COL_1 = 1,
-    COL_2 = 2,
-    COL_3 = 3,
-    COL_4 = 4,
-    COL_5 = 5,
-    COL_6 = 6,
-    COL_7 = 7,
-    COL_8 = 8,
-    COL_9 = 9,
-    COL_10 = 10,
-    COL_11 = 11,
-    COL_12 = 12,
-    COL_13 = 13,
-    COL_14 = 14,
-    COL_15 = 15,
-    COL_16 = 16,
-    COL_17 = 17,
-    COL_18 = 18
+    COL_1 = 1, COL_2 = 2, COL_3 = 3, COL_4 = 4, COL_5 = 5, COL_6 = 6, COL_7 = 7, COL_8 = 8,
+    COL_9 = 9, COL_10 = 10, COL_11 = 11, COL_12 = 12, COL_13 = 13, COL_14 = 14, COL_15 = 15,
+    COL_16 = 16, COL_17 = 17, COL_18 = 18
 };
 
 /** Enumeration of periodic table periods. */
 export enum PTPeriod {
-    PERIOD_1 = 1,
-    PERIOD_2 = 2,
-    PERIOD_3 = 3,
-    PERIOD_4 = 4,
-    PERIOD_5 = 5,
-    PERIOD_6 = 6,
+    PERIOD_1 = 1, PERIOD_2 = 2, PERIOD_3 = 3, PERIOD_4 = 4, PERIOD_5 = 5, PERIOD_6 = 6,
     PERIOD_7 = 7
 };
 
@@ -99,7 +79,7 @@ export enum Superconductivity {
 };
 
 /** Enumeration of crystal structures. */
-export enum CrystalStructure {
+export enum CrystalSystem {
     /** Hexagonal crystal system */
     HEXAGONAL = 'hexagonal',
     /** Hexagonal close-packed structure */
