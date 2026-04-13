@@ -15,3 +15,9 @@ export enum SIDimension {
   AMOUNT_OF_SUBSTANCE = 'amountOfSubstance',
   LUMINOUS_INTENSITY = 'luminousIntensity'
 };
+
+export enum UncertaintyType {
+  ABSOLUTE = 'absolute',
+  RELATIVE = 'relative',
+  ASYMMETRICAL = 'asymmetrical'
+};
