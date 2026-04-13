@@ -18,3 +18,16 @@ export type PrefixableUnitSymbols< Q extends PhysicalQuantity > = Units[ Q ][ 'p
 export type PrefixedSymbols< Q extends PhysicalQuantity > =
     | BaseUnitSymbols< Q >
     | `${ SIPrefix }${ PrefixableUnitSymbols< Q > }`;
+
+export type DimensionVector = [ number, number, number, number, number, number, number ];
+
+export type Unit< Q extends PhysicalQuantity, U extends BaseUnitSymbols< Q > > = Brand< {
+    name?: string;
+    isBase?: boolean;
+    prefixable?: U extends PrefixableUnitSymbols< Q > ? true : false;
+    system?: MetricSystem;
+    conversion?: {
+        factor: number;
+        offset?: number;
+    };
+}, U, 'symbol', true >;
