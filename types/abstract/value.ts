@@ -13,6 +13,9 @@ import type { PhysicalQuantity, UnitId } from '@/abstract/unit';
 import type { ValueType, ValueConfidence } from '@/enums/abstract';
 
 
+/** Generic struct type. */
+export type StructType = Record< string | number, unknown >; 
+
 /**
  * Branded common fields for all value types.
  * 
@@ -43,7 +46,7 @@ export type BaseValue< T extends ValueType > = Brand< {
 export interface ValueFields<
     Q extends PhysicalQuantity = PhysicalQuantity,
     T extends Primitive = Primitive,
-    S extends Record< StructKey, any > = Record< StructKey, any >
+    S extends StructType = StructType
 > {
     value?: T;
     values?: T[];
@@ -68,12 +71,6 @@ export type PrimitiveValue< T extends Primitive = Primitive > = Expand<
     BaseValue< ValueType.PRIMITIVE > &
     RequireExactlyOne< ValueFields< never, T >, 'value' | 'values' >
 >;
-
-/** Struct key type. */
-export type StructKey = string | number;
-
-/** Generic struct type. */
-export type StructType = Record< StructKey, any >;
 
 /**
  * Type description of a struct value (e.g. objects, arrays).
