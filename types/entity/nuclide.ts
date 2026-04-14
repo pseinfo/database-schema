@@ -1,7 +1,10 @@
 import type { Brand, Expand } from 'devtypes/types/util';
 import type { Collection, Distinct, Group } from '../abstract/collection';
 import type { MetaData } from '../abstract/util';
+import type { AbundanceCollection } from '../collection/abundance';
 import type { DescriptiveCollection } from '../collection/descriptive';
+import type { GenericCollection } from '../collection/generic';
+import type { NuclearCollection } from '../collection/nuclear';
 import type { ElementSymbol } from '../enum/element';
 import type { DecayMode, NuclideProperty, NuclideStability, NuclideState } from '../enum/nuclide';
 
@@ -20,6 +23,9 @@ export type NuclideClassification = Collection< {
 export type SingleNuclide = Collection< {
   descriptive: DescriptiveCollection;
   classification: NuclideClassification;
+  generic?: GenericCollection;
+  abundance?: AbundanceCollection;
+  nuclear?: NuclearCollection;
 } >;
 
 export type Nuclide = Expand< MetaData & SingleNuclide >;
