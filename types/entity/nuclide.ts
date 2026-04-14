@@ -1,5 +1,8 @@
+import { Brand } from 'devtypes/types/util';
 import type { Collection, Distinct, Group } from '../abstract/collection';
 import type { ElementSymbol } from '../enum/element';
+
+export type NuclideIdentifier = Brand< `${number}` | `${number}m` | `${number}m${number}`, 'nuclideID' >;
 
 export type NuclideDecayChainLink = Group< {
   nuclide: Distinct< NuclideIdentifier >;
