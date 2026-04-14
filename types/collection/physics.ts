@@ -135,5 +135,8 @@ export type PhysicsCollection = Collection< {
     ligancy?: Single< StructProperty< {
       [ K in ElementSymbol ]?: number;
     } > >;
+    twinning?: Single< PrimitiveProperty< string > >;
+    habit?: Single< PrimitiveProperty< string > >;
+    faces?: Single< PrimitiveProperty< string > >;
   } >;
 } >;
