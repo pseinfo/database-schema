@@ -46,3 +46,9 @@ export enum Phase {
   PLASMA = 'plasma',
   UNKNOWN = 'unknown'
 };
+
+export enum NaturalOccurrence {
+  PRIMORDIAL = 'primordial',
+  DECAY_PRODUCT = 'decayProduct',
+  SYNTHETIC = 'synthetic'
+};
