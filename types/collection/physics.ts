@@ -18,4 +18,24 @@ export type PhysicsCollection = Collection< {
     triplePoint?: Single< CoupledNumberProperty< 'temperature' | 'pressure' > >;
     debyeTemp?: Single< NumberProperty< 'temperature' > >;
   } >;
+
+  enthalpy?: Group< {
+    fusionEnthalpy?: Single< NumberProperty< 'enthalpy' > >;
+    vaporisationEnthalpy?: Single< NumberProperty< 'enthalpy' > >;
+    sublimationEnthalpy?: Single< NumberProperty< 'enthalpy' > >;
+    atomizationEnthalpy?: Single< NumberProperty< 'enthalpy' > >;
+    formationEnthalpy?: Single< NumberProperty< 'enthalpy' > >;
+    combustionEnthalpy?: Single< NumberProperty< 'enthalpy' > >;
+  } >;
+
+  heat?: Group< {
+    heatCapacity?: Single< NumberProperty< 'heatCapacity' > >;
+    molarHeatCapacity?: Single< NumberProperty< 'molarHeatCapacity' > >;
+    specificHeatCapacity?: Single< NumberProperty< 'specificHeatCapacity' > >;
+    thermalConductivity?: Single< NumberProperty< 'thermalConductivity' > >;
+    thermalExpansion?: Single< NumberProperty< 'thermalExpansion' > >;
+    thermalDiffusivity?: Single< NumberProperty< 'thermalDiffusivity' > >;
+    workFunction?: Single< NumberProperty< 'energy' > >;
+    adiabaticIndex?: Single< PrimitiveProperty< number > >;
+  } >;
 } >;
