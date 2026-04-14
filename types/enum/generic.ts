@@ -1,3 +1,14 @@
+export enum LangCode {
+  ARABIC = 'ar', BENGALI = 'bn', BULGARIAN = 'bg', CHINESE = 'zh', CROATIAN = 'hr',
+  CZECH = 'cs', DANISH = 'da', DUTCH = 'nl', ENGLISH = 'en', ESTONIAN = 'et',
+  FINNISH = 'fi', FRENCH = 'fr', GERMAN = 'de', GREEK = 'el', HEBREW = 'he', HINDI = 'hi',
+  HUNGARIAN = 'hu', INDONESIAN = 'id', IRISH = 'ga', ITALIAN = 'it', JAPANESE = 'ja',
+  KOREAN = 'ko', LATIN = 'la', LATVIAN = 'lv', LITHUANIAN = 'lt', MALAY = 'ms',
+  NORWEGIAN = 'no', PERSIAN = 'fa', POLISH = 'pl', PORTUGUESE = 'pt', ROMANIAN = 'ro',
+  RUSSIAN = 'ru', SLOVAK = 'sk', SLOVENIAN = 'sl', SPANISH = 'es', SWEDISH = 'sv',
+  THAI = 'th', TURKISH = 'tr', UKRAINIAN = 'uk', VIETNAMESE = 'vi'
+};
+
 export enum ElementSymbol {
   H = 'h', He = 'he', Li = 'li', Be = 'be', B = 'b', C = 'c', N = 'n', O = 'o', F = 'f',
   Ne = 'ne', Na = 'na', Mg = 'mg', Al = 'al', Si = 'si', P = 'p', S = 's', Cl = 'cl',
