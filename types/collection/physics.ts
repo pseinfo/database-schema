@@ -81,4 +81,20 @@ export type PhysicsCollection = Collection< {
     remanence?: Single< NumberProperty< 'magneticFluxDensity' > >;
     permeability?: Single< NumberProperty< 'magneticPermeability' > >;
   } >;
+
+  acoustics?: Group< {
+    soundSpeed?: Single< NumberProperty< 'velocity' > >;
+    acousticImpedance?: Single< NumberProperty< 'acousticImpedance' > >;
+    attenuationCoefficient?: Single< NumberProperty< 'attenuationCoefficient' > >;
+  } >;
+
+  surface?: Group< {
+    surfaceTension?: Single< NumberProperty< 'surfaceTension' > >;
+    contactAngle?: Single< NumberProperty< 'angle' > >;
+  } >;
+
+  viscosity?: Group< {
+    dynamicViscosity?: Single< NumberProperty< 'dynamicViscosity' > >;
+    kinematicViscosity?: Single< NumberProperty< 'kinematicViscosity' > >;
+  } >;
 } >;
