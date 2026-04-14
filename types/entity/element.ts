@@ -1,11 +1,26 @@
 import type { Expand } from 'devtypes/types/util';
-import type { Collection } from '../abstract/collection';
+import type { Collection, Distinct } from '../abstract/collection';
 import type { DescriptiveCollection } from '../collection/descriptive';
 import type { MetaData } from '../collection/generic';
-import type { ElementSymbol } from '../enum/generic';
+import type { ElementSymbol, Phase, PTColumn, PTPeriod } from '../enum/generic';
+import type { ElementBlock, ElementGroup, ElementProperty, ElementSet } from '../enum/element';
+
+export type ElementClassification = Collection< {
+  symbol: Distinct< string >;
+  atomicNumber: Distinct< number >;
+  block: Distinct< ElementBlock >;
+  group: Distinct< ElementGroup >;
+  column: Distinct< PTColumn >;
+  period: Distinct< PTPeriod >;
+  phase: Distinct< Phase >;
+  set: Distinct< ElementSet >;
+  radioactive: Distinct< boolean >;
+  properties: Distinct< ElementProperty[] >;
+} >;
 
 export type SingleElement = {
   descriptive: DescriptiveCollection;
+  classification: ElementClassification;
 };
 
 export type Element = Expand< MetaData & SingleElement >;

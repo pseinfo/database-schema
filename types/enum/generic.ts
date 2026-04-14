@@ -38,3 +38,11 @@ export enum PTPeriod {
   PERIOD_1 = 1, PERIOD_2 = 2, PERIOD_3 = 3, PERIOD_4 = 4, PERIOD_5 = 5, PERIOD_6 = 6,
   PERIOD_7 = 7
 };
+
+export enum Phase {
+  SOLID = 'solid',
+  GASEOUS = 'gaseous',
+  LIQUID = 'liquid',
+  PLASMA = 'plasma',
+  UNKNOWN = 'unknown'
+};
