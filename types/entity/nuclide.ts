@@ -1,6 +1,7 @@
-import { Brand } from 'devtypes/types/util';
+import type { Brand } from 'devtypes/types/util';
 import type { Collection, Distinct, Group } from '../abstract/collection';
 import type { ElementSymbol } from '../enum/element';
+import type { DecayMode } from '../enum/nuclide';
 
 export type NuclideIdentifier = Brand< `${number}` | `${number}m` | `${number}m${number}`, 'nuclideID' >;
 
