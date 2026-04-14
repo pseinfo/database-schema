@@ -33,7 +33,9 @@ export type SingleElement = {
   safety?: SafetyCollection;
 };
 
-export type Element = Expand< MetaData & SingleElement >;
+export type Element = Expand< MetaData & SingleElement & {
+  forms?: any;
+} >;
 
 export type ElementEntity = Collection< {
   [ K in ElementSymbol ]: Element;
