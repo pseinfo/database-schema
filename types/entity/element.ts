@@ -2,6 +2,7 @@ import type { Expand } from 'devtypes/types/util';
 import type { Collection, Distinct } from '../abstract/collection';
 import type { DescriptiveCollection } from '../collection/descriptive';
 import type { MetaData } from '../collection/generic';
+import type { SafetyCollection } from '../collection/safety';
 import type { ElementSymbol, Phase, PTColumn, PTPeriod } from '../enum/generic';
 import type { ElementBlock, ElementGroup, ElementProperty, ElementSet } from '../enum/element';
 
@@ -21,6 +22,7 @@ export type ElementClassification = Collection< {
 export type SingleElement = {
   descriptive: DescriptiveCollection;
   classification: ElementClassification;
+  safety?: SafetyCollection;
 };
 
 export type Element = Expand< MetaData & SingleElement >;
