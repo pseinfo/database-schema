@@ -1,4 +1,4 @@
-export enum CompoundType {
+export enum CompoundCategory {
   MOLECULE = 'molecule',
   IONIC = 'ionic',
   INTERMETALLIC = 'intermetallic',

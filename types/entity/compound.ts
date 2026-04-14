@@ -8,13 +8,13 @@ import type { DescriptiveCollection } from '../collection/descriptive';
 import type { GenericCollection } from '../collection/generic';
 import type { PhysicsCollection } from '../collection/physics';
 import type { SafetyCollection } from '../collection/safety';
-import type { CompoundProperty, CompoundType, CompoundUnion } from '../enum/compound';
+import type { CompoundCategory, CompoundProperty, CompoundUnion } from '../enum/compound';
 import type { Phase } from '../enum/generic';
 
 export type CompoundID = Brand< string, 'compoundID' >;
 
 export type CompoundClassification = Collection< {
-  type: Distinct< CompoundType >;
+  category: Distinct< CompoundCategory >;
   union: Distinct< CompoundUnion >;
   organic: Distinct< boolean >;
   phase: Distinct< Phase >;
