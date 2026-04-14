@@ -1,5 +1,5 @@
 import type { Brand, Expand } from 'devtypes/types/util';
-import type { Collection } from '../abstract/collection';
+import type { Collection, Distinct } from '../abstract/collection';
 import type { FormCollection } from '../abstract/form';
 import type { MetaData } from '../abstract/util';
 import type { AbundanceCollection } from '../collection/abundance';
@@ -8,11 +8,23 @@ import type { DescriptiveCollection } from '../collection/descriptive';
 import type { GenericCollection } from '../collection/generic';
 import type { PhysicsCollection } from '../collection/physics';
 import type { SafetyCollection } from '../collection/safety';
+import type { CompoundProperty, CompoundType, CompoundUnion } from '../enum/compound';
+import type { Phase } from '../enum/generic';
 
 export type CompoundID = Brand< string, 'compoundID' >;
 
+export type CompoundClassification = Collection< {
+  type: Distinct< CompoundType >;
+  union: Distinct< CompoundUnion >;
+  organic: Distinct< boolean >;
+  phase: Distinct< Phase >;
+  radioactive: Distinct< boolean >;
+  properties: Distinct< CompoundProperty[] >;
+} >;
+
 export type SingleCompound = Collection< {
   descriptive: DescriptiveCollection;
+  classification: CompoundClassification;
   generic?: GenericCollection;
   abundance?: AbundanceCollection;
   physics?: PhysicsCollection;
