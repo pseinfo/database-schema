@@ -8,6 +8,7 @@ export type MetaData = Distinct< {
   '@metadata': {
     schemaVersion: 1;
     lastModified: string;
+    hash: string;
   };
 } >;
 
