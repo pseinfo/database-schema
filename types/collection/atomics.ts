@@ -27,6 +27,11 @@ export type AtomicsCollection = Collection< {
     vdwRadius?: Single< NumberProperty< 'length' > >;
   } >;
 
+  charge?: Group< {
+    nuclearCharge: Single< PrimitiveProperty< number > >;
+    effectiveCharge: Single< PrimitiveProperty< number > >;
+  } >;
+
   electronegativity?: Group< {
     pauling?: Single< PrimitiveProperty< number > >;
     sanderson?: Single< PrimitiveProperty< number > >;
