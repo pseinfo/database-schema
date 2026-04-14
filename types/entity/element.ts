@@ -2,6 +2,7 @@ import type { Expand } from 'devtypes/types/util';
 import type { Collection, Distinct } from '../abstract/collection';
 import type { AbundanceCollection } from '../collection/abundance';
 import type { AtomicsCollection } from '../collection/atomics';
+import type { ChemistryCollection } from '../collection/chemistry';
 import type { DescriptiveCollection } from '../collection/descriptive';
 import type { MetaData } from '../collection/generic';
 import type { SafetyCollection } from '../collection/safety';
@@ -26,6 +27,7 @@ export type SingleElement = {
   classification: ElementClassification;
   abundance?: AbundanceCollection;
   atomics?: AtomicsCollection;
+  chemistry?: ChemistryCollection;
   safety?: SafetyCollection;
 };
 
