@@ -1,9 +1,20 @@
-import type { Brand } from 'devtypes/types/util';
+import type { Brand, Expand } from 'devtypes/types/util';
 import type { Collection, Distinct, Group } from '../abstract/collection';
+import type { MetaData } from '../abstract/util';
 import type { ElementSymbol } from '../enum/element';
 import type { DecayMode } from '../enum/nuclide';
 
 export type NuclideIdentifier = Brand< `${number}` | `${number}m` | `${number}m${number}`, 'nuclideID' >;
+
+export type SingleNuclide = any;
+
+export type Nuclide = Expand< MetaData & SingleNuclide >;
+
+export type NuclideCollection = Collection< {
+  [ K in ElementSymbol ]?: Collection< {
+    [ N in NuclideIdentifier ]?: Nuclide;
+  } >;
+} >;
 
 export type NuclideIndexEntry< Z extends number, N extends number > = Collection< {
   nuclide: Distinct< NuclideIdentifier >;
@@ -52,7 +63,7 @@ export type NuclideDecayChains = Collection< {
 } >;
 
 export type NuclideEntity = {
-  nuclides: any;
+  nuclides: NuclideCollection;
   index: NuclideIndex;
   decayChains: NuclideDecayChains;
 };
