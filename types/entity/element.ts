@@ -1,5 +1,6 @@
 import type { Expand } from 'devtypes/types/util';
 import type { Collection, Distinct } from '../abstract/collection';
+import type { FormCollection } from '../abstract/form';
 import type { MetaData } from '../abstract/util';
 import type { AbundanceCollection } from '../collection/abundance';
 import type { AtomicsCollection } from '../collection/atomics';
@@ -36,7 +37,7 @@ export type SingleElement = {
 };
 
 export type Element = Expand< MetaData & SingleElement & {
-  forms?: any;
+  forms?: FormCollection< SingleElement >;
 } >;
 
 export type ElementEntity = Collection< {

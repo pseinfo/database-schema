@@ -15,6 +15,11 @@ export interface FormFields {
   phase?: Distinct< Phase >;
 };
 
+export type AllotropeForm< C extends Collection< any > > = Expand<
+  BaseForm< FormType.ALLOTROPE | FormType.OTHER, C > &
+  FormFields
+>;
+
 export type MolecularForm< C extends Collection< any > > = Expand<
   BaseForm< FormType.MOLECULAR, C > &
   RequireFrom< FormFields, 'formula' >
@@ -24,3 +29,13 @@ export type PhaseForm< C extends Collection< any > > = Expand<
   BaseForm< FormType.PHASE, C > &
   RequireFrom< FormFields, 'phase' >
 >;
+
+export type PolymorphForm< C extends Collection< any > > = Expand<
+  BaseForm< FormType.POLYMORPH | FormType.AMORPHOUS, C >
+>;
+
+export type FormId = Brand< string, 'formId' >;
+
+export type FormCollection< C extends Collection< any > > = Record< FormId, Collection<
+  AllotropeForm< C > | MolecularForm< C > | PhaseForm< C > | PolymorphForm< C >
+> >;
