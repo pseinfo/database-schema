@@ -10,8 +10,8 @@ export type ChemistryCollection = Collection< {
   molarVolume?: Single< NumberProperty< 'molarVolume' > >;
 
   basicity?: Group< {
-    type?: Single< PrimitiveProperty< BasicityType > >;
-    character?: Single< PrimitiveProperty< AcidBaseCharacter > >;
+    basicityType?: Single< PrimitiveProperty< BasicityType > >;
+    acidBaseCharacter?: Single< PrimitiveProperty< AcidBaseCharacter > >;
     pKa?: Single< PrimitiveProperty< number > >;
     pKb?: Single< PrimitiveProperty< number > >;
     pH?: Single< PrimitiveProperty< number > >;
@@ -23,8 +23,8 @@ export type ChemistryCollection = Collection< {
   } >;
 
   oxidation?: Group< {
-    states?: Single< PrimitiveProperty< string > >;
-    character?: Single< PrimitiveProperty< OxideCharacter > >;
+    oxidationStates?: Single< PrimitiveProperty< string > >;
+    oxideCharacter?: Single< PrimitiveProperty< OxideCharacter > >;
   } >;
 
   electrochemistry?: Group< {
@@ -48,7 +48,7 @@ export type ChemistryCollection = Collection< {
   } >;
 
   bonding?: Group< {
-    type?: Single< PrimitiveProperty< BondType > >;
+    bondType?: Single< PrimitiveProperty< BondType > >;
     hybridization?: Single< PrimitiveProperty< Hybridization > >;
     order?: Single< PrimitiveProperty< number > >;
     length?: Single< NumberProperty< 'length' > >;
