@@ -1,12 +1,12 @@
 import type { Collection, Single } from '../abstract/collection';
 import type { StructProperty } from '../abstract/property';
-import type { NumberValue } from '../abstract/value';
+import type { NumberValue, PrimitiveValue } from '../abstract/value';
 import type { DecayMode, RadiationType, SpinParity } from '../enum/nuclide';
 
 export type Spin = {
   parity: SpinParity;
   value: string;
-  calculatedValue?: number;
+  calculatedValue: number;
 };
 
 export type NMR = {
@@ -42,13 +42,12 @@ export type GroudState = {
   betaDecayEnergy?: NumberValue< 'energy' >;
   electronCaptureEnergy?: NumberValue< 'energy' >;
   neutronEmissionEnergy?: NumberValue< 'energy' >;
-  isomericTransitionEnergy?: NumberValue< 'energy' >;
   neutronSeparationEnergy?: NumberValue< 'energy' >;
   protonSeparationEnergy?: NumberValue< 'energy' >;
   excitationEnergy?: NumberValue< 'energy' >;
 };
 
-export type AdoptedLevel = {
+export type Level = {
   energy?: NumberValue< 'energy' >;
   angularMomentum?: Spin;
   band?: number;
@@ -60,8 +59,28 @@ export type AdoptedLevel = {
   decayChannel?: DecayChannel[];
 };
 
+export type Gamma = {
+  initial?: {
+    energy?: NumberValue< 'energy' >;
+    angularMomentum?: Spin;
+  };
+  final?: {
+    energy?: NumberValue< 'energy' >;
+    angularMomentum?: Spin;
+  };
+  halfLife?: NumberValue< 'time' >;
+  transitionEnergy?: NumberValue< 'energy' >;
+  relativeIntensity?: NumberValue< 'quantity' >;
+  gRayMixingRatio?: PrimitiveValue< number >;
+  conversionCoefficient?: PrimitiveValue< number >;
+  reducedElectricProbability?: PrimitiveValue< number >;
+  magneticTransitionProbability?: PrimitiveValue< number >;
+  multipolarity?: string;
+};
+
 export type NuclearCollection = Collection< {
   nmr?: Single< StructProperty< NMR > >;
   ground?: Single< StructProperty< GroudState > >;
-  level?: Single< StructProperty< AdoptedLevel > >;
+  level?: Single< StructProperty< Level > >;
+  gamma?: Single< StructProperty< Gamma > >;
 } >;
