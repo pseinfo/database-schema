@@ -6,7 +6,7 @@ import type { DescriptiveCollection } from '../collection/descriptive';
 import type { GenericCollection } from '../collection/generic';
 import type { NuclearCollection } from '../collection/nuclear';
 import type { ElementSymbol } from '../enum/element';
-import type { DecayMode, NuclideProperty, NuclideStability, NuclideState } from '../enum/nuclide';
+import type { DecayMode, NuclideProperty, NuclideStability, NuclideState, SpinParity } from '../enum/nuclide';
 
 export type NuclideIdentifier = Brand< `${number}` | `${number}m` | `${number}m${number}`, 'nuclideID' >;
 
@@ -17,6 +17,7 @@ export type NuclideClassification = Collection< {
   massNumber: Distinct< number >;
   state: Distinct< NuclideState >;
   stability: Distinct< NuclideStability >;
+  parity: Distinct< SpinParity >;
   properties: Distinct< NuclideProperty[] >;
 } >;
 

@@ -15,6 +15,12 @@ export enum NuclideStability {
   ARTIFICIAL = 'artificial'
 };
 
+export enum SpinParity {
+  POSITIVE = 'positive',
+  NEGATIVE = 'negative',
+  UNKNOWN = 'unknown'
+};
+
 export enum DecayMode {
   DOUBLE_BETA_PLUS = '2B+',
   DOUBLE_BETA_MINUS = '2B-',
