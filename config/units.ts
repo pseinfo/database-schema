@@ -64,6 +64,8 @@ export const units = {
   activity: { base: [ 'Bq', 'Ci' ], prefixable: [ 'Bq', 'Ci' ] },
   absorbedDose: { base: [ 'Gy', 'rad' ], prefixable: [ 'Gy' ] },
 
+  gyromagneticRatio: { base: [ 'rad/(s·T)' ] , prefixable: [] },
+
   frequency: { base: [ 'Hz', 'rpm', 'rps' ], prefixable: [ 'Hz' ] },
   angle: { base: [ '°', 'rad', 'ʹ', 'ʺ', 'grad', 'turn' ], prefixable: [] },
   massFraction: { base: [ '%', '‰', '*', 'ppm', 'ppb', 'ppt' ], prefixable: [] },

@@ -1,6 +1,12 @@
 import type { Collection, Group, Single } from '../abstract/collection';
-import type { NumberProperty, PrimitiveProperty, StructProperty } from '../abstract/property';
+import type { NumberProperty, StructProperty } from '../abstract/property';
 import type { SpinParity } from '../enum/nuclide';
+
+export type Spin = {
+  parity: SpinParity;
+  value: string;
+  calculatedValue?: number;
+};
 
 export type NuclearCollection = Collection< {
   ground?: Group< {
@@ -11,12 +17,13 @@ export type NuclearCollection = Collection< {
 
     dipoleMoment?: Single< NumberProperty< 'area' > >;
     quadrupoleMoment?: Single< NumberProperty< 'magneticMoment' > >;
+    isoSpin?: Single< StructProperty< Spin > >;
 
-    isoSpin?: Single< PrimitiveProperty< number > >;
-    spin?: Single< StructProperty < {
-      value: string;
-      parity: SpinParity;
-    } > >;
+    nmr?: Group< {
+      spin?: Single< StructProperty < Spin > >;
+      gyromagneticRatio?: Single< NumberProperty< 'gyromagneticRatio' > >;
+      larmorPrecession?: Single< NumberProperty< 'frequency' > >;
+    } >;
 
     energy?: Group< {
       bindingEnergy?: Single< NumberProperty< 'energy' > >;
