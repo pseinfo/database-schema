@@ -1,0 +1,15 @@
+import type { Expand } from 'devtypes/types/util';
+import type { Distinct, Group } from '../abstract/collection';
+import type { LangCode } from '../enum/generic';
+
+export type MetaData = Distinct< {
+  '@metadata': {
+    schemaVersion: 1;
+    lastModified: string;
+  };
+} >;
+
+export type LangGroup< L extends LangCode = LangCode.ENGLISH, T = string > = Group< Expand<
+  Required< { [ K in L ]: Distinct< T > } > &
+  Partial< { [ K in Exclude< LangCode, L > ]: Distinct< T > } >
+> >;
