@@ -1,7 +1,7 @@
 import type { Collection, Group, Single } from '../abstract/collection';
 import type { CoupledNumberProperty, NumberProperty, PrimitiveProperty } from '../abstract/property';
 import type { Phase } from '../enum/generic';
-import type { Superconductivity } from '../enum/physics';
+import type { MagneticOrdering, Superconductivity } from '../enum/physics';
 
 export type PhysicsCollection = Collection< {
   density?: Single< NumberProperty< 'density' > >;
@@ -67,5 +67,18 @@ export type PhysicsCollection = Collection< {
     superconductingPoint?: Single< NumberProperty< 'temperature' > >;
     bandGap?: Single< NumberProperty< 'energy' > >;
     dielectricConstant?: Single< PrimitiveProperty< number > >;
+  } >;
+
+  magnetism?: Group< {
+    magneticOrdering?: Single< PrimitiveProperty< MagneticOrdering > >;
+    magneticSusceptibility?: Single< NumberProperty< 'magneticSusceptibility' > >;
+    molarMagneticSusceptibility?: Single< NumberProperty< 'molarMagneticSusceptibility' > >;
+    massMagneticSusceptibility?: Single< NumberProperty< 'massMagneticSusceptibility' > >;
+    curiePoint?: Single< NumberProperty< 'temperature' > >;
+    neelPoint?: Single< NumberProperty< 'temperature' > >;
+    magneticMoment?: Single< NumberProperty< 'magneticMoment' > >;
+    coercivity?: Single< NumberProperty< 'magneticFieldStrength' > >;
+    remanence?: Single< NumberProperty< 'magneticFluxDensity' > >;
+    permeability?: Single< NumberProperty< 'magneticPermeability' > >;
   } >;
 } >;
