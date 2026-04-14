@@ -1,6 +1,7 @@
-import type { Collection, Group, Single } from '../abstract/collection';
-import type { NumberProperty, StructProperty } from '../abstract/property';
-import type { SpinParity } from '../enum/nuclide';
+import type { Collection, Single } from '../abstract/collection';
+import type { StructProperty } from '../abstract/property';
+import type { NumberValue } from '../abstract/value';
+import type { DecayMode, RadiationType, SpinParity } from '../enum/nuclide';
 
 export type Spin = {
   parity: SpinParity;
@@ -8,33 +9,59 @@ export type Spin = {
   calculatedValue?: number;
 };
 
+export type NMR = {
+  spin?: Spin;
+  gyromagneticRatio?: NumberValue< 'gyromagneticRatio' >;
+  larmorPrecession?: NumberValue< 'frequency' >;
+};
+
+export type DecayChannel = {
+  mode: DecayMode;
+  branchingRatio?: NumberValue< 'quantity' >;
+  energy?: NumberValue< 'energy' >;
+  radiation?: RadiationType[];
+};
+
+export type GroudState = {
+  energy?: NumberValue< 'energy' >;
+  angularMomentum?: Spin;
+  halfLife?: NumberValue< 'time' >;
+  isotopeAbundance?: NumberValue< 'massFraction' >;
+
+  isotopeMass?: NumberValue< 'mass' >;
+  chargeRadius?: NumberValue< 'length' >;
+  massExcess?: NumberValue< 'energy' >;
+  dipoleMoment?: NumberValue< 'area' >;
+  quadrupoleMoment?: NumberValue< 'magneticMoment' >;
+  isoSpin?: Spin;
+
+  decayChannel?: DecayChannel[];
+
+  bindingEnergy?: NumberValue< 'energy' >;
+  alphaDecayEnergy?: NumberValue< 'energy' >;
+  betaDecayEnergy?: NumberValue< 'energy' >;
+  electronCaptureEnergy?: NumberValue< 'energy' >;
+  neutronEmissionEnergy?: NumberValue< 'energy' >;
+  isomericTransitionEnergy?: NumberValue< 'energy' >;
+  neutronSeparationEnergy?: NumberValue< 'energy' >;
+  protonSeparationEnergy?: NumberValue< 'energy' >;
+  excitationEnergy?: NumberValue< 'energy' >;
+};
+
+export type AdoptedLevel = {
+  energy?: NumberValue< 'energy' >;
+  angularMomentum?: Spin;
+  band?: number;
+  halfLife?: NumberValue< 'time' >;
+  isotopeAbundance?: NumberValue< 'massFraction' >;
+  dipoleMoment?: NumberValue< 'area' >;
+  quadrupoleMoment?: NumberValue< 'magneticMoment' >;
+  isoSpin?: Spin;
+  decayChannel?: DecayChannel[];
+};
+
 export type NuclearCollection = Collection< {
-  ground?: Group< {
-    halfLife?: Single< NumberProperty< 'time' > >;
-    isotopeMass?: Single< NumberProperty< 'mass' > >;
-    chargeRadius?: Single< NumberProperty< 'length' > >;
-    massExcess?: Single< NumberProperty< 'energy' > >;
-
-    dipoleMoment?: Single< NumberProperty< 'area' > >;
-    quadrupoleMoment?: Single< NumberProperty< 'magneticMoment' > >;
-    isoSpin?: Single< StructProperty< Spin > >;
-
-    nmr?: Group< {
-      spin?: Single< StructProperty < Spin > >;
-      gyromagneticRatio?: Single< NumberProperty< 'gyromagneticRatio' > >;
-      larmorPrecession?: Single< NumberProperty< 'frequency' > >;
-    } >;
-
-    energy?: Group< {
-      bindingEnergy?: Single< NumberProperty< 'energy' > >;
-      alphaDecayEnergy?: Single< NumberProperty< 'energy' > >;
-      betaDecayEnergy?: Single< NumberProperty< 'energy' > >;
-      electronCaptureEnergy?: Single< NumberProperty< 'energy' > >;
-      neutronEmissionEnergy?: Single< NumberProperty< 'energy' > >;
-      isomericTransitionEnergy?: Single< NumberProperty< 'energy' > >;
-      neutronSeparationEnergy?: Single< NumberProperty< 'energy' > >;
-      protonSeparationEnergy?: Single< NumberProperty< 'energy' > >;
-      excitationEnergy?: Single< NumberProperty< 'energy' > >;
-    } >;
-  } >;
+  nmr?: Single< StructProperty< NMR > >;
+  ground?: Single< StructProperty< GroudState > >;
+  level?: Single< StructProperty< AdoptedLevel > >;
 } >;
