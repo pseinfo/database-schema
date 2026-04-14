@@ -7,6 +7,7 @@ export type AtomicsCollection = Collection< {
   massNumber?: Single< PrimitiveProperty< number > >;
 
   electronConfig?: Single< PrimitiveProperty< string > >;
+  valenceElectrons?: Single< PrimitiveProperty< number > >;
   shellModel?: Single< StructProperty< {
     [ K in ShellModel ]: number;
   } > >;
