@@ -3,7 +3,7 @@ import type { Collection, Distinct, Group } from '../abstract/collection';
 import type { MetaData } from '../abstract/util';
 import type { DescriptiveCollection } from '../collection/descriptive';
 import type { ElementSymbol } from '../enum/element';
-import type { DecayMode, NuclideStability, NuclideState } from '../enum/nuclide';
+import type { DecayMode, NuclideProperty, NuclideStability, NuclideState } from '../enum/nuclide';
 
 export type NuclideIdentifier = Brand< `${number}` | `${number}m` | `${number}m${number}`, 'nuclideID' >;
 
@@ -14,6 +14,7 @@ export type NuclideClassification = Collection< {
   massNumber: Distinct< number >;
   state: Distinct< NuclideState >;
   stability: Distinct< NuclideStability >;
+  properties: Distinct< NuclideProperty[] >;
 } >;
 
 export type SingleNuclide = Collection< {

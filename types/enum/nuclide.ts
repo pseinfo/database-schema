@@ -49,3 +49,15 @@ export enum DecayMode {
   SPONTANEOUS_FISSION = 'SF',
   SPONTANEOUS_FISSION_EC_BPLUS = 'SF+EC+B+'
 };
+
+export enum NuclideProperty {
+  STABLE = 'stable',
+  UNSTABLE = 'unstable',
+  PRIMORDIAL = 'primordial',
+  SYNTHETIC = 'synthetic',
+  ARTIFICIAL = 'artificial',
+  MONONUCLEIDE = 'mononuclide',
+  RADIOACTIVE = 'radioactive',
+  NATUREAL = 'natural',
+  METASTABLE = 'metastable'
+};
