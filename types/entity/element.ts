@@ -22,6 +22,7 @@ export type ElementClassification = Collection< {
   phase: Distinct< Phase >;
   set: Distinct< ElementSet >;
   radioactive: Distinct< boolean >;
+  synthetic: Distinct< boolean >;
   properties: Distinct< ElementProperty[] >;
 } >;
 

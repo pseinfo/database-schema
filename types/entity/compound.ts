@@ -19,6 +19,7 @@ export type CompoundClassification = Collection< {
   organic: Distinct< boolean >;
   phase: Distinct< Phase >;
   radioactive: Distinct< boolean >;
+  synthetic: Distinct< boolean >;
   properties: Distinct< CompoundProperty[] >;
 } >;
 
