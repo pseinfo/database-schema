@@ -18,8 +18,8 @@ export type PDBID = string;
 export type WikidataID = `Q${number}`;
 
 export type RegistryGroup = Group< {
-  cas: Distinct< CASNumber >;
-  cid: Distinct< PubChemCID >;
+  cas?: Distinct< CASNumber >;
+  cid?: Distinct< PubChemCID >;
 
   chemspider?: Distinct< ChemSpiderID >;
   chebi?: Distinct< ChEBIID >;
@@ -55,8 +55,8 @@ export type WLN = string;
 export type IUPACName = string;
 
 export type StructureGroup = Group< {
-  inChI: Distinct< InChI >;
-  inChIkey: Distinct< InChIKey >;
+  inChI?: Distinct< InChI >;
+  inChIkey?: Distinct< InChIKey >;
   smiles?: Distinct< SMILES >;
   smarts?: Distinct< SMARTS >;
   canonicalSmiles?: Distinct< CanonicalSMILES >;
