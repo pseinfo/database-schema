@@ -1,12 +1,25 @@
 import type { Brand, Expand } from 'devtypes/types/util';
 import type { Collection, Distinct, Group } from '../abstract/collection';
 import type { MetaData } from '../abstract/util';
+import type { DescriptiveCollection } from '../collection/descriptive';
 import type { ElementSymbol } from '../enum/element';
-import type { DecayMode } from '../enum/nuclide';
+import type { DecayMode, NuclideStability, NuclideState } from '../enum/nuclide';
 
 export type NuclideIdentifier = Brand< `${number}` | `${number}m` | `${number}m${number}`, 'nuclideID' >;
 
-export type SingleNuclide = any;
+export type NuclideClassification = Collection< {
+  element: Distinct< ElementSymbol >;
+  atomicNumber: Distinct< number >;
+  neutronNumber: Distinct< number >;
+  massNumber: Distinct< number >;
+  state: Distinct< NuclideState >;
+  stability: Distinct< NuclideStability >;
+} >;
+
+export type SingleNuclide = Collection< {
+  descriptive: DescriptiveCollection;
+  classification: NuclideClassification;
+} >;
 
 export type Nuclide = Expand< MetaData & SingleNuclide >;
 

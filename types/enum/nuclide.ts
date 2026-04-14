@@ -1,3 +1,20 @@
+export enum NuclideState {
+  GROUND = 'ground',
+  METASTABLE = 'metastable',
+  M1 = 'm1',
+  M2 = 'm2',
+  M3 = 'm3',
+  M4 = 'm4'
+};
+
+export enum NuclideStability {
+  STABLE = 'stable',
+  UNSTABLE = 'unstable',
+  PRIMORDIAL = 'primordial',
+  SYNTHETIC = 'synthetic',
+  ARTIFICIAL = 'artificial'
+};
+
 export enum DecayMode {
   DOUBLE_BETA_PLUS = '2B+',
   DOUBLE_BETA_MINUS = '2B-',
