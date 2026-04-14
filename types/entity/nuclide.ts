@@ -5,6 +5,28 @@ import type { DecayMode } from '../enum/nuclide';
 
 export type NuclideIdentifier = Brand< `${number}` | `${number}m` | `${number}m${number}`, 'nuclideID' >;
 
+export type NuclideIndexEntry< Z extends number, N extends number > = Collection< {
+  nuclide: Distinct< NuclideIdentifier >;
+  z: Distinct< Z >;
+  n: Distinct< N >;
+  m: Distinct< number >;
+  element: Distinct< ElementSymbol >;
+  layer: Group< {
+    halfLife?: Distinct< number >;
+    mainDecayMode?: Distinct< DecayMode >;
+    nuclearRadius?: Distinct< number >;
+    massExcess?: Distinct< number >;
+    atomicMass?: Distinct< number >;
+    bindingEnergy?: Distinct< number >;
+  } >;
+} >;
+
+export type NuclideIndex = Collection< {
+  [ Z in number ]?: {
+    [ N in number ]?: NuclideIndexEntry< Z, N >;
+  };
+} >;
+
 export type NuclideDecayChainLink = Group< {
   nuclide: Distinct< NuclideIdentifier >;
   mode: Distinct< DecayMode >;
@@ -31,6 +53,6 @@ export type NuclideDecayChains = Collection< {
 
 export type NuclideEntity = {
   nuclides: any;
-  index: any;
+  index: NuclideIndex;
   decayChains: NuclideDecayChains;
 };
