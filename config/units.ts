@@ -67,7 +67,7 @@ export const units = {
   frequency: { base: [ 'Hz', 'rpm', 'rps' ], prefixable: [ 'Hz' ] },
   angle: { base: [ '°', 'rad', 'ʹ', 'ʺ', 'grad', 'turn' ], prefixable: [] },
   massFraction: { base: [ '%', '‰', '*', 'ppm', 'ppb', 'ppt' ], prefixable: [] },
-  area: { base: [ 'm[2]', 'b' ], prefixable: [ 'm[2]', 'b' ] },
+  area: { base: [ 'm[2]', 'b' ], prefixable: [ 'm[2]' ] },
   quantity: { base: [ '*', '%', '‰', 'mol' ], prefixable: [] },
   currency: { base: [ 'USD', 'EUR', 'CHF' ], prefixable: [] }
 } as const;
