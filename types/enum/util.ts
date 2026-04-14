@@ -56,3 +56,18 @@ export enum ReferenceType {
   TECHREPORT = 'techreport',
   UNPUBLISHED = 'unpublished'
 };
+
+export enum ImageFormat {
+  JPG = 'jpg',
+  PNG = 'png',
+  SVG = 'svg',
+  WEBP = 'webp'
+};
+
+export enum D3Format {
+  PDB = 'pdb',
+  MOL = 'mol',
+  SDF = 'sdf',
+  XYZ = 'xyz',
+  CIF = 'cif'
+};

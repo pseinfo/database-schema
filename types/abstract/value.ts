@@ -1,7 +1,7 @@
 import type { RequireAtLeastOne, RequireExactlyOneFrom, RequireFrom, StrictSubset } from 'devtypes/types/constraint';
 import type { Primitive } from 'devtypes/types/primitive';
 import type { Brand, Expand } from 'devtypes/types/util';
-import type { ValueType, ValueConfidence } from '../enum/abstract';
+import type { ValueType, ValueConfidence } from '../enum/util';
 import type { Uncertainty } from './uncertainty';
 import type { PhysicalQuantity, UnitId } from './unit';
 

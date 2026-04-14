@@ -1,6 +1,6 @@
 import type { Brand } from 'devtypes/types/util';
 import { units } from '../../config/units';
-import type { MetricSystem, SIDimension } from '../enum/abstract';
+import type { MetricSystem, SIDimension } from '../enum/util';
 
 export type SIPrefix = keyof typeof SIPrefix;
 export const SIPrefix = {
