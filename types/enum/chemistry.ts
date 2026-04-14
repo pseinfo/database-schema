@@ -42,3 +42,13 @@ export enum OxideCharacter {
   AMPHOTERIC = 'amphoteric',
   BASIC = 'basic'
 };
+
+export enum SolubilityQualifier {
+  VERY_SOLUBLE = 'verySoluble',
+  FREELY_SOLUBLE = 'freelySoluble',
+  SOLUBLE = 'soluble',
+  SPARINGLY_SOLUBLE = 'sparinglySoluble',
+  SLIGHTLY_SOLUBLE = 'slightlySoluble',
+  VERY_SLIGHTLY_SOLUBLE = 'verySlightlySoluble',
+  PRACTICALLY_INSOLUBLE = 'practicallyInsoluble'
+};

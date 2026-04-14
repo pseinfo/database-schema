@@ -1,6 +1,9 @@
 import type { Collection, Group, Single } from '../abstract/collection';
 import type { NumberProperty, PrimitiveProperty } from '../abstract/property';
-import type { AcidBaseCharacter, BasicityType, Goldschmidt, HSAB, LewisModel, OxideCharacter } from '../enum/chemistry';
+import type {
+  AcidBaseCharacter, BasicityType, Goldschmidt, HSAB, LewisModel,
+  OxideCharacter, SolubilityQualifier
+} from '../enum/chemistry';
 
 export type ChemistryCollection = Collection< {
   molarMass?: Single< NumberProperty< 'molarMass' > >;
@@ -30,5 +33,17 @@ export type ChemistryCollection = Collection< {
     standardOxidationPotential?: Single< NumberProperty< 'electricPotential' > >;
     overpotential?: Single< NumberProperty< 'electricPotential' > >;
     electrochemicalEquivalent?: Single< NumberProperty< 'mass' > >;
+  } >;
+
+  thermochemistry?: Group< {
+    standardGibbsEnergy?: Single< NumberProperty< 'energy' > >;
+    bindingEnergy?: Single< NumberProperty< 'energy' > >;
+  } >;
+
+  solubility?: Group< {
+    quantifier?: Single< PrimitiveProperty< SolubilityQualifier > >;
+    waterSolubility?: Single< NumberProperty< 'concentration' > >;
+    solubilityProduct?: Single< PrimitiveProperty< number > >;
+    henryConstant?: Single< PrimitiveProperty< number > >;
   } >;
 } >;
