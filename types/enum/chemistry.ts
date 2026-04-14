@@ -29,3 +29,10 @@ export enum Goldschmidt {
   SIDEROPHILE = 'siderophile',
   SYNTHETIC = 'synthetic'
 };
+
+export enum LewisModel {
+  STRONG = 'strong',
+  MODERATE = 'moderate',
+  WEAK = 'weak',
+  NONE = 'none'
+};
