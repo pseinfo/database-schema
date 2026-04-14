@@ -56,6 +56,18 @@ export enum DecayMode {
   SPONTANEOUS_FISSION_EC_BPLUS = 'SF+EC+B+'
 };
 
+export enum RadiationType {
+  ALPHA = 'alpha',
+  BETA = 'beta',
+  GAMMA = 'gamma',
+  XRAY = 'xray',
+  CONVERSION_ELECTRON = 'conversionElectron',
+  POSITRON = 'positron',
+  NEUTRON = 'neutron',
+  PROTON = 'proton',
+  CLUSTER = 'cluster'
+};
+
 export enum NuclideProperty {
   STABLE = 'stable',
   UNSTABLE = 'unstable',

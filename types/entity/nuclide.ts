@@ -1,12 +1,14 @@
 import type { Brand, Expand } from 'devtypes/types/util';
-import type { Collection, Distinct, Group } from '../abstract/collection';
+import type { Collection, Distinct, Group, Single } from '../abstract/collection';
+import type { StructProperty } from '../abstract/property';
 import type { MetaData } from '../abstract/util';
+import type { NumberValue } from '../abstract/value';
 import type { AbundanceCollection } from '../collection/abundance';
 import type { DescriptiveCollection } from '../collection/descriptive';
 import type { GenericCollection } from '../collection/generic';
 import type { NuclearCollection } from '../collection/nuclear';
 import type { ElementSymbol } from '../enum/element';
-import type { DecayMode, NuclideProperty, NuclideStability, NuclideState, SpinParity } from '../enum/nuclide';
+import type { DecayMode, NuclideProperty, NuclideStability, NuclideState, RadiationType, SpinParity } from '../enum/nuclide';
 
 export type NuclideIdentifier = Brand< `${number}` | `${number}m` | `${number}m${number}`, 'nuclideID' >;
 
@@ -27,6 +29,13 @@ export type SingleNuclide = Collection< {
   generic?: GenericCollection;
   abundance?: AbundanceCollection;
   nuclear?: NuclearCollection;
+  decayChannels?: Single< StructProperty< {
+    mode: DecayMode;
+    probability?: NumberValue< 'quantity' >;
+    product?: NuclideIdentifier;
+    energy?: NumberValue< 'energy' >;
+    radiation?: RadiationType[];
+  } > >;
 } >;
 
 export type Nuclide = Expand< MetaData & SingleNuclide >;
