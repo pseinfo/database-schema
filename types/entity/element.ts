@@ -5,6 +5,7 @@ import type { AtomicsCollection } from '../collection/atomics';
 import type { ChemistryCollection } from '../collection/chemistry';
 import type { DescriptiveCollection } from '../collection/descriptive';
 import type { MetaData } from '../collection/generic';
+import type { PhysicsCollection } from '../collection/physics';
 import type { SafetyCollection } from '../collection/safety';
 import type { Phase, PTColumn, PTPeriod } from '../enum/generic';
 import type { ElementBlock, ElementGroup, ElementProperty, ElementSet, ElementSymbol } from '../enum/element';
@@ -27,6 +28,7 @@ export type SingleElement = {
   classification: ElementClassification;
   abundance?: AbundanceCollection;
   atomics?: AtomicsCollection;
+  physics?: PhysicsCollection;
   chemistry?: ChemistryCollection;
   safety?: SafetyCollection;
 };
