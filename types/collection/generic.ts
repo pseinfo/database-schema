@@ -1,8 +1,8 @@
 import type { Expand } from 'devtypes/types/util';
 import type { Distinct, Group, Single } from '../abstract/collection';
 import type { LangCode } from '../enum/generic';
-import { D3Format, ImageFormat } from '../enum/util';
-import { PrimitiveProperty } from '../abstract/property';
+import type { D3Format, ImageFormat } from '../enum/util';
+import type { PrimitiveProperty } from '../abstract/property';
 
 export type MetaData = Distinct< {
   '@metadata': {
