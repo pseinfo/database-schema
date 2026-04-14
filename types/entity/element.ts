@@ -4,8 +4,8 @@ import type { AbundanceCollection } from '../collection/abundance';
 import type { DescriptiveCollection } from '../collection/descriptive';
 import type { MetaData } from '../collection/generic';
 import type { SafetyCollection } from '../collection/safety';
-import type { ElementSymbol, Phase, PTColumn, PTPeriod } from '../enum/generic';
-import type { ElementBlock, ElementGroup, ElementProperty, ElementSet } from '../enum/element';
+import type { Phase, PTColumn, PTPeriod } from '../enum/generic';
+import type { ElementBlock, ElementGroup, ElementProperty, ElementSet, ElementSymbol } from '../enum/element';
 
 export type ElementClassification = Collection< {
   symbol: Distinct< string >;
