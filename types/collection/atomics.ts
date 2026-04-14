@@ -29,8 +29,8 @@ export type AtomicsCollection = Collection< {
   } >;
 
   charge?: Group< {
-    nuclear: Single< PrimitiveProperty< number > >;
-    effective: Single< PrimitiveProperty< number > >;
+    nuclearCharge: Single< PrimitiveProperty< number > >;
+    effectiveCharge: Single< PrimitiveProperty< number > >;
   } >;
 
   electronegativity?: Group< {
