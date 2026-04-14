@@ -1,8 +1,8 @@
 import type { Collection, Group, Single } from '../abstract/collection';
 import type { NumberProperty, PrimitiveProperty } from '../abstract/property';
 import type {
-  AcidBaseCharacter, BasicityType, BondType, Goldschmidt, HSAB, Hybridization, LewisModel,
-  OxideCharacter, SolubilityQualifier
+  AcidBaseCharacter, BasicityType, BondType, Goldschmidt, HSAB, Hybridization,
+  LewisModel, OxideCharacter, SolubilityQualifier
 } from '../enum/chemistry';
 
 export type ChemistryCollection = Collection< {
