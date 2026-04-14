@@ -1,8 +1,9 @@
 import type { Expand } from 'devtypes/types/util';
-import type { Distinct, Group, Single } from '../abstract/collection';
+import type { Collection, Distinct, Group, Single } from '../abstract/collection';
+import type { PrimitiveProperty, StructProperty } from '../abstract/property';
+import type { NumberValue } from '../abstract/value';
 import type { LangCode } from '../enum/generic';
 import type { D3Format, ImageFormat } from '../enum/util';
-import type { PrimitiveProperty } from '../abstract/property';
 
 export type MetaData = Distinct< {
   '@metadata': {
@@ -53,4 +54,13 @@ export type WeblinksGroup = Group< {
     language?: string;
   }[] >;
   wiki?: LangGroup;
+} >;
+
+export type GenericCollection = Collection< {
+  price: Single< StructProperty< {
+    value: NumberValue< 'currency' >;
+    date: string;
+    market?: string;
+    url?: string;
+  } > >;
 } >;
