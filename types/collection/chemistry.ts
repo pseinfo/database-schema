@@ -1,6 +1,6 @@
 import type { Collection, Group, Single } from '../abstract/collection';
 import type { NumberProperty, PrimitiveProperty } from '../abstract/property';
-import type { AcidBaseCharacter, BasicityType, Goldschmidt, HSAB, LewisModel } from '../enum/chemistry';
+import type { AcidBaseCharacter, BasicityType, Goldschmidt, HSAB, LewisModel, OxideCharacter } from '../enum/chemistry';
 
 export type ChemistryCollection = Collection< {
   molarMass?: Single< NumberProperty< 'molarMass' > >;
@@ -17,5 +17,10 @@ export type ChemistryCollection = Collection< {
     lewisBasicity?: Single< PrimitiveProperty< LewisModel > >;
     goldschmidt?: Single< PrimitiveProperty< Goldschmidt > >;
     hsab?: Single< PrimitiveProperty< HSAB > >;
+  } >;
+
+  oxidation?: Group< {
+    oxidationStates?: Single< PrimitiveProperty< string > >;
+    oxideCharacter?: Single< PrimitiveProperty< OxideCharacter > >;
   } >;
 } >;

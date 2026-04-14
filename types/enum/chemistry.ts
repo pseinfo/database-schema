@@ -36,3 +36,9 @@ export enum LewisModel {
   WEAK = 'weak',
   NONE = 'none'
 };
+
+export enum OxideCharacter {
+  ACIDIC = 'acidic',
+  AMPHOTERIC = 'amphoteric',
+  BASIC = 'basic'
+};
