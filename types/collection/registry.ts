@@ -12,6 +12,7 @@ export type RTECSNumber = `RTECS${string}`;
 export type UNII = string;
 export type NSCNumber = `NSC${number}`;
 export type DrugBankID = `DB${string}`;
+export type ATCCode = `${string}${number}${string}${number}`;
 export type BeilsteinNumber = `${number}`;
 export type GmelinNumber = `${number}`;
 export type PDBID = string;
@@ -36,6 +37,7 @@ export type RegistryGroup = Group< {
   nsc?: Distinct< NSCNumber >;
 
   drugbank?: Distinct< DrugBankID >;
+  atc?: Distinct< ATCCode[] >;
 
   beilstein?: Distinct< BeilsteinNumber >;
   gmelin?: Distinct< GmelinNumber >;
