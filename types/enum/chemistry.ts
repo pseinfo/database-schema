@@ -52,3 +52,20 @@ export enum SolubilityQualifier {
   VERY_SLIGHTLY_SOLUBLE = 'verySlightlySoluble',
   PRACTICALLY_INSOLUBLE = 'practicallyInsoluble'
 };
+
+export enum BondType {
+  IONIC = 'ionic',
+  COVALENT = 'covalent',
+  METALLIC = 'metallic',
+  VDW = 'vdw',
+  HYDROGEN = 'hydrogen'
+};
+
+export enum Hybridization {
+  SP = 'sp',
+  SP2 = 'sp2',
+  SP3 = 'sp3',
+  SP3D = 'sp3d',
+  SP3D2 = 'sp3d2',
+  SP3D3 = 'sp3d3'
+};

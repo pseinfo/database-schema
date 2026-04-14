@@ -1,7 +1,7 @@
 import type { Collection, Group, Single } from '../abstract/collection';
 import type { NumberProperty, PrimitiveProperty } from '../abstract/property';
 import type {
-  AcidBaseCharacter, BasicityType, Goldschmidt, HSAB, LewisModel,
+  AcidBaseCharacter, BasicityType, BondType, Goldschmidt, HSAB, Hybridization, LewisModel,
   OxideCharacter, SolubilityQualifier
 } from '../enum/chemistry';
 
@@ -23,8 +23,8 @@ export type ChemistryCollection = Collection< {
   } >;
 
   oxidation?: Group< {
-    oxidationStates?: Single< PrimitiveProperty< string > >;
-    oxideCharacter?: Single< PrimitiveProperty< OxideCharacter > >;
+    states?: Single< PrimitiveProperty< string > >;
+    character?: Single< PrimitiveProperty< OxideCharacter > >;
   } >;
 
   electrochemistry?: Group< {
@@ -45,5 +45,14 @@ export type ChemistryCollection = Collection< {
     waterSolubility?: Single< NumberProperty< 'concentration' > >;
     solubilityProduct?: Single< PrimitiveProperty< number > >;
     henryConstant?: Single< PrimitiveProperty< number > >;
+  } >;
+
+  bonding?: Group< {
+    type?: Single< PrimitiveProperty< BondType > >;
+    hybridization?: Single< PrimitiveProperty< Hybridization > >;
+    order?: Single< PrimitiveProperty< number > >;
+    length?: Single< NumberProperty< 'length' > >;
+    energy?: Single< NumberProperty< 'energy' > >;
+    angle?: Single< NumberProperty< 'angle' > >;
   } >;
 } >;
