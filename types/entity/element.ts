@@ -1,5 +1,6 @@
 import type { Expand } from 'devtypes/types/util';
 import type { Collection, Distinct } from '../abstract/collection';
+import type { AbundanceCollection } from '../collection/abundance';
 import type { DescriptiveCollection } from '../collection/descriptive';
 import type { MetaData } from '../collection/generic';
 import type { SafetyCollection } from '../collection/safety';
@@ -22,6 +23,7 @@ export type ElementClassification = Collection< {
 export type SingleElement = {
   descriptive: DescriptiveCollection;
   classification: ElementClassification;
+  abundance?: AbundanceCollection;
   safety?: SafetyCollection;
 };
 
