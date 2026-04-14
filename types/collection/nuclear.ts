@@ -3,29 +3,31 @@ import type { NumberProperty, PrimitiveProperty, StructProperty } from '../abstr
 import type { SpinParity } from '../enum/nuclide';
 
 export type NuclearCollection = Collection< {
-  halfLife?: Single< NumberProperty< 'time' > >;
-  isotopeMass?: Single< NumberProperty< 'mass' > >;
-  chargeRadius?: Single< NumberProperty< 'length' > >;
-  massExcess?: Single< NumberProperty< 'energy' > >;
+  ground?: Group< {
+    halfLife?: Single< NumberProperty< 'time' > >;
+    isotopeMass?: Single< NumberProperty< 'mass' > >;
+    chargeRadius?: Single< NumberProperty< 'length' > >;
+    massExcess?: Single< NumberProperty< 'energy' > >;
 
-  dipoleMoment?: Single< NumberProperty< 'area' > >;
-  quadrupoleMoment?: Single< NumberProperty< 'magneticMoment' > >;
+    dipoleMoment?: Single< NumberProperty< 'area' > >;
+    quadrupoleMoment?: Single< NumberProperty< 'magneticMoment' > >;
 
-  isoSpin?: Single< PrimitiveProperty< number > >;
-  spin?: Single< StructProperty < {
-    value: string;
-    parity: SpinParity;
-  } > >;
+    isoSpin?: Single< PrimitiveProperty< number > >;
+    spin?: Single< StructProperty < {
+      value: string;
+      parity: SpinParity;
+    } > >;
 
-  energy?: Group< {
-    bindingEnergy?: Single< NumberProperty< 'energy' > >;
-    alphaDecayEnergy?: Single< NumberProperty< 'energy' > >;
-    betaDecayEnergy?: Single< NumberProperty< 'energy' > >;
-    electronCaptureEnergy?: Single< NumberProperty< 'energy' > >;
-    neutronEmissionEnergy?: Single< NumberProperty< 'energy' > >;
-    isomericTransitionEnergy?: Single< NumberProperty< 'energy' > >;
-    neutronSeparationEnergy?: Single< NumberProperty< 'energy' > >;
-    protonSeparationEnergy?: Single< NumberProperty< 'energy' > >;
-    excitationEnergy?: Single< NumberProperty< 'energy' > >;
+    energy?: Group< {
+      bindingEnergy?: Single< NumberProperty< 'energy' > >;
+      alphaDecayEnergy?: Single< NumberProperty< 'energy' > >;
+      betaDecayEnergy?: Single< NumberProperty< 'energy' > >;
+      electronCaptureEnergy?: Single< NumberProperty< 'energy' > >;
+      neutronEmissionEnergy?: Single< NumberProperty< 'energy' > >;
+      isomericTransitionEnergy?: Single< NumberProperty< 'energy' > >;
+      neutronSeparationEnergy?: Single< NumberProperty< 'energy' > >;
+      protonSeparationEnergy?: Single< NumberProperty< 'energy' > >;
+      excitationEnergy?: Single< NumberProperty< 'energy' > >;
+    } >;
   } >;
 } >;
