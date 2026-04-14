@@ -10,6 +10,6 @@ export type SingleElement = {
 
 export type Element = Expand< MetaData & SingleElement >;
 
-export type ElementCollection = Collection< {
+export type ElementEntity = Collection< {
   [ K in ElementSymbol ]: Element;
 } >;
