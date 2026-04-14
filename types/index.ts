@@ -1,6 +1,7 @@
 import type { Collection } from './abstract/collection';
 import type { ReferenceCollection } from './abstract/reference';
 import type { UnitCollection } from './abstract/unit';
+import type { CompoundEntity } from './entity/compound';
 import type { ElementEntity } from './entity/element';
 import type { NuclideEntity } from './entity/nuclide';
 
@@ -9,7 +10,7 @@ export type Database = {
   data: Collection< {
     elements: ElementEntity;
     nuclides: NuclideEntity;
-    compounds: any;
+    compounds: CompoundEntity;
     minerals: any;
     mixtures: any;
   } >;
