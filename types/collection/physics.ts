@@ -82,6 +82,16 @@ export type PhysicsCollection = Collection< {
     permeability?: Single< NumberProperty< 'magneticPermeability' > >;
   } >;
 
+  optics?: Group< {
+    refractiveIndex?: Single< PrimitiveProperty< number > >;
+    reflectance?: Single< PrimitiveProperty< number > >;
+    birefringence?: Single< PrimitiveProperty< number > >;
+    absorptionCoefficient?: Single< NumberProperty< 'absorptionCoefficient' > >;
+    emissivity?: Single< PrimitiveProperty< number > >;
+    transmittance?: Single< PrimitiveProperty< number > >;
+    opacity?: Single< PrimitiveProperty< number > >;
+  } >;
+
   acoustics?: Group< {
     soundSpeed?: Single< NumberProperty< 'velocity' > >;
     acousticImpedance?: Single< NumberProperty< 'acousticImpedance' > >;
