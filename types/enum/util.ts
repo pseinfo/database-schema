@@ -15,6 +15,15 @@ export enum ValueConfidence {
   THEORETICAL = 'theoretical'
 };
 
+export enum FormType {
+  ALLOTROPE = 'allotrope',
+  MOLECULAR = 'molecular',
+  PHASE = 'phase',
+  POLYMORPH = 'polymorph',
+  AMORPHOUS = 'amorphous',
+  OTHER = 'other'
+};
+
 export enum MetricSystem {
   METRIC = 'metric',
   IMPERIAL = 'imperial',
