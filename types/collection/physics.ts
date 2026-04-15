@@ -120,7 +120,7 @@ export type PhysicsCollection = Collection< {
       hermannMauguin?: string;
       schoenflies?: string;
     } > >;
-    laueGroup?: string;
+    laueGroup?: Single< PrimitiveProperty< string > >;
     spaceGroup?: Single< StructProperty< {
       number: number;
       symbol: string;
@@ -133,6 +133,7 @@ export type PhysicsCollection = Collection< {
       beta?: number;
       gamma?: number;
     } > >;
+    formulaUnits: Single< PrimitiveProperty< number > >;
     ligancy?: Single< StructProperty< {
       [ K in ElementSymbol ]?: number;
     } > >;
