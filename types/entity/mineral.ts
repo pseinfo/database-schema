@@ -7,6 +7,7 @@ import type { ChemistryCollection } from '../collection/chemistry';
 import type { CompositionCollection } from '../collection/composition';
 import type { DescriptiveCollection } from '../collection/descriptive';
 import type { GenericCollection } from '../collection/generic';
+import type { MineralCollection } from '../collection/mineral';
 import type { PhysicsCollection } from '../collection/physics';
 import type { SafetyCollection } from '../collection/safety';
 import type { MineralCategory, MineralClass } from '../enum/mineral';
@@ -30,6 +31,7 @@ export type SingleMineral = Collection< {
   generic?: GenericCollection;
   abundance?: AbundanceCollection;
   physics?: PhysicsCollection;
+  mineral?: MineralCollection;
   chemistry?: ChemistryCollection;
   safety?: SafetyCollection;
 } >;
