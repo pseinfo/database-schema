@@ -6,7 +6,7 @@ import type { ElementEntity } from './entity/element';
 import type { MineralEntity } from './entity/mineral';
 import type { NuclideEntity } from './entity/nuclide';
 
-export type Database = {
+export type Database = Collection< {
   meta: any;
   data: Collection< {
     elements: ElementEntity;
@@ -17,4 +17,4 @@ export type Database = {
   } >;
   unit: UnitCollection;
   refs: ReferenceCollection;
-};
+} >;
