@@ -2,11 +2,12 @@ import type { Collection, Group, Single } from '../abstract/collection';
 import type { CoupledNumberProperty, NumberProperty, PrimitiveProperty } from '../abstract/property';
 import type { LangGroup } from '../abstract/util';
 import type { Phase } from '../enum/generic';
-import type { MagneticOrdering, Superconductivity } from '../enum/physics';
+import type { Diaphaneity, Gloss, Lustre, MagneticOrdering, Superconductivity } from '../enum/physics';
 import type { PhysicalQuantity } from '../enum/util';
 
 export type PhysicsCollection = Collection< {
   density?: Single< NumberProperty< PhysicalQuantity.DENSITY > >;
+  relativeDensity?: Single< PrimitiveProperty< number > >;
   phase?: Single< PrimitiveProperty< Phase > >;
 
   temperature?: Group< {
@@ -89,10 +90,14 @@ export type PhysicsCollection = Collection< {
     refractiveIndex?: Single< PrimitiveProperty< number > >;
     reflectance?: Single< PrimitiveProperty< number > >;
     birefringence?: Single< PrimitiveProperty< number > >;
+    v2Angle?: Single< NumberProperty< PhysicalQuantity.ANGLE > >;
     absorptionCoefficient?: Single< NumberProperty< PhysicalQuantity.ABSORPTION_COEFFICIENT > >;
     emissivity?: Single< PrimitiveProperty< number > >;
     transmittance?: Single< PrimitiveProperty< number > >;
     opacity?: Single< PrimitiveProperty< number > >;
+    gloss?: Single< PrimitiveProperty< Gloss > >;
+    lustre?: Single< PrimitiveProperty< Lustre > >;
+    diaphaneity?: Single< PrimitiveProperty< Diaphaneity > >;
     color?: LangGroup;
     streak?: LangGroup;
   } >;

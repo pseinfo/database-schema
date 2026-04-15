@@ -12,3 +12,34 @@ export enum MagneticOrdering {
   FERRIMAGNETIC = 'ferrimagnetic',
   SUPERPARAMAGNETIC = 'superparamagnetic'
 };
+
+export enum Gloss {
+  METALLIC = 'metallic',
+  DIAMOND = 'diamond',
+  GREASY = 'greasy',
+  GLASSY = 'glassy',
+  PEARLY = 'pearly',
+  SILKY = 'silky',
+  RESINOUS = 'resinous',
+  WAXY = 'waxy',
+  DULL = 'dull'
+};
+
+export enum Lustre {
+  ADAMANTINE = 'adamantine',
+  DULL = 'dull',
+  GREASY = 'greasy',
+  METALLIC = 'metallic',
+  PEARLY = 'pearly',
+  RESINOUS = 'resinous',
+  SILKY = 'silky',
+  SUBMETALLIC = 'submetallic',
+  VITREOUS = 'vitreous',
+  WAXY = 'waxy'
+};
+
+export enum Diaphaneity {
+  OPAQUE = 'opaque',
+  TRANSLUCENT = 'translucent',
+  TRANSPARENT = 'transparent'
+};
