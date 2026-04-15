@@ -11,7 +11,7 @@ import type { GenericCollection } from '../collection/generic';
 import type { MineralCollection } from '../collection/mineral';
 import type { PhysicsCollection } from '../collection/physics';
 import type { SafetyCollection } from '../collection/safety';
-import type { MineralCategory, MineralClass } from '../enum/mineral';
+import type { MineralCategory, MineralClass, MineralProperty } from '../enum/mineral';
 
 export type MineralID = Brand< string, 'mineralID' >;
 
@@ -23,6 +23,7 @@ export type MineralClassification = Collection< {
   strunz9: Distinct< string >;
   dana: Distinct< string >;
   lapis: Distinct< string >;
+  properties: Distinct< MineralProperty[] >;
 } >;
 
 export type SingleMineral = Collection< {

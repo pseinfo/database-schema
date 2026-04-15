@@ -32,3 +32,22 @@ export enum MineralClass {
   SILICATES = 'silicates',
   UNKNOWN = 'unknown'
 };
+
+export enum MineralProperty {
+  COLORED = 'colored',
+  COLORLESS = 'colorless',
+  TRANSLUCENT = 'translucent',
+  OPAQUE = 'opaque',
+  TRANSPARENT = 'transparent',
+  MAGNETIC = 'magnetic',
+  FLUORESCENT = 'fluorescent',
+  RADIOACTIVE = 'radioactive',
+  FISSIONABLE = 'fissionable',
+  BRITTLE = 'brittle',
+  SHINY = 'shiny',
+  DULL = 'dull',
+  METALLIC = 'metallic',
+  CONDUCTIVE = 'conductive',
+  SEMICONDUCTIVE = 'semiconductive',
+  INSULATIVE = 'insulative'
+};
