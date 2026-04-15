@@ -3,7 +3,7 @@ import type { PrimitiveProperty, StructProperty } from '../abstract/property';
 import type { NumberValue } from '../abstract/value';
 import type {
   CleavageQuality, CleavageType, CrystalFamily, CrystalHabit, CrystalSystem,
-  TwinningMode, TwinningType
+  FractureType, Tenacity, TwinningMode, TwinningType
 } from '../enum/crystallography';
 import type { ElementSymbol } from '../enum/element';
 import type { PhysicalQuantity } from '../enum/util';
@@ -47,6 +47,11 @@ export type Cleavage = {
   millerIndex?: string;
 };
 
+export type Fracture = {
+  type?: FractureType;
+  tenacity?: Tenacity;
+};
+
 export type CrystallographyCollection = Collection< {
   family?: Single< PrimitiveProperty< CrystalFamily > >;
   system?: Single< PrimitiveProperty< CrystalSystem > >;
@@ -57,6 +62,7 @@ export type CrystallographyCollection = Collection< {
   unitCell?: Single< StructProperty< UnitCell > >;
   ligancy?: Single< StructProperty< Ligancy > >;
   crystalHabit?: Single< PrimitiveProperty< CrystalHabit > >;
-  twinning?: Single< StructProperty< Twinning > >;  
-  cleavage?: Single< StructProperty< Cleavage > >;  
+  twinning?: Single< StructProperty< Twinning > >;
+  cleavage?: Single< StructProperty< Cleavage > >;
+  fracture?: Single< StructProperty< Fracture > >;
 } >;
