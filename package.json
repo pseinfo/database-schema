@@ -30,6 +30,12 @@
     "type-definitions",
     "pseinfo"
   ],
+  "files": [
+    "types",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
   "type": "module",
   "exports": {
     ".": {
