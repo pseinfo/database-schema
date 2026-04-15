@@ -1,0 +1,33 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": [ "./types/*" ],
+  "entryPointStrategy": "expand",
+  "out": "docs",
+  "githubPages": true,
+  "searchInComments": true,
+  "searchInDocuments": true,
+  "includeVersion": true,
+  "includeHierarchySummary": true,
+  "excludePrivate": false,
+  "excludeProtected": false,
+  "excludeInternal": false,
+  "excludeExternals": true,
+  "name": "Periodic Table Database Schema",
+  "customFooterHtml": "Copyright © 2025–2026 Paul Köhler (komed3) <br /> Distributed under the MIT license.",
+  "hideGenerator": true,
+  "favicon": "favicon.ico",
+  "headings": {
+    "readme": false,
+    "document": false
+  },
+  "navigationLinks": {
+    "Periodic Table": "https://pse-info.de",
+    "Schema": "https://unpkg.com/@pseinfo/database-schema/src/schema.json",
+    "Database": "https://github.com/pseinfo/database",
+    "npm": "https://npmjs.com/@pseinfo/database-schema",
+    "Code": "https://github.com/pseinfo/database-schema"
+  },
+  "visibilityFilters": {},
+  "plugin": [ "typedoc-plugin-missing-exports", "typedoc-github-theme" ],
+  "theme": "typedoc-github-theme"
+}

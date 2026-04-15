@@ -32,7 +32,8 @@
   ],
   "type": "module",
   "scripts": {
-    "lint": "tsc"
+    "lint": "tsc",
+    "docs": "typedoc --logLevel Verbose --options typedoc.json"
   },
   "dependencies": {
     "devtypes": "^2.1.0"
