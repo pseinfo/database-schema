@@ -10,6 +10,7 @@ export type ChemistryCollection = Collection< {
   molarMass?: Single< NumberProperty< PhysicalQuantity.MOLAR_MASS > >;
   molarVolume?: Single< NumberProperty< PhysicalQuantity.MOLAR_VOLUME > >;
   standardMolarEntropy?: Single< NumberProperty< PhysicalQuantity.ENTROPY > >;
+  formulaMass?: Single< NumberProperty< PhysicalQuantity.MOLAR_MASS > >;
 
   basicity?: Group< {
     basicityType?: Single< PrimitiveProperty< BasicityType > >;
