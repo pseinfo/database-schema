@@ -13,7 +13,7 @@ export type BaseForm< T extends FormType, C extends Collection< any > > = Brand<
 export interface FormFields {
   formula?: Distinct< string >;
   phase?: Distinct< Phase >;
-};
+}
 
 export type AllotropeForm< C extends Collection< any > > = Expand<
   BaseForm< FormType.ALLOTROPE | FormType.OTHER, C > &
