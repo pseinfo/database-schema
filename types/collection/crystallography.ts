@@ -49,6 +49,7 @@ export type Cleavage = {
 
 export type Fracture = {
   type?: FractureType;
+  toughness?: NumberValue< PhysicalQuantity.ENERGY >;
   tenacity?: Tenacity;
 };
 

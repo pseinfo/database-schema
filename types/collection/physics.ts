@@ -1,5 +1,6 @@
 import type { Collection, Group, Single } from '../abstract/collection';
 import type { CoupledNumberProperty, NumberProperty, PrimitiveProperty } from '../abstract/property';
+import type { LangGroup } from '../abstract/util';
 import type { Phase } from '../enum/generic';
 import type { MagneticOrdering, Superconductivity } from '../enum/physics';
 import type { PhysicalQuantity } from '../enum/util';
@@ -92,6 +93,8 @@ export type PhysicsCollection = Collection< {
     emissivity?: Single< PrimitiveProperty< number > >;
     transmittance?: Single< PrimitiveProperty< number > >;
     opacity?: Single< PrimitiveProperty< number > >;
+    color?: LangGroup;
+    streak?: LangGroup;
   } >;
 
   acoustics?: Group< {
