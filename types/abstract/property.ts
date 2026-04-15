@@ -1,8 +1,8 @@
 import type { Primitive } from 'devtypes/types/primitive';
 import type { Expand } from 'devtypes/types/util';
+import type { PhysicalQuantity } from '../enum/util';
 import type { Conditions } from './condition';
 import type { RefId } from './reference';
-import type { PhysicalQuantity } from './unit';
 import type * as value from './value';
 
 export interface BaseProperty<

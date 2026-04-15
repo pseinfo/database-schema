@@ -2,6 +2,7 @@ import type { Collection, Single } from '../abstract/collection';
 import type { StructProperty } from '../abstract/property';
 import type { NumberValue, PrimitiveValue } from '../abstract/value';
 import type { DecayMode, RadiationType, SpinParity } from '../enum/nuclide';
+import type { PhysicalQuantity } from '../enum/util';
 
 export type Spin = {
   parity: SpinParity;
@@ -11,66 +12,66 @@ export type Spin = {
 
 export type NMR = {
   spin?: Spin;
-  gyromagneticRatio?: NumberValue< 'gyromagneticRatio' >;
-  larmorPrecession?: NumberValue< 'frequency' >;
+  gyromagneticRatio?: NumberValue< PhysicalQuantity.GYROMAGNETIC_RATIO >;
+  larmorPrecession?: NumberValue< PhysicalQuantity.FREQUENCY >;
 };
 
 export type DecayChannel = {
   mode: DecayMode;
-  branchingRatio?: NumberValue< 'quantity' >;
-  energy?: NumberValue< 'energy' >;
+  branchingRatio?: NumberValue< PhysicalQuantity.QUANTITY >;
+  energy?: NumberValue< PhysicalQuantity.ENERGY >;
   radiation?: RadiationType[];
 };
 
 export type GroudState = {
-  energy?: NumberValue< 'energy' >;
+  energy?: NumberValue< PhysicalQuantity.ENERGY >;
   angularMomentum?: Spin;
-  halfLife?: NumberValue< 'time' >;
-  isotopeAbundance?: NumberValue< 'massFraction' >;
+  halfLife?: NumberValue< PhysicalQuantity.TIME >;
+  isotopeAbundance?: NumberValue< PhysicalQuantity.MASS_FRACTION >;
 
-  isotopeMass?: NumberValue< 'mass' >;
-  chargeRadius?: NumberValue< 'length' >;
-  massExcess?: NumberValue< 'energy' >;
-  dipoleMoment?: NumberValue< 'area' >;
-  quadrupoleMoment?: NumberValue< 'magneticMoment' >;
+  isotopeMass?: NumberValue< PhysicalQuantity.MASS >;
+  chargeRadius?: NumberValue< PhysicalQuantity.LENGTH >;
+  massExcess?: NumberValue< PhysicalQuantity.ENERGY >;
+  dipoleMoment?: NumberValue< PhysicalQuantity.AREA >;
+  quadrupoleMoment?: NumberValue< PhysicalQuantity.MAGNETIC_MOMENT >;
   isoSpin?: Spin;
 
   decayChannel?: DecayChannel[];
 
-  bindingEnergy?: NumberValue< 'energy' >;
-  alphaDecayEnergy?: NumberValue< 'energy' >;
-  betaDecayEnergy?: NumberValue< 'energy' >;
-  electronCaptureEnergy?: NumberValue< 'energy' >;
-  neutronEmissionEnergy?: NumberValue< 'energy' >;
-  neutronSeparationEnergy?: NumberValue< 'energy' >;
-  protonSeparationEnergy?: NumberValue< 'energy' >;
-  excitationEnergy?: NumberValue< 'energy' >;
+  bindingEnergy?: NumberValue< PhysicalQuantity.ENERGY >;
+  alphaDecayEnergy?: NumberValue< PhysicalQuantity.ENERGY >;
+  betaDecayEnergy?: NumberValue< PhysicalQuantity.ENERGY >;
+  electronCaptureEnergy?: NumberValue< PhysicalQuantity.ENERGY >;
+  neutronEmissionEnergy?: NumberValue< PhysicalQuantity.ENERGY >;
+  neutronSeparationEnergy?: NumberValue< PhysicalQuantity.ENERGY >;
+  protonSeparationEnergy?: NumberValue< PhysicalQuantity.ENERGY >;
+  excitationEnergy?: NumberValue< PhysicalQuantity.ENERGY >;
 };
 
 export type Level = {
-  energy?: NumberValue< 'energy' >;
+  energy?: NumberValue< PhysicalQuantity.ENERGY >;
   angularMomentum?: Spin;
   band?: number;
-  halfLife?: NumberValue< 'time' >;
-  isotopeAbundance?: NumberValue< 'massFraction' >;
-  dipoleMoment?: NumberValue< 'area' >;
-  quadrupoleMoment?: NumberValue< 'magneticMoment' >;
+  halfLife?: NumberValue< PhysicalQuantity.TIME >;
+  isotopeAbundance?: NumberValue< PhysicalQuantity.MASS_FRACTION >;
+  dipoleMoment?: NumberValue< PhysicalQuantity.AREA >;
+  quadrupoleMoment?: NumberValue< PhysicalQuantity.MAGNETIC_MOMENT >;
   isoSpin?: Spin;
   decayChannel?: DecayChannel[];
 };
 
 export type Gamma = {
   initial?: {
-    energy?: NumberValue< 'energy' >;
+    energy?: NumberValue< PhysicalQuantity.ENERGY >;
     angularMomentum?: Spin;
   };
   final?: {
-    energy?: NumberValue< 'energy' >;
+    energy?: NumberValue< PhysicalQuantity.ENERGY >;
     angularMomentum?: Spin;
   };
-  halfLife?: NumberValue< 'time' >;
-  transitionEnergy?: NumberValue< 'energy' >;
-  relativeIntensity?: NumberValue< 'quantity' >;
+  halfLife?: NumberValue< PhysicalQuantity.TIME >;
+  transitionEnergy?: NumberValue< PhysicalQuantity.ENERGY >;
+  relativeIntensity?: NumberValue< PhysicalQuantity.QUANTITY >;
   gRayMixingRatio?: PrimitiveValue< number >;
   conversionCoefficient?: PrimitiveValue< number >;
   reducedElectricProbability?: PrimitiveValue< number >;

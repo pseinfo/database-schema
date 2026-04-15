@@ -4,11 +4,12 @@ import type {
   AcidBaseCharacter, BasicityType, BondType, Goldschmidt, HSAB, Hybridization,
   LewisModel, OxideCharacter, SolubilityQualifier
 } from '../enum/chemistry';
+import type { PhysicalQuantity } from '../enum/util';
 
 export type ChemistryCollection = Collection< {
-  molarMass?: Single< NumberProperty< 'molarMass' > >;
-  molarVolume?: Single< NumberProperty< 'molarVolume' > >;
-  standardMolarEntropy?: Single< NumberProperty< 'entropy' > >;
+  molarMass?: Single< NumberProperty< PhysicalQuantity.MOLAR_MASS > >;
+  molarVolume?: Single< NumberProperty< PhysicalQuantity.MOLAR_VOLUME > >;
+  standardMolarEntropy?: Single< NumberProperty< PhysicalQuantity.ENTROPY > >;
 
   basicity?: Group< {
     basicityType?: Single< PrimitiveProperty< BasicityType > >;
@@ -29,21 +30,21 @@ export type ChemistryCollection = Collection< {
   } >;
 
   electrochemistry?: Group< {
-    standardPotential?: Single< NumberProperty< 'electricPotential' > >;
-    standardReductionPotential?: Single< NumberProperty< 'electricPotential' > >;
-    standardOxidationPotential?: Single< NumberProperty< 'electricPotential' > >;
-    overpotential?: Single< NumberProperty< 'electricPotential' > >;
-    electrochemicalEquivalent?: Single< NumberProperty< 'mass' > >;
+    standardPotential?: Single< NumberProperty< PhysicalQuantity.ELECTRIC_POTENTIAL > >;
+    standardReductionPotential?: Single< NumberProperty< PhysicalQuantity.ELECTRIC_POTENTIAL > >;
+    standardOxidationPotential?: Single< NumberProperty< PhysicalQuantity.ELECTRIC_POTENTIAL > >;
+    overpotential?: Single< NumberProperty< PhysicalQuantity.ELECTRIC_POTENTIAL > >;
+    electrochemicalEquivalent?: Single< NumberProperty< PhysicalQuantity.MASS > >;
   } >;
 
   thermochemistry?: Group< {
-    standardGibbsEnergy?: Single< NumberProperty< 'energy' > >;
-    bindingEnergy?: Single< NumberProperty< 'energy' > >;
+    standardGibbsEnergy?: Single< NumberProperty< PhysicalQuantity.ENERGY > >;
+    bindingEnergy?: Single< NumberProperty< PhysicalQuantity.ENERGY > >;
   } >;
 
   solubility?: Group< {
     quantifier?: Single< PrimitiveProperty< SolubilityQualifier > >;
-    waterSolubility?: Single< NumberProperty< 'concentration' > >;
+    waterSolubility?: Single< NumberProperty< PhysicalQuantity.CONCENTRATION > >;
     solubilityProduct?: Single< PrimitiveProperty< number > >;
     henryConstant?: Single< PrimitiveProperty< number > >;
   } >;
@@ -52,8 +53,8 @@ export type ChemistryCollection = Collection< {
     bondType?: Single< PrimitiveProperty< BondType > >;
     hybridization?: Single< PrimitiveProperty< Hybridization > >;
     order?: Single< PrimitiveProperty< number > >;
-    length?: Single< NumberProperty< 'length' > >;
-    energy?: Single< NumberProperty< 'energy' > >;
-    angle?: Single< NumberProperty< 'angle' > >;
+    length?: Single< NumberProperty< PhysicalQuantity.LENGTH > >;
+    energy?: Single< NumberProperty< PhysicalQuantity.ENERGY > >;
+    angle?: Single< NumberProperty< PhysicalQuantity.ANGLE > >;
   } >;
 } >;
