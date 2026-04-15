@@ -27,7 +27,7 @@ export type CompoundClassification = Collection< {
 export type SingleCompound = Collection< {
   descriptive: DescriptiveCollection;
   classification: CompoundClassification;
-  composition: CompositionCollection
+  composition: CompositionCollection;
   generic?: GenericCollection;
   abundance?: AbundanceCollection;
   physics?: PhysicsCollection;
