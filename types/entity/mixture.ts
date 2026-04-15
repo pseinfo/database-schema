@@ -12,8 +12,11 @@ import type { SafetyCollection } from '../collection/safety';
 
 export type MixtureID = Brand< string, 'mixtureID' >;
 
+export type MixtureClassification = Collection< {} >;
+
 export type SingleMixture = Collection< {
   descriptive: DescriptiveCollection;
+  classification: MixtureClassification;
   composition: CompositionCollection;
   generic?: GenericCollection;
   abundance?: AbundanceCollection;
