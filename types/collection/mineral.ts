@@ -1,3 +1,10 @@
-import type { Collection } from '../abstract/collection';
+import type { Collection, Single } from '../abstract/collection';
+import type { NumberProperty, PrimitiveProperty } from '../abstract/property';
+import type { CrystalHabit } from '../enum/mineral';
+import type { PhysicalQuantity } from '../enum/util';
 
-export type MineralCollection = Collection< {} >;
+export type MineralCollection = Collection< {
+  formulaMass?: Single< NumberProperty< PhysicalQuantity.MOLAR_MASS > >;
+  color?: Single< PrimitiveProperty< string > >;
+  crystalHabit?: Single< PrimitiveProperty< CrystalHabit > >;
+} >;
