@@ -1,8 +1,7 @@
 import type { Collection, Group, Single } from '../abstract/collection';
-import type { CoupledNumberProperty, NumberProperty, PrimitiveProperty, StructProperty } from '../abstract/property';
-import type { ElementSymbol } from '../enum/element';
+import type { CoupledNumberProperty, NumberProperty, PrimitiveProperty } from '../abstract/property';
 import type { Phase } from '../enum/generic';
-import type { CrystalFamily, CrystalSystem, MagneticOrdering, Superconductivity } from '../enum/physics';
+import type { MagneticOrdering, Superconductivity } from '../enum/physics';
 import type { PhysicalQuantity } from '../enum/util';
 
 export type PhysicsCollection = Collection< {
@@ -109,34 +108,5 @@ export type PhysicsCollection = Collection< {
   viscosity?: Group< {
     dynamicViscosity?: Single< NumberProperty< PhysicalQuantity.DYNAMIC_VISCOSITY > >;
     kinematicViscosity?: Single< NumberProperty< PhysicalQuantity.KINEMATIC_VISCOSITY > >;
-  } >;
-
-  crystal?: Group< {
-    family?: Single< PrimitiveProperty< CrystalFamily > >;
-    system?: Single< PrimitiveProperty< CrystalSystem > >;
-    pearsonSymbol?: Single< PrimitiveProperty< string > >;
-    pointGroup?: Single< StructProperty< {
-      number: number;
-      name: string;
-      hermannMauguin?: string;
-      schoenflies?: string;
-    } > >;
-    laueGroup?: Single< PrimitiveProperty< string > >;
-    spaceGroup?: Single< StructProperty< {
-      number: number;
-      symbol: string;
-    } > >;
-    latticeConstant?: Single< StructProperty< {
-      a?: number;
-      b?: number;
-      c?: number;
-      alpha?: number;
-      beta?: number;
-      gamma?: number;
-    } > >;
-    formulaUnits: Single< PrimitiveProperty< number > >;
-    ligancy?: Single< StructProperty< {
-      [ K in ElementSymbol ]?: number;
-    } > >;
   } >;
 } >;
