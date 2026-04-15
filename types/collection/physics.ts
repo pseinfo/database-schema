@@ -68,6 +68,7 @@ export type PhysicsCollection = Collection< {
     superconductingPoint?: Single< NumberProperty< 'temperature' > >;
     bandGap?: Single< NumberProperty< 'energy' > >;
     dielectricConstant?: Single< PrimitiveProperty< number > >;
+    dipoleMoment?: Single< NumberProperty< 'dipoleMoment' > >;
   } >;
 
   magnetism?: Group< {

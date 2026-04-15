@@ -34,6 +34,7 @@ export const units = {
   electricConductance: { base: [ 'S' ], prefixable: [ 'S' ] },
   electricConductivity: { base: [ 'S/m', 'S/cm' ], prefixable: [ 'S/m' ] },
   electricResistivity: { base: [ 'Ω·m', 'Ω·cm' ], prefixable: [ 'Ω·m' ] },
+  dipoleMoment: { base: [ 'C·m', 'statC·cm', 'abC·cm' ], prefixable: [ 'C·m' ] },
 
   magneticFlux: { base: [ 'Wb', 'V·s' ], prefixable: [ 'Wb' ] },
   magneticFluxDensity: { base: [ 'T', 'G' ], prefixable: [ 'T', 'G' ] },
