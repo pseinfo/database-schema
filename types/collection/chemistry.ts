@@ -1,8 +1,8 @@
 import type { Collection, Group, Single } from '../abstract/collection';
 import type { NumberProperty, PrimitiveProperty } from '../abstract/property';
 import type {
-  AcidBaseCharacter, BasicityType, BondType, Goldschmidt, HSAB, Hybridization,
-  LewisModel, MolecularShape, OxideCharacter, SolubilityQualifier
+  AcidBaseCharacter, BasicityType, BondType, Goldschmidt, HSAB, Hybridization, LewisModel,
+  MolecularShape, OxideCharacter, SolubilityQualifier
 } from '../enum/chemistry';
 import type { PhysicalQuantity } from '../enum/util';
 
