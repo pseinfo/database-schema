@@ -4,6 +4,7 @@ import type { UnitCollection } from './abstract/unit';
 import type { CompoundEntity } from './entity/compound';
 import type { ElementEntity } from './entity/element';
 import type { MineralEntity } from './entity/mineral';
+import type { MixtureEntity } from './entity/mixture';
 import type { NuclideEntity } from './entity/nuclide';
 
 export type Database = Collection< {
@@ -13,7 +14,7 @@ export type Database = Collection< {
     nuclides: NuclideEntity;
     compounds: CompoundEntity;
     minerals: MineralEntity;
-    mixtures: any;
+    mixtures: MixtureEntity;
   } >;
   unit: UnitCollection;
   refs: ReferenceCollection;
