@@ -8,6 +8,7 @@ import type {
 export type ChemistryCollection = Collection< {
   molarMass?: Single< NumberProperty< 'molarMass' > >;
   molarVolume?: Single< NumberProperty< 'molarVolume' > >;
+  standardMolarEntropy?: Single< NumberProperty< 'entropy' > >;
 
   basicity?: Group< {
     basicityType?: Single< PrimitiveProperty< BasicityType > >;
