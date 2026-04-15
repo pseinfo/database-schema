@@ -40,14 +40,19 @@ export enum MineralProperty {
   OPAQUE = 'opaque',
   TRANSPARENT = 'transparent',
   MAGNETIC = 'magnetic',
+  LUMINESCENT = 'luminescent',
   FLUORESCENT = 'fluorescent',
+  PHOSPHORESCENT = 'phosphorescent',
   RADIOACTIVE = 'radioactive',
   FISSIONABLE = 'fissionable',
   BRITTLE = 'brittle',
   SHINY = 'shiny',
   DULL = 'dull',
   METALLIC = 'metallic',
+  PIEZOELECTRIC = 'piezoelectric',
+  PYROELECTRIC = 'pyroelectric',
   CONDUCTIVE = 'conductive',
   SEMICONDUCTIVE = 'semiconductive',
-  INSULATIVE = 'insulative'
+  INSULATIVE = 'insulative',
+  SYNTHETIC = 'synthetic'
 };
