@@ -69,3 +69,16 @@ export enum Hybridization {
   SP3D2 = 'sp3d2',
   SP3D3 = 'sp3d3'
 };
+
+export enum ComponentRole {
+  CATION = 'cation',
+  ANION = 'anion',
+  NEUTRAL = 'neutral',
+  RADICAL = 'radical',
+  COMPLEX = 'complex',
+  IMPURITY = 'impurity',
+  DOPANT = 'dopant',
+  INCLUSION = 'inclusion',
+  MATRIX = 'matrix',
+  SOLVENT = 'solvent'
+};
