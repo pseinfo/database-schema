@@ -93,3 +93,22 @@ export enum CleavageQuality {
   INDISTINCT = 'indistinct',
   NONE = 'none'
 };
+
+export enum FractureType {
+  CONCHOIDAL = 'conchoidal',
+  UNEVEN = 'uneven',
+  SMOOTH = 'smooth',
+  FIBROUS = 'fibrous',
+  HACKLY = 'hackly',
+  SPLINTERY = 'splintery',
+  EARTHY = 'earthy'
+};
+
+export enum Tenacity {
+  BRITTLE = 'brittle',
+  MALLEABLE = 'malleable',
+  DUCTILE = 'ductile',
+  SECTILE = 'sectile',
+  ELASTIC = 'elastic',
+  PLASTIC = 'plastic'
+};
