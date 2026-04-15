@@ -5,6 +5,7 @@ import type { MetaData } from '../abstract/util';
 import type { AbundanceCollection } from '../collection/abundance';
 import type { AtomicsCollection } from '../collection/atomics';
 import type { ChemistryCollection } from '../collection/chemistry';
+import type { CrystallographyCollection } from '../collection/crystallography';
 import type { DescriptiveCollection } from '../collection/descriptive';
 import type { GenericCollection } from '../collection/generic';
 import type { PhysicsCollection } from '../collection/physics';
@@ -33,6 +34,7 @@ export type SingleElement = {
   abundance?: AbundanceCollection;
   atomics?: AtomicsCollection;
   physics?: PhysicsCollection;
+  crystallography?: CrystallographyCollection;
   chemistry?: ChemistryCollection;
   safety?: SafetyCollection;
 };

@@ -5,6 +5,7 @@ import type { MetaData } from '../abstract/util';
 import type { AbundanceCollection } from '../collection/abundance';
 import type { ChemistryCollection } from '../collection/chemistry';
 import type { CompositionCollection } from '../collection/composition';
+import type { CrystallographyCollection } from '../collection/crystallography';
 import type { DescriptiveCollection } from '../collection/descriptive';
 import type { GenericCollection } from '../collection/generic';
 import type { PhysicsCollection } from '../collection/physics';
@@ -31,6 +32,7 @@ export type SingleCompound = Collection< {
   generic?: GenericCollection;
   abundance?: AbundanceCollection;
   physics?: PhysicsCollection;
+  crystallography?: CrystallographyCollection;
   chemistry?: ChemistryCollection;
   safety?: SafetyCollection;
 } >;
