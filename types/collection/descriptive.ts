@@ -55,7 +55,7 @@ export type WeblinksGroup = Group< {
 export type DescriptiveCollection = Collection< {
   registry: RegistryGroup;
   structure: StructureGroup;
-  names: LangGroup< LangCode.ENGLISH | LangCode.LATIN >;
+  names: LangGroup< LangCode.ENGLISH | LangCode.LATIN, string[] >;
   description?: LangGroup;
   appearance?: LangGroup;
   odor?: LangGroup;
