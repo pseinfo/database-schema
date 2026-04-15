@@ -53,6 +53,25 @@ export enum SolubilityQualifier {
   PRACTICALLY_INSOLUBLE = 'practicallyInsoluble'
 };
 
+export enum MolecularShape {
+  LINEAR = 'linear',
+  TRIGONAL_PLANAR = 'trigonalPlanar',
+  BENT = 'bent',
+  TETRAHEDRAL = 'tetrahedral',
+  TRIGONAL_PYRAMIDAL = 'trigonalPyramidal',
+  TRIGONAL_BIPYRAMIDAL = 'trigonalBipyramidal',
+  SEESAW = 'seesaw',
+  T_SHAPED = 'tShaped',
+  OCTAHEDRAL = 'octahedral',
+  SQUARE_PYRAMIDAL = 'squarePyramidal',
+  SQUARE_PLANAR = 'squarePlanar',
+  PENTAGONAL_BIPYRAMIDAL = 'pentagonalBipyramidal',
+  PENTAGONAL_PYRAMIDAL = 'pentagonalPyramidal',
+  PENTAGONAL_PLANAR = 'pentagonalPlanar',
+  SQUARE_ANTIPRISMATIC = 'squareAntiprismatic',
+  TRICAPPED_TRIGONAL_PRISMATIC = 'tricappedTrigonalPrismatic'
+};
+
 export enum BondType {
   IONIC = 'ionic',
   COVALENT = 'covalent',
@@ -62,12 +81,19 @@ export enum BondType {
 };
 
 export enum Hybridization {
+  SD2 = 'sd2',
+  SD3 = 'sd3',
+  SD4 = 'sd4',
+  SD5 = 'sd5',
   SP = 'sp',
   SP2 = 'sp2',
   SP3 = 'sp3',
+  SP2D = 'sp2d',
   SP3D = 'sp3d',
   SP3D2 = 'sp3d2',
-  SP3D3 = 'sp3d3'
+  SP3D3 = 'sp3d3',
+  SP3D4 = 'sp3d4',
+  SP3D5 = 'sp3d5'
 };
 
 export enum ComponentRole {

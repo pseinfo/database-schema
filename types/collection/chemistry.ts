@@ -2,7 +2,7 @@ import type { Collection, Group, Single } from '../abstract/collection';
 import type { NumberProperty, PrimitiveProperty } from '../abstract/property';
 import type {
   AcidBaseCharacter, BasicityType, BondType, Goldschmidt, HSAB, Hybridization,
-  LewisModel, OxideCharacter, SolubilityQualifier
+  LewisModel, MolecularShape, OxideCharacter, SolubilityQualifier
 } from '../enum/chemistry';
 import type { PhysicalQuantity } from '../enum/util';
 
@@ -49,12 +49,16 @@ export type ChemistryCollection = Collection< {
     henryConstant?: Single< PrimitiveProperty< number > >;
   } >;
 
-  bonding?: Group< {
-    bondType?: Single< PrimitiveProperty< BondType > >;
+  molecularGeometry?: Group< {
+    shape?: Single< PrimitiveProperty< MolecularShape > >;
     hybridization?: Single< PrimitiveProperty< Hybridization > >;
-    order?: Single< PrimitiveProperty< number > >;
-    length?: Single< NumberProperty< PhysicalQuantity.LENGTH > >;
-    energy?: Single< NumberProperty< PhysicalQuantity.ENERGY > >;
-    angle?: Single< NumberProperty< PhysicalQuantity.ANGLE > >;
+    stericNumber?: Single< PrimitiveProperty< number > >;
+    lonePairs?: Single< PrimitiveProperty< number > >;
+    coordinationNumber?: Single< PrimitiveProperty< number > >;
+    bondLength?: Single< NumberProperty< PhysicalQuantity.LENGTH > >;
+    bondAngle?: Single< NumberProperty< PhysicalQuantity.ANGLE > >;
+    torsionalAngle?: Single< NumberProperty< PhysicalQuantity.ANGLE > >;
+    bondType?: Single< PrimitiveProperty< BondType > >;
+    bondOrder?: Single< PrimitiveProperty< number > >;
   } >;
 } >;
