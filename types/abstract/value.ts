@@ -5,7 +5,7 @@ import type { PhysicalQuantity, ValueType, ValueConfidence } from '../enum/util'
 import type { Uncertainty } from './uncertainty';
 import type { UnitId } from './unit';
 
-export type StructType = Record< string | number, unknown >; 
+export type StructType = Record< string | number, unknown >;
 
 export type BaseValue< T extends ValueType > = Brand< {
   confidence?: ValueConfidence;

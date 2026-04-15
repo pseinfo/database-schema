@@ -36,7 +36,7 @@ export type SingleCompound = Collection< {
 } >;
 
 export type Compound = Expand< MetaData & SingleCompound & {
-  forms?: FormCollection< SingleCompound >; 
+  forms?: FormCollection< SingleCompound >;
 } >;
 
 export type CompoundEntity = Collection< {
