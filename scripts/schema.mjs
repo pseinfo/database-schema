@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import { execSync } from 'node:child_process';
 import { readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import Ajv from 'ajv';
@@ -143,7 +144,30 @@ class SchemaGenerator {
     this.log( `Validation successful.` );
   }
 
-  // ---- ANALYSIS ----
+  // ---- Metadata ----
+
+  async enhanceMetadata () {
+    const pkg = JSON.parse( await readFile( this.FILES.PACKAGE, 'utf8' ) );
+    const meta = {
+      $schema: 'http://json-schema.org/draft-07/schema#',
+      $id: `https://unpkg.com/@pseinfo/database-schema@${ pkg.version }/src/schema.json`,
+      title: pkg.description || 'PSEInfo Database Schema',
+      description: 'Comprehensive schema for elements, compounds, minerals, and nuclides.',
+      version: pkg.version,
+      license: pkg.license || '',
+      author: pkg.author?.name || pkg.author || '',
+      build: { date: new Date().toISOString(), commit: this.getGitCommit() }
+    };
+
+    this.schema = { ...meta, ...this.schema };
+  }
+
+  getGitCommit () {
+    try { return execSync( 'git rev-parse --short HEAD', { stdio: 'pipe' } ).toString().trim() }
+    catch { return 'unknown' }
+  }
+
+  // ---- Analysis ----
 
   captureStats () {
     const content = stableStringify( this.schema, { space: 2 } );
