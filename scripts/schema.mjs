@@ -46,6 +46,8 @@ class SchemaGenerator {
   }
 
   async run ( mode ) {
+    const start = process.hrtime();
+
     switch ( mode ) {
       case 'generate':
         await this.generate();
@@ -70,6 +72,10 @@ class SchemaGenerator {
         await this.save();
         break;
     }
+
+    const end = process.hrtime( start );
+    const seconds = ( end[ 0 ] + end[ 1 ] / 1e9 ).toFixed( 2 );
+    this.log( `Finished in ${ seconds } seconds.` );
   }
 
   // ---- Generate ----
@@ -108,6 +114,7 @@ class SchemaGenerator {
     this.captureStats();
 
     // 1. Normalize definitions
+    this.log( `Normalizing definitions ...` );
     const definitions = this.schema.definitions || this.schema.$defs || {};
     this.schema.definitions = definitions;
     delete this.schema.$defs;
@@ -119,7 +126,10 @@ class SchemaGenerator {
     for ( const [ name, def ] of Object.entries( definitions ) )
       this.hashByOriginalName.set( name, this.analyzeNode( def, 'definitions' ).hash );
 
+    this.log( `Found ${ this.nodesByHash.size } unique structures across the schema.` );
+
     // 3. Rebuild with shared definitions
+    this.log( `Identifying shared structures for optimization ...` );
     this.sharedMap = this.buildSharedMap();
     const nextDefinitions = {};
 
@@ -128,12 +138,15 @@ class SchemaGenerator {
       if ( entry ) nextDefinitions[ name ] = this.performReplacement( entry.node, name, true );
     }
 
+    this.log( `Replacing ${ this.replacedRefs } occurrences with $ref pointers to shared definitions ...` );
+
     this.schema = {
       ...this.performReplacement( this.schema, null, false ),
       definitions: nextDefinitions
     };
 
     // 4. Enhance metadata
+    this.log( `Enhancing metadata ...` );
     await this.enhanceMetadata();
   }
 
@@ -294,11 +307,11 @@ class SchemaGenerator {
     const lineSaving = ( this.originalStats.lines - finalLines ) / this.originalStats.lines * 100;
 
     this.log( `Final Analysis:` );
-    this.log( `    Version: ${ this.schema.version }` );
-    this.log( `    Build:   ${ this.schema.build.date } (${ this.schema.build.commit })` );
-    this.log( `    Lines:   ${ this.originalStats.lines } -> ${ finalLines } (${ lineSaving.toFixed( 1 ) }% saved)` );
-    this.log( `    Size:    ${ ( this.originalStats.bytes / 1024 ).toFixed( 1 ) } KB -> ${ ( finalBytes / 1024 ).toFixed( 1 ) } KB (${ byteSaving.toFixed( 1 ) }% saved)` );
-    this.log( `    Nodes:   ${ this.nodesByHash.size } unique structures, ${ this.replacedRefs } replaced with $ref pointers` );
+    this.log( `- Version: ${ this.schema.version }` );
+    this.log( `- Build:   ${ this.schema.build.date } (${ this.schema.build.commit })` );
+    this.log( `- Lines:   ${ this.originalStats.lines } -> ${ finalLines } (${ lineSaving.toFixed( 1 ) }% saved)` );
+    this.log( `- Size:    ${ ( this.originalStats.bytes / 1024 ).toFixed( 1 ) } KB -> ${ ( finalBytes / 1024 ).toFixed( 1 ) } KB (${ byteSaving.toFixed( 1 ) }% saved)` );
+    this.log( `- Nodes:   ${ this.nodesByHash.size } unique structures, ${ this.replacedRefs } replaced with $ref pointers` );
   }
 
   // ---- IO ----
