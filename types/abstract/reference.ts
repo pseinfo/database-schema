@@ -74,13 +74,14 @@ export interface BibTeXFields {
 
 /**
  * Internal helper for thesis types (Master's, PhD, or general Thesis).
+ * - Mandatory: author, school, title, year
+ * - Optional: address, month, note, reportType
  * @template T The specific thesis reference type.
  */
 type Thesis< T extends ReferenceType.MASTERSTHESIS | ReferenceType.THESIS | ReferenceType.PHDTHESIS > = Expand<
   /** Base reference metadata */
   BaseReference< T > &
-  /** Mandatory: author, school, title, year */
-  /** Optional: address, month, note, reportType */
+  /** Specific BibTeX fields for theses */
   StrictSubset<
     BibTeXFields,
     'author' | 'school' | 'title' | 'year',
@@ -90,13 +91,14 @@ type Thesis< T extends ReferenceType.MASTERSTHESIS | ReferenceType.THESIS | Refe
 
 /**
  * Internal helper for conference-related types (Inproceedings or Conference).
+ * - Mandatory: author, booktitle, title, year
+ * - Optional: address, editor, month, note, number, organization, pages, publisher, series, volume
  * @template T The specific conference reference type.
  */
 type Conference< T extends ReferenceType.CONFERENCE | ReferenceType.INPROCEEDINGS > = Expand<
   /** Base reference metadata */
   BaseReference< T > &
-  /** Mandatory: author, booktitle, title, year */
-  /** Optional: address, editor, month, note, number, organization, pages, publisher, series, volume */
+  /** Specific BibTeX fields for conferences */
   StrictSubset<
     BibTeXFields,
     'author' | 'booktitle' | 'title' | 'year',
@@ -106,12 +108,13 @@ type Conference< T extends ReferenceType.CONFERENCE | ReferenceType.INPROCEEDING
 
 /**
  * Represents a standard academic journal article.
+ * - Mandatory: author, journal, title, year
+ * - Optional: month, note, number, pages, volume
  */
 export type ArticleReference = Expand<
   /** Extends base reference with Article type branding */
   BaseReference< ReferenceType.ARTICLE > &
-  /** Mandatory: author, journal, title, year */
-  /** Optional: month, note, number, pages, volume */
+  /** Specific BibTeX fields for articles */
   StrictSubset<
     BibTeXFields,
     'author' | 'journal' | 'title' | 'year',
@@ -121,14 +124,15 @@ export type ArticleReference = Expand<
 
 /**
  * Represents a published book or monograph.
+ * - Constraint: Must have either an author or an editor, but not both.
+ * - Mandatory: publisher, title, year
+ * - Optional: address, edition, isbn, month, note, number, series, volume
  */
 export type BookReference = Expand<
   /** Extends base reference with Book type branding */
   BaseReference< ReferenceType.BOOK > &
-  /** Must have either an author or an editor, but not both */
+  /** Specific BibTeX fields for books */
   RequireExactlyOneFrom< BibTeXFields, 'author' | 'editor' > &
-  /** Mandatory: publisher, title, year */
-  /** Optional: address, edition, isbn, month, note, number, series, volume */
   StrictSubset<
     BibTeXFields,
     'publisher' | 'title' | 'year',
@@ -138,12 +142,13 @@ export type BookReference = Expand<
 
 /**
  * Represents a bound work without a formal publisher (e.g., self-published research).
+ * - Mandatory: title
+ * - Optional: address, author, howpublished, month, note, year
  */
 export type BookletReference = Expand<
   /** Extends base reference with Booklet type branding */
   BaseReference< ReferenceType.BOOKLET > &
-  /** Mandatory: title */
-  /** Optional: address, author, howpublished, month, note, year */
+  /** Specific BibTeX fields for booklets */
   StrictSubset<
     BibTeXFields,
     'title',
@@ -153,19 +158,23 @@ export type BookletReference = Expand<
 
 /**
  * Represents a paper presented at a scientific conference.
+ * - Mandatory: author, booktitle, title, year
+ * - Optional: address, editor, month, note, number, organization, pages, publisher, series, volume
  */
 export type ConferenceReference = Conference< ReferenceType.CONFERENCE >;
 
 /**
  * Represents a specific part or chapter within a book.
+ * - Constraint: Choice between primary author or book editor.
+ * - Constraint: Requires at least a chapter number or page range.
+ * - Mandatory: booktitle, publisher, title, year
+ * - Optional: address, edition, month, note, number, reportType, series, volume
  */
 export type InbookReference = Expand<
   /** Extends base reference with Inbook type branding */
   BaseReference< ReferenceType.INBOOK > &
-  /** Choice between primary author or book editor */
+  /** Specific BibTeX fields for inbooks */
   RequireExactlyOneFrom< BibTeXFields, 'author' | 'editor' > &
-  /** Requires at least a chapter number or page range */
-  /** Optional: address, edition, month, note, number, reportType, series, volume */
   RequireAtLeastOne<
     StrictSubset<
       BibTeXFields,
@@ -178,12 +187,13 @@ export type InbookReference = Expand<
 
 /**
  * Represents a standalone work published within a larger collection.
+ * - Mandatory: author, booktitle, publisher, title, year
+ * - Optional: address, chapter, edition, editor, month, note, number, pages, reportType, series, volume
  */
 export type IncollectionReference = Expand<
   /** Extends base reference with Incollection type branding */
   BaseReference< ReferenceType.INCOLLECTION > &
-  /** Mandatory bibliographical data for collection items */
-  /** Optional: address, chapter, edition, editor, month, note, number, pages, reportType, series, volume */
+  /** Specific BibTeX fields for incollections */
   StrictSubset<
     BibTeXFields,
     'author' | 'booktitle' | 'publisher' | 'title' | 'year',
@@ -198,12 +208,13 @@ export type InproceedingsReference = Conference< ReferenceType.INPROCEEDINGS >;
 
 /**
  * Represents technical documentation or instruction manuals.
+ * - Mandatory: title
+ * - Optional: address, author, edition, month, note, organization, year
  */
 export type ManualReference = Expand<
   /** Extends base reference with Manual type branding */
   BaseReference< ReferenceType.MANUAL > &
-  /** Mandatory: title */
-  /** Optional: address, author, edition, month, note, organization, year */
+  /** Specific BibTeX fields for manuals */
   StrictSubset<
     BibTeXFields,
     'title',
@@ -213,22 +224,27 @@ export type ManualReference = Expand<
 
 /**
  * Represents a Master's thesis.
+ * - Mandatory: author, school, title, year
+ * - Optional: address, month, note, reportType
  */
 export type MastersthesisReference = Thesis< ReferenceType.MASTERSTHESIS >;
 
 /**
  * Represents a general academic thesis.
+ * - Mandatory: author, school, title, year
+ * - Optional: address, month, note, reportType
  */
 export type ThesisReference = Thesis< ReferenceType.THESIS >;
 
 /**
  * Represents miscellaneous sources not fitting standard types (e.g., data sets).
+ * - Mandatory: title
+ * - Optional: author, howpublished, month, note, year
  */
 export type MiscReference = Expand<
   /** Extends base reference with Misc type branding */
   BaseReference< ReferenceType.MISC > &
-  /** Allows any standard fields without strict constraints */
-  /** Optional: author, howpublished, month, note, title, year */
+  /** Specific BibTeX fields for misc */
   ExtractFrom<
     BibTeXFields,
     'author' | 'howpublished' | 'month' | 'note' | 'title' | 'year'
@@ -237,17 +253,20 @@ export type MiscReference = Expand<
 
 /**
  * Represents a Doctoral dissertation.
+ * - Mandatory: author, school, title, year
+ * - Optional: address, month, note, reportType
  */
 export type PhdthesisReference = Thesis< ReferenceType.PHDTHESIS >;
 
 /**
  * Represents the full volume of conference proceedings.
+ * - Mandatory: title, year
+ * - Optional: address, editor, month, note, number, organization, publisher, series, volume
  */
 export type ProceedingsReference = Expand<
   /** Extends base reference with Proceedings type branding */
   BaseReference< ReferenceType.PROCEEDINGS > &
-  /** Mandatory: title, year */
-  /** Optional: address, editor, month, note, number, organization, publisher, series, volume */
+  /** Specific BibTeX fields for proceedings */
   StrictSubset<
     BibTeXFields,
     'title' | 'year',
@@ -257,12 +276,13 @@ export type ProceedingsReference = Expand<
 
 /**
  * Represents a formal report from an institution or organization.
+ * - Mandatory: author, institution, title, year
+ * - Optional: address, month, note, number, reportType
  */
 export type TechreportReference = Expand<
   /** Extends base reference with Techreport type branding */
   BaseReference< ReferenceType.TECHREPORT > &
-  /** Mandatory: author, institution, title, year */
-  /** Optional: address, month, note, number, reportType */
+  /** Specific BibTeX fields for techreports */
   StrictSubset<
     BibTeXFields,
     'author' | 'institution' | 'title' | 'year',
@@ -272,12 +292,13 @@ export type TechreportReference = Expand<
 
 /**
  * Represents scholarly work not yet formally published (e.g., pre-prints).
+ * - Mandatory: author, note, title
+ * - Optional: month, year
  */
 export type UnpublishedReference = Expand<
   /** Extends base reference with Unpublished type branding */
   BaseReference< ReferenceType.UNPUBLISHED > &
-  /** Mandatory: author, note, title */
-  /** Optional: month, year */
+  /** Specific BibTeX fields for unpublished */
   StrictSubset<
     BibTeXFields,
     'author' | 'note' | 'title',
