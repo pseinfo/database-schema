@@ -2,7 +2,9 @@
 
 import { resolve } from 'node:path';
 import Ajv from 'ajv';
+import stableStringify from 'json-stable-stringify';
 import { createGenerator } from 'ts-json-schema-generator';
+import { readFile, writeFile } from 'node:fs/promises';
 
 const require = createRequire( import.meta.url );
 const draft7MetaSchema = require( 'ajv/dist/refs/json-schema-draft-07.json' );
@@ -56,13 +58,14 @@ class SchemaGenerator {
     }
 
     if ( mode !== 'validate' ) await this.save();
-    this.log( `Process ${ mode.toUpperCase() } completed successfully` );
+    this.log( `Process ${ mode.toUpperCase() } completed successfully.` );
   }
 
   // ---- Generate ----
 
   async generate () {
-    this.log( 'Generating schema from TypeScript types ...' );
+    this.log( `Generating schema from TypeScript types ...` );
+
     const generator = createGenerator( {
       path: resolve( this.FILES.TYPES_ENTRY ),
       tsconfig: resolve( this.FILES.TSCONFIG ),
@@ -77,7 +80,7 @@ class SchemaGenerator {
 
     try {
       this.schema = generator.createSchema( 'Database' );
-      this.log( 'Generation successful.' );
+      this.log( `Generation successful.` );
     } catch ( err ) {
       this.error( `Generation failed: ${ err.message }` );
       throw err;
@@ -87,18 +90,18 @@ class SchemaGenerator {
   // ---- Validate ----
 
   async validate () {
-    if ( ! this.schema ) throw new Error( 'No schema loaded to validate.' );
-    this.log( 'Validating schema against JSON Schema Draft-07 ...' );
+    if ( ! this.schema ) throw new Error( `No schema loaded to validate.` );
+    this.log( `Validating schema against JSON Schema Draft-07 ...` );
 
     const ajv = new Ajv( { allErrors: true, strict: false, logger: false } );
     if ( ! ajv.getSchema( 'http://json-schema.org/draft-07/schema#' ) ) ajv.addMetaSchema( draft7MetaSchema );
 
     if ( ! ajv.validateSchema( this.schema ) ) {
       this.error( `Validation failed: ${ ajv.errorsText( ajv.errors ) }` );
-      throw new Error( 'Schema is invalid.' );
+      throw new Error( `Schema is invalid.` );
     }
 
-    this.log( 'Validation successful.' );
+    this.log( `Validation successful.` );
   }
 
   // ---- IO ----
@@ -109,6 +112,25 @@ class SchemaGenerator {
 
   error ( msg ) {
     console.error( `[schema] ERROR: ${ msg }` );
+  }
+
+  async save () {
+    this.log( `Writing results to ${ this.FILES.FINAL } ...` );
+
+    const topOrder = [ '$schema', '$id', 'title', 'description', 'version', 'license', 'author', 'build', 'definitions' ];
+    const content = stableStringify( this.schema, { space: 2, cmp: ( a, b ) =>
+      topOrder.indexOf( a.key ) - topOrder.indexOf( b.key ) || a.key.localeCompare( b.key )
+    } );
+
+    await writeFile( this.FILES.FINAL, content, 'utf8' );
+    this.log( `Done.` );
+    this.logAnalysis( content );
+  }
+
+  async load () {
+    this.log( `Reading ${ this.FILES.FINAL } ...` );
+    this.schema = JSON.parse( await readFile( this.FILES.FINAL, 'utf8' ) );
+    this.log( `Done.` );
   }
 
 }
