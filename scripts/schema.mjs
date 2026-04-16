@@ -19,3 +19,9 @@ class SchemaGenerator {
   };
 
 }
+
+// Global runner
+( new SchemaGenerator() ).run( process.argv[ 2 ] || 'full' ).catch( ( err ) => {
+  console.error( `[schema] FAILED: ${ err.message }` );
+  process.exit( 1 );
+} );
