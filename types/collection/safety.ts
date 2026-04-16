@@ -6,7 +6,6 @@ import type {
   ADRClass, DOTClass, GHSClass, GHSPictogram, NFPACode, NFPANotice, SignalWord,
   ToxicityApplication, ToxicityType, WHMISClass
 } from '../enum/safety';
-import type { PhysicalQuantity } from '../enum/util';
 
 export type HStatement = `H${ '2' | '3' | '4' | '5' }${ string }`;
 export type PStatement = `P${ '1' | '2' | '3' | '4' | '5' }${ string }`;
@@ -48,9 +47,9 @@ export type HazardGroup = Group< {
 export type Toxicity = {
   type: Distinct< ToxicityType >;
   organism: Distinct< string >;
-  value: SingleValue< PhysicalQuantity.MASS_FRACTION > | RangeValue< PhysicalQuantity.MASS_FRACTION >;
+  value: SingleValue< 'massFraction' > | RangeValue< 'massFraction' >;
   application?: Distinct< ToxicityApplication >;
-  duration?: SingleValue< PhysicalQuantity.TIME > | RangeValue< PhysicalQuantity.TIME >;
+  duration?: SingleValue< 'time' > | RangeValue< 'time' >;
 };
 
 export type SafetyCollection = Collection< {

@@ -3,43 +3,42 @@ import type { CoupledNumberProperty, NumberProperty, PrimitiveProperty } from '.
 import type { LangGroup } from '../abstract/util';
 import type { Phase } from '../enum/generic';
 import type { Diaphaneity, Gloss, Lustre, MagneticOrdering, Superconductivity } from '../enum/physics';
-import type { PhysicalQuantity } from '../enum/util';
 
 export type PhysicsCollection = Collection< {
-  density?: Single< NumberProperty< PhysicalQuantity.DENSITY > >;
+  density?: Single< NumberProperty< 'density' > >;
   relativeDensity?: Single< PrimitiveProperty< number > >;
   phase?: Single< PrimitiveProperty< Phase > >;
 
   temperature?: Group< {
-    meltingPoint?: Single< NumberProperty< PhysicalQuantity.TEMPERATURE > >;
-    boilingPoint?: Single< NumberProperty< PhysicalQuantity.TEMPERATURE > >;
-    liquidRange?: Single< NumberProperty< PhysicalQuantity.TEMPERATURE > >;
-    transitionTemp?: Single< NumberProperty< PhysicalQuantity.TEMPERATURE > >;
-    sublimationPoint?: Single< NumberProperty< PhysicalQuantity.TEMPERATURE > >;
-    flashPoint?: Single< NumberProperty< PhysicalQuantity.TEMPERATURE > >;
-    autoignitionTemp?: Single< NumberProperty< PhysicalQuantity.TEMPERATURE > >;
-    criticalPoint?: Single< CoupledNumberProperty< PhysicalQuantity.TEMPERATURE | PhysicalQuantity.PRESSURE > >;
-    triplePoint?: Single< CoupledNumberProperty< PhysicalQuantity.TEMPERATURE | PhysicalQuantity.PRESSURE > >;
-    debyeTemp?: Single< NumberProperty< PhysicalQuantity.TEMPERATURE > >;
+    meltingPoint?: Single< NumberProperty< 'temperature' > >;
+    boilingPoint?: Single< NumberProperty< 'temperature' > >;
+    liquidRange?: Single< NumberProperty< 'temperature' > >;
+    transitionTemp?: Single< NumberProperty< 'temperature' > >;
+    sublimationPoint?: Single< NumberProperty< 'temperature' > >;
+    flashPoint?: Single< NumberProperty< 'temperature' > >;
+    autoignitionTemp?: Single< NumberProperty< 'temperature' > >;
+    criticalPoint?: Single< CoupledNumberProperty< 'temperature' | 'pressure' > >;
+    triplePoint?: Single< CoupledNumberProperty< 'temperature' | 'pressure' > >;
+    debyeTemp?: Single< NumberProperty< 'temperature' > >;
   } >;
 
   enthalpy?: Group< {
-    fusionEnthalpy?: Single< NumberProperty< PhysicalQuantity.ENTHALPY > >;
-    vaporisationEnthalpy?: Single< NumberProperty< PhysicalQuantity.ENTHALPY > >;
-    sublimationEnthalpy?: Single< NumberProperty< PhysicalQuantity.ENTHALPY > >;
-    atomizationEnthalpy?: Single< NumberProperty< PhysicalQuantity.ENTHALPY > >;
-    formationEnthalpy?: Single< NumberProperty< PhysicalQuantity.ENTHALPY > >;
-    combustionEnthalpy?: Single< NumberProperty< PhysicalQuantity.ENTHALPY > >;
+    fusionEnthalpy?: Single< NumberProperty< 'energy' > >;
+    vaporisationEnthalpy?: Single< NumberProperty< 'energy' > >;
+    sublimationEnthalpy?: Single< NumberProperty< 'energy' > >;
+    atomizationEnthalpy?: Single< NumberProperty< 'energy' > >;
+    formationEnthalpy?: Single< NumberProperty< 'energy' > >;
+    combustionEnthalpy?: Single< NumberProperty< 'energy' > >;
   } >;
 
   heat?: Group< {
-    heatCapacity?: Single< NumberProperty< PhysicalQuantity.HEAT_CAPACITY > >;
-    molarHeatCapacity?: Single< NumberProperty< PhysicalQuantity.MOLAR_HEAT_CAPACITY > >;
-    specificHeatCapacity?: Single< NumberProperty< PhysicalQuantity.SPECIFIC_HEAT_CAPACITY > >;
-    thermalConductivity?: Single< NumberProperty< PhysicalQuantity.THERMAL_CONDUCTIVITY > >;
-    thermalExpansion?: Single< NumberProperty< PhysicalQuantity.THERMAL_EXPANSION > >;
-    thermalDiffusivity?: Single< NumberProperty< PhysicalQuantity.THERMAL_DIFFUSIVITY > >;
-    workFunction?: Single< NumberProperty< PhysicalQuantity.ENERGY > >;
+    heatCapacity?: Single< NumberProperty< 'heatCapacity' > >;
+    molarHeatCapacity?: Single< NumberProperty< 'molarHeatCapacity' > >;
+    specificHeatCapacity?: Single< NumberProperty< 'specificHeatCapacity' > >;
+    thermalConductivity?: Single< NumberProperty< 'thermalConductivity' > >;
+    thermalExpansion?: Single< NumberProperty< 'thermalExpansion' > >;
+    thermalDiffusivity?: Single< NumberProperty< 'thermalDiffusivity' > >;
+    workFunction?: Single< NumberProperty< 'energy' > >;
     adiabaticIndex?: Single< PrimitiveProperty< number > >;
   } >;
 
@@ -52,46 +51,46 @@ export type PhysicsCollection = Collection< {
   } >;
 
   elasticity?: Group< {
-    bulkModulus?: Single< NumberProperty< PhysicalQuantity.PRESSURE > >;
-    shearModulus?: Single< NumberProperty< PhysicalQuantity.PRESSURE > >;
-    youngModulus?: Single< NumberProperty< PhysicalQuantity.PRESSURE > >;
+    bulkModulus?: Single< NumberProperty< 'pressure' > >;
+    shearModulus?: Single< NumberProperty< 'pressure' > >;
+    youngModulus?: Single< NumberProperty< 'pressure' > >;
     poissonRatio?: Single< PrimitiveProperty< number > >;
-    compressibility?: Single< NumberProperty< PhysicalQuantity.COMPRESSIBILITY > >;
-    tensileStrength?: Single< NumberProperty< PhysicalQuantity.PRESSURE > >;
-    yieldStrength?: Single< NumberProperty< PhysicalQuantity.PRESSURE > >;
-    ultimateStrength?: Single< NumberProperty< PhysicalQuantity.PRESSURE > >;
+    compressibility?: Single< NumberProperty< 'compressibility' > >;
+    tensileStrength?: Single< NumberProperty< 'pressure' > >;
+    yieldStrength?: Single< NumberProperty< 'pressure' > >;
+    ultimateStrength?: Single< NumberProperty< 'pressure' > >;
   } >;
 
   electricity?: Group< {
-    conductivity?: Single< NumberProperty< PhysicalQuantity.ELECTRIC_CONDUCTIVITY > >;
-    resistivity?: Single< NumberProperty< PhysicalQuantity.ELECTRIC_RESISTIVITY > >;
-    temperatureCoefficient?: Single< NumberProperty< PhysicalQuantity.TEMP_COEFFICIENT > >;
+    conductivity?: Single< NumberProperty< 'electricConductivity' > >;
+    resistivity?: Single< NumberProperty< 'electricResistivity' > >;
+    tempCoefficient?: Single< NumberProperty< 'tempCoefficient' > >;
     superconductivity?: Single< PrimitiveProperty< Superconductivity > >;
-    superconductingPoint?: Single< NumberProperty< PhysicalQuantity.TEMPERATURE > >;
-    bandGap?: Single< NumberProperty< PhysicalQuantity.ENERGY > >;
+    superconductingPoint?: Single< NumberProperty< 'temperature' > >;
+    bandGap?: Single< NumberProperty< 'energy' > >;
     dielectricConstant?: Single< PrimitiveProperty< number > >;
-    dipoleMoment?: Single< NumberProperty< PhysicalQuantity.DIPOLE_MOMENT > >;
+    dipoleMoment?: Single< NumberProperty< 'dipoleMoment' > >;
   } >;
 
   magnetism?: Group< {
     magneticOrdering?: Single< PrimitiveProperty< MagneticOrdering > >;
-    magneticSusceptibility?: Single< NumberProperty< PhysicalQuantity.MAGNETIC_SUSCEPTIBILITY > >;
-    molarMagneticSusceptibility?: Single< NumberProperty< PhysicalQuantity.MOLAR_MAGNETIC_SUSCEPTIBILITY > >;
-    massMagneticSusceptibility?: Single< NumberProperty< PhysicalQuantity.MASS_MAGNETIC_SUSCEPTIBILITY > >;
-    curiePoint?: Single< NumberProperty< PhysicalQuantity.TEMPERATURE > >;
-    neelPoint?: Single< NumberProperty< PhysicalQuantity.TEMPERATURE > >;
-    magneticMoment?: Single< NumberProperty< PhysicalQuantity.MAGNETIC_MOMENT > >;
-    coercivity?: Single< NumberProperty< PhysicalQuantity.MAGNETIC_FIELD_STRENGTH > >;
-    remanence?: Single< NumberProperty< PhysicalQuantity.MAGNETIC_FLUX_DENSITY > >;
-    permeability?: Single< NumberProperty< PhysicalQuantity.MAGNETIC_PERMEABILITY > >;
+    magneticSusceptibility?: Single< NumberProperty< 'magneticSusceptibility' > >;
+    molarMagneticSusceptibility?: Single< NumberProperty< 'molarMagneticSusceptibility' > >;
+    massMagneticSusceptibility?: Single< NumberProperty< 'massMagneticSusceptibility' > >;
+    curiePoint?: Single< NumberProperty< 'temperature' > >;
+    neelPoint?: Single< NumberProperty< 'temperature' > >;
+    magneticMoment?: Single< NumberProperty< 'magneticMoment' > >;
+    coercivity?: Single< NumberProperty< 'magneticFieldStrength' > >;
+    remanence?: Single< NumberProperty< 'magneticFluxDensity' > >;
+    permeability?: Single< NumberProperty< 'magneticPermeability' > >;
   } >;
 
   optics?: Group< {
     refractiveIndex?: Single< PrimitiveProperty< number > >;
     reflectance?: Single< PrimitiveProperty< number > >;
     birefringence?: Single< PrimitiveProperty< number > >;
-    v2Angle?: Single< NumberProperty< PhysicalQuantity.ANGLE > >;
-    absorptionCoefficient?: Single< NumberProperty< PhysicalQuantity.ABSORPTION_COEFFICIENT > >;
+    v2Angle?: Single< NumberProperty< 'angle' > >;
+    absorptionCoefficient?: Single< NumberProperty< 'absorptionCoefficient' > >;
     emissivity?: Single< PrimitiveProperty< number > >;
     transmittance?: Single< PrimitiveProperty< number > >;
     opacity?: Single< PrimitiveProperty< number > >;
@@ -103,18 +102,18 @@ export type PhysicsCollection = Collection< {
   } >;
 
   acoustics?: Group< {
-    soundSpeed?: Single< NumberProperty< PhysicalQuantity.VELOCITY > >;
-    acousticImpedance?: Single< NumberProperty< PhysicalQuantity.ACOUSTIC_IMPEDANCE > >;
-    attenuationCoefficient?: Single< NumberProperty< PhysicalQuantity.ATTENUATION_COEFFICIENT > >;
+    soundSpeed?: Single< NumberProperty< 'velocity' > >;
+    acousticImpedance?: Single< NumberProperty< 'acousticImpedance' > >;
+    attenuationCoefficient?: Single< NumberProperty< 'attenuationCoefficient' > >;
   } >;
 
   surface?: Group< {
-    surfaceTension?: Single< NumberProperty< PhysicalQuantity.SURFACE_TENSION > >;
-    contactAngle?: Single< NumberProperty< PhysicalQuantity.ANGLE > >;
+    surfaceTension?: Single< NumberProperty< 'surfaceTension' > >;
+    contactAngle?: Single< NumberProperty< 'angle' > >;
   } >;
 
   viscosity?: Group< {
-    dynamicViscosity?: Single< NumberProperty< PhysicalQuantity.DYNAMIC_VISCOSITY > >;
-    kinematicViscosity?: Single< NumberProperty< PhysicalQuantity.KINEMATIC_VISCOSITY > >;
+    dynamicViscosity?: Single< NumberProperty< 'dynamicViscosity' > >;
+    kinematicViscosity?: Single< NumberProperty< 'kinematicViscosity' > >;
   } >;
 } >;

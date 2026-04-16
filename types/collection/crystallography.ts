@@ -6,7 +6,6 @@ import type {
   FractureType, Tenacity, TwinningMode, TwinningType
 } from '../enum/crystallography';
 import type { ElementSymbol } from '../enum/element';
-import type { PhysicalQuantity } from '../enum/util';
 
 export type PointGroup = {
   number: number;
@@ -21,12 +20,12 @@ export type SpaceGroup = {
 };
 
 export type UnitCell = {
-  a?: NumberValue< PhysicalQuantity.LENGTH >;
-  b?: NumberValue< PhysicalQuantity.LENGTH >;
-  c?: NumberValue< PhysicalQuantity.LENGTH >;
-  alpha?: NumberValue< PhysicalQuantity.ANGLE >;
-  beta?: NumberValue< PhysicalQuantity.ANGLE >;
-  gamma?: NumberValue< PhysicalQuantity.ANGLE >;
+  a?: NumberValue< 'length' >;
+  b?: NumberValue< 'length' >;
+  c?: NumberValue< 'length' >;
+  alpha?: NumberValue< 'angle' >;
+  beta?: NumberValue< 'angle' >;
+  gamma?: NumberValue< 'angle' >;
   Z?: number;
 };
 
@@ -49,7 +48,7 @@ export type Cleavage = {
 
 export type Fracture = {
   type?: FractureType;
-  toughness?: NumberValue< PhysicalQuantity.ENERGY >;
+  toughness?: NumberValue< 'energy' >;
   tenacity?: Tenacity;
 };
 
