@@ -143,6 +143,32 @@ class SchemaGenerator {
     this.log( `Validation successful.` );
   }
 
+  // ---- ANALYSIS ----
+
+  captureStats () {
+    const content = stableStringify( this.schema, { space: 2 } );
+    this.originalStats = {
+      bytes: Buffer.byteLength( content, 'utf8' ),
+      lines: content.split( '\n' ).length
+    };
+  }
+
+  logAnalysis ( finalContent ) {
+    if ( ! this.originalStats ) return;
+
+    const finalBytes = Buffer.byteLength( finalContent, 'utf8' );
+    const byteSaving = ( this.originalStats.bytes - finalBytes ) / this.originalStats.bytes * 100;
+    const finalLines = finalContent.split( '\n' ).length;
+    const lineSaving = ( this.originalStats.lines - finalLines ) / this.originalStats.lines * 100;
+
+    this.log( 'Final Analysis:' );
+    this.log( `    Version: ${ this.schema.version }` );
+    this.log( `    Build:   ${ this.schema.build.date } (${ this.schema.build.commit })` );
+    this.log( `    Lines:   ${ this.originalStats.lines } -> ${ finalLines } (${ lineSaving.toFixed( 1 ) }% saved)` );
+    this.log( `    Size:    ${ ( this.originalStats.bytes / 1024 ).toFixed( 1 ) } KB -> ${ ( finalBytes / 1024 ).toFixed( 1 ) } KB (${ byteSaving.toFixed( 1 ) }% saved)` );
+    this.log( `    Nodes:   ${ this.nodesByHash.size } unique structures, ${ this.replacedRefs } replaced with $ref pointers` );
+  }
+
   // ---- IO ----
 
   log ( msg ) {
