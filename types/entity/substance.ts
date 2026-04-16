@@ -9,12 +9,13 @@ import type { GenericCollection } from '../collection/generic';
 import type { PhysicsCollection } from '../collection/physics';
 import type { SafetyCollection } from '../collection/safety';
 
-export type Substance = Expand< MetaData & Collection< {
+export type Substance< C extends Collection< unknown > > = Expand< MetaData & {
   descriptive: DescriptiveCollection;
+  classification: C;
   generic?: GenericCollection;
   abundance?: AbundanceCollection;
   physics?: PhysicsCollection;
   crystallography?: CrystallographyCollection;
   chemistry?: ChemistryCollection;
   safety?: SafetyCollection;
-} > >;
+} >;
