@@ -23,8 +23,8 @@ class SchemaGenerator {
   CONFIG = {
     HASH_PREFIX: 'pseinfo@',
     HASH_LENGTH: 8,
-    FORBIDDEN_PARENT_KEYS: new Set( [ 'definitions', '$defs', 'properties', 'patternProperties', 'dependencies' ] ),
-    MIN_SAVINGS_THRESHOLD: 40,
+    FORBIDDEN_KEYS: new Set( [ 'definitions', '$defs', 'properties', 'patternProperties', 'dependencies' ] ),
+    MIN_SAVINGS_TH: 40,
     MIN_OCCURRENCES: 3,
     MIN_NODE_SIZE: 30
   };
@@ -155,7 +155,7 @@ class SchemaGenerator {
       const entry = this.nodesByHash.get( hash ) || { count: 0, size, node, allowed: false };
       entry.count++;
 
-      if ( ! this.CONFIG.FORBIDDEN_PARENT_KEYS.has( parentKey ) ) entry.allowed = true;
+      if ( ! this.CONFIG.FORBIDDEN_KEYS.has( parentKey ) ) entry.allowed = true;
       this.nodesByHash.set( hash, entry );
     }
 
@@ -173,7 +173,7 @@ class SchemaGenerator {
       if ( e.node.$ref && Object.keys( e.node ).length === 1 ) continue;
 
       const name = this.getSharedName( hash );
-      if ( ( e.count * e.size - e.count * refTextLen - ( name.length + 5 + e.size ) ) > this.CONFIG.MIN_SAVINGS_THRESHOLD ) map.set( hash, name );
+      if ( ( e.count * e.size - e.count * refTextLen - ( name.length + 5 + e.size ) ) > this.CONFIG.MIN_SAVINGS_TH ) map.set( hash, name );
     }
 
     return map;
@@ -181,6 +181,49 @@ class SchemaGenerator {
 
   getSharedName ( hash ) {
     return `${ this.CONFIG.HASH_PREFIX }${ hash.slice( 0, this.CONFIG.HASH_LENGTH ) }`;
+  }
+
+  performReplacement ( node, parentKey, isDefValue = false ) {
+    if ( node === null || typeof node !== 'object' ) return node;
+
+    if ( node.$ref && typeof node.$ref === 'string' ) {
+      const normalized = this.normalizeRef( node.$ref );
+      if ( Object.keys( node ).length === 1 ) return { $ref: normalized };
+      node = { ...node, $ref: normalized };
+    }
+
+    if ( Array.isArray( node ) ) return node.map( i => this.performReplacement( i, parentKey, false ) );
+
+    const memo = this.hashMemo.get( node );
+    if ( memo && this.sharedMap.has( memo.hash ) ) {
+      const sharedName = this.sharedMap.get( memo.hash );
+
+      if ( ! this.CONFIG.FORBIDDEN_KEYS.has( parentKey ) && ( ! isDefValue || sharedName !== parentKey ) ) {
+        this.replacedRefs++;
+        return { $ref: `#/definitions/${ sharedName }` };
+      }
+    }
+
+    const out = {};
+    const isChildOfDefs = parentKey === 'definitions' || parentKey === '$defs';
+    for ( const [ key, value ] of Object.entries( node ) )
+      out[ key ] = this.performReplacement( value, key, isChildOfDefs );
+
+    return out;
+  }
+
+  normalizeRef ( ref ) {
+    if ( ! ref.startsWith( '#/' ) ) return ref;
+
+    const parts = ref.split( '/' );
+    if ( parts[ 1 ] === 'definitions' || parts[ 1 ] === '$defs' ) {
+      const oldName = decodeURIComponent( parts[ 2 ].replace( /~1/g, '/' ).replace( /~0/g, '~' ) );
+      const hash = this.hashByOriginalName.get( oldName );
+
+      if ( hash && this.sharedMap.has( hash ) ) return `#/definitions/${ this.sharedMap.get( hash ) }`;
+    }
+
+    return ref.replace( '#/$defs/', '#/definitions/' );
   }
 
   // ---- Validate ----
