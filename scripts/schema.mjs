@@ -3,6 +3,7 @@
 import { execSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { readFile, writeFile } from 'node:fs/promises';
+import { createRequire } from 'node:module';
 import { resolve } from 'node:path';
 import Ajv from 'ajv';
 import stableStringify from 'json-stable-stringify';
@@ -44,23 +45,31 @@ class SchemaGenerator {
     this.sharedMap = new Map();
   }
 
-  async run ( mode = 'make' ) {
-    const actions = {
-      generate: async () => await this.generate(),
-      optimize: async () => { if ( ! this.schema ) await this.load(), await this.optimize() },
-      validate: async () => { if ( ! this.schema ) await this.load(), await this.validate() }
-    };
+  async run ( mode ) {
+    switch ( mode ) {
+      case 'generate':
+        await this.generate();
+        await this.save();
+        break;
 
-    if ( mode === 'make' ) {
-      await actions.generate();
-      await actions.optimize();
-      await actions.validate();
-    } else if ( actions[ mode ] ) {
-      await actions[ mode ]();
+      case 'optimize':
+        await this.load();
+        await this.optimize();
+        await this.save();
+        break;
+
+      case 'validate':
+        await this.load();
+        await this.validate();
+        break;
+
+      default:
+        await this.generate();
+        await this.optimize();
+        await this.validate();
+        await this.save();
+        break;
     }
-
-    if ( mode !== 'validate' ) await this.save();
-    this.log( `Process ${ mode.toUpperCase() } completed successfully.` );
   }
 
   // ---- Generate ----
@@ -104,7 +113,7 @@ class SchemaGenerator {
     delete this.schema.$defs;
 
     // 2. Perform Merkle-Tree analysis
-    this.log( 'Analyzing schema structures ...' );
+    this.log( `Analyzing schema structures ...` );
     this.analyzeNode( this.schema, null );
 
     for ( const [ name, def ] of Object.entries( definitions ) )
@@ -284,7 +293,7 @@ class SchemaGenerator {
     const finalLines = finalContent.split( '\n' ).length;
     const lineSaving = ( this.originalStats.lines - finalLines ) / this.originalStats.lines * 100;
 
-    this.log( 'Final Analysis:' );
+    this.log( `Final Analysis:` );
     this.log( `    Version: ${ this.schema.version }` );
     this.log( `    Build:   ${ this.schema.build.date } (${ this.schema.build.commit })` );
     this.log( `    Lines:   ${ this.originalStats.lines } -> ${ finalLines } (${ lineSaving.toFixed( 1 ) }% saved)` );
@@ -310,20 +319,20 @@ class SchemaGenerator {
       topOrder.indexOf( a.key ) - topOrder.indexOf( b.key ) || a.key.localeCompare( b.key )
     } );
 
-    await writeFile( this.FILES.FINAL, content, 'utf8' );
+    await writeFile( resolve( this.FILES.FINAL ), content, 'utf8' );
     this.log( `Done.` );
     this.logAnalysis( content );
   }
 
   async load () {
     this.log( `Reading ${ this.FILES.FINAL } ...` );
-    this.schema = JSON.parse( await readFile( this.FILES.FINAL, 'utf8' ) );
+    this.schema = JSON.parse( await readFile( resolve( this.FILES.FINAL ), 'utf8' ) );
     this.log( `Done.` );
   }
 
 }
 
-( new SchemaGenerator() ).run( process.argv[ 2 ] || 'make' ).catch( ( err ) => {
+( new SchemaGenerator() ).run( process.argv[ 2 ] ).catch( ( err ) => {
   console.error( `[schema] Failed: ${ err.message }` );
   process.exit( 1 );
 } );
