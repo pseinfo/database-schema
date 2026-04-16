@@ -162,6 +162,27 @@ class SchemaGenerator {
     return result;
   }
 
+  buildSharedMap () {
+    const map = new Map();
+    for ( const hash of this.hashByOriginalName.values() )
+      if ( ! map.has( hash ) ) map.set( hash, this.getSharedName( hash ) );
+
+    const refTextLen = 22 + this.CONFIG.HASH_PREFIX.length + this.CONFIG.HASH_LENGTH;
+    for ( const [ hash, e ] of this.nodesByHash.entries() ) {
+      if ( map.has( hash ) || e.count < this.CONFIG.MIN_OCCURRENCES || e.size < this.CONFIG.MIN_NODE_SIZE || ! e.allowed ) continue;
+      if ( e.node.$ref && Object.keys( e.node ).length === 1 ) continue;
+
+      const name = this.getSharedName( hash );
+      if ( ( e.count * e.size - e.count * refTextLen - ( name.length + 5 + e.size ) ) > this.CONFIG.MIN_SAVINGS_THRESHOLD ) map.set( hash, name );
+    }
+
+    return map;
+  }
+
+  getSharedName ( hash ) {
+    return `${ this.CONFIG.HASH_PREFIX }${ hash.slice( 0, this.CONFIG.HASH_LENGTH ) }`;
+  }
+
   // ---- Validate ----
 
   async validate () {
