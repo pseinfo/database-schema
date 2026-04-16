@@ -8,8 +8,8 @@ import type { PhysicsCollection } from '../collection/physics';
 import type { SafetyCollection } from '../collection/safety';
 
 export type Substance< C extends Collection< unknown > > = Collection< {
-  descriptive: DescriptiveCollection;
   classification: C;
+  descriptive: DescriptiveCollection;
   generic?: GenericCollection;
   abundance?: AbundanceCollection;
   physics?: PhysicsCollection;
