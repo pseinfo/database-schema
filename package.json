@@ -70,7 +70,11 @@
   },
   "scripts": {
     "lint": "tsc",
-    "docs": "typedoc --logLevel Verbose --options typedoc.json"
+    "docs": "typedoc --logLevel Verbose --options typedoc.json",
+    "schema": "node scripts/schema.mjs",
+    "schema:generate": "node scripts/schema.mjs generate",
+    "schema:optimize": "node scripts/schema.mjs optimize",
+    "schema:validate": "node scripts/schema.mjs validate"
   },
   "dependencies": {
     "devtypes": "^2.1.0"
