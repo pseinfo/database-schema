@@ -2,7 +2,7 @@
 
 import { execSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import { resolve } from 'node:path';
 import Ajv from 'ajv';
@@ -316,12 +316,16 @@ class SchemaGenerator {
 
   // ---- IO ----
 
+  now () {
+    return new Date().toISOString().substr( 11, 8 );
+  }
+
   log ( msg ) {
-    console.log( `[schema] ${ msg }` );
+    console.log( `[${ this.now() }] ${ msg }` );
   }
 
   error ( msg ) {
-    console.error( `[schema] ERROR: ${ msg }` );
+    console.error( `[${ this.now() }] ERROR: ${ msg }` );
   }
 
   async save () {
@@ -332,7 +336,9 @@ class SchemaGenerator {
       topOrder.indexOf( a.key ) - topOrder.indexOf( b.key ) || a.key.localeCompare( b.key )
     } );
 
+    await mkdir( resolve( this.FILES.FINAL, '..' ), { recursive: true } );
     await writeFile( resolve( this.FILES.FINAL ), content, 'utf8' );
+
     this.log( `Done.` );
     this.logAnalysis( content );
   }
@@ -346,6 +352,6 @@ class SchemaGenerator {
 }
 
 ( new SchemaGenerator() ).run( process.argv[ 2 ] ).catch( ( err ) => {
-  console.error( `[schema] Failed: ${ err.message }` );
+  console.error( `Failed: ${ err.message }` );
   process.exit( 1 );
 } );
