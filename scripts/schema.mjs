@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 
+import { resolve } from 'node:path';
+import { createGenerator } from 'ts-json-schema-generator';
+
 class SchemaGenerator {
 
   FILES = {
@@ -49,12 +52,36 @@ class SchemaGenerator {
     }
 
     if ( mode !== 'validate' ) await this.save();
-    this.log( `[schema] Process ${ mode.toUpperCase() } completed successfully` );
+    this.log( `Process ${ mode.toUpperCase() } completed successfully` );
+  }
+
+  // ---- Generate ----
+
+  async generate () {
+    this.log( 'Generating schema from TypeScript types ...' );
+    const generator = createGenerator( {
+      path: resolve( this.FILES.TYPES_ENTRY ),
+      tsconfig: resolve( this.FILES.TSCONFIG ),
+      type: 'Database',
+      expose: 'all',
+      jsDoc: 'extended',
+      skipTypeCheck: false,
+      sortProps: true,
+      strictTuples: false,
+      encodeRefs: true
+    } );
+
+    try {
+      this.schema = generator.createSchema( 'Database' );
+      this.log( 'Generation successful.' );
+    } catch ( err ) {
+      this.error( `Generation failed: ${ err.message }` );
+      throw err;
+    }
   }
 
 }
 
-// Global runner
 ( new SchemaGenerator() ).run( process.argv[ 2 ] || 'make' ).catch( ( err ) => {
   console.error( `[schema] Failed: ${ err.message }` );
   process.exit( 1 );
