@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { execSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import Ajv from 'ajv';
@@ -125,6 +126,40 @@ class SchemaGenerator {
 
     // 4. Enhance metadata
     await this.enhanceMetadata();
+  }
+
+  analyzeNode ( node, parentKey = null ) {
+    if ( node === null || typeof node !== 'object' ) {
+      const str = JSON.stringify( node );
+      return { hash: str, size: str.length };
+    }
+
+    if ( this.hashMemo.has( node ) ) return this.hashMemo.get( node );
+
+    let hash, size;
+    if ( Array.isArray( node ) ) {
+      const children = node.map( item => this.analyzeNode( item, parentKey ) );
+      hash = createHash( 'sha1' ).update( `[${ children.map( c => c.hash ).join( ',' ) }]` ).digest( 'hex' );
+      size = 2 + ( children.length > 1 ? children.length - 1 : 0 ) + children.reduce( ( s, c ) => s + c.size, 0 );
+    } else {
+      const keys = Object.keys( node ).sort();
+      const children = keys.map( key => ( { key, res: this.analyzeNode( node[ key ], key ) } ) );
+      hash = createHash( 'sha1' ).update( `{${ children.map( c => `"${ c.key }":${ c.res.hash }` ).join( ',' ) }}` ).digest( 'hex' );
+      size = 2 + ( keys.length > 1 ? keys.length - 1 : 0 ) + children.reduce( ( s, c ) => s + c.key.length + 3 + c.res.size, 0 );
+    }
+
+    const result = { hash, size };
+    this.hashMemo.set( node, result );
+
+    if ( ! Array.isArray( node ) ) {
+      const entry = this.nodesByHash.get( hash ) || { count: 0, size, node, allowed: false };
+      entry.count++;
+
+      if ( ! this.CONFIG.FORBIDDEN_PARENT_KEYS.has( parentKey ) ) entry.allowed = true;
+      this.nodesByHash.set( hash, entry );
+    }
+
+    return result;
   }
 
   // ---- Validate ----
