@@ -1,7 +1,11 @@
 #!/usr/bin/env node
 
 import { resolve } from 'node:path';
+import Ajv from 'ajv';
 import { createGenerator } from 'ts-json-schema-generator';
+
+const require = createRequire( import.meta.url );
+const draft7MetaSchema = require( 'ajv/dist/refs/json-schema-draft-07.json' );
 
 class SchemaGenerator {
 
@@ -78,6 +82,23 @@ class SchemaGenerator {
       this.error( `Generation failed: ${ err.message }` );
       throw err;
     }
+  }
+
+  // ---- Validate ----
+
+  async validate () {
+    if ( ! this.schema ) throw new Error( 'No schema loaded to validate.' );
+    this.log( 'Validating schema against JSON Schema Draft-07 ...' );
+
+    const ajv = new Ajv( { allErrors: true, strict: false, logger: false } );
+    if ( ! ajv.getSchema( 'http://json-schema.org/draft-07/schema#' ) ) ajv.addMetaSchema( draft7MetaSchema );
+
+    if ( ! ajv.validateSchema( this.schema ) ) {
+      this.error( `Validation failed: ${ ajv.errorsText( ajv.errors ) }` );
+      throw new Error( 'Schema is invalid.' );
+    }
+
+    this.log( 'Validation successful.' );
   }
 
 }
