@@ -1,196 +1,130 @@
-/**
- * Physical Units System
- * High-level type system for modeling physical quantities and units.
- * 
- * Defines basic units for each physical quantity and uses prefixes for derived units
- * without defining all possible combinations.
- * 
- * The unit system provides dimension vectors for physical quantities, conversion factors
- * between units, and checks for unit compatibility.
- * 
- * @module abstract/unit
- */
-
 import type { Brand } from 'devtypes/types/util';
-import type { MetricSystem, SIDimension } from '../enums/abstract';
+import type { MetricSystem, SIDimension } from '../enum/util';
 
-
-/** SI unit prefixes (metric system). */
 export type SIPrefix = keyof typeof SIPrefix;
 export const SIPrefix = {
-    Y: 1e24, Z: 1e21, E: 1e18, P: 1e15, T: 1e12, G: 1e9, M: 1e6, k: 1e3,
-    h: 1e2, da: 1e1, d: 1e-1, c: 1e-2, m: 1e-3, µ: 1e-6, n: 1e-9, p: 1e-12,
-    f: 1e-15, a: 1e-18, z: 1e-21, y: 1e-24
+  Y: 1e24, Z: 1e21, E: 1e18, P: 1e15, T: 1e12, G: 1e9, M: 1e6, k: 1e3,
+  h: 1e2, da: 1e1, d: 1e-1, c: 1e-2, m: 1e-3, µ: 1e-6, n: 1e-9, p: 1e-12,
+  f: 1e-15, a: 1e-18, z: 1e-21, y: 1e-24
 } as const;
 
-/** List of valid quantities and their base unit symbols. */
 export type ValidUnits = typeof ValidUnits;
+export type PhysicalQuantity = keyof typeof ValidUnits;
 export const ValidUnits = {
+  time: { base: [ 's', 'min', 'h', 'd', 'a' ], prefixable: [ 's' ] },
+  length: { base: [ 'm', 'in', 'ft', 'yd', 'mi', 'Å', 'Ø' ], prefixable: [ 'm' ] },
+  mass: { base: [ 'g', 't', 'oz', 'lb', 'u', 'Da' ], prefixable: [ 'g' ] },
+  electricCurrent: { base: [ 'A' ], prefixable: [ 'A' ] },
+  temperature: { base: [ 'K', '°C', '°F' ], prefixable: [] },
+  amountOfSubstance: { base: [ 'mol' ], prefixable: [ 'mol' ] },
+  luminousIntensity: { base: [ 'cd' ], prefixable: [] },
 
-    // SI base dimensions
-    time: { base: [ 's', 'min', 'h', 'd', 'a' ] as const, prefixable: [ 's' ] as const },
-    length: { base: [ 'm', 'in', 'ft', 'yd', 'mi', 'Å', 'Ø' ] as const, prefixable: [ 'm' ] as const },
-    mass: { base: [ 'g', 't', 'oz', 'lb', 'u', 'Da' ] as const, prefixable: [ 'g' ] as const },
-    electricCurrent: { base: [ 'A' ] as const, prefixable: [ 'A' ] as const },
-    temperature: { base: [ 'K', '°C', '°F' ] as const, prefixable: [] as const },
-    amountOfSubstance: { base: [ 'mol' ] as const, prefixable: [ 'mol' ] as const },
-    luminousIntensity: { base: [ 'cd' ] as const, prefixable: [] as const },
+  velocity: { base: [ 'm/s', 'km/h', 'mph', 'ft/s', 'knot', 'Mach' ], prefixable: [ 'm/s' ] },
+  acceleration: { base: [ 'm/s[2]', 'g', 'Gal' ], prefixable: [ 'm/s[2]' ] },
+  force: { base: [ 'N', 'dyn', 'kgf', 'lbf' ], prefixable: [ 'N' ] },
+  surfaceTension: { base: [ 'N/m', 'dyn/cm' ], prefixable: [ 'N/m' ] },
+  pressure: { base: [ 'Pa', 'bar', 'atm', 'psi', 'torr', 'mmHg', 'inHg', 'cmH{2}O' ], prefixable: [ 'Pa', 'bar' ] },
+  energy: { base: [ 'J', 'eV', 'kcal', 'Wh', 'Btu', 'erg' ], prefixable: [ 'J', 'eV', 'Wh' ] },
+  power: { base: [ 'W', 'hp', 'erg/s', 'kcal/s' ], prefixable: [ 'W' ] },
+  density: { base: [ 'kg/m[3]', 'g/cm[3]', 'g/mL', 'lb/ft[3]' ], prefixable: [] },
+  absorptionCoefficient: { base: [ 'm[-1]', 'L/(mol·cm)' ], prefixable: [ 'm[-1]' ] },
+  attenuationCoefficient: { base: [ 'm[-1]', 'dB/cm', 'dB/km' ], prefixable: [ 'm[-1]' ] },
+  compressibility: { base: [ 'Pa[-1]', 'bar[-1]' ], prefixable: [ 'Pa[-1]', 'bar[-1]' ] },
 
-    // Mechanical quantities
-    velocity: { base: [ 'm/s', 'km/h', 'mph', 'ft/s', 'knot', 'Mach' ] as const, prefixable: [ 'm/s' ] as const },
-    acceleration: { base: [ 'm/s[2]', 'g', 'Gal' ] as const, prefixable: [ 'm/s[2]' ] as const },
-    force: { base: [ 'N', 'dyn', 'kgf', 'lbf' ] as const, prefixable: [ 'N' ] as const },
-    surfaceTension: { base: [ 'N/m', 'dyn/cm' ] as const, prefixable: [ 'N/m' ] as const },
-    pressure: { base: [ 'Pa', 'bar', 'atm', 'psi', 'torr', 'mmHg', 'inHg', 'cmH{2}O' ] as const, prefixable: [ 'Pa', 'bar' ] as const },
-    energy: { base: [ 'J', 'eV', 'kcal', 'Wh', 'Btu', 'erg' ] as const, prefixable: [ 'J', 'eV', 'Wh' ] as const },
-    power: { base: [ 'W', 'hp', 'erg/s', 'kcal/s' ] as const, prefixable: [ 'W' ] as const },
-    density: { base: [ 'kg/m[3]', 'g/cm[3]', 'g/mL', 'lb/ft[3]' ] as const, prefixable: [] as const },
-    absorptionCoefficient: { base: [ 'm[-1]', 'L/(mol·cm)' ] as const, prefixable: [ 'm[-1]' ] as const },
-    attenuationCoefficient: { base: [ 'm[-1]', 'dB/cm', 'dB/km' ] as const, prefixable: [ 'm[-1]' ] as const },
-    compressibility: { base: [ 'Pa[-1]', 'bar[-1]' ] as const, prefixable: [ 'Pa[-1]', 'bar[-1]' ] as const },
+  enthalpy: { base: [ 'J/mol', 'J/g', 'kcal/mol', 'eV', 'Btu/lb' ], prefixable: [ 'eV' ] },
+  entropy: { base: [ 'J/(mol·K)', 'J/(g·K)', 'cal/(mol·K)', 'Btu/(lb·°F)' ], prefixable: [] },
+  heatCapacity: { base: [ 'J/(mol·K)', 'J/(g·K)', 'cal/(mol·K)', 'Btu/(lb·°F)' ], prefixable: [] },
+  specificHeatCapacity: { base: [ 'J/(g·K)', 'J/(kg·K)', 'cal/(g·K)', 'Btu/(lb·°F)' ], prefixable: [] },
+  tempCoefficient: { base: [ 'K[-1]', 'ppm/K' ], prefixable: [] },
+  thermalConductivity: { base: [ 'W/(m·K)', 'W/(cm·K)', 'cal/(s·cm·K)' ], prefixable: [] },
+  thermalExpansion: { base: [ 'K[-1]', 'ppm/K' ], prefixable: [] },
+  thermalDiffusivity: { base: [ 'm[2]/s', 'cm[2]/s' ], prefixable: [] },
 
-    // Thermal quantities
-    enthalpy: { base: [ 'J/mol', 'J/g', 'kcal/mol', 'eV', 'Btu/lb' ] as const, prefixable: [ 'eV' ] as const },
-    entropy: { base: [ 'J/(mol·K)', 'J/(g·K)', 'cal/(mol·K)', 'Btu/(lb·°F)' ] as const, prefixable: [] as const },
-    heatCapacity: { base: [ 'J/(mol·K)', 'J/(g·K)', 'cal/(mol·K)', 'Btu/(lb·°F)' ] as const, prefixable: [] as const },
-    specificHeatCapacity: { base: [ 'J/(g·K)', 'J/(kg·K)', 'cal/(g·K)', 'Btu/(lb·°F)' ] as const, prefixable: [] as const },
-    tempCoefficient: { base: [ 'K[-1]', 'ppm/K' ] as const, prefixable: [] as const },
-    thermalConductivity: { base: [ 'W/(m·K)', 'W/(cm·K)', 'cal/(s·cm·K)' ] as const, prefixable: [] as const },
-    thermalExpansion: { base: [ 'K[-1]', 'ppm/K' ] as const, prefixable: [] as const },
-    thermalDiffusivity: { base: [ 'm[2]/s', 'cm[2]/s' ] as const, prefixable: [] as const },
+  electricCharge: { base: [ 'C', 'e', 'Ah' ], prefixable: [ 'C' ] },
+  electricPotential: { base: [ 'V' ], prefixable: [ 'V' ] },
+  electricResistance: { base: [ 'Ω' ], prefixable: [ 'Ω' ] },
+  electricConductance: { base: [ 'S' ], prefixable: [ 'S' ] },
+  electricConductivity: { base: [ 'S/m', 'S/cm' ], prefixable: [ 'S/m' ] },
+  electricResistivity: { base: [ 'Ω·m', 'Ω·cm' ], prefixable: [ 'Ω·m' ] },
+  dipoleMoment: { base: [ 'C·m', 'statC·cm', 'abC·cm' ], prefixable: [ 'C·m' ] },
 
-    // Electrical quantities
-    electricCharge: { base: [ 'C', 'e', 'Ah' ] as const, prefixable: [ 'C' ] as const },
-    electricPotential: { base: [ 'V' ] as const, prefixable: [ 'V' ] as const },
-    electricResistance: { base: [ 'Ω' ] as const, prefixable: [ 'Ω' ] as const },
-    electricConductance: { base: [ 'S' ] as const, prefixable: [ 'S' ] as const },
-    electricConductivity: { base: [ 'S/m', 'S/cm' ] as const, prefixable: [ 'S/m' ] as const },
-    electricResistivity: { base: [ 'Ω·m', 'Ω·cm' ] as const, prefixable: [ 'Ω·m' ] as const },
+  magneticFlux: { base: [ 'Wb', 'V·s' ], prefixable: [ 'Wb' ] },
+  magneticFluxDensity: { base: [ 'T', 'G' ], prefixable: [ 'T', 'G' ] },
+  magneticSusceptibility: { base: [ '*', 'cm[3]/mol', 'm[3]/mol' ], prefixable: [] },
+  magneticMoment: { base: [ 'J/T', 'A·m[2]', 'µ{B}', 'µ{N}' ], prefixable: [ 'J/T' ] },
+  magneticFieldStrength: { base: [ 'A/m', 'Oe' ], prefixable: [ 'A/m' ] },
+  magneticPermeability: { base: [ 'H/m' ], prefixable: [ 'H/m' ] },
+  molarMagneticSusceptibility: { base: [ 'cm[3]/mol', 'm[3]/mol' ], prefixable: [] },
+  massMagneticSusceptibility: { base: [ 'cm[3]/g', 'm[3]/kg' ], prefixable: [] },
 
-    // Magnetic quantities
-    magneticFlux: { base: [ 'Wb', 'V·s' ] as const, prefixable: [ 'Wb' ] as const },
-    magneticFluxDensity: { base: [ 'T', 'G' ] as const, prefixable: [ 'T', 'G' ] as const },
-    magneticSusceptibility: { base: [ '*', 'cm[3]/mol', 'm[3]/mol' ] as const, prefixable: [] as const },
-    magneticMoment: { base: [ 'J/T', 'A·m[2]', 'µ{B}', 'µ{N}' ] as const, prefixable: [ 'J/T' ] as const },
-    magneticFieldStrength: { base: [ 'A/m', 'Oe' ] as const, prefixable: [ 'A/m' ] as const },
-    magneticPermeability: { base: [ 'H/m' ] as const, prefixable: [ 'H/m' ] as const },
-    molarMagneticSusceptibility: { base: [ 'cm[3]/mol', 'm[3]/mol' ] as const, prefixable: [] as const },
-    massMagneticSusceptibility: { base: [ 'cm[3]/g', 'm[3]/kg' ] as const, prefixable: [] as const },
+  luminousFlux: { base: [ 'lm' ], prefixable: [] },
+  illuminance: { base: [ 'lx', 'fc' ], prefixable: [] },
 
-    // Optical quantities
-    luminousFlux: { base: [ 'lm' ] as const, prefixable: [] as const },
-    illuminance: { base: [ 'lx', 'fc' ] as const, prefixable: [] as const },
+  soundSpeed: { base: [ 'm/s', 'km/h', 'ft/s' ], prefixable: [ 'm/s' ] },
+  acousticImpedance: { base: [ 'Pa·s/m', 'kg/(m[2]·s)', 'Rayl' ], prefixable: [] },
 
-    // Acoustic quantities
-    soundSpeed: { base: [ 'm/s', 'km/h', 'ft/s' ] as const, prefixable: [ 'm/s' ] as const },
-    acousticImpedance: { base: [ 'Pa·s/m', 'kg/(m[2]·s)', 'Rayl' ] as const, prefixable: [] as const },
+  molarMass: { base: [ 'g/mol' ], prefixable: [ 'g/mol' ] },
+  molarVolume: { base: [ 'L/mol', 'm[3]/mol' ], prefixable: [ 'L/mol', 'm[3]/mol' ] },
+  concentration: { base: [ 'mol/L', 'mol/m[3]', 'g/L', 'ppm', 'ppb' ], prefixable: [ 'mol/L', 'mol/m[3]', 'g/L' ] },
+  molarity: { base: [ 'M', 'mol/L' ], prefixable: [ 'mol/L' ] },
+  molality: { base: [ 'm', 'mol/kg' ], prefixable: [ 'mol/kg' ] },
+  moleFraction: { base: [ '%', '‰', '*', 'ppm', 'ppb', 'ppt' ], prefixable: [] },
+  molarHeatCapacity: { base: [ 'J/(mol·K)', 'cal/(mol·K)' ], prefixable: [] },
 
-    // Chemical quantities
-    molarMass: { base: [ 'g/mol' ] as const, prefixable: [ 'g/mol' ] as const },
-    molarVolume: { base: [ 'L/mol', 'm[3]/mol' ] as const, prefixable: [ 'L/mol', 'm[3]/mol' ] as const },
-    concentration: { base: [ 'mol/L', 'mol/m[3]', 'g/L', 'ppm', 'ppb' ] as const, prefixable: [ 'mol/L', 'mol/m[3]', 'g/L' ] as const },
-    molarity: { base: [ 'M', 'mol/L' ] as const, prefixable: [ 'mol/L' ] as const },
-    molality: { base: [ 'm', 'mol/kg' ] as const, prefixable: [ 'mol/kg' ] as const },
-    moleFraction: { base: [ '%', '‰', '*', 'ppm', 'ppb', 'ppt' ] as const, prefixable: [] as const },
-    molarHeatCapacity: { base: [ 'J/(mol·K)', 'cal/(mol·K)' ] as const, prefixable: [] as const },
+  dynamicViscosity: { base: [ 'Pa·s', 'cP', 'poise', 'mPa·s' ], prefixable: [] },
+  kinematicViscosity: { base: [ 'm[2]/s', 'cSt', 'stoke' ], prefixable: [] },
 
-    // Viscosity quantities
-    dynamicViscosity: { base: [ 'Pa·s', 'cP', 'poise', 'mPa·s' ] as const, prefixable: [] as const },
-    kinematicViscosity: { base: [ 'm[2]/s', 'cSt', 'stoke' ] as const, prefixable: [] as const },
+  activity: { base: [ 'Bq', 'Ci' ], prefixable: [ 'Bq', 'Ci' ] },
+  absorbedDose: { base: [ 'Gy', 'rad' ], prefixable: [ 'Gy' ] },
 
-    // Radiation quantities
-    activity: { base: [ 'Bq', 'Ci' ] as const, prefixable: [ 'Bq', 'Ci' ] as const },
-    absorbedDose: { base: [ 'Gy', 'rad' ] as const, prefixable: [ 'Gy' ] as const },
+  gyromagneticRatio: { base: [ 'rad/(s·T)' ] , prefixable: [] },
 
-    // Specialized quantities
-    frequency: { base: [ 'Hz', 'rpm', 'rps' ] as const, prefixable: [ 'Hz' ] as const },
-    angle: { base: [ '°', 'rad', 'ʹ', 'ʺ', 'grad', 'turn' ] as const, prefixable: [] as const },
-    massFraction: { base: [ '%', '‰', '*', 'ppm', 'ppb', 'ppt' ] as const, prefixable: [] as const },
-    area: { base: [ 'm[2]', 'b' ] as const, prefixable: [ 'm[2]', 'b' ] as const },
-    quantity: { base: [ '*', '%', '‰', 'mol' ] as const, prefixable: [] as const },
-    currency: { base: [ 'USD' ] as const, prefixable: [] as const }
-
+  frequency: { base: [ 'Hz', 'rpm', 'rps' ], prefixable: [ 'Hz' ] },
+  angle: { base: [ '°', 'rad', 'ʹ', 'ʺ', 'grad', 'turn' ], prefixable: [] },
+  massFraction: { base: [ '%', '‰', '*', 'ppm', 'ppb', 'ppt' ], prefixable: [] },
+  area: { base: [ 'm[2]', 'b' ], prefixable: [ 'm[2]' ] },
+  quantity: { base: [ '*', '%', '‰', 'mol' ], prefixable: [] },
+  currency: { base: [ 'USD', 'EUR', 'CHF' ], prefixable: [] }
 } as const;
 
-/** List of valid physical quantities. */
-export type PhysicalQuantity = keyof typeof ValidUnits;
-
-/** Base and prefixable unit types for physical quantities. */
 export type BaseUnitSymbols< Q extends PhysicalQuantity > = ValidUnits[ Q ][ 'base' ][ number ];
 export type PrefixableUnitSymbols< Q extends PhysicalQuantity > = ValidUnits[ Q ][ 'prefixable' ][ number ];
 
-/** Allowed unit symbols with SI prefixes. */
 export type PrefixedSymbols< Q extends PhysicalQuantity > =
-    | BaseUnitSymbols< Q >
-    | `${ SIPrefix }${ PrefixableUnitSymbols< Q > }`;
+  | BaseUnitSymbols< Q >
+  | `${ SIPrefix }${ PrefixableUnitSymbols< Q > }`;
 
-/**
- * Vector representing the powers of each base dimension in the order:
- * [time, length, mass, electricCurrent, temperature, amountOfSubstance, luminousIntensity]
- */
 export type DimensionVector = [ number, number, number, number, number, number, number ];
 
-/**
- * Branded type description of a single physical unit.
- * 
- * @template Q - Physical quantity type
- * @template U - Unit symbol type
- * @param symbol - Unit symbol (e.g., "m" for meters; branding)
- * @param name - Optional full name of the unit (e.g., "meter")
- * @param isBase - Whether this unit is a base unit
- * @param prefixable - Whether unit prefixes are allowed
- * @param system - Metric system the unit belongs to
- * @param conversion - Conversion factor to the base unit
- *  - factor - Multiplication factor to convert to the base unit
- *  - offset - Optional offset for units like Celsius to Kelvin
- */
 export type Unit< Q extends PhysicalQuantity, U extends BaseUnitSymbols< Q > > = Brand< {
-    name?: string;
-    isBase?: boolean;
-    prefixable?: U extends PrefixableUnitSymbols< Q > ? true : false;
-    system?: MetricSystem;
-    conversion?: {
-        factor: number;
-        offset?: number;
-    };
+  name?: string;
+  isBase?: boolean;
+  prefixable?: U extends PrefixableUnitSymbols< Q > ? true : false;
+  system?: MetricSystem;
+  conversion?: {
+    factor: number;
+    offset?: number;
+  };
 }, U, 'symbol', true >;
 
-/**
- * Type description of a physical quantity and its units.
- * 
- * @template Q - Physical quantity type
- * @param dimension - Optional dimension information
- *  - symbol - Dimension symbol (e.g., "L" for length)
- *  - name - Full name of the dimension (e.g., "Length")
- *  - si - Whether this dimension is an SI base dimension
- *  - vector - Dimension vector representing the powers of base dimensions
- * @param baseUnit - Symbol of the base unit for this quantity
- * @param units - Record of units associated with this quantity
- */
 export type Quantity< Q extends PhysicalQuantity > = {
-    dimension?: {
-        symbol: string;
-        name: string;
-        si: Q extends SIDimension ? true : false;
-        vector: DimensionVector;
-    };
-    baseUnit: BaseUnitSymbols< Q >;
-    units: {
-        [ U in BaseUnitSymbols< Q > ]: Unit< Q, U >;
-    };
+  dimension?: {
+    symbol: string;
+    name: string;
+    si: Q extends SIDimension ? true : false;
+    vector: DimensionVector;
+  };
+  baseUnit: BaseUnitSymbols< Q >;
+  units: {
+    [ U in BaseUnitSymbols< Q > ]: Unit< Q, U >;
+  };
 };
 
-/** Collection of physical quantities and their units. */
-export type UnitCollection = {
-    [ Q in PhysicalQuantity ]?: Quantity< Q >;
-};
-
-/**
- * Branded unit reference used in other parts of the data model.
- * 
- * @template Q - Physical quantities used as conditions
- */
 export type UnitId< Q extends PhysicalQuantity = PhysicalQuantity > = Brand<
-    [ Q, PrefixedSymbols< Q > ],
-    'unitId'
+  [ Q, PrefixedSymbols< Q > ],
+  'unitId'
 >;
+
+export type UnitCollection = {
+  [ Q in PhysicalQuantity ]?: Quantity< Q >;
+};
