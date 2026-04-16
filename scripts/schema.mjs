@@ -25,17 +25,37 @@ class SchemaGenerator {
   init () {
     this.schema = null;
     this.originalStats = null;
+    this.replacedRefs = 0;
+
     this.hashMemo = new WeakMap();
     this.nodesByHash = new Map();
     this.hashByOriginalName = new Map();
     this.sharedMap = new Map();
-    this.replacedRefs = 0;
+  }
+
+  async run ( mode = 'make' ) {
+    const actions = {
+      generate: async () => await this.generate(),
+      optimize: async () => { if ( ! this.schema ) await this.load(), await this.optimize() },
+      validate: async () => { if ( ! this.schema ) await this.load(), await this.validate() }
+    };
+
+    if ( mode === 'make' ) {
+      await actions.generate();
+      await actions.optimize();
+      await actions.validate();
+    } else if ( actions[ mode ] ) {
+      await actions[ mode ]();
+    }
+
+    if ( mode !== 'validate' ) await this.save();
+    this.log( `[schema] Process ${ mode.toUpperCase() } completed successfully` );
   }
 
 }
 
 // Global runner
-( new SchemaGenerator() ).run( process.argv[ 2 ] || 'full' ).catch( ( err ) => {
-  console.error( `[schema] FAILED: ${ err.message }` );
+( new SchemaGenerator() ).run( process.argv[ 2 ] || 'make' ).catch( ( err ) => {
+  console.error( `[schema] Failed: ${ err.message }` );
   process.exit( 1 );
 } );
