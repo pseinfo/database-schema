@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
+import { readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import Ajv from 'ajv';
 import stableStringify from 'json-stable-stringify';
 import { createGenerator } from 'ts-json-schema-generator';
-import { readFile, writeFile } from 'node:fs/promises';
 
 const require = createRequire( import.meta.url );
 const draft7MetaSchema = require( 'ajv/dist/refs/json-schema-draft-07.json' );
@@ -85,6 +85,45 @@ class SchemaGenerator {
       this.error( `Generation failed: ${ err.message }` );
       throw err;
     }
+  }
+
+  // ---- Optimize ----
+
+  async optimize () {
+    if ( ! this.schema ) throw new Error( `No schema loaded to optimize.` );
+    this.log( `Optimizing schema structure ...` );
+
+    // 0. Capture baseline stats before optimization
+    this.captureStats();
+
+    // 1. Normalize definitions
+    const definitions = this.schema.definitions || this.schema.$defs || {};
+    this.schema.definitions = definitions;
+    delete this.schema.$defs;
+
+    // 2. Perform Merkle-Tree analysis
+    this.log( 'Analyzing schema structures ...' );
+    this.analyzeNode( this.schema, null );
+
+    for ( const [ name, def ] of Object.entries( definitions ) )
+      this.hashByOriginalName.set( name, this.analyzeNode( def, 'definitions' ).hash );
+
+    // 3. Rebuild with shared definitions
+    this.sharedMap = this.buildSharedMap();
+    const nextDefinitions = {};
+
+    for ( const [ hash, name ] of this.sharedMap.entries() ) {
+      const entry = this.nodesByHash.get( hash );
+      if ( entry ) nextDefinitions[ name ] = this.performReplacement( entry.node, name, true );
+    }
+
+    this.schema = {
+      ...this.performReplacement( this.schema, null, false ),
+      definitions: nextDefinitions
+    };
+
+    // 4. Enhance metadata
+    await this.enhanceMetadata();
   }
 
   // ---- Validate ----
