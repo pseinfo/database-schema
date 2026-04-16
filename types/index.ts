@@ -17,9 +17,11 @@ export type StatsCollection = Collection< {
     minerals: Distinct< number >;
     mixtures: Distinct< number >;
   } >;
-  authors: Distinct< {
+  contributors: Distinct< {
     name: Distinct< string >;
-    count: Distinct< number >;
+    lastModified: Distinct< string >;
+    edits: Distinct< number >;
+    contact?: Distinct< string >;
   }[] >;
 } >;
 
