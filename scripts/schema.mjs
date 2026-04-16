@@ -316,16 +316,12 @@ class SchemaGenerator {
 
   // ---- IO ----
 
-  now () {
-    return new Date().toISOString().substr( 11, 8 );
-  }
-
   log ( msg ) {
-    console.log( `[${ this.now() }] ${ msg }` );
+    console.log( `[schema] ${ msg }` );
   }
 
   error ( msg ) {
-    console.error( `[${ this.now() }] ERROR: ${ msg }` );
+    console.error( `[schema] ERROR: ${ msg }` );
   }
 
   async save () {
@@ -352,6 +348,6 @@ class SchemaGenerator {
 }
 
 ( new SchemaGenerator() ).run( process.argv[ 2 ] ).catch( ( err ) => {
-  console.error( `Failed: ${ err.message }` );
+  console.error( `[schema] Failed: ${ err.message }` );
   process.exit( 1 );
 } );
