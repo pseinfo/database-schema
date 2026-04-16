@@ -1,5 +1,5 @@
 import type { Primitive } from 'devtypes/types/primitive';
-import type { StandardCondition } from '../enum/util';
+import type { StandardCondition } from '../../enum/util';
 import type { PhysicalQuantity } from './unit';
 import type { Value } from './value';
 

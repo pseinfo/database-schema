@@ -1,7 +1,7 @@
+import type { ComponentRole } from '../../enum/chemistry';
+import type { ElementSymbol } from '../../enum/element';
 import type { Collection, Single } from '../abstract/collection';
 import type { PrimitiveProperty, StructProperty } from '../abstract/property';
-import type { ComponentRole } from '../enum/chemistry';
-import type { ElementSymbol } from '../enum/element';
 
 export type Component = {
   element: ElementSymbol;

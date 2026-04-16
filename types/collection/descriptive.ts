@@ -1,9 +1,9 @@
+import type { LangCode } from '../../enum/generic';
+import type { D3Format, ImageFormat } from '../../enum/util';
 import type { Collection, Distinct, Group, Single } from '../abstract/collection';
 import type { PrimitiveProperty } from '../abstract/property';
 import type { RefId } from '../abstract/reference';
 import type { LangGroup } from '../abstract/util';
-import type { LangCode } from '../enum/generic';
-import type { D3Format, ImageFormat } from '../enum/util';
 import type { RegistryGroup, StructureGroup } from './registry';
 
 export type DiscoveryGroup = Group< {

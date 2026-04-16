@@ -1,9 +1,9 @@
+import type { Phase } from '../../enum/generic';
+import type { MineralCategory, MineralClass, MineralProperty } from '../../enum/mineral';
 import type { Brand, Expand } from 'devtypes/types/util';
 import type { Collection, Distinct } from '../abstract/collection';
 import type { FormCollection } from '../abstract/form';
 import type { MetaData } from '../abstract/util';
-import type { Phase } from '../enum/generic';
-import type { MineralCategory, MineralClass, MineralProperty } from '../enum/mineral';
 import type { Composite } from './composite';
 
 export type MineralID = Brand< string, 'mineralID' >;

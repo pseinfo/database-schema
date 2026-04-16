@@ -1,11 +1,11 @@
+import type { ElementSymbol } from '../../enum/element';
+import type { DecayMode, NuclideProperty, NuclideStability, NuclideState, SpinParity } from '../../enum/nuclide';
 import type { Brand, Expand } from 'devtypes/types/util';
 import type { Collection, Distinct, Group } from '../abstract/collection';
 import type { MetaData } from '../abstract/util';
 import type { DescriptiveCollection } from '../collection/descriptive';
 import type { GenericCollection } from '../collection/generic';
 import type { NuclearCollection } from '../collection/nuclear';
-import type { ElementSymbol } from '../enum/element';
-import type { DecayMode, NuclideProperty, NuclideStability, NuclideState, SpinParity } from '../enum/nuclide';
 
 export type NuclideIdentifier = Brand< `${number}` | `${number}m` | `${number}m${number}`, 'nuclideID' >;
 

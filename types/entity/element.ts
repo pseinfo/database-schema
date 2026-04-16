@@ -1,10 +1,10 @@
+import type { ElementBlock, ElementGroup, ElementProperty, ElementSet, ElementSymbol } from '../../enum/element';
+import type { Phase, PTColumn, PTPeriod } from '../../enum/generic';
 import type { Expand } from 'devtypes/types/util';
 import type { Collection, Distinct } from '../abstract/collection';
 import type { FormCollection } from '../abstract/form';
 import type { MetaData } from '../abstract/util';
 import type { AtomicsCollection } from '../collection/atomics';
-import type { ElementBlock, ElementGroup, ElementProperty, ElementSet, ElementSymbol } from '../enum/element';
-import type { Phase, PTColumn, PTPeriod } from '../enum/generic';
 import type { Substance } from './substance';
 
 export type ElementClassification = Collection< {

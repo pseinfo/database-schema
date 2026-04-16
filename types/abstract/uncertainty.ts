@@ -1,6 +1,6 @@
 import type { RequireFrom } from 'devtypes/types/constraint';
 import type { Brand, Expand } from 'devtypes/types/util';
-import type { UncertaintyType } from '../enum/util';
+import type { UncertaintyType } from '../../enum/util';
 
 export type BaseUncertainty< T extends UncertaintyType > = Brand< {
   confidence?: number;

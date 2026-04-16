@@ -1,8 +1,8 @@
+import type { Phase } from '../../enum/generic';
+import type { Diaphaneity, Gloss, Lustre, MagneticOrdering, Superconductivity } from '../../enum/physics';
 import type { Collection, Group, Single } from '../abstract/collection';
 import type { CoupledNumberProperty, NumberProperty, PrimitiveProperty } from '../abstract/property';
 import type { LangGroup } from '../abstract/util';
-import type { Phase } from '../enum/generic';
-import type { Diaphaneity, Gloss, Lustre, MagneticOrdering, Superconductivity } from '../enum/physics';
 
 export type PhysicsCollection = Collection< {
   density?: Single< NumberProperty< 'density' > >;

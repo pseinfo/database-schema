@@ -1,9 +1,9 @@
-import type { Collection, Group, Single } from '../abstract/collection';
-import type { NumberProperty, PrimitiveProperty } from '../abstract/property';
 import type {
   AcidBaseCharacter, BasicityType, BondType, Goldschmidt, HSAB, Hybridization, LewisModel,
   MolecularShape, OxideCharacter, SolubilityQualifier
-} from '../enum/chemistry';
+} from '../../enum/chemistry';
+import type { Collection, Group, Single } from '../abstract/collection';
+import type { NumberProperty, PrimitiveProperty } from '../abstract/property';
 
 export type ChemistryCollection = Collection< {
   molarMass?: Single< NumberProperty< 'mass' > >;

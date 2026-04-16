@@ -1,6 +1,6 @@
+import type { NaturalOccurrence } from '../../enum/generic';
 import type { Collection, Single } from '../abstract/collection';
 import type { NumberProperty, PrimitiveProperty } from '../abstract/property';
-import type { NaturalOccurrence } from '../enum/generic';
 
 export type AbundanceCollection = Collection< {
   naturalOccurrence?: Single< PrimitiveProperty< NaturalOccurrence > >;

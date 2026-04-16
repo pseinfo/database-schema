@@ -1,6 +1,6 @@
 import type { Expand } from 'devtypes/types/util';
+import type { LangCode } from '../../enum/generic';
 import type { Distinct, Group } from '../abstract/collection';
-import type { LangCode } from '../enum/generic';
 
 export type MetaData = Distinct< {
   '@metadata': {

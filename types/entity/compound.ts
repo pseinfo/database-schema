@@ -1,9 +1,9 @@
+import type { CompoundCategory, CompoundProperty, CompoundUnion } from '../../enum/compound';
+import type { Phase } from '../../enum/generic';
 import type { Brand, Expand } from 'devtypes/types/util';
 import type { Collection, Distinct } from '../abstract/collection';
 import type { FormCollection } from '../abstract/form';
 import type { MetaData } from '../abstract/util';
-import type { CompoundCategory, CompoundProperty, CompoundUnion } from '../enum/compound';
-import type { Phase } from '../enum/generic';
 import type { Composite } from './composite';
 
 export type CompoundID = Brand< string, 'compoundID' >;

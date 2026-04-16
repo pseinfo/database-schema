@@ -1,7 +1,7 @@
+import type { DecayMode, RadiationType, SpinParity } from '../../enum/nuclide';
 import type { Collection, Single } from '../abstract/collection';
 import type { StructProperty } from '../abstract/property';
 import type { NumberValue, PrimitiveValue } from '../abstract/value';
-import type { DecayMode, RadiationType, SpinParity } from '../enum/nuclide';
 
 export type Spin = {
   parity: SpinParity;

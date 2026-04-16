@@ -1,11 +1,11 @@
+import type {
+  ADRClass, DOTClass, GHSClass, GHSPictogram, NFPACode, NFPANotice, SignalWord,
+  ToxicityApplication, ToxicityType, WHMISClass
+} from '../../enum/safety';
 import type { Collection, Distinct, Group, Single } from '../abstract/collection';
 import type { StructProperty } from '../abstract/property';
 import type { RefId } from '../abstract/reference';
 import type { RangeValue, SingleValue } from '../abstract/value';
-import type {
-  ADRClass, DOTClass, GHSClass, GHSPictogram, NFPACode, NFPANotice, SignalWord,
-  ToxicityApplication, ToxicityType, WHMISClass
-} from '../enum/safety';
 
 export type HStatement = `H${ '2' | '3' | '4' | '5' }${ string }`;
 export type PStatement = `P${ '1' | '2' | '3' | '4' | '5' }${ string }`;

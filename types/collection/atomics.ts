@@ -1,6 +1,6 @@
+import type { ShellModel } from '../../enum/generic';
 import type { Collection, Group, Single } from '../abstract/collection';
 import type { ArrayProperty, NumberProperty, PrimitiveProperty, StructProperty } from '../abstract/property';
-import type { ShellModel } from '../enum/generic';
 
 export type AtomicsCollection = Collection< {
   atomicNumber?: Single< PrimitiveProperty< number > >;

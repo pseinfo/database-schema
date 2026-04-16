@@ -1,6 +1,6 @@
 import type { ExtractFrom, RequireAtLeastOne, RequireExactlyOneFrom, StrictSubset } from 'devtypes/types/constraint';
 import type { Brand, Expand } from 'devtypes/types/util';
-import type { ReferenceType } from '../enum/util';
+import type { ReferenceType } from '../../enum/util';
 
 export type BaseReference< T extends ReferenceType > = Brand< {
   accessed?: string;

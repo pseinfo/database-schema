@@ -1,11 +1,11 @@
-import type { Collection, Single } from '../abstract/collection';
-import type { PrimitiveProperty, StructProperty } from '../abstract/property';
-import type { NumberValue } from '../abstract/value';
 import type {
   CleavageQuality, CleavageType, CrystalFamily, CrystalHabit, CrystalSystem,
   FractureType, Tenacity, TwinningMode, TwinningType
-} from '../enum/crystallography';
-import type { ElementSymbol } from '../enum/element';
+} from '../../enum/crystallography';
+import type { ElementSymbol } from '../../enum/element';
+import type { Collection, Single } from '../abstract/collection';
+import type { PrimitiveProperty, StructProperty } from '../abstract/property';
+import type { NumberValue } from '../abstract/value';
 
 export type PointGroup = {
   number: number;
