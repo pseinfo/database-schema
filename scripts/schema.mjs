@@ -18,6 +18,20 @@ class SchemaGenerator {
     MIN_NODE_SIZE: 30
   };
 
+  constructor () {
+    this.init();
+  }
+
+  init () {
+    this.schema = null;
+    this.originalStats = null;
+    this.hashMemo = new WeakMap();
+    this.nodesByHash = new Map();
+    this.hashByOriginalName = new Map();
+    this.sharedMap = new Map();
+    this.replacedRefs = 0;
+  }
+
 }
 
 // Global runner
