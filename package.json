@@ -59,9 +59,9 @@
       "import": "./types/entity/*.ts"
     },
     "./enum/*": {
-      "types": "./types/enum/*.ts",
-      "default": "./types/enum/*.ts",
-      "import": "./types/enum/*.ts"
+      "types": "./enum/*.ts",
+      "default": "./enum/*.ts",
+      "import": "./enum/*.ts"
     },
     "./schema.json": {
       "default": "./src/schema.json",
