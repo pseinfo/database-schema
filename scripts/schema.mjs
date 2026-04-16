@@ -101,6 +101,16 @@ class SchemaGenerator {
     this.log( 'Validation successful.' );
   }
 
+  // ---- IO ----
+
+  log ( msg ) {
+    console.log( `[schema] ${ msg }` );
+  }
+
+  error ( msg ) {
+    console.error( `[schema] ERROR: ${ msg }` );
+  }
+
 }
 
 ( new SchemaGenerator() ).run( process.argv[ 2 ] || 'make' ).catch( ( err ) => {
