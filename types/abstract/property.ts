@@ -17,7 +17,7 @@ import type * as value from './value';
  * @template C Physical quantities defining measurement conditions.
  * @template T Primitive types for condition values.
  */
-export interface BaseProperty<
+interface BaseProperty<
   C extends PhysicalQuantity = PhysicalQuantity,
   T extends Primitive = Primitive
 > {

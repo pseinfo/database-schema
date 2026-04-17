@@ -13,7 +13,7 @@ import type { UncertaintyType } from '../../enum/util';
  * Base structure for all scientific uncertainty types.
  * @template T The specific type of uncertainty (absolute, relative, or asymmetrical).
  */
-export type BaseUncertainty< T extends UncertaintyType > = Brand< {
+type BaseUncertainty< T extends UncertaintyType > = Brand< {
   /** The statistical confidence level (e.g., 0.95 for a 95% confidence interval) */
   confidence?: number;
   /** Additional scientific notes regarding the measurement error or calculation method */
@@ -23,7 +23,7 @@ export type BaseUncertainty< T extends UncertaintyType > = Brand< {
 /**
  * Common fields used across different uncertainty models.
  */
-export interface UncertaintyFields {
+interface UncertaintyFields {
   /** The constant value of the error in the same unit as the measurement */
   absolute?: number;
   /** The fractional error relative to the measurement value (e.g., 0.01 for 1%) */

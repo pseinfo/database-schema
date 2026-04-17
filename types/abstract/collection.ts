@@ -31,7 +31,7 @@ export type Group< T extends Record< string, Single< Property > | Distinct< unkn
  * It differentiates between nested properties, groups, distinct values, and general objects.
  * @template T The type to be processed into a collection value.
  */
-export type CollectionValue< T > =
+type CollectionValue< T > =
   /** If it's a single property or array of properties, return the base property type */
   [ T ] extends [ Single< infer P > ] ? P :
   /** If it's a group, recurse into the group members */

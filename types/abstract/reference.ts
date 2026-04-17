@@ -13,7 +13,7 @@ import type { ReferenceType } from '../../enum/util';
  * Base branded metadata shared by all bibliographic reference types.
  * @template T The classification of the reference (Article, Book, etc.).
  */
-export type BaseReference< T extends ReferenceType > = Brand< {
+type BaseReference< T extends ReferenceType > = Brand< {
   /** ISO 8601 date when the source was last accessed (crucial for web resources) */
   accessed?: string;
   /** Direct link to the source material */
@@ -25,7 +25,7 @@ export type BaseReference< T extends ReferenceType > = Brand< {
 /**
  * Collection of standard BibTeX fields for academic citations.
  */
-export interface BibTeXFields {
+interface BibTeXFields {
   /** Physical or electronic address of the publisher or institution */
   address?: string;
   /** Primary creator(s) of the work */

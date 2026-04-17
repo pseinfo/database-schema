@@ -17,7 +17,7 @@ import type { Collection, Distinct } from './collection';
  * @template T The classification of the form (Allotrope, Polymorph, etc.).
  * @template C The collection of scientific properties applicable to this form.
  */
-export type BaseForm< T extends FormType, C extends Collection< any > > = Brand< {
+type BaseForm< T extends FormType, C extends Collection< any > > = Brand< {
   /** Partial override of properties specific to this physical form */
   properties?: DeepPartial< C >;
   /** Descriptive note clarifying the nature or source of this specific form */
@@ -27,7 +27,7 @@ export type BaseForm< T extends FormType, C extends Collection< any > > = Brand<
 /**
  * Common descriptive fields for chemical forms.
  */
-export interface FormFields {
+interface FormFields {
   /** Specific chemical or structural formula for the form */
   formula?: Distinct< string >;
   /** The primary physical state (solid, liquid, gas, plasma) of this form */

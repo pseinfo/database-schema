@@ -21,7 +21,7 @@ export type StructType = Record< string | number, unknown >;
  * Branded base attributes for all scientific value types.
  * @template T The classification of the value (Primitive, Struct, Single, etc.).
  */
-export type BaseValue< T extends ValueType > = Brand< {
+type BaseValue< T extends ValueType > = Brand< {
   /** The degree of scientific certainty or validation status of the data */
   confidence?: ValueConfidence;
   /** Experimental or statistical uncertainty associated with the value */
@@ -36,7 +36,7 @@ export type BaseValue< T extends ValueType > = Brand< {
  * @template T The primitive data type (e.g., string, boolean).
  * @template S The structure of complex objects.
  */
-export interface ValueFields<
+interface ValueFields<
   Q extends PhysicalQuantity = PhysicalQuantity,
   T extends Primitive = Primitive,
   S extends StructType = StructType

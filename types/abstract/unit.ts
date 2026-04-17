@@ -179,19 +179,19 @@ export const ValidUnits = {
  * Extracts base unit symbols for a specific physical quantity.
  * @template Q The physical quantity to extract symbols for.
  */
-export type BaseUnitSymbols< Q extends PhysicalQuantity > = ValidUnits[ Q ][ 'base' ][ number ];
+type BaseUnitSymbols< Q extends PhysicalQuantity > = ValidUnits[ Q ][ 'base' ][ number ];
 
 /**
  * Extracts prefixable unit symbols for a specific physical quantity.
  * @template Q The physical quantity to extract prefixable symbols for.
  */
-export type PrefixableUnitSymbols< Q extends PhysicalQuantity > = ValidUnits[ Q ][ 'prefixable' ][ number ];
+type PrefixableUnitSymbols< Q extends PhysicalQuantity > = ValidUnits[ Q ][ 'prefixable' ][ number ];
 
 /**
  * Generates all possible symbols (including SI prefixes) for a quantity.
  * @template Q The physical quantity to generate symbols for.
  */
-export type PrefixedSymbols< Q extends PhysicalQuantity > =
+type PrefixedSymbols< Q extends PhysicalQuantity > =
   /** Base unit symbols */
   | BaseUnitSymbols< Q >
   /** SI prefixed unit symbols */
