@@ -62,6 +62,7 @@ export interface ValueFields<
 
 /**
  * Represents a standard primitive value (string, number, boolean).
+ * Requires either a single value or an array of values.
  * @template T The specific primitive type.
  */
 export type PrimitiveValue< T extends Primitive = Primitive > = Expand<
@@ -71,6 +72,7 @@ export type PrimitiveValue< T extends Primitive = Primitive > = Expand<
 
 /**
  * Represents a complex structured object.
+ * Requires the presence of the 'struct' field.
  * @template T The structure definition.
  */
 export type StructValue< T extends StructType = StructType > = Expand<
@@ -80,6 +82,7 @@ export type StructValue< T extends StructType = StructType > = Expand<
 
 /**
  * Represents a single measurement of a physical quantity with a unit.
+ * Requires a single value. Optionally includes a physical quantity unit.
  * @template Q The physical quantity.
  */
 export type SingleValue< Q extends PhysicalQuantity = PhysicalQuantity > = Expand<
@@ -89,6 +92,7 @@ export type SingleValue< Q extends PhysicalQuantity = PhysicalQuantity > = Expan
 
 /**
  * Represents an array of measurements for a physical quantity with a common unit.
+ * Requires an array of values. Optionally includes a physical quantity unit.
  * @template Q The physical quantity.
  */
 export type ArrayValue< Q extends PhysicalQuantity = PhysicalQuantity > = Expand<
@@ -98,6 +102,7 @@ export type ArrayValue< Q extends PhysicalQuantity = PhysicalQuantity > = Expand
 
 /**
  * Represents a numeric interval for a physical quantity.
+ * Requires a range of values. Optionally includes a physical quantity unit and single value.
  * @template Q The physical quantity.
  */
 export type RangeValue< Q extends PhysicalQuantity = PhysicalQuantity > = Expand<
