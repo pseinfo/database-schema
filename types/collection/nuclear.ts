@@ -28,11 +28,11 @@ export type NMR = {
   /** The intrinsic angular momentum of the nucleus. */
   spin?: Spin;
   /** The ratio of a nucleus's magnetic moment to its angular momentum. */
-  gyromagneticRatio?: NumberValue< 'gyromagneticRatio' >; 
+  gyromagneticRatio?: NumberValue< 'gyromagneticRatio' >;
   /** The frequency at which the magnetic moment of a nucleus precesses around an external field. */
   larmorPrecession?: NumberValue< 'frequency' >;
-  /** 
-   * The relative sensitivity of the nucleus to magnetic fields compared to a reference nucleus. 
+  /**
+   * The relative sensitivity of the nucleus to magnetic fields compared to a reference nucleus.
    * An inherent problem with NMR spectroscopy is its comparatively low sensitivity (poor signal-to-noise ratio).
    */
   relativeSensitivity?: PrimitiveValue< number >;
