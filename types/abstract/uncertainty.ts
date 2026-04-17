@@ -36,31 +36,28 @@ export interface UncertaintyFields {
 
 /**
  * Represents an absolute error margin (e.g., ±0.05).
+ * Requires the presence of the 'absolute' field.
  */
 export type AbsoluteUncertainty = Expand<
-  /** Extends base uncertainty attributes restricted to the absolute type */
   BaseUncertainty< UncertaintyType.ABSOLUTE > &
-  /** Requires the presence of the 'absolute' field */
   RequireFrom< UncertaintyFields, 'absolute' >
 >;
 
 /**
  * Represents a relative error margin (e.g., ±2%).
+ * Requires the presence of the 'relative' field.
  */
 export type RelativeUncertainty = Expand<
-  /** Extends base uncertainty attributes restricted to the relative type */
   BaseUncertainty< UncertaintyType.RELATIVE > &
-  /** Requires the presence of the 'relative' field */
   RequireFrom< UncertaintyFields, 'relative' >
 >;
 
 /**
  * Represents asymmetrical errors where the upper and lower bounds differ (e.g., +0.1/-0.05).
+ * Requires both 'plus' and 'minus' fields to define the range.
  */
 export type AsymmetricalUncertainty = Expand<
-  /** Extends base uncertainty attributes restricted to the asymmetrical type */
   BaseUncertainty< UncertaintyType.ASYMMETRICAL > &
-  /** Requires both 'plus' and 'minus' fields to define the range */
   RequireFrom< UncertaintyFields, 'plus' | 'minus' >
 >;
 

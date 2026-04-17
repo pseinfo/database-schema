@@ -29,6 +29,7 @@ export interface BaseProperty<
 
 /**
  * Property carrying a primitive value (string, boolean, etc.).
+ * Incorporates primitive value structure.
  * @template P The primitive type.
  * @template C The physical quantities defining measurement conditions.
  * @template T Primitive types for condition values.
@@ -38,14 +39,13 @@ export type PrimitiveProperty<
   C extends PhysicalQuantity = PhysicalQuantity,
   T extends Primitive = Primitive
 > = Expand< 
-  /** Extends base property with experimental metadata */
   BaseProperty< C, T > & 
-  /** Incorporates primitive value structure */
   value.PrimitiveValue< P > 
 >;
 
 /**
  * Property carrying a complex structured object.
+ * Incorporates structured value definition.
  * @template S The structure definition.
  * @template C The physical quantities defining measurement conditions.
  * @template T Primitive types for condition values.
@@ -55,14 +55,13 @@ export type StructProperty<
   C extends PhysicalQuantity = PhysicalQuantity,
   T extends Primitive = Primitive
 > = Expand< 
-  /** Extends base property with experimental metadata */
   BaseProperty< C, T > & 
-  /** Incorporates structured value definition */
   value.StructValue< S > 
 >;
 
 /**
  * Property carrying a single physical measurement (Value + Unit).
+ * Incorporates single quantity value struct.
  * @template Q The physical quantity.
  * @template C The physical quantities defining measurement conditions.
  * @template T Primitive types for condition values.
@@ -72,14 +71,13 @@ export type SingleProperty<
   C extends PhysicalQuantity = PhysicalQuantity,
   T extends Primitive = Primitive
 > = Expand< 
-  /** Extends base property with experimental metadata */
   BaseProperty< C, T > & 
-  /** Incorporates single quantity value struct */
   value.SingleValue< Q > 
 >;
 
 /**
  * Property carrying multiple measurement points for a single quantity.
+ * Incorporates array of quantity values.
  * @template Q The physical quantity.
  * @template C The physical quantities defining measurement conditions.
  * @template T Primitive types for condition values.
@@ -89,14 +87,13 @@ export type ArrayProperty<
   C extends PhysicalQuantity = PhysicalQuantity,
   T extends Primitive = Primitive
 > = Expand< 
-  /** Extends base property with experimental metadata */
   BaseProperty< C, T > & 
-  /** Incorporates array of quantity values */
   value.ArrayValue< Q > 
 >;
 
 /**
  * Property carrying a numeric range (interval) for a physical quantity.
+ * Incorporates range value definition.
  * @template Q The physical quantity.
  * @template C The physical quantities defining measurement conditions.
  * @template T Primitive types for condition values.
@@ -106,14 +103,13 @@ export type RangeProperty<
   C extends PhysicalQuantity = PhysicalQuantity,
   T extends Primitive = Primitive
 > = Expand< 
-  /** Extends base property with experimental metadata */
   BaseProperty< C, T > & 
-  /** Incorporates range value definition */
   value.RangeValue< Q > 
 >;
 
 /**
  * Property carrying multiple coupled numeric physical quantities.
+ * Incorporates coupled numeric values.
  * @template Q The physical quantity.
  * @template C The physical quantities defining measurement conditions.
  * @template T Primitive types for condition values.
@@ -123,14 +119,13 @@ export type CoupledNumberProperty<
   C extends PhysicalQuantity = PhysicalQuantity,
   T extends Primitive = Primitive
 > = Expand< 
-  /** Extends base property with experimental metadata */
   BaseProperty< C, T > & 
-  /** Incorporates coupled numeric values */
   value.CoupledNumberValue< Q > 
 >;
 
 /**
  * Property carrying a heterogeneous coupling of various value types.
+ * Incorporates heterogeneous coupled values.
  * @template Q The physical quantity.
  * @template P The primitive type.
  * @template C The physical quantities defining measurement conditions.
@@ -144,14 +139,13 @@ export type CoupledProperty<
   T extends Primitive = Primitive,
   S extends value.StructType = value.StructType
 > = Expand< 
-  /** Extends base property with experimental metadata */
   BaseProperty< C, T > & 
-  /** Incorporates heterogeneous coupled values */
   value.CoupledValue< Q, P, S > 
 >;
 
 /**
  * General numeric physical property.
+ * Union of all numeric value representations.
  * @template Q The physical quantity.
  * @template C The physical quantities defining measurement conditions.
  * @template T Primitive types for condition values.
@@ -161,14 +155,13 @@ export type NumberProperty<
   C extends PhysicalQuantity = PhysicalQuantity,
   T extends Primitive = Primitive
 > = Expand< 
-  /** Extends base property with experimental metadata */
   BaseProperty< C, T > & 
-  /** Union of all numeric value representations */
   value.NumberValue< Q > 
 >;
 
 /**
  * The most abstract representation of a scientific property in the database.
+ * Union of all supported value types.
  * @template Q The physical quantity.
  * @template P The primitive type.
  * @template C The physical quantities defining measurement conditions.
@@ -182,8 +175,6 @@ export type Property<
   T extends Primitive = Primitive,
   S extends value.StructType = value.StructType
 > = Expand< 
-  /** Extends base property with experimental metadata */
   BaseProperty< C, T > & 
-  /** Union of all supported value types */
   value.Value< Q, P, S > 
 >;
