@@ -16,7 +16,7 @@ import type { Composite } from './composite';
 export type MineralID = Brand< string, 'mineralID' >;
 
 /**
- * Geological and mineralogical taxonomic data.
+ * High-level mineral classification data.
  */
 export type MineralClassification = Collection< {
   /** The natural origin classification (e.g., Silicates, Carbonates). */
