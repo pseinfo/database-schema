@@ -36,31 +36,28 @@ export interface FormFields {
 
 /**
  * Represents an allotropic variation (e.g., O2 vs O3) or other distinct modification.
+ * Includes standard formula and phase fields.
  */
 export type AllotropeForm< C extends Collection< any > > = Expand<
-  /** Extends base form with Allotrope branding */
   BaseForm< FormType.ALLOTROPE | FormType.OTHER, C > &
-  /** Includes standard formula and phase fields */
   FormFields
 >;
 
 /**
  * Represents a molecular species with a strictly defined formula.
+ * Requires a chemical formula.
  */
 export type MolecularForm< C extends Collection< any > > = Expand<
-  /** Extends base form with Molecular branding */
   BaseForm< FormType.MOLECULAR, C > &
-  /** Requires a chemical formula */
   RequireFrom< FormFields, 'formula' >
 >;
 
 /**
  * Represents data specific to a certain physical state or phase transition.
+ * Requires the definition of the physical state.
  */
 export type PhaseForm< C extends Collection< any > > = Expand<
-  /** Extends base form with Phase-specific branding */
   BaseForm< FormType.PHASE, C > &
-  /** Requires the definition of the physical state */
   RequireFrom< FormFields, 'phase' >
 >;
 
@@ -68,7 +65,6 @@ export type PhaseForm< C extends Collection< any > > = Expand<
  * Represents crystalline modifications (e.g., alpha-iron vs gamma-iron) or amorphous states.
  */
 export type PolymorphForm< C extends Collection< any > > = Expand<
-  /** Extends base form with Polymorph or Amorphous branding */
   BaseForm< FormType.POLYMORPH | FormType.AMORPHOUS, C >
 >;
 
@@ -83,5 +79,8 @@ export type FormId = Brand< string, 'formId' >;
  */
 export type FormCollection< C extends Collection< any > > = Record< FormId, Collection<
   /** Mapping to one of the supported physical form representations */
-  AllotropeForm< C > | MolecularForm< C > | PhaseForm< C > | PolymorphForm< C >
+  | AllotropeForm< C >
+  | MolecularForm< C >
+  | PhaseForm< C >
+  | PolymorphForm< C >
 > >;
