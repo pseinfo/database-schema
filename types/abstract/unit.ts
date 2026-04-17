@@ -192,7 +192,9 @@ export type PrefixableUnitSymbols< Q extends PhysicalQuantity > = ValidUnits[ Q 
  * @template Q The physical quantity to generate symbols for.
  */
 export type PrefixedSymbols< Q extends PhysicalQuantity > =
+  /** Base unit symbols */
   | BaseUnitSymbols< Q >
+  /** SI prefixed unit symbols */
   | `${ SIPrefix }${ PrefixableUnitSymbols< Q > }`;
 
 /**
@@ -258,7 +260,7 @@ export type UnitId< Q extends PhysicalQuantity = PhysicalQuantity > = Brand<
 >;
 
 /**
- * A registry collecting multiple quantities and their unit definitions.
+ * The unit registry collecting all physical quantities and their unit definitions.
  */
 export type UnitCollection = {
   [ Q in PhysicalQuantity ]?: Quantity< Q >;
