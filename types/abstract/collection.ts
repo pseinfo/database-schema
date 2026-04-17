@@ -32,17 +32,17 @@ export type Group< T extends Record< string, Single< Property > | Distinct< unkn
  * @template T The type to be processed into a collection value.
  */
 type CollectionValue< T > =
-  /** If it's a single property or array of properties, return the base property type */
+  /** If it's a single property or array of properties, return the base property type. */
   [ T ] extends [ Single< infer P > ] ? P :
-  /** If it's a group, recurse into the group members */
+  /** If it's a group, recurse into the group members. */
   [ T ] extends [ Group< infer G > ] ? { [ GK in keyof G ]: Collection< G[ GK ] > } :
-  /** Direct property match */
+  /** Direct property match. */
   [ T ] extends [ Property ] ? T :
-  /** Distinct metadata/utility match */
+  /** Distinct metadata/utility match. */
   [ T ] extends [ Distinct< infer D > ] ? Distinct< D > :
-  /** Expand any other object structures */
+  /** Expand any other object structures. */
   [ T ] extends [ object ] ? Expand< T > :
-  /** Fallback for primitives */
+  /** Fallback for primitives. */
   T;
 
 /**
@@ -50,6 +50,6 @@ type CollectionValue< T > =
  * @template T The definition structure of the collection.
  */
 export type Collection< T > = {
-  /** Map each key of the definition to its resolved collection value */
+  /** Map each key of the definition to its resolved collection value. */
   [ K in keyof T ]: CollectionValue< T[ K ] >;
 };

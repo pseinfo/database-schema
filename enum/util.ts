@@ -8,17 +8,17 @@
  * Technical representation models for data values within the schema.
  */
 export enum ValueType {
-  /** A single, primitive data point (e.g., number or string) */
+  /** A single, primitive data point (e.g., number or string). */
   PRIMITIVE = 'primitive',
-  /** A complex object containing nested fields and sub-properties */
+  /** A complex object containing nested fields and sub-properties. */
   STRUCT = 'struct',
-  /** A discrete individual measurement or value */
+  /** A discrete individual measurement or value. */
   SINGLE = 'single',
-  /** A collection of values of the same type */
+  /** A collection of values of the same type. */
   ARRAY = 'array',
-  /** A continuous interval between two numeric bounds */
+  /** A continuous interval between two numeric bounds. */
   RANGE = 'range',
-  /** Coupled values for entries based on multiple physical properties */
+  /** Coupled values for entries based on multiple physical properties. */
   COUPLED = 'coupled'
 };
 
@@ -26,15 +26,15 @@ export enum ValueType {
  * Degree of scientific reliability and origin of a specific data point.
  */
 export enum ValueConfidence {
-  /** Obtained through direct physical observation or instrumentation */
+  /** Obtained through direct physical observation or instrumentation. */
   MEASURED = 'measured',
-  /** Derived from established formulas or numerical simulations */
+  /** Derived from established formulas or numerical simulations. */
   CALCULATED = 'calculated',
-  /** Approximated through heuristic models or incomplete data */
+  /** Approximated through heuristic models or incomplete data. */
   ESTIMATED = 'estimated',
-  /** Validated through specific, controlled scientific experiments */
+  /** Validated through specific, controlled scientific experiments. */
   EXPERIMENTAL = 'experimental',
-  /** Based on theoretical physics or chemical principles without empirical validation */
+  /** Based on theoretical physics or chemical principles without empirical validation. */
   THEORETICAL = 'theoretical'
 };
 
@@ -42,17 +42,17 @@ export enum ValueConfidence {
  * Structural classification for a variant of a substance; see allotropes.
  */
 export enum FormType {
-  /** Elemental variants in the same physical state (e.g., Diamond vs Graphite) */
+  /** Elemental variants in the same physical state (e.g., Diamond vs Graphite). */
   ALLOTROPE = 'allotrope',
-  /** Based on the connectivity or arrangement of atoms in a molecule */
+  /** Based on the connectivity or arrangement of atoms in a molecule. */
   MOLECULAR = 'molecular',
-  /** Corresponding to a specific state of matter (Solid, Liquid, Gas) */
+  /** Corresponding to a specific state of matter (Solid, Liquid, Gas). */
   PHASE = 'phase',
-  /** Solid crystalline forms of the same compound (e.g., Quartz vs Cristobalite) */
+  /** Solid crystalline forms of the same compound (e.g., Quartz vs Cristobalite). */
   POLYMORPH = 'polymorph',
-  /** Non-crystalline solid lacking long-range atomic order */
+  /** Non-crystalline solid lacking long-range atomic order. */
   AMORPHOUS = 'amorphous',
-  /** Categorized into a non-standard or miscellaneous structural type */
+  /** Categorized into a non-standard or miscellaneous structural type. */
   OTHER = 'other'
 };
 
@@ -60,15 +60,15 @@ export enum FormType {
  * Systems of units used to represent physical quantities.
  */
 export enum MetricSystem {
-  /** The International System of Units (SI) or its variants */
+  /** The International System of Units (SI) or its variants. */
   METRIC = 'metric',
-  /** Historical system used primarily in the UK */
+  /** Historical system used primarily in the UK. */
   IMPERIAL = 'imperial',
-  /** Customary system used in the United States */
+  /** Customary system used in the United States. */
   US = 'us',
-  /** Non-standard or application-specific unit set */
+  /** Non-standard or application-specific unit set. */
   CUSTOM = 'custom',
-  /** System of measurement is not specified or recognized */
+  /** System of measurement is not specified or recognized. */
   UNKNOWN = 'unknown'
 };
 
@@ -76,19 +76,19 @@ export enum MetricSystem {
  * Fundamental dimensions of the International System of Units (SI).
  */
 export enum SIDimension {
-  /** Physical dimension of temporal duration */
+  /** Physical dimension of temporal duration. */
   TIME = 'time',
-  /** Physical dimension of distance or spatial extent */
+  /** Physical dimension of distance or spatial extent. */
   LENGTH = 'length',
-  /** Physical dimension of inertia and gravitational attraction */
+  /** Physical dimension of inertia and gravitational attraction. */
   MASS = 'mass',
-  /** Rate of flow of electric charge */
+  /** Rate of flow of electric charge. */
   ELECTRIC_CURRENT = 'electricCurrent',
-  /** Degree of thermal energy in a system */
+  /** Degree of thermal energy in a system. */
   TEMPERATURE = 'temperature',
-  /** Number of elementary entities in a sample */
+  /** Number of elementary entities in a sample. */
   AMOUNT_OF_SUBSTANCE = 'amountOfSubstance',
-  /** Power emitted by a light source in a particular direction */
+  /** Power emitted by a light source in a particular direction. */
   LUMINOUS_INTENSITY = 'luminousIntensity'
 };
 
@@ -96,37 +96,37 @@ export enum SIDimension {
  * Standard conditions for temperature and pressure in scientific measurements.
  */
 export enum StandardCondition {
-  /** T=0°C (273.15K); P=100kPa (1 bar). IUPAC standard since 1982 */
+  /** T=0°C (273.15K); P=100kPa (1 bar). IUPAC standard since 1982. */
   STP = 'STP',
-  /** T=0°C; P=101.325kPa (1 atm). Older NIST and ISO standard */
+  /** T=0°C; P=101.325kPa (1 atm). Older NIST and ISO standard. */
   STP_ATM = 'STP_ATM',
-  /** T=20°C; P=101.325kPa. EPA and NIST standard conditions */
+  /** T=20°C; P=101.325kPa. EPA and NIST standard conditions. */
   NTP = 'NTP',
-  /** T=15°C; P=101.325kPa. International Standard Atmosphere */
+  /** T=15°C; P=101.325kPa. International Standard Atmosphere. */
   ISA = 'ISA',
-  /** T=22°C; P=101.325kPa. Medical physics standard (AAPM) */
+  /** T=22°C; P=101.325kPa. Medical physics standard (AAPM). */
   AAPM = 'AAPM',
-  /** T=25°C; P=101.325kPa. Standard Ambient Temperature and Pressure */
+  /** T=25°C; P=101.325kPa. Standard Ambient Temperature and Pressure. */
   SATP = 'SATP',
-  /** T=20°C; P=100kPa. Compressed Air and Gas Institute standard */
+  /** T=20°C; P=100kPa. Compressed Air and Gas Institute standard. */
   CAGI = 'CAGI',
-  /** T=15°C; P=100kPa. Society of Petroleum Engineers standard */
+  /** T=15°C; P=100kPa. Society of Petroleum Engineers standard. */
   SPE = 'SPE',
-  /** T=20°C; P=101.3kPa. ISO internal combustion engine standard */
+  /** T=20°C; P=101.3kPa. ISO internal combustion engine standard. */
   ISO_5011 = 'ISO_5011',
-  /** T=20°C; P=101.33kPa. Former Soviet Union GOST standard */
+  /** T=20°C; P=101.33kPa. Former Soviet Union GOST standard. */
   GOST_2939_63 = 'GOST_2939_63',
-  /** T=15.56°C (60°F); P=101.6kPa. Energy-related industrial standard */
+  /** T=15.56°C (60°F); P=101.6kPa. Energy-related industrial standard. */
   EGIA = 'EGIA',
-  /** T=15.56°C; P=101.35kPa. U.S. Department of Transportation standard */
+  /** T=15.56°C; P=101.35kPa. U.S. Department of Transportation standard. */
   SCF = 'SCF',
-  /** T=21.11°C (70°F); P=101.3kPa. Air Movement and Control Association */
+  /** T=21.11°C (70°F); P=101.3kPa. Air Movement and Control Association. */
   AMCA = 'AMCA',
-  /** T=15°C; P=101.3kPa. Federal Aviation Administration standard */
+  /** T=15°C; P=101.3kPa. Federal Aviation Administration standard. */
   FAA = 'FAA',
-  /** T=15°C; P=101.325kPa. Standard reference for natural gas (ISO) */
+  /** T=15°C; P=101.325kPa. Standard reference for natural gas (ISO). */
   ISO_13443 = 'ISO_13443',
-  /** T=0°C; P=101.325kPa. Industrial standard from DIN 1343 */
+  /** T=0°C; P=101.325kPa. Industrial standard from DIN 1343. */
   DIN_1343 = 'DIN_1343'
 };
 
@@ -134,11 +134,11 @@ export enum StandardCondition {
  * Types of statistical or measurement errors associated with data points.
  */
 export enum UncertaintyType {
-  /** Expressed in the same units as the measurement itself */
+  /** Expressed in the same units as the measurement itself. */
   ABSOLUTE = 'absolute',
-  /** Expressed as a ratio or percentage of the measured value */
+  /** Expressed as a ratio or percentage of the measured value. */
   RELATIVE = 'relative',
-  /** Upper and lower bounds are not equidistant from the mean value */
+  /** Upper and lower bounds are not equidistant from the mean value. */
   ASYMMETRICAL = 'asymmetrical'
 };
 
@@ -146,35 +146,35 @@ export enum UncertaintyType {
  * Classification of bibliographic references and data sources based on BibTeX.
  */
 export enum ReferenceType {
-  /** Peer-reviewed paper in a scientific journal */
+  /** Peer-reviewed paper in a scientific journal. */
   ARTICLE = 'article',
-  /** Complete published work on a specific subject */
+  /** Complete published work on a specific subject. */
   BOOK = 'book',
-  /** Small, unbound publication or pamphlet */
+  /** Small, unbound publication or pamphlet. */
   BOOKLET = 'booklet',
-  /** Paper presented at a professional meeting or symposium */
+  /** Paper presented at a professional meeting or symposium. */
   CONFERENCE = 'conference',
-  /** Specific section or chapter within a book */
+  /** Specific section or chapter within a book. */
   INBOOK = 'inbook',
-  /** Article within a collection edited by others */
+  /** Article within a collection edited by others. */
   INCOLLECTION = 'incollection',
-  /** Full transcript or record of a conference */
+  /** Full transcript or record of a conference. */
   INPROCEEDINGS = 'inproceedings',
-  /** Technical documentation or user guide */
+  /** Technical documentation or user guide. */
   MANUAL = 'manual',
-  /** Academic work for a Master's degree */
+  /** Academic work for a Master's degree. */
   MASTERSTHESIS = 'mastersthesis',
-  /** General classification for academic dissertations */
+  /** General classification for academic dissertations. */
   THESIS = 'thesis',
-  /** Fallback for sources that do not fit standard categories */
+  /** Fallback for sources that do not fit standard categories. */
   MISC = 'misc',
-  /** Academic work for a Doctor of Philosophy degree */
+  /** Academic work for a Doctor of Philosophy degree. */
   PHDTHESIS = 'phdthesis',
-  /** Published minutes or records of a scientific meeting */
+  /** Published minutes or records of a scientific meeting. */
   PROCEEDINGS = 'proceedings',
-  /** Formal report on research or technical developments */
+  /** Formal report on research or technical developments. */
   TECHREPORT = 'techreport',
-  /** Document that has not yet been formally published */
+  /** Document that has not yet been formally published. */
   UNPUBLISHED = 'unpublished'
 };
 
@@ -182,13 +182,13 @@ export enum ReferenceType {
  * Standard digital image encodings supported for visual assets.
  */
 export enum ImageFormat {
-  /** Compressed photographic format with lossy encoding */
+  /** Compressed photographic format with lossy encoding. */
   JPG = 'jpg',
-  /** Lossless raster format with transparency support */
+  /** Lossless raster format with transparency support. */
   PNG = 'png',
-  /** Vector format based on XML for resolution-independent graphics */
+  /** Vector format based on XML for resolution-independent graphics. */
   SVG = 'svg',
-  /** Modern high-performance container for lossy and lossless images */
+  /** Modern high-performance container for lossy and lossless images. */
   WEBP = 'webp'
 };
 
@@ -196,15 +196,15 @@ export enum ImageFormat {
  * Chemical and spatial file formats for 3D molecular structures.
  */
 export enum D3Format {
-  /** Protein Data Bank format for three-dimensional structures */
+  /** Protein Data Bank format for three-dimensional structures. */
   PDB = 'pdb',
-  /** MDL Molfile format for chemical bonding and structure */
+  /** MDL Molfile format for chemical bonding and structure. */
   MOL = 'mol',
-  /** Structure-Data File for handling chemical data sets */
+  /** Structure-Data File for handling chemical data sets. */
   SDF = 'sdf',
-  /** Simple Cartesian coordinates for atomic positions */
+  /** Simple Cartesian coordinates for atomic positions. */
   XYZ = 'xyz',
-  /** Crystallographic Information File for crystal structures */
+  /** Crystallographic Information File for crystal structures. */
   CIF = 'cif'
 };
 

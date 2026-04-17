@@ -20,7 +20,7 @@ export type Conditions<
   Q extends PhysicalQuantity = PhysicalQuantity,
   T extends Primitive = Primitive
 > =
-  /** Predefined environmental standards (e.g., StandardCondition.STP) */
+  /** Predefined environmental standards (e.g., StandardCondition.STP). */
   | StandardCondition
-  /** A dictionary mapping specific physical quantities to their measured values during the experiment */
+  /** A dictionary mapping specific physical quantities to their measured values during the experiment. */
   | { [ K in Q ]?: Value< K, T > };

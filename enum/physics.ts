@@ -9,15 +9,15 @@
  * Fundamental states of matter based on particle arrangement and energy.
  */
 export enum Phase {
-  /** Rigid state where molecules/atoms are closely packed in a fixed lattice */
+  /** Rigid state where molecules/atoms are closely packed in a fixed lattice. */
   SOLID = 'solid',
-  /** Fluid state with fixed volume but variable shape, allowing molecular flow */
+  /** Fluid state with fixed volume but variable shape, allowing molecular flow. */
   LIQUID = 'liquid',
-  /** Compressible fluid phase with neither definite shape nor volume */
+  /** Compressible fluid phase with neither definite shape nor volume. */
   GASEOUS = 'gaseous',
-  /** Ionized state of matter where atoms are stripped of their electrons */
+  /** Ionized state of matter where atoms are stripped of their electrons. */
   PLASMA = 'plasma',
-  /** Current state is undetermined or scientifically undefined */
+  /** Current state is undetermined or scientifically undefined. */
   UNKNOWN = 'unknown'
 };
 

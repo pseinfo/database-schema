@@ -8,11 +8,11 @@
  * Standard signal words used on hazard labels to indicate relative severity.
  */
 export enum SignalWord {
-  /** Serious health or environmental risk */
+  /** Serious health or environmental risk. */
   DANGER = 'danger',
-  /** Moderate health or environmental risk */
+  /** Moderate health or environmental risk. */
   WARNING = 'warning',
-  /** Lower level of potential injury or hazard */
+  /** Lower level of potential injury or hazard. */
   CAUTION = 'caution'
 };
 
@@ -20,15 +20,15 @@ export enum SignalWord {
  * National Fire Protection Association (NFPA) 704 numerical ratings for hazard severity.
  */
 export enum NFPACode {
-  /** No significant hazard */
+  /** No significant hazard. */
   NONE = 0,
-  /** Slight hazard; caution required */
+  /** Slight hazard; caution required. */
   SLIGHT = 1,
-  /** Moderate hazard; potential for injury */
+  /** Moderate hazard; potential for injury. */
   MODERATE = 2,
-  /** Serious hazard; specialized equipment needed */
+  /** Serious hazard; specialized equipment needed. */
   SERIOUS = 3,
-  /** Severe hazard; life-threatening */
+  /** Severe hazard; life-threatening. */
   SEVERE = 4
 };
 
@@ -36,27 +36,27 @@ export enum NFPACode {
  * Special notices for specific chemical hazards defined by NFPA 704.
  */
 export enum NFPANotice {
-  /** Substance with oxidizing properties */
+  /** Substance with oxidizing properties. */
   OXIDIZER = 'OX',
-  /** Reacts violently or explosively with water; do not extinguish with water */
+  /** Reacts violently or explosively with water; do not extinguish with water. */
   WATER_REACTIVE = 'W',
-  /** Gases that displace air and can cause suffocation */
+  /** Gases that displace air and can cause suffocation. */
   SIMPLE_ASPHYXIANT = 'SA',
-  /** Causes destruction of human tissue or corrosion of metals */
+  /** Causes destruction of human tissue or corrosion of metals. */
   CORROSIVE = 'COR',
-  /** Specifically acidic material */
+  /** Specifically acidic material. */
   ACID = 'ACID',
-  /** Specifically alkaline (basic) material */
+  /** Specifically alkaline (basic) material. */
   ALKALINE = 'ALK',
-  /** Contains pathogenic biological agents */
+  /** Contains pathogenic biological agents. */
   BIOHAZARDOUS = 'BIO',
-  /** Highly toxic or lethal substance */
+  /** Highly toxic or lethal substance. */
   POISONOUS = 'POI',
-  /** Emits ionizing radiation */
+  /** Emits ionizing radiation. */
   RADIOACTIVE = 'RAD',
-  /** Specifically cold-stored liquids or materials */
+  /** Specifically cold-stored liquids or materials. */
   CRYOGENIC = 'CRY',
-  /** Oxidizing gas specifically at standard conditions */
+  /** Oxidizing gas specifically at standard conditions. */
   OXYGEN_GAS = 'G OX'
 };
 
@@ -64,23 +64,23 @@ export enum NFPANotice {
  * Globally Harmonized System (GHS) visual symbols for hazard communication.
  */
 export enum GHSPictogram {
-  /** Unstable explosives or items with mass explosion hazard */
+  /** Unstable explosives or items with mass explosion hazard. */
   EXPLOSIVE = 'explosive',
-  /** Flammable gases, aerosols, liquids, or solids */
+  /** Flammable gases, aerosols, liquids, or solids. */
   FLAMMABLE = 'flammable',
-  /** Oxidizing gases, liquids, or solids */
+  /** Oxidizing gases, liquids, or solids. */
   OXIDIZING = 'oxidizing',
-  /** Gases under pressure in a cylinder */
+  /** Gases under pressure in a cylinder. */
   COMPRESSED_GAS = 'compressedGas',
-  /** Skin corrosion, serious eye damage, or metal corrosion */
+  /** Skin corrosion, serious eye damage, or metal corrosion. */
   CORROSIVE = 'corrosive',
-  /** Acute toxicity (fatal or toxic if ingested or inhaled) */
+  /** Acute toxicity (fatal or toxic if ingested or inhaled). */
   TOXIC = 'toxic',
-  /** Skin and eye irritation, sensitization, or narcotic effects */
+  /** Skin and eye irritation, sensitization, or narcotic effects. */
   HARMFUL = 'harmful',
-  /** Respiratory sensitizer, mutagen, or carcinogen */
+  /** Respiratory sensitizer, mutagen, or carcinogen. */
   HEALTH_HAZARD = 'healthHazard',
-  /** Acute or chronic aquatic toxicity */
+  /** Acute or chronic aquatic toxicity. */
   ENVIRONMENTAL_HAZARD = 'environmentalHazard'
 };
 
@@ -240,21 +240,21 @@ export enum DOTClass {
  * Standard metrics for determining the toxicity of a chemical substance.
  */
 export enum ToxicityType {
-  /** Half maximal effective concentration causing a response in 50% of people */
+  /** Half maximal effective concentration causing a response in 50% of people. */
   EC50 = 'EC50',
-  /** Lethal concentration resulting in death for 50% of the population */
+  /** Lethal concentration resulting in death for 50% of the population. */
   LC50 = 'LC50',
-  /** Lethal dose resulting in death for 50% of the population */
+  /** Lethal dose resulting in death for 50% of the population. */
   LD50 = 'LD50',
-  /** Toxic dose causing adverse effects in 50% of the population */
+  /** Toxic dose causing adverse effects in 50% of the population. */
   TD50 = 'TD50',
-  /** Lowest Observed Adverse Effect Level */
+  /** Lowest Observed Adverse Effect Level. */
   LOAEL = 'LOAEL',
-  /** Lowest Observed Effect Level */
+  /** Lowest Observed Effect Level. */
   LOEL = 'LOEL',
-  /** No Observed Adverse Effect Level */
+  /** No Observed Adverse Effect Level. */
   NOAEL = 'NOAEL',
-  /** No Observed Effect Level */
+  /** No Observed Effect Level. */
   NOEL = 'NOEL'
 };
 
@@ -262,16 +262,16 @@ export enum ToxicityType {
  * Route of exposure used during toxicological testing.
  */
 export enum ToxicityApplication {
-  /** Through direct contact with the skin */
+  /** Through direct contact with the skin. */
   DERMAL = 'dermal',
-  /** Through breathing of gas, vapor, or particulates */
+  /** Through breathing of gas, vapor, or particulates. */
   INHALATION = 'inhalation',
-  /** Injection into the body cavity */
+  /** Injection into the body cavity. */
   INTRAPERITONEAL = 'intraperitoneal',
-  /** Direct injection into a vein */
+  /** Direct injection into a vein. */
   INTRAVENOUS = 'intravenous',
-  /** Ingestion through the mouth */
+  /** Ingestion through the mouth. */
   ORAL = 'oral',
-  /** Injection under the skin */
+  /** Injection under the skin. */
   SUBCUTANEOUS = 'subcutaneous'
 };

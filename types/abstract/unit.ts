@@ -192,9 +192,9 @@ type PrefixableUnitSymbols< Q extends PhysicalQuantity > = ValidUnits[ Q ][ 'pre
  * @template Q The physical quantity to generate symbols for.
  */
 type PrefixedSymbols< Q extends PhysicalQuantity > =
-  /** Base unit symbols */
+  /** Base unit symbols. */
   | BaseUnitSymbols< Q >
-  /** SI prefixed unit symbols */
+  /** SI prefixed unit symbols. */
   | `${ SIPrefix }${ PrefixableUnitSymbols< Q > }`;
 
 /**
@@ -209,19 +209,19 @@ export type DimensionVector = [ number, number, number, number, number, number, 
  * @template U The specific symbol of this unit.
  */
 export type Unit< Q extends PhysicalQuantity, U extends BaseUnitSymbols< Q > > = Brand< {
-  /** The full human-readable name of the unit (e.g., "meters per second") */
+  /** The full human-readable name of the unit (e.g., "meters per second"). */
   name?: string;
-  /** Indicates if this is the fundamental base unit for the system */
+  /** Indicates if this is the fundamental base unit for the system. */
   isBase?: boolean;
-  /** Whether this unit can be combined with SI prefixes */
+  /** Whether this unit can be combined with SI prefixes. */
   prefixable?: U extends PrefixableUnitSymbols< Q > ? true : false;
-  /** The metric or imperial system this unit originates from */
+  /** The metric or imperial system this unit originates from. */
   system?: MetricSystem;
-  /** Factors for converting this unit to the system base unit */
+  /** Factors for converting this unit to the system base unit. */
   conversion?: {
-    /** The multiplication factor */
+    /** The multiplication factor. */
     factor: number;
-    /** The additive offset (primarily for temperature scales) */
+    /** The additive offset (primarily for temperature scales). */
     offset?: number;
   };
 }, U, 'symbol', true >;
@@ -231,20 +231,20 @@ export type Unit< Q extends PhysicalQuantity, U extends BaseUnitSymbols< Q > > =
  * @template Q The physical quantity being defined.
  */
 export type Quantity< Q extends PhysicalQuantity > = {
-  /** The physical dimension of the quantity */
+  /** The physical dimension of the quantity. */
   dimension?: {
-    /** The shorthand symbol for the dimension (e.g., "L" for length) */
+    /** The shorthand symbol for the dimension (e.g., "L" for length). */
     symbol: string;
-    /** The full name of the dimension (e.g., "length") */
+    /** The full name of the dimension (e.g., "length"). */
     name: string;
-    /** Whether this is a fundamental SI base dimension */
+    /** Whether this is a fundamental SI base dimension. */
     si: Q extends SIDimension ? true : false;
-    /** The exponents of the base SI dimensions */
+    /** The exponents of the base SI dimensions. */
     vector: DimensionVector;
   };
-  /** The reference unit symbol for this quantity */
+  /** The reference unit symbol for this quantity. */
   baseUnit: BaseUnitSymbols< Q >;
-  /** A collection of all valid units for this quantity */
+  /** A collection of all valid units for this quantity. */
   units: {
     [ U in BaseUnitSymbols< Q > ]: Unit< Q, U >;
   };

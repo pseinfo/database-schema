@@ -13,13 +13,13 @@ import type { Distinct, Group } from '../abstract/collection';
  * This ensures that every high-level entity or collection can be tracked for versioning and integrity.
  */
 export type MetaData = Distinct< {
-  /** Internal metadata object for administrative tracking */
+  /** Internal metadata object for administrative tracking. */
   '@metadata': {
-    /** The version of the schema used for this data object */
+    /** The version of the schema used for this data object. */
     schemaVersion: 1;
-    /** ISO 8601 timestamp of the last modification */
+    /** ISO 8601 timestamp of the last modification. */
     lastModified: string;
-    /** Cryptographic hash for data integrity verification */
+    /** Cryptographic hash for data integrity verification. */
     hash: string;
   };
 } >;
@@ -31,8 +31,8 @@ export type MetaData = Distinct< {
  * @template T The type of the value being localized (defaults to string).
  */
 export type LangGroup< L extends LangCode = LangCode.ENGLISH, T = string > = Group< Expand<
-  /** Mandatory entries for the primary language(s) */
+  /** Mandatory entries for the primary language(s). */
   Required< { [ K in L ]: Distinct< T > } > &
-  /** Optional entries for all other supported languages */
+  /** Optional entries for all other supported languages. */
   Partial< { [ K in Exclude< LangCode, L > ]: Distinct< T > } >
 > >;

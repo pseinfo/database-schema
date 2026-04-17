@@ -22,11 +22,11 @@ export type StructType = Record< string | number, unknown >;
  * @template T The classification of the value (Primitive, Struct, Single, etc.).
  */
 type BaseValue< T extends ValueType > = Brand< {
-  /** The degree of scientific certainty or validation status of the data */
+  /** The degree of scientific certainty or validation status of the data. */
   confidence?: ValueConfidence;
-  /** Experimental or statistical uncertainty associated with the value */
+  /** Experimental or statistical uncertainty associated with the value. */
   uncertainty?: Uncertainty;
-  /** Contextual information or remarks regarding the specific value or measurement */
+  /** Contextual information or remarks regarding the specific value or measurement. */
   note?: string;
 }, T, 'type', true >;
 
@@ -41,22 +41,22 @@ interface ValueFields<
   T extends Primitive = Primitive,
   S extends StructType = StructType
 > {
-  /** A single data point */
+  /** A single data point. */
   value?: T;
-  /** A collection of discrete data points */
+  /** A collection of discrete data points. */
   values?: T[];
-  /** A continuous range between two boundary conditions */
+  /** A continuous range between two boundary conditions. */
   range?: RequireAtLeastOne< Record< 'lower' | 'upper', {
-    /** The boundary value */
+    /** The boundary value. */
     value: number;
-    /** Uncertainty specific to this boundary */
+    /** Uncertainty specific to this boundary. */
     uncertainty?: Uncertainty;
-    /** Whether the boundary value is part of the set */
+    /** Whether the boundary value is part of the set. */
     inclusive?: boolean;
   } > >;
-  /** The unit identification for physical quantities */
+  /** The unit identification for physical quantities. */
   unit?: UnitId< Q >;
-  /** Structured object for complex data sets */
+  /** Structured object for complex data sets. */
   struct?: S;
 }
 
@@ -116,7 +116,7 @@ export type RangeValue< Q extends PhysicalQuantity = PhysicalQuantity > = Expand
  */
 export type CoupledNumberValue< Q extends PhysicalQuantity = PhysicalQuantity > = Expand<
   BaseValue< ValueType.COUPLED > & {
-    /** A mapping of quantities to their respective single, array, or range values */
+    /** A mapping of quantities to their respective single, array, or range values. */
     properties: RequireAtLeastOne< {
       [ K in Q ]?:
         | SingleValue< K >
@@ -138,7 +138,7 @@ export type CoupledValue<
   S extends StructType = StructType
 > = Expand<
   BaseValue< ValueType.COUPLED > & {
-    /** A registry of various value types grouped under a single coupled entity */
+    /** A registry of various value types grouped under a single coupled entity. */
     properties: RequireAtLeastOne< {
       [ K in Q ]?:
         | PrimitiveValue< T >

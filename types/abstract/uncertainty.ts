@@ -14,9 +14,9 @@ import type { UncertaintyType } from '../../enum/util';
  * @template T The specific type of uncertainty (absolute, relative, or asymmetrical).
  */
 type BaseUncertainty< T extends UncertaintyType > = Brand< {
-  /** The statistical confidence level (e.g., 0.95 for a 95% confidence interval) */
+  /** The statistical confidence level (e.g., 0.95 for a 95% confidence interval). */
   confidence?: number;
-  /** Additional scientific notes regarding the measurement error or calculation method */
+  /** Additional scientific notes regarding the measurement error or calculation method. */
   note?: string;
 }, T, 'type', true >;
 
@@ -24,13 +24,13 @@ type BaseUncertainty< T extends UncertaintyType > = Brand< {
  * Common fields used across different uncertainty models.
  */
 interface UncertaintyFields {
-  /** The constant value of the error in the same unit as the measurement */
+  /** The constant value of the error in the same unit as the measurement. */
   absolute?: number;
-  /** The fractional error relative to the measurement value (e.g., 0.01 for 1%) */
+  /** The fractional error relative to the measurement value (e.g., 0.01 for 1%). */
   relative?: number;
-  /** The positive deviation in asymmetrical error models */
+  /** The positive deviation in asymmetrical error models. */
   plus?: number;
-  /** The negative deviation in asymmetrical error models */
+  /** The negative deviation in asymmetrical error models. */
   minus?: number;
 }
 

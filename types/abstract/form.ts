@@ -18,9 +18,9 @@ import type { Collection, Distinct } from './collection';
  * @template C The collection of scientific properties applicable to this form.
  */
 type BaseForm< T extends FormType, C extends Collection< any > > = Brand< {
-  /** Partial override of properties specific to this physical form */
+  /** Partial override of properties specific to this physical form. */
   properties?: DeepPartial< C >;
-  /** Descriptive note clarifying the nature or source of this specific form */
+  /** Descriptive note clarifying the nature or source of this specific form. */
   note?: Distinct< string >;
 }, T, 'type', true >;
 
@@ -28,9 +28,9 @@ type BaseForm< T extends FormType, C extends Collection< any > > = Brand< {
  * Common descriptive fields for chemical forms.
  */
 interface FormFields {
-  /** Specific chemical or structural formula for the form */
+  /** Specific chemical or structural formula for the form. */
   formula?: Distinct< string >;
-  /** The primary physical state (solid, liquid, gas, plasma) of this form */
+  /** The primary physical state (solid, liquid, gas, plasma) of this form. */
   phase?: Distinct< Phase >;
 }
 
@@ -78,7 +78,7 @@ export type FormId = Brand< string, 'formId' >;
  * @template C The base property collection for the substance.
  */
 export type FormCollection< C extends Collection< any > > = Record< FormId, Collection<
-  /** Mapping to one of the supported physical form representations */
+  /** Mapping to one of the supported physical form representations. */
   | AllotropeForm< C >
   | MolecularForm< C >
   | PhaseForm< C >

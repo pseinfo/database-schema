@@ -14,11 +14,11 @@ import type { ReferenceType } from '../../enum/util';
  * @template T The classification of the reference (Article, Book, etc.).
  */
 type BaseReference< T extends ReferenceType > = Brand< {
-  /** ISO 8601 date when the source was last accessed (crucial for web resources) */
+  /** ISO 8601 date when the source was last accessed (crucial for web resources). */
   accessed?: string;
-  /** Direct link to the source material */
+  /** Direct link to the source material. */
   url?: string;
-  /** Digital Object Identifier - the unique permanent identifier for scholarly work */
+  /** Digital Object Identifier - the unique permanent identifier for scholarly work. */
   doi?: string;
 }, T, 'type', true >;
 
@@ -26,49 +26,49 @@ type BaseReference< T extends ReferenceType > = Brand< {
  * Collection of standard BibTeX fields for academic citations.
  */
 interface BibTeXFields {
-  /** Physical or electronic address of the publisher or institution */
+  /** Physical or electronic address of the publisher or institution. */
   address?: string;
-  /** Primary creator(s) of the work */
+  /** Primary creator(s) of the work. */
   author?: string | string[];
-  /** Title of the book when the reference is a chapter or paper within it */
+  /** Title of the book when the reference is a chapter or paper within it. */
   booktitle?: string;
-  /** Specific chapter number within a larger work */
+  /** Specific chapter number within a larger work. */
   chapter?: string;
-  /** Version or edition of the publication (e.g., "3rd ed.") */
+  /** Version or edition of the publication (e.g., "3rd ed."). */
   edition?: string;
-  /** Person(s) responsible for assembling the collection or volume */
+  /** Person(s) responsible for assembling the collection or volume. */
   editor?: string | string[];
-  /** Alternative publication method for non-traditional sources */
+  /** Alternative publication method for non-traditional sources. */
   howpublished?: string;
-  /** Official entity sponsoring a technical report or thesis */
+  /** Official entity sponsoring a technical report or thesis. */
   institution?: string;
-  /** International Standard Book Number */
+  /** International Standard Book Number. */
   isbn?: string;
-  /** Name of the periodical in which the article was published */
+  /** Name of the periodical in which the article was published. */
   journal?: string;
-  /** Month of publication */
+  /** Month of publication. */
   month?: string;
-  /** Unstructured supplemental information or remarks */
+  /** Unstructured supplemental information or remarks. */
   note?: string;
-  /** Issue number within a volume */
+  /** Issue number within a volume. */
   number?: number | string;
-  /** Sponsoring organization for proceedings or manuals */
+  /** Sponsoring organization for proceedings or manuals. */
   organization?: string;
-  /** Page numbers or physical extent (e.g., "123--145") */
+  /** Page numbers or physical extent (e.g., "123--145"). */
   pages?: number | string;
-  /** Entity responsible for the distribution of the work */
+  /** Entity responsible for the distribution of the work. */
   publisher?: string;
-  /** Categorization of technical documents (e.g., "Research Memo") */
+  /** Categorization of technical documents (e.g., "Research Memo"). */
   reportType?: string;
-  /** The larger collection or series a book belongs to */
+  /** The larger collection or series a book belongs to. */
   series?: string;
-  /** Academic institution where a thesis was defended */
+  /** Academic institution where a thesis was defended. */
   school?: string;
-  /** The full title of the cited work */
+  /** The full title of the cited work. */
   title?: string;
-  /** Numerical volume of a journal or multi-volume book */
+  /** Numerical volume of a journal or multi-volume book. */
   volume?: number | string;
-  /** Year of publication */
+  /** Year of publication. */
   year?: number | string;
 }
 
@@ -79,9 +79,9 @@ interface BibTeXFields {
  * @template T The specific thesis reference type.
  */
 type Thesis< T extends ReferenceType.MASTERSTHESIS | ReferenceType.THESIS | ReferenceType.PHDTHESIS > = Expand<
-  /** Base reference metadata */
+  /** Base reference metadata. */
   BaseReference< T > &
-  /** Specific BibTeX fields for theses */
+  /** Specific BibTeX fields for theses. */
   StrictSubset<
     BibTeXFields,
     'author' | 'school' | 'title' | 'year',
@@ -96,9 +96,9 @@ type Thesis< T extends ReferenceType.MASTERSTHESIS | ReferenceType.THESIS | Refe
  * @template T The specific conference reference type.
  */
 type Conference< T extends ReferenceType.CONFERENCE | ReferenceType.INPROCEEDINGS > = Expand<
-  /** Base reference metadata */
+  /** Base reference metadata. */
   BaseReference< T > &
-  /** Specific BibTeX fields for conferences */
+  /** Specific BibTeX fields for conferences. */
   StrictSubset<
     BibTeXFields,
     'author' | 'booktitle' | 'title' | 'year',
@@ -112,9 +112,9 @@ type Conference< T extends ReferenceType.CONFERENCE | ReferenceType.INPROCEEDING
  * - Optional: month, note, number, pages, volume
  */
 export type ArticleReference = Expand<
-  /** Extends base reference with Article type branding */
+  /** Extends base reference with Article type branding. */
   BaseReference< ReferenceType.ARTICLE > &
-  /** Specific BibTeX fields for articles */
+  /** Specific BibTeX fields for articles. */
   StrictSubset<
     BibTeXFields,
     'author' | 'journal' | 'title' | 'year',
@@ -129,9 +129,9 @@ export type ArticleReference = Expand<
  * - Optional: address, edition, isbn, month, note, number, series, volume
  */
 export type BookReference = Expand<
-  /** Extends base reference with Book type branding */
+  /** Extends base reference with Book type branding. */
   BaseReference< ReferenceType.BOOK > &
-  /** Specific BibTeX fields for books */
+  /** Specific BibTeX fields for books. */
   RequireExactlyOneFrom< BibTeXFields, 'author' | 'editor' > &
   StrictSubset<
     BibTeXFields,
@@ -146,9 +146,9 @@ export type BookReference = Expand<
  * - Optional: address, author, howpublished, month, note, year
  */
 export type BookletReference = Expand<
-  /** Extends base reference with Booklet type branding */
+  /** Extends base reference with Booklet type branding. */
   BaseReference< ReferenceType.BOOKLET > &
-  /** Specific BibTeX fields for booklets */
+  /** Specific BibTeX fields for booklets. */
   StrictSubset<
     BibTeXFields,
     'title',
@@ -171,9 +171,9 @@ export type ConferenceReference = Conference< ReferenceType.CONFERENCE >;
  * - Optional: address, edition, month, note, number, reportType, series, volume
  */
 export type InbookReference = Expand<
-  /** Extends base reference with Inbook type branding */
+  /** Extends base reference with Inbook type branding. */
   BaseReference< ReferenceType.INBOOK > &
-  /** Specific BibTeX fields for inbooks */
+  /** Specific BibTeX fields for inbooks. */
   RequireExactlyOneFrom< BibTeXFields, 'author' | 'editor' > &
   RequireAtLeastOne<
     StrictSubset<
@@ -191,9 +191,9 @@ export type InbookReference = Expand<
  * - Optional: address, chapter, edition, editor, month, note, number, pages, reportType, series, volume
  */
 export type IncollectionReference = Expand<
-  /** Extends base reference with Incollection type branding */
+  /** Extends base reference with Incollection type branding. */
   BaseReference< ReferenceType.INCOLLECTION > &
-  /** Specific BibTeX fields for incollections */
+  /** Specific BibTeX fields for incollections. */
   StrictSubset<
     BibTeXFields,
     'author' | 'booktitle' | 'publisher' | 'title' | 'year',
@@ -212,9 +212,9 @@ export type InproceedingsReference = Conference< ReferenceType.INPROCEEDINGS >;
  * - Optional: address, author, edition, month, note, organization, year
  */
 export type ManualReference = Expand<
-  /** Extends base reference with Manual type branding */
+  /** Extends base reference with Manual type branding. */
   BaseReference< ReferenceType.MANUAL > &
-  /** Specific BibTeX fields for manuals */
+  /** Specific BibTeX fields for manuals. */
   StrictSubset<
     BibTeXFields,
     'title',
@@ -242,9 +242,9 @@ export type ThesisReference = Thesis< ReferenceType.THESIS >;
  * - Optional: author, howpublished, month, note, year
  */
 export type MiscReference = Expand<
-  /** Extends base reference with Misc type branding */
+  /** Extends base reference with Misc type branding. */
   BaseReference< ReferenceType.MISC > &
-  /** Specific BibTeX fields for misc */
+  /** Specific BibTeX fields for misc. */
   ExtractFrom<
     BibTeXFields,
     'author' | 'howpublished' | 'month' | 'note' | 'title' | 'year'
@@ -264,9 +264,9 @@ export type PhdthesisReference = Thesis< ReferenceType.PHDTHESIS >;
  * - Optional: address, editor, month, note, number, organization, publisher, series, volume
  */
 export type ProceedingsReference = Expand<
-  /** Extends base reference with Proceedings type branding */
+  /** Extends base reference with Proceedings type branding. */
   BaseReference< ReferenceType.PROCEEDINGS > &
-  /** Specific BibTeX fields for proceedings */
+  /** Specific BibTeX fields for proceedings. */
   StrictSubset<
     BibTeXFields,
     'title' | 'year',
@@ -280,9 +280,9 @@ export type ProceedingsReference = Expand<
  * - Optional: address, month, note, number, reportType
  */
 export type TechreportReference = Expand<
-  /** Extends base reference with Techreport type branding */
+  /** Extends base reference with Techreport type branding. */
   BaseReference< ReferenceType.TECHREPORT > &
-  /** Specific BibTeX fields for techreports */
+  /** Specific BibTeX fields for techreports. */
   StrictSubset<
     BibTeXFields,
     'author' | 'institution' | 'title' | 'year',
@@ -296,9 +296,9 @@ export type TechreportReference = Expand<
  * - Optional: month, year
  */
 export type UnpublishedReference = Expand<
-  /** Extends base reference with Unpublished type branding */
+  /** Extends base reference with Unpublished type branding. */
   BaseReference< ReferenceType.UNPUBLISHED > &
-  /** Specific BibTeX fields for unpublished */
+  /** Specific BibTeX fields for unpublished. */
   StrictSubset<
     BibTeXFields,
     'author' | 'note' | 'title',

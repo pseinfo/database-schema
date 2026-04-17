@@ -21,9 +21,9 @@ interface BaseProperty<
   C extends PhysicalQuantity = PhysicalQuantity,
   T extends Primitive = Primitive
 > {
-  /** The state of environment (Temp, Press, etc.) during measurement */
+  /** The state of environment (Temp, Press, etc.) during measurement. */
   conditions?: Conditions< C, T >;
-  /** Array of reference IDs pointing to the data source */
+  /** Array of reference IDs pointing to the data source. */
   references?: RefId[];
 }
 
