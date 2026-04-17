@@ -8,7 +8,7 @@
 import type { RequireFrom } from 'devtypes/types/constraint';
 import type { DeepPartial } from 'devtypes/types/transform';
 import type { Brand, Expand } from 'devtypes/types/util';
-import type { Phase } from '../../enum/generic';
+import type { Phase } from '../../enum/physics';
 import type { FormType } from '../../enum/util';
 import type { Collection, Distinct } from './collection';
 
