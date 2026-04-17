@@ -1,28 +1,56 @@
-import type { Phase } from '../../enum/generic';
-import type { MixtureCategory, MixtureHomogeneity, MixtureProperty, MixtureType } from '../../enum/mixture';
+/**
+ * @file mixture.ts
+ * @description Defines the schema for chemical mixtures, focusing on their physical
+ * homogeneity, state of dispersion, and categorical types.
+ */
+
 import type { Brand, Expand } from 'devtypes/types/util';
+import type { MixtureCategory, MixtureHomogeneity, MixtureProperty, MixtureType } from '../../enum/mixture';
+import type { Phase } from '../../enum/physics';
 import type { Collection, Distinct } from '../abstract/collection';
 import type { MetaData } from '../abstract/util';
 import type { Composite } from './composite';
 
+/** Opaque identifier for a chemical mixture. */
 export type MixtureID = Brand< string, 'mixtureID' >;
 
+/**
+ * Physical and architectural classification of multi-component substance systems.
+ */
 export type MixtureClassification = Collection< {
+  /** The specific physical nature of the mixture (e.g., Solution, Colloid, Suspension). */
   type: Distinct< MixtureType >;
+  /** The degree of uniform distribution of the components (Homogeneous or Heterogeneous). */
   homogeneity: Distinct< MixtureHomogeneity >;
+  /** The structural or thematic category (e.g., Alloy, Aerosol). */
   category: Distinct< MixtureCategory >;
+  /** The overall bulk physical phase of the mixture. */
   phase: Distinct< Phase >;
+  /** The phase of the continuous substance in which the other components are dispersed. */
   mediumPhase: Distinct< Phase >;
+  /** The phase of the particles or droplets that are distributed within the medium. */
   dispersedPhase: Distinct< Phase >;
+  /** Indicates if any constituent of the mixture is radioactive. */
   radioactive: Distinct< boolean >;
+  /** Indicates if the mixture is manufactured or synthetic. */
   synthetic: Distinct< boolean >;
+  /** List of characteristic properties associated with this mixture. */
   properties: Distinct< MixtureProperty[] >;
 } >;
 
+/**
+ * Representation of a single chemical mixture as a multi-element substance.
+ */
 export type SingleMixture = Composite< MixtureClassification >;
 
+/**
+ * The complete mixture entity, including metadata.
+ */
 export type Mixture = Expand< MetaData & SingleMixture >;
 
+/**
+ * Global registry of all multi-component mixtures indexed by a unique identifier.
+ */
 export type MixtureEntity = Collection< {
   [ key: MixtureID ]: Mixture;
 } >;
