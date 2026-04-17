@@ -1,6 +1,6 @@
-import type { CompoundCategory, CompoundProperty, CompoundUnion } from '../../enum/compound';
-import type { Phase } from '../../enum/generic';
 import type { Brand, Expand } from 'devtypes/types/util';
+import type { CompoundCategory, CompoundProperty, CompoundUnion } from '../../enum/compound';
+import type { Phase } from '../../enum/physics';
 import type { Collection, Distinct } from '../abstract/collection';
 import type { FormCollection } from '../abstract/form';
 import type { MetaData } from '../abstract/util';

@@ -1,4 +1,4 @@
-import type { ShellModel } from '../../enum/generic';
+import type { ShellModel } from '../../enum/element';
 import type { Collection, Group, Single } from '../abstract/collection';
 import type { ArrayProperty, NumberProperty, PrimitiveProperty, StructProperty } from '../abstract/property';
 

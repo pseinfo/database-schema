@@ -1,6 +1,6 @@
-import type { ElementBlock, ElementGroup, ElementProperty, ElementSet, ElementSymbol } from '../../enum/element';
-import type { Phase, PTColumn, PTPeriod } from '../../enum/generic';
 import type { Expand } from 'devtypes/types/util';
+import type { ElementBlock, ElementGroup, ElementProperty, ElementSet, ElementSymbol, PTColumn, PTPeriod } from '../../enum/element';
+import type { Phase } from '../../enum/physics';
 import type { Collection, Distinct } from '../abstract/collection';
 import type { FormCollection } from '../abstract/form';
 import type { MetaData } from '../abstract/util';

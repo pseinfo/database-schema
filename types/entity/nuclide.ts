@@ -1,6 +1,6 @@
-import type { ElementSymbol } from '../../enum/element';
-import type { DecayMode, NuclideProperty, NuclideStability, NuclideState, SpinParity } from '../../enum/nuclide';
 import type { Brand, Expand } from 'devtypes/types/util';
+import type { ElementSymbol } from '../../enum/element';
+import type { DecayMode, NuclideProperty, NuclideStability, NuclideState, SpinParity } from '../../enum/nuclear';
 import type { Collection, Distinct, Group } from '../abstract/collection';
 import type { MetaData } from '../abstract/util';
 import type { DescriptiveCollection } from '../collection/descriptive';

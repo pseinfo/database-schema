@@ -1,6 +1,6 @@
-import type { Phase } from '../../enum/generic';
-import type { MixtureCategory, MixtureHomogeneity, MixtureProperty, MixtureType } from '../../enum/mixture';
 import type { Brand, Expand } from 'devtypes/types/util';
+import type { MixtureCategory, MixtureHomogeneity, MixtureProperty, MixtureType } from '../../enum/mixture';
+import type { Phase } from '../../enum/physics';
 import type { Collection, Distinct } from '../abstract/collection';
 import type { MetaData } from '../abstract/util';
 import type { Composite } from './composite';

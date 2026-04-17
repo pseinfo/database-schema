@@ -1,5 +1,4 @@
-import type { LangCode } from '../../enum/generic';
-import type { D3Format, ImageFormat } from '../../enum/util';
+import type { D3Format, ImageFormat, LangCode } from '../../enum/util';
 import type { Collection, Distinct, Group, Single } from '../abstract/collection';
 import type { PrimitiveProperty } from '../abstract/property';
 import type { RefId } from '../abstract/reference';

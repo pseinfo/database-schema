@@ -1,4 +1,4 @@
-import type { NaturalOccurrence } from '../../enum/generic';
+import type { NaturalOccurrence } from '../../enum/element';
 import type { Collection, Single } from '../abstract/collection';
 import type { NumberProperty, PrimitiveProperty } from '../abstract/property';
 

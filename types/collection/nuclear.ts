@@ -1,4 +1,4 @@
-import type { DecayMode, RadiationType, SpinParity } from '../../enum/nuclide';
+import type { DecayMode, RadiationType, SpinParity } from '../../enum/nuclear';
 import type { Collection, Single } from '../abstract/collection';
 import type { StructProperty } from '../abstract/property';
 import type { NumberValue, PrimitiveValue } from '../abstract/value';
