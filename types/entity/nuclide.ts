@@ -8,12 +8,15 @@ import type { Brand } from 'devtypes/types/util';
 import type { ElementSymbol } from '../../enum/element';
 import type { DecayMode, NuclideProperty, NuclideStability, NuclideState, SpinParity } from '../../enum/nuclear';
 import type { Collection, Distinct, Group } from '../abstract/collection';
-import type { MetaData } from '../abstract/util';
+import type { Factory, MetaData } from '../abstract/util';
 import type { DescriptiveCollection } from '../collection/descriptive';
 import type { GenericCollection } from '../collection/generic';
 import type { NuclearCollection } from '../collection/nuclear';
 
-/** Formal identifier for a specific isotope or nuclear isomer. */
+/**
+ * Formal identifier for a specific isotope or nuclear isomer.
+ * Format: A or Am or Amm where A is the mass number and m denotes a metastable state.
+ */
 export type NuclideIdentifier = Brand< `${number}` | `${number}m` | `${number}m${number}`, 'nuclideID' >;
 
 /**
@@ -76,6 +79,14 @@ export type NuclideCollection = Collection< {
     [ N in NuclideIdentifier ]?: Nuclide< K >;
   } >;
 } >;
+
+/**
+ * Factory for creating a nuclide entity.
+ * @template K - The specific chemical element symbol associated with this nuclide.
+ */
+export type NuclideFactory< K extends ElementSymbol > = Factory<
+  `data/nuclide/${ K }`, 'nuclide', NuclideIdentifier, NuclideData< K >
+>;
 
 /**
  * A dense summary record for a specific nuclide used in the auto-generated nuclide index.
