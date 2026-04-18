@@ -50,9 +50,7 @@ export type LangGroup< L extends LangCode = LangCode.ENGLISH, T = string > = Gro
  * @template C The type of the data.
  */
 export type Factory<
-  P extends string,
-  K extends string,
-  ID extends string,
+  P extends string, K extends string, ID extends string,
   C extends Collection< unknown >
 > = Expand< {
   /** The key used to identify the data. */

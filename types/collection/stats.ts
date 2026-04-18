@@ -15,16 +15,41 @@ export type StatsCollection = Collection< {
 
   /** Metrics regarding the distribution of scientific entities in the repository. */
   entities: Group< {
-    /** Total number of unique chemical elements documented. */
-    elements: Distinct< number >;
-    /** Total number of unique isotopes (nuclides) and isomers documented. */
-    nuclides: Distinct< number >;
-    /** Total number of chemical compounds in the registry. */
-    compounds: Distinct< number >;
-    /** Total number of distinct mineral species and varieties. */
-    minerals: Distinct< number >;
-    /** Total number of documented chemical mixtures and solutions. */
-    mixtures: Distinct< number >;
+    /** Stats for chemical elements. */
+    elements: Distinct< {
+      /** The total number of unique chemical elements documented. */
+      count: number;
+      /** The size of the chemical elements data in bytes. */
+      bytes: number;
+    } >;
+    /** Stats for nuclides. */
+    nuclides: Distinct< {
+      /** The total number of unique nuclides documented. */
+      count: number;
+      /** The size of the nuclides data in bytes. */
+      bytes: number;
+    } >;
+    /** Stats for compounds. */
+    compounds: Distinct< {
+      /** The total number of unique compounds documented. */
+      count: number;
+      /** The size of the compounds data in bytes. */
+      bytes: number;
+    } >;
+    /** Stats for minerals. */
+    minerals: Distinct< {
+      /** The total number of unique minerals documented. */
+      count: number;
+      /** The size of the minerals data in bytes. */
+      bytes: number;
+    } >;
+    /** Stats for mixtures. */
+    mixtures: Distinct< {
+      /** The total number of unique mixtures documented. */
+      count: number;
+      /** The size of the mixtures data in bytes. */
+      bytes: number;
+    } >;
   } >;
 
   /**
@@ -38,6 +63,8 @@ export type StatsCollection = Collection< {
     lastModified: Distinct< string >;
     /** The cumulative count of verified data points or structural edits made. */
     edits: Distinct< number >;
+    /** The size of the contributor's data in bytes. */
+    bytes: Distinct< number >;
     /** The primary communication channel or professional URI for the contributor. */
     contact?: Distinct< string >;
   }[] >;
