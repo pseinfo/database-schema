@@ -18,10 +18,11 @@ export type NuclideIdentifier = Brand< `${number}` | `${number}m` | `${number}m$
 
 /**
  * Fundamental nuclear classification and identification metrics.
+ * @template K - The specific chemical element symbol associated with this nuclide.
  */
-export type NuclideClassification = Collection< {
+export type NuclideClassification< K extends ElementSymbol > = Collection< {
   /** The chemical element to which this isotope belongs. */
-  element: Distinct< ElementSymbol >;
+  element: Distinct< K >;
   /** The number of protons (Z) in the nucleus. */
   atomicNumber: Distinct< number >;
   /** The number of neutrons (N) in the nucleus. */
@@ -40,12 +41,13 @@ export type NuclideClassification = Collection< {
 
 /**
  * Representation of a single nuclide including its nuclear structure data.
+ * @template K - The specific chemical element symbol associated with this nuclide.
  */
-export type SingleNuclide = Collection< {
+export type SingleNuclide< K extends ElementSymbol > = Collection< {
   /** Human-readable names and historical discovery context. */
   descriptive: DescriptiveCollection;
   /** Primary nuclear identification and taxonomic data. */
-  classification: NuclideClassification;
+  classification: NuclideClassification< K >;
   /** Generic, non-scientific data associated with the isotope. */
   generic?: GenericCollection;
   /** Detailed spectral and energy-level properties of the nucleus. */
@@ -55,13 +57,15 @@ export type SingleNuclide = Collection< {
 /**
  * The core data structure for a nuclide, excluding metadata.
  * Designed for file-based database construction where metadata is enriched automatically.
+ * @template K - The specific chemical element symbol associated with this nuclide.
  */
-export type NuclideData = SingleNuclide;
+export type NuclideData< K extends ElementSymbol > = SingleNuclide< K >;
 
 /**
  * The complete nuclide entity, including automatically enriched metadata.
+ * @template K - The specific chemical element symbol associated with this nuclide.
  */
-export type Nuclide = MetaData< NuclideData >;
+export type Nuclide< K extends ElementSymbol > = MetaData< NuclideData< K > >;
 
 /**
  * Global registry of nuclides grouped by element and identified by their mass number.
@@ -69,12 +73,14 @@ export type Nuclide = MetaData< NuclideData >;
 export type NuclideCollection = Collection< {
   /** The set of all isotopes associated with a specific chemical element. */
   [ K in ElementSymbol ]?: Collection< {
-    [ N in NuclideIdentifier ]?: Nuclide;
+    [ N in NuclideIdentifier ]?: Nuclide< K >;
   } >;
 } >;
 
 /**
  * A dense summary record for a specific nuclide used in the auto-generated nuclide index.
+ * @template Z - The nuclear charge (proton count) for this nuclide.
+ * @template N - The neutron count for this nuclide.
  */
 export type NuclideIndexEntry< Z extends number, N extends number > = Collection< {
   /** The unique mass-number based identifier for the isotope. */
@@ -107,6 +113,8 @@ export type NuclideIndexEntry< Z extends number, N extends number > = Collection
 /**
  * A multi-dimensional grid of all isotopes indexed by proton (Z) and neutron (N) count.
  * This will be auto-generated from the nuclide collection.
+ * @template Z - The nuclear charge (proton count) used as the first key for indexing.
+ * @template N - The neutron count used as the second key for indexing.
  */
 export type NuclideIndex = Collection< {
   [ Z in number ]?: {
@@ -128,6 +136,7 @@ export type NuclideDecayChainLink = Group< {
 
 /**
  * Detailed node in a radioactive decay chain, capturing parents and daughters.
+ * @template N - The specific nuclide identifier type used as the key for the decay chain entries.
  */
 export type NuclideDecayChainEntry< N extends NuclideIdentifier > = Collection< {
   /** The current nuclide in the decay network. */
@@ -157,6 +166,7 @@ export type NuclideDecayChainEntry< N extends NuclideIdentifier > = Collection< 
 /**
  * The complete network of all isotopic decay relationships in the database.
  * This will be auto-generated from the nuclide collection.
+ * @template N - The specific nuclide identifier type used as the key for the decay chain entries.
  */
 export type NuclideDecayChains = Collection< {
   [ N in NuclideIdentifier ]?: NuclideDecayChainEntry< N >;
