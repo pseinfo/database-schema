@@ -9,11 +9,11 @@ import type { CompoundCategory, CompoundProperty, CompoundUnion } from '../../en
 import type { Phase } from '../../enum/physics';
 import type { Collection, Distinct } from '../abstract/collection';
 import type { FormCollection } from '../abstract/form';
-import type { MetaData } from '../abstract/util';
+import type { Factory, MetaData } from '../abstract/util';
 import type { Composite } from './composite';
 
 /** Opaque identifier for a chemical compound entry. */
-export type CompoundID = Brand< string, 'compoundID' >;
+export type CompoundId = Brand< string, 'compoundID' >;
 
 /**
  * High-level categorization of a chemical compound based on its bonding and origin.
@@ -58,5 +58,12 @@ export type Compound = MetaData< CompoundData >;
  * Global registry of all chemical compounds indexed by a unique identifier.
  */
 export type CompoundEntity = Collection< {
-  [ key: CompoundID ]: Compound;
+  [ key: CompoundId ]: Compound;
 } >;
+
+/**
+ * Factory for creating a compound entity.
+ */
+export type CompoundFactory = Factory<
+  'data/compound', 'compoundId', CompoundId, CompoundData
+>;
