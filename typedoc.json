@@ -13,7 +13,7 @@
   "excludeInternal": false,
   "excludeExternals": true,
   "name": "Periodic Table Database Schema",
-  "customFooterHtml": "Copyright © 2026 PSEInfo by Paul Köhler (komed3) <br /> Distributed under the MIT license.",
+  "customFooterHtml": "Copyright © 2026 Periodic Table <br /> Distributed under the MIT license.",
   "hideGenerator": true,
   "favicon": "favicon.ico",
   "headings": {
