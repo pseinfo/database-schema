@@ -9,7 +9,7 @@ import type { ElementBlock, ElementGroup, ElementProperty, ElementSet, ElementSy
 import type { Phase } from '../../enum/physics';
 import type { Collection, Distinct } from '../abstract/collection';
 import type { FormCollection } from '../abstract/form';
-import type { MetaData } from '../abstract/util';
+import type { Factory, MetaData } from '../abstract/util';
 import type { AtomicsCollection } from '../collection/atomics';
 import type { Substance } from './substance';
 
@@ -69,3 +69,10 @@ export type Element = MetaData< ElementData >;
 export type ElementEntity = Collection< {
   [ K in ElementSymbol ]: Element;
 } >;
+
+/**
+ * Factory for creating an element entity.
+ */
+export type ElementFactory = Factory<
+  'data/element', 'symbol', ElementSymbol, ElementData
+>;
