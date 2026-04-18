@@ -6,22 +6,26 @@
 
 import type { Expand } from 'devtypes/types/util';
 import type { LangCode } from '../../enum/util';
-import type { Distinct, Group } from '../abstract/collection';
+import type { Collection, Distinct, Group } from '../abstract/collection';
 
 /**
- * Defines the root metadata structure for the schema.
- * This ensures that every high-level entity or collection can be tracked for versioning and integrity.
+ * Defines the root metadata structure for the schema, supporting automated enrichment.
+ * This generic wrapper ensures that every high-level entity or collection can be tracked for
+ * versioning, integrity, and source information.
+ * @template T The underlying data structure to be enriched with metadata.
  */
-export type MetaData = Distinct< {
-  /** Internal metadata object for administrative tracking. */
-  '@metadata': {
+export type MetaData< T extends Collection< unknown > = Collection< unknown > > = Expand< T & {
+  /** Internal metadata object for administrative and scientific tracking. */
+  '@metadata': Distinct< {
     /** The version of the schema used for this data object. */
     schemaVersion: 1;
     /** ISO 8601 timestamp of the last modification. */
     lastModified: string;
-    /** Cryptographic hash for data integrity verification. */
+    /** Unique commit hash or version identifier representing the data source state. */
+    commit: string;
+    /** Cryptographic hash for data integrity verification of the entire object. */
     hash: string;
-  };
+  } >;
 } >;
 
 /**
