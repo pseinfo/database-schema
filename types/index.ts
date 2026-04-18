@@ -23,7 +23,7 @@ import type { StatsCollection } from './collection/stats';
  */
 export type Database = Collection< {
   /** Global administrative metadata including internal database statistics. */
-  meta: Collection< MetaData & {
+  meta: MetaData< {
     /** Detailed metrics on entity distribution and contributor activity. */
     stats: StatsCollection;
   } >;
