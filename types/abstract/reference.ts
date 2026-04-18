@@ -8,6 +8,7 @@
 import type { ExtractFrom, RequireAtLeastOne, RequireExactlyOneFrom, StrictSubset } from 'devtypes/types/constraint';
 import type { Brand, Expand } from 'devtypes/types/util';
 import type { ReferenceType } from '../../enum/util';
+import type { Factory } from './util';
 
 /**
  * Base branded metadata shared by all bibliographic reference types.
@@ -336,3 +337,9 @@ export type RefId = Brand< string, 'refId' >;
  */
 export type ReferenceCollection = Record< RefId, Reference >;
 
+/**
+ * Factory for creating a reference entity.
+ */
+export type ReferenceFactory = Factory<
+  'refs', 'refId', RefId, Reference
+>;
