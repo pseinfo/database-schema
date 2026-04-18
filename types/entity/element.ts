@@ -50,12 +50,18 @@ export type SingleElement = Expand< Substance< ElementClassification > & {
 } >;
 
 /**
- * The complete elemental entity, including metadata and potential allotropes.
+ * The core data structure for a chemical element, excluding metadata.
+ * Designed for file-based database construction where metadata is enriched automatically.
  */
-export type Element = Expand< MetaData & SingleElement & {
+export type ElementData = Expand< SingleElement & {
   /** Variations of the element in the same physical state (e.g., Graphite vs. Diamond). */
   forms?: FormCollection< SingleElement >;
 } >;
+
+/**
+ * The complete elemental entity, including automatically enriched metadata and potential allotropes.
+ */
+export type Element = MetaData< ElementData >;
 
 /**
  * Global registry of all chemical elements indexed by their IUPAC symbol.

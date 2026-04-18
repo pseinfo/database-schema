@@ -4,7 +4,7 @@
  * homogeneity, state of dispersion, and categorical types.
  */
 
-import type { Brand, Expand } from 'devtypes/types/util';
+import type { Brand } from 'devtypes/types/util';
 import type { MixtureCategory, MixtureHomogeneity, MixtureProperty, MixtureType } from '../../enum/mixture';
 import type { Phase } from '../../enum/physics';
 import type { Collection, Distinct } from '../abstract/collection';
@@ -44,9 +44,15 @@ export type MixtureClassification = Collection< {
 export type SingleMixture = Composite< MixtureClassification >;
 
 /**
- * The complete mixture entity, including metadata.
+ * The core data structure for a chemical mixture, excluding metadata.
+ * Designed for file-based database construction where metadata is enriched automatically.
  */
-export type Mixture = Expand< MetaData & SingleMixture >;
+export type MixtureData = SingleMixture;
+
+/**
+ * The complete mixture entity, including automatically enriched metadata.
+ */
+export type Mixture = MetaData< MixtureData >;
 
 /**
  * Global registry of all multi-component mixtures indexed by a unique identifier.

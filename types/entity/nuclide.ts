@@ -4,7 +4,7 @@
  * stability, and complex decay network structures.
  */
 
-import type { Brand, Expand } from 'devtypes/types/util';
+import type { Brand } from 'devtypes/types/util';
 import type { ElementSymbol } from '../../enum/element';
 import type { DecayMode, NuclideProperty, NuclideStability, NuclideState, SpinParity } from '../../enum/nuclear';
 import type { Collection, Distinct, Group } from '../abstract/collection';
@@ -53,9 +53,15 @@ export type SingleNuclide = Collection< {
 } >;
 
 /**
- * The complete nuclide entity, including metadata.
+ * The core data structure for a nuclide, excluding metadata.
+ * Designed for file-based database construction where metadata is enriched automatically.
  */
-export type Nuclide = Expand< MetaData & SingleNuclide >;
+export type NuclideData = SingleNuclide;
+
+/**
+ * The complete nuclide entity, including automatically enriched metadata.
+ */
+export type Nuclide = MetaData< NuclideData >;
 
 /**
  * Global registry of nuclides grouped by element and identified by their mass number.

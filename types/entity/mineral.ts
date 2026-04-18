@@ -49,12 +49,18 @@ export type MineralClassification = Collection< {
 export type SingleMineral = Composite< MineralClassification >;
 
 /**
- * The complete mineral entity, including metadata and potential variety forms.
+ * The core data structure for a mineral species, excluding metadata.
+ * Designed for file-based database construction where metadata is enriched automatically.
  */
-export type Mineral = Expand< MetaData & SingleMineral & {
+export type MineralData = Expand< SingleMineral & {
   /** Variations or varieties of the mineral (e.g., Quartz vs. Amethyst). */
   forms?: FormCollection< SingleMineral >;
 } >;
+
+/**
+ * The complete mineral entity, including automatically enriched metadata and potential variety forms.
+ */
+export type Mineral = MetaData< MineralData >;
 
 /**
  * Global registry of all mineral species indexed by a unique identifier.

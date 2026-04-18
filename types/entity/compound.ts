@@ -41,12 +41,18 @@ export type CompoundClassification = Collection< {
 export type SingleCompound = Composite< CompoundClassification >;
 
 /**
- * The complete chemical compound entity, including metadata and potential isomers or hydrates.
+ * The core data structure for a chemical compound, excluding metadata.
+ * Designed for file-based database construction where metadata is enriched automatically.
  */
-export type Compound = Expand< MetaData & SingleCompound & {
+export type CompoundData = Expand< SingleCompound & {
   /** Variations of the compound (e.g., different crystal structures or hydration levels). */
   forms?: FormCollection< SingleCompound >;
 } >;
+
+/**
+ * The complete chemical compound entity, including automatically enriched metadata.
+ */
+export type Compound = MetaData< CompoundData >;
 
 /**
  * Global registry of all chemical compounds indexed by a unique identifier.
