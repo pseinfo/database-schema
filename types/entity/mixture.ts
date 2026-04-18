@@ -8,11 +8,11 @@ import type { Brand } from 'devtypes/types/util';
 import type { MixtureCategory, MixtureHomogeneity, MixtureProperty, MixtureType } from '../../enum/mixture';
 import type { Phase } from '../../enum/physics';
 import type { Collection, Distinct } from '../abstract/collection';
-import type { MetaData } from '../abstract/util';
+import type { Factory, MetaData } from '../abstract/util';
 import type { Composite } from './composite';
 
 /** Opaque identifier for a chemical mixture. */
-export type MixtureID = Brand< string, 'mixtureID' >;
+export type MixtureId = Brand< string, 'mixtureID' >;
 
 /**
  * Physical and architectural classification of multi-component substance systems.
@@ -58,5 +58,12 @@ export type Mixture = MetaData< MixtureData >;
  * Global registry of all multi-component mixtures indexed by a unique identifier.
  */
 export type MixtureEntity = Collection< {
-  [ key: MixtureID ]: Mixture;
+  [ key: MixtureId ]: Mixture;
 } >;
+
+/**
+ * Factory for creating a mixture entity.
+ */
+export type MixtureFactory = Factory<
+  'data/mixture', 'mixtureId', MixtureId, MixtureData
+>;

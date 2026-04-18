@@ -9,11 +9,11 @@ import type { MineralCategory, MineralClass, MineralProperty } from '../../enum/
 import type { Phase } from '../../enum/physics';
 import type { Collection, Distinct } from '../abstract/collection';
 import type { FormCollection } from '../abstract/form';
-import type { MetaData } from '../abstract/util';
+import type { Factory, MetaData } from '../abstract/util';
 import type { Composite } from './composite';
 
 /** Opaque identifier for a mineral entry. */
-export type MineralID = Brand< string, 'mineralID' >;
+export type MineralId = Brand< string, 'mineralID' >;
 
 /**
  * High-level mineral classification data.
@@ -66,5 +66,12 @@ export type Mineral = MetaData< MineralData >;
  * Global registry of all mineral species indexed by a unique identifier.
  */
 export type MineralEntity = Collection< {
-  [ key: MineralID ]: Mineral;
+  [ key: MineralId ]: Mineral;
 } >;
+
+/**
+ * Factory for creating a mineral entity.
+ */
+export type MineralFactory = Factory<
+  'data/mineral', 'mineralId', MineralId, MineralData
+>;
