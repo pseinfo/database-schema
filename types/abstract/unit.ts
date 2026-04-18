@@ -59,15 +59,15 @@ export type PhysicalQuantity = keyof typeof ValidUnits;
  */
 export const ValidUnits = {
   /** Base SI Dimension: Time */
-  time: { base: [ 's', 'min', 'h', 'd', 'a' ], prefixable: [ 's' ] },
+  time: { base: [ 's', 'min', 'h', 'd', 'a', 't{P}' ], prefixable: [ 's' ] },
   /** Base SI Dimension: Length */
-  length: { base: [ 'm', 'in', 'ft', 'yd', 'mi', 'Å', 'Ø' ], prefixable: [ 'm' ] },
+  length: { base: [ 'm', 'in', 'ft', 'yd', 'mi', 'Å', 'Ø', 'l{P}' ], prefixable: [ 'm' ] },
   /** Base SI Dimension: Mass */
-  mass: { base: [ 'g', 't', 'oz', 'lb', 'u', 'Da' ], prefixable: [ 'g' ] },
+  mass: { base: [ 'g', 't', 'oz', 'lb', 'u', 'Da', 'm{P}' ], prefixable: [ 'g' ] },
   /** Base SI Dimension: Electric Current */
   electricCurrent: { base: [ 'A' ], prefixable: [ 'A' ] },
   /** Base SI Dimension: Thermodynamic Temperature */
-  temperature: { base: [ 'K', '°C', '°F' ], prefixable: [] },
+  temperature: { base: [ 'K', '°C', '°F', 'T{P}' ], prefixable: [] },
   /** Base SI Dimension: Amount of Substance */
   amountOfSubstance: { base: [ 'mol' ], prefixable: [ 'mol' ] },
   /** Base SI Dimension: Luminous Intensity */
