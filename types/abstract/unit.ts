@@ -7,6 +7,7 @@
 
 import type { Brand } from 'devtypes/types/util';
 import type { MetricSystem } from '../../enum/util';
+import type { Factory } from './util';
 
 /**
  * Fundamental dimensions of the International System of Units (SI).
@@ -287,3 +288,11 @@ export type UnitId< Q extends PhysicalQuantity = PhysicalQuantity > = Brand<
 export type UnitCollection = {
   [ Q in PhysicalQuantity ]?: Quantity< Q >;
 };
+
+/**
+ * Factory for creating a physical quantity.
+ * @template Q The physical quantity to create.
+ */
+export type UnitFactory< Q extends PhysicalQuantity > = Factory<
+  `unit/${ Q }`, 'quantity', Q, Quantity< Q >
+>;
