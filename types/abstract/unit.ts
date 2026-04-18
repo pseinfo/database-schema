@@ -6,7 +6,29 @@
  */
 
 import type { Brand } from 'devtypes/types/util';
-import type { MetricSystem, SIDimension } from '../../enum/util';
+import type { MetricSystem } from '../../enum/util';
+
+/**
+ * Fundamental dimensions of the International System of Units (SI).
+ * These dimensions form the basis for all derived physical quantities and their units.
+ */
+export type SIDimension = ( typeof SIDimension )[ number ];
+export const SIDimension = [
+    /** Physical dimension of temporal duration. */
+    'time',
+    /** Physical dimension of distance or spatial extent. */
+    'length',
+    /** Physical dimension of inertia and gravitational attraction. */
+    'mass',
+    /** Rate of flow of electric charge. */
+    'electricCurrent',
+    /** Degree of thermal energy in a system. */
+    'temperature',
+    /** Number of elementary entities in a sample. */
+    'amountOfSubstance',
+    /** Power emitted by a light source in a particular direction. */
+    'luminousIntensity'
+] as const;
 
 /**
  * Valid SI prefixes and their corresponding numerical factors.
@@ -211,12 +233,12 @@ export type DimensionVector = [ number, number, number, number, number, number, 
 export type Unit< Q extends PhysicalQuantity, U extends BaseUnitSymbols< Q > > = Brand< {
   /** The full human-readable name of the unit (e.g., "meters per second"). */
   name?: string;
+  /** The metric or imperial system this unit originates from. */
+  system?: MetricSystem;
   /** Indicates if this is the fundamental base unit for the system. */
   isBase?: boolean;
   /** Whether this unit can be combined with SI prefixes. */
   prefixable?: U extends PrefixableUnitSymbols< Q > ? true : false;
-  /** The metric or imperial system this unit originates from. */
-  system?: MetricSystem;
   /** Factors for converting this unit to the system base unit. */
   conversion?: {
     /** The multiplication factor. */

@@ -73,26 +73,6 @@ export enum MetricSystem {
 };
 
 /**
- * Fundamental dimensions of the International System of Units (SI).
- */
-export enum SIDimension {
-  /** Physical dimension of temporal duration. */
-  TIME = 'time',
-  /** Physical dimension of distance or spatial extent. */
-  LENGTH = 'length',
-  /** Physical dimension of inertia and gravitational attraction. */
-  MASS = 'mass',
-  /** Rate of flow of electric charge. */
-  ELECTRIC_CURRENT = 'electricCurrent',
-  /** Degree of thermal energy in a system. */
-  TEMPERATURE = 'temperature',
-  /** Number of elementary entities in a sample. */
-  AMOUNT_OF_SUBSTANCE = 'amountOfSubstance',
-  /** Power emitted by a light source in a particular direction. */
-  LUMINOUS_INTENSITY = 'luminousIntensity'
-};
-
-/**
  * Standard conditions for temperature and pressure in scientific measurements.
  */
 export enum StandardCondition {
