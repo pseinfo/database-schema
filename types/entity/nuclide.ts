@@ -17,7 +17,7 @@ import type { NuclearCollection } from '../collection/nuclear';
  * Formal identifier for a specific isotope or nuclear isomer.
  * Format: A or Am or Amm where A is the mass number and m denotes a metastable state.
  */
-export type NuclideIdentifier = Brand< `${number}` | `${number}m` | `${number}m${number}`, 'nuclideID' >;
+export type NuclideId = Brand< `${number}` | `${number}m` | `${number}m${number}`, 'nuclideID' >;
 
 /**
  * Fundamental nuclear classification and identification metrics.
@@ -76,7 +76,7 @@ export type Nuclide< K extends ElementSymbol > = MetaData< NuclideData< K > >;
 export type NuclideCollection = Collection< {
   /** The set of all isotopes associated with a specific chemical element. */
   [ K in ElementSymbol ]?: Collection< {
-    [ N in NuclideIdentifier ]?: Nuclide< K >;
+    [ N in NuclideId ]?: Nuclide< K >;
   } >;
 } >;
 
@@ -85,7 +85,7 @@ export type NuclideCollection = Collection< {
  * @template K - The specific chemical element symbol associated with this nuclide.
  */
 export type NuclideFactory< K extends ElementSymbol > = Factory<
-  `data/nuclide/${ K }`, 'nuclide', NuclideIdentifier, NuclideData< K >
+  `data/nuclide/${ K }`, 'nuclide', NuclideId, NuclideData< K >
 >;
 
 /**
@@ -95,7 +95,7 @@ export type NuclideFactory< K extends ElementSymbol > = Factory<
  */
 export type NuclideIndexEntry< Z extends number, N extends number > = Collection< {
   /** The unique mass-number based identifier for the isotope. */
-  nuclide: Distinct< NuclideIdentifier >;
+  nuclide: Distinct< NuclideId >;
   /** The nuclear charge (Proton count). */
   z: Distinct< Z >;
   /** The neutron count. */
@@ -138,7 +138,7 @@ export type NuclideIndex = Collection< {
  */
 export type NuclideDecayChainLink = Group< {
   /** The child nuclide (daughter) resulting from the decay. */
-  nuclide: Distinct< NuclideIdentifier >;
+  nuclide: Distinct< NuclideId >;
   /** The mode of the radioactive transformation. */
   mode: Distinct< DecayMode >;
   /** The probability fraction of the parent decaying into this specific daughter. */
@@ -149,7 +149,7 @@ export type NuclideDecayChainLink = Group< {
  * Detailed node in a radioactive decay chain, capturing parents and daughters.
  * @template N - The specific nuclide identifier type used as the key for the decay chain entries.
  */
-export type NuclideDecayChainEntry< N extends NuclideIdentifier > = Collection< {
+export type NuclideDecayChainEntry< N extends NuclideId > = Collection< {
   /** The current nuclide in the decay network. */
   nuclide: Distinct< N >;
   /** The nuclear charge (Proton count). */
@@ -180,7 +180,7 @@ export type NuclideDecayChainEntry< N extends NuclideIdentifier > = Collection< 
  * @template N - The specific nuclide identifier type used as the key for the decay chain entries.
  */
 export type NuclideDecayChains = Collection< {
-  [ N in NuclideIdentifier ]?: NuclideDecayChainEntry< N >;
+  [ N in NuclideId ]?: NuclideDecayChainEntry< N >;
 } >;
 
 /**
