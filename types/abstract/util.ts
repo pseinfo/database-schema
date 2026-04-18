@@ -40,3 +40,26 @@ export type LangGroup< L extends LangCode = LangCode.ENGLISH, T = string > = Gro
   /** Optional entries for all other supported languages. */
   Partial< { [ K in Exclude< LangCode, L > ]: Distinct< T > } >
 > >;
+
+/**
+ * Defines the structure for a factory, which is a collection of data organized by a primary key.
+ * Used to safely construct data files for the database.
+ * @template P The path to the data file.
+ * @template K The key used to identify the data.
+ * @template ID The type of the identifier.
+ * @template C The type of the data.
+ */
+export type Factory<
+  P extends string,
+  K extends string,
+  ID extends string,
+  C extends Collection< unknown >
+> = Expand< {
+  /** The key used to identify the data. */
+  readonly [ key in K ]: ID;
+} & {
+  /** The path to the data directory. */
+  readonly path: P;
+  /** The data collection. */
+  readonly data: C;
+} >;
