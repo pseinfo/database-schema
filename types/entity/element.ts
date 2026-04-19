@@ -71,8 +71,26 @@ export type ElementEntity = Collection< {
   [ K in ElementSymbol ]: Element;
 } >;
 
-export type ElementFactory = Factory<
-  EntityType.ELEMENT,
-  { element: ElementSymbol },
-  ElementData
->;
+/**
+ * Factory type for defining chemical elements in the database repository.
+ * Ensures that the element symbol and underlying scientific data are correctly typed.
+ * 
+ * @example
+ * ```typescript
+ * import type { ElementFactory } from '@pseinfo/database-schema/entity/element';
+ * import { ElementSymbol } from '@pseinfo/database-schema/enum/element';
+ * import { EntityType } from '@pseinfo/database-schema/enum/util';
+ * 
+ * export default ( {
+ *   type: EntityType.ELEMENT,
+ *   element: ElementSymbol.H,
+ *   data: {
+ *     // ...
+ *   }
+ * } ) as const satisfies ElementFactory;
+ * ```
+ */
+export type ElementFactory = Factory< EntityType.ELEMENT, ElementData, {
+  /** The element symbol as primary entity identifier. */
+  element: ElementSymbol;
+} >;
