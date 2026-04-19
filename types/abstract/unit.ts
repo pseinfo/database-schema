@@ -289,8 +289,24 @@ export type UnitCollection = {
   [ Q in PhysicalQuantity ]?: Quantity< Q >;
 };
 
-export type UnitFactory< Q extends PhysicalQuantity > = Factory<
-  'unit',
-  { quantity: Q },
-  Quantity< Q >
->;
+/**
+ * Factory type for defining units of measurement in the registry.
+ * @template Q The physical quantity being defined.
+ * 
+ * @example
+ * ```typescript
+ * import type { UnitFactory } from '@pseinfo/database-schema/abstract/unit';
+ * 
+ * export default ( {
+ *   type: 'unit',
+ *   quantity: 'length',
+ *   data: {
+ *     // ...
+ *   }
+ * } ) as const satisfies UnitFactory< 'length' >;
+ * ```
+ */
+export type UnitFactory< Q extends PhysicalQuantity > = Factory< 'unit', Quantity< Q >, {
+  /** The physical quantity being defined. */
+  quantity: Q
+} >;
