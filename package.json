@@ -1,7 +1,7 @@
 {
   "name": "@pseinfo/database-schema",
   "description": "TypeScript type declarations for the @pseinfo database",
-  "version": "0.6.4",
+  "version": "0.6.5",
   "license": "MIT",
   "author": {
     "name": "Paul Köhler",
