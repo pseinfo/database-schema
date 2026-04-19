@@ -47,17 +47,17 @@ export type PhysicsCollection = Collection< {
   /** Grouping of thermodynamic energy changes associated with phase or chemical transitions. */
   enthalpy?: Group< {
     /** The energy required to change a substance from solid to liquid without changing its temperature. */
-    fusionEnthalpy?: Single< NumberProperty< 'energy' | 'enthalpy' > >;
+    fusionEnthalpy?: Single< NumberProperty< 'energy' > | NumberProperty< 'enthalpy' > >;
     /** The energy required to change a substance from liquid to gas at its boiling point. */
-    vaporisationEnthalpy?: Single< NumberProperty< 'energy' | 'enthalpy' > >;
+    vaporisationEnthalpy?: Single< NumberProperty< 'energy' > | NumberProperty< 'enthalpy' > >;
     /** The energy required for the direct transition of a solid to a gaseous state. */
-    sublimationEnthalpy?: Single< NumberProperty< 'energy' | 'enthalpy' > >;
+    sublimationEnthalpy?: Single< NumberProperty< 'energy' > | NumberProperty< 'enthalpy' > >;
     /** The energy change required to separate a molecule into its constituent atoms. */
-    atomizationEnthalpy?: Single< NumberProperty< 'energy' | 'enthalpy' > >;
+    atomizationEnthalpy?: Single< NumberProperty< 'energy' > | NumberProperty< 'enthalpy' > >;
     /** The change in enthalpy during the formation of one mole of a substance from its constituent elements. */
-    formationEnthalpy?: Single< NumberProperty< 'energy' | 'enthalpy' > >;
+    formationEnthalpy?: Single< NumberProperty< 'energy' > | NumberProperty< 'enthalpy' > >;
     /** The energy released as heat when a substance undergoes complete combustion with oxygen. */
-    combustionEnthalpy?: Single< NumberProperty< 'energy' | 'enthalpy' > >;
+    combustionEnthalpy?: Single< NumberProperty< 'energy' > | NumberProperty< 'enthalpy' > >;
   } >;
 
   /** Grouping of thermal transport and storage properties. */

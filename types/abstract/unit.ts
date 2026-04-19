@@ -98,7 +98,7 @@ export const ValidUnits = {
   compressibility: { base: [ 'Pa[-1]', 'bar[-1]' ], prefixable: [ 'Pa[-1]', 'bar[-1]' ] },
 
   /** Thermodynamics: Enthalpy (Molar/Mass) */
-  enthalpy: { base: [ 'J/mol', 'J/g', 'kcal/mol', 'eV', 'Btu/lb' ], prefixable: [ 'eV' ] },
+  enthalpy: { base: [ 'J/mol', 'J/g', 'kcal/mol', 'eV', 'Btu/lb' ], prefixable: [ 'J/mol', 'eV' ] },
   /** Thermodynamics: Entropy */
   entropy: { base: [ 'J/(mol·K)', 'J/(g·K)', 'cal/(mol·K)', 'Btu/(lb·°F)' ], prefixable: [] },
   /** Thermodynamics: Total Heat Capacity */
