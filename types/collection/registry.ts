@@ -31,7 +31,7 @@ export type NSCNumber = `NSC${number}`;
 /** DrugBank database identifier. */
 export type DrugBankID = `DB${string}`;
 /** Anatomical Therapeutic Chemical (ATC) classification code. */
-export type ATCCode = `${string}${number}${string}${number}`;
+export type ATCCode = string;
 /** Beilstein database internal number for organic compounds. */
 export type BeilsteinNumber = `${number}`;
 /** Gmelin database internal number for inorganic and organometallic compounds. */
