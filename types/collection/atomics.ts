@@ -22,7 +22,7 @@ export type AtomicsCollection = Collection< {
   /** The number of electrons in the outermost shell that participate in chemical bonding. */
   valenceElectrons?: Single< PrimitiveProperty< number > >;
   /** The count of electrons residing within each principal energy level (K, L, M, etc.). */
-  shellModel?: Single< StructProperty< { [ K in ShellModel ]: number } > >;
+  shellModel?: Single< StructProperty< { [ K in ShellModel ]?: number } > >;
 
   /** The cumulative energy required to remove successive electrons from a neutral atom in the gas phase. */
   ionizationEnergies?: Single< ArrayProperty< 'energy' > >;
