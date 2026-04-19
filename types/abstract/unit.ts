@@ -89,7 +89,7 @@ export const ValidUnits = {
   /** Derived Quantity: Power */
   power: { base: [ 'W', 'hp', 'erg/s', 'kcal/s' ], prefixable: [ 'W' ] },
   /** Derived Quantity: Density */
-  density: { base: [ 'kg/m[3]', 'g/cm[3]', 'g/mL', 'lb/ft[3]' ], prefixable: [] },
+  density: { base: [ 'kg/m[3]', 'g/cm[3]', 'g/ml', 'kg/l', 'lb/ft[3]' ], prefixable: [] },
   /** Derived Quantity: Absorption Coefficient (Optical) */
   absorptionCoefficient: { base: [ 'm[-1]', 'L/(mol·cm)' ], prefixable: [ 'm[-1]' ] },
   /** Derived Quantity: Attenuation Coefficient (Signal) */
