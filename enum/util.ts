@@ -4,11 +4,20 @@
  * This module includes value types, confidence levels, standard conditions, and units of measurement.
  */
 
+/**
+ * Categorization of high-level scientific entities managed within the database.
+ * These types are used for internal routing, validation, and metadata enrichment.
+ */
 export enum EntityType {
+  /** Individual chemical elements of the periodic table. */
   ELEMENT = 'element',
+  /** Specific isotopes and nuclear isomers including decay data. */
   NUCLIDE = 'nuclide',
+  /** Multi-element substances with fixed or variable stoichiometry. */
   COMPOUND = 'compound',
+  /** Naturally occurring solid substances with defined crystal structures. */
   MINERAL = 'mineral',
+  /** Physical combinations of multiple substances without chemical bonding. */
   MIXTURE = 'mixture'
 };
 
