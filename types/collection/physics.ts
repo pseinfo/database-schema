@@ -16,7 +16,7 @@ export type PhysicsCollection = Collection< {
   /** The mass per unit volume of the substance under specific conditions. */
   density?: Single< NumberProperty< 'density' > >;
   /** The ratio of the density of the substance to the density of a reference material (usually water). */
-  relativeDensity?: Single< PrimitiveProperty< number > >;
+  relativeDensity?: Single< NumberProperty< never > >;
   /** The primary physical state (solid, liquid, gas, plasma) of the substance. */
   phase?: Single< PrimitiveProperty< Phase > >;
 
@@ -77,21 +77,21 @@ export type PhysicsCollection = Collection< {
     /** The minimum energy needed to remove an electron from a solid to a point in the vacuum. */
     workFunction?: Single< NumberProperty< 'energy' > >;
     /** The ratio of the heat capacity at constant pressure to heat capacity at constant volume. */
-    adiabaticIndex?: Single< PrimitiveProperty< number > >;
+    adiabaticIndex?: Single< NumberProperty< never > >;
   } >;
 
   /** Grouping of mechanical resistance scales for surface deformation. */
   hardness?: Group< {
     /** Hardness measured by the indentation depth of a hard steel or carbide ball. */
-    brinellHardness?: Single< PrimitiveProperty< number > >;
+    brinellHardness?: Single< NumberProperty< never > >;
     /** A qualitative scale of mineral hardness based on scratch resistance. */
-    mohsHardness?: Single< PrimitiveProperty< number > >;
+    mohsHardness?: Single< NumberProperty< never > >;
     /** Hardness measured using a square-based diamond pyramid indenter. */
-    vickersHardness?: Single< PrimitiveProperty< number > >;
+    vickersHardness?: Single< NumberProperty< never > >;
     /** Hardness based on the depth of penetration of a diamond or ball indenter. */
-    rockwellHardness?: Single< PrimitiveProperty< number > >;
+    rockwellHardness?: Single< NumberProperty< never > >;
     /** Microhardness test for thin or brittle materials using a rhombic diamond indenter. */
-    knoopHardness?: Single< PrimitiveProperty< number > >;
+    knoopHardness?: Single< NumberProperty< never > >;
   } >;
 
   /** Grouping of properties describing the deformation of a material under stress. */
@@ -103,7 +103,7 @@ export type PhysicsCollection = Collection< {
     /** A measure of the stiffness of a solid material (tensile elasticity). */
     youngModulus?: Single< NumberProperty< 'pressure' > >;
     /** The ratio of transverse strain to axial strain. */
-    poissonRatio?: Single< PrimitiveProperty< number > >;
+    poissonRatio?: Single< NumberProperty< never > >;
     /** The fractional volume change per unit change in pressure. */
     compressibility?: Single< NumberProperty< 'compressibility' > >;
     /** The maximum stress that a material can withstand while being stretched. */
@@ -129,7 +129,7 @@ export type PhysicsCollection = Collection< {
     /** The energy range in a solid where no electron states can exist. */
     bandGap?: Single< NumberProperty< 'energy' > >;
     /** A measure of a material's ability to store electrical energy in an electric field. */
-    dielectricConstant?: Single< PrimitiveProperty< number > >;
+    dielectricConstant?: Single< NumberProperty< never > >;
     /** The product of magnitude of charges and distance between them in a molecule. */
     dipoleMoment?: Single< NumberProperty< 'dipoleMoment' > >;
   } >;
@@ -161,21 +161,21 @@ export type PhysicsCollection = Collection< {
   /** Grouping of properties describing the behavior of light within and on the surface of the material. */
   optics?: Group< {
     /** The ratio of the speed of light in vacuum to the speed of light in the medium. */
-    refractiveIndex?: Single< PrimitiveProperty< number > >;
+    refractiveIndex?: Single< NumberProperty< never > >;
     /** The fraction of incident electromagnetic power that is reflected at an interface. */
-    reflectance?: Single< PrimitiveProperty< number > >;
+    reflectance?: Single< NumberProperty< never > >;
     /** The difference between the refractive indices for light with different polarizations. */
-    birefringence?: Single< PrimitiveProperty< number > >;
+    birefringence?: Single< NumberProperty< never > >;
     /** The angle between the optical axes in biaxial crystals. */
     v2Angle?: Single< NumberProperty< 'angle' > >;
     /** A measure of the rate of decrease in the intensity of electromagnetic radiation as it passes through a given substance. */
     absorptionCoefficient?: Single< NumberProperty< 'absorptionCoefficient' > >;
     /** The ratio of the energy radiated from a material's surface to that radiated from a blackbody. */
-    emissivity?: Single< PrimitiveProperty< number > >;
+    emissivity?: Single< NumberProperty< never > >;
     /** The fraction of incident light that passes through the sample. */
-    transmittance?: Single< PrimitiveProperty< number > >;
+    transmittance?: Single< NumberProperty< never > >;
     /** The measure of impenetrability to electromagnetic or other kinds of radiation. */
-    opacity?: Single< PrimitiveProperty< number > >;
+    opacity?: Single< NumberProperty< never > >;
     /** The attribute of visual perception by which a body appears to reflect light specularly. */
     gloss?: Single< PrimitiveProperty< Gloss > >;
     /** The appearance of a material surface in terms of its light-reflective qualities. */
