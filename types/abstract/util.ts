@@ -41,6 +41,18 @@ export type LangGroup< L extends LangCode = LangCode.ENGLISH, T = string > = Gro
   Partial< { [ K in Exclude< LangCode, L > ]: Distinct< T > } >
 > >;
 
+/**
+ * A robust factory utility type designed to facilitate the construction of the database repository.
+ * These types are used as build-time "contracts" for individual data files, ensuring that the file
+ * structure, identifiers, and underlying data collections are perfectly aligned.
+ * 
+ * This enables strict template validation within the IDE and CI/CD pipelines when creating new
+ * entities (Elements, Nuclides, etc.) or registries (Units, References).
+ * 
+ * @template E The entity type or specialized registry category.
+ * @template K A set of primary keys or identifiers that define the specific record (e.g., symbol, id).
+ * @template C The raw scientific data collection associated with the entity.
+ */
 export type Factory<
   E extends EntityType | 'unit' | 'ref',
   K extends Record< string, string | number >,
