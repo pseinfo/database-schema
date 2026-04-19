@@ -20,11 +20,13 @@ export type MetaData< T extends Collection< unknown > = Collection< unknown > > 
     /** The version of the schema used for this data object. */
     schemaVersion: 1;
     /** ISO 8601 timestamp of the last modification. */
-    lastModified: string;
+    lastModified: `${number}-${number}-${number}T${number}:${number}:${number}Z`;
     /** Unique commit hash or version identifier representing the data source state. */
     commit: string;
     /** Cryptographic hash for data integrity verification of the entire object. */
     hash: string;
+    /** Permalink to the source file in the repository, allowing traceability and version control. */
+    permalink: `https://github.com/pseinfo/database/blob/${string}/data/${string}.ts`;
   } >;
 } >;
 
