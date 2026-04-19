@@ -7,6 +7,7 @@
 import type { Brand } from 'devtypes/types/util';
 import type { ElementSymbol } from '../../enum/element';
 import type { DecayMode, NuclideProperty, NuclideStability, NuclideState, SpinParity } from '../../enum/nuclear';
+import type { EntityType } from '../../enum/util';
 import type { Collection, Distinct, Group } from '../abstract/collection';
 import type { Factory, MetaData } from '../abstract/util';
 import type { DescriptiveCollection } from '../collection/descriptive';
@@ -80,12 +81,10 @@ export type NuclideCollection = Collection< {
   } >;
 } >;
 
-/**
- * Factory for creating a nuclide entity.
- * @template K - The specific chemical element symbol associated with this nuclide.
- */
 export type NuclideFactory< K extends ElementSymbol > = Factory<
-  `data/nuclide/${ K }`, 'nuclide', NuclideId, NuclideData< K >
+  EntityType.NUCLIDE,
+  { element: K, nuclide: NuclideId, z: number, n: number },
+  NuclideData< K >
 >;
 
 /**

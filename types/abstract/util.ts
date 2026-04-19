@@ -4,8 +4,8 @@
  * and specialized groups for localized strings to ensure multi-language data integrity.
  */
 
-import type { Expand } from 'devtypes/types/util';
-import type { LangCode } from '../../enum/util';
+import type { Brand, Expand } from 'devtypes/types/util';
+import type { EntityType, LangCode } from '../../enum/util';
 import type { Collection, Distinct, Group } from '../abstract/collection';
 
 /**
@@ -41,23 +41,8 @@ export type LangGroup< L extends LangCode = LangCode.ENGLISH, T = string > = Gro
   Partial< { [ K in Exclude< LangCode, L > ]: Distinct< T > } >
 > >;
 
-/**
- * Defines the structure for a factory, which is a collection of data organized by a primary key.
- * Used to safely construct data files for the database.
- * @template P The path to the data file.
- * @template K The key used to identify the data.
- * @template ID The type of the identifier.
- * @template C The type of the data.
- */
 export type Factory<
-  P extends string, K extends string, ID extends string,
+  E extends EntityType | 'unit' | 'ref',
+  K extends Record< string, string | number >,
   C extends Collection< unknown >
-> = Expand< {
-  /** The key used to identify the data. */
-  readonly [ key in K ]: ID;
-} & {
-  /** The path to the data directory. */
-  readonly path: P;
-  /** The data collection. */
-  readonly data: C;
-} >;
+> = Expand< Brand< K & { data: C }, E, 'type', true > >;

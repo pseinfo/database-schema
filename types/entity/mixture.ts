@@ -7,6 +7,7 @@
 import type { Brand } from 'devtypes/types/util';
 import type { MixtureCategory, MixtureHomogeneity, MixtureProperty, MixtureType } from '../../enum/mixture';
 import type { Phase } from '../../enum/physics';
+import type { EntityType } from '../../enum/util';
 import type { Collection, Distinct } from '../abstract/collection';
 import type { Factory, MetaData } from '../abstract/util';
 import type { Composite } from './composite';
@@ -61,9 +62,8 @@ export type MixtureEntity = Collection< {
   [ key: MixtureId ]: Mixture;
 } >;
 
-/**
- * Factory for creating a mixture entity.
- */
 export type MixtureFactory = Factory<
-  'data/mixture', 'mixtureId', MixtureId, MixtureData
+  EntityType.MIXTURE,
+  { mixtureId: MixtureId },
+  MixtureData
 >;

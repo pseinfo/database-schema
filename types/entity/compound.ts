@@ -7,6 +7,7 @@
 import type { Brand, Expand } from 'devtypes/types/util';
 import type { CompoundCategory, CompoundProperty, CompoundUnion } from '../../enum/compound';
 import type { Phase } from '../../enum/physics';
+import type { EntityType } from '../../enum/util';
 import type { Collection, Distinct } from '../abstract/collection';
 import type { FormCollection } from '../abstract/form';
 import type { Factory, MetaData } from '../abstract/util';
@@ -61,9 +62,8 @@ export type CompoundEntity = Collection< {
   [ key: CompoundId ]: Compound;
 } >;
 
-/**
- * Factory for creating a compound entity.
- */
 export type CompoundFactory = Factory<
-  'data/compound', 'compoundId', CompoundId, CompoundData
+  EntityType.COMPOUND,
+  { compoundId: CompoundId },
+  CompoundData
 >;

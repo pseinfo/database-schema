@@ -337,9 +337,8 @@ export type RefId = Brand< string, 'refId' >;
  */
 export type ReferenceCollection = Record< RefId, Reference >;
 
-/**
- * Factory for creating a reference entity.
- */
 export type ReferenceFactory = Factory<
-  'refs', 'refId', RefId, Reference
+  'ref',
+  { refId: RefId },
+  Reference
 >;

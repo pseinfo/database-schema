@@ -7,6 +7,7 @@
 import type { Brand, Expand } from 'devtypes/types/util';
 import type { MineralCategory, MineralClass, MineralProperty } from '../../enum/mineral';
 import type { Phase } from '../../enum/physics';
+import type { EntityType } from '../../enum/util';
 import type { Collection, Distinct } from '../abstract/collection';
 import type { FormCollection } from '../abstract/form';
 import type { Factory, MetaData } from '../abstract/util';
@@ -69,9 +70,8 @@ export type MineralEntity = Collection< {
   [ key: MineralId ]: Mineral;
 } >;
 
-/**
- * Factory for creating a mineral entity.
- */
 export type MineralFactory = Factory<
-  'data/mineral', 'mineralId', MineralId, MineralData
+  EntityType.MINERAL,
+  { mineralId: MineralId },
+  MineralData
 >;

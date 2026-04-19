@@ -289,10 +289,8 @@ export type UnitCollection = {
   [ Q in PhysicalQuantity ]?: Quantity< Q >;
 };
 
-/**
- * Factory for creating a physical quantity.
- * @template Q The physical quantity to create.
- */
 export type UnitFactory< Q extends PhysicalQuantity > = Factory<
-  `unit/${ Q }`, 'quantity', Q, Quantity< Q >
+  'unit',
+  { quantity: Q },
+  Quantity< Q >
 >;

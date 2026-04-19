@@ -7,6 +7,7 @@
 import type { Expand } from 'devtypes/types/util';
 import type { ElementBlock, ElementGroup, ElementProperty, ElementSet, ElementSymbol, PTColumn, PTPeriod } from '../../enum/element';
 import type { Phase } from '../../enum/physics';
+import type { EntityType } from '../../enum/util';
 import type { Collection, Distinct } from '../abstract/collection';
 import type { FormCollection } from '../abstract/form';
 import type { Factory, MetaData } from '../abstract/util';
@@ -70,9 +71,8 @@ export type ElementEntity = Collection< {
   [ K in ElementSymbol ]: Element;
 } >;
 
-/**
- * Factory for creating an element entity.
- */
 export type ElementFactory = Factory<
-  'data/element', 'symbol', ElementSymbol, ElementData
+  EntityType.ELEMENT,
+  { element: ElementSymbol },
+  ElementData
 >;
