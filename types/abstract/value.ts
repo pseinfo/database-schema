@@ -61,6 +61,13 @@ interface ValueFields<
 }
 
 /**
+ * Enrich value types with a physical quantity unit field when applicable.
+ * This conditional type ensures that only value types representing physical quantities can include a unit.
+ * @template Q The physical quantity.
+ */
+type UnitField< Q > = Q extends PhysicalQuantity ? 'unit' : never;
+
+/**
  * Represents a standard primitive value (string, number, boolean).
  * Requires either a single value or an array of values.
  * @template T The specific primitive type.
@@ -87,7 +94,7 @@ export type StructValue< T extends StructType = StructType > = Expand<
  */
 export type SingleValue< Q extends PhysicalQuantity = PhysicalQuantity > = Expand<
   BaseValue< ValueType.SINGLE > &
-  StrictSubset< ValueFields< Q, number >, 'value', 'unit' >
+  StrictSubset< ValueFields< Q, number >, 'value', UnitField< Q > >
 >;
 
 /**
@@ -97,7 +104,7 @@ export type SingleValue< Q extends PhysicalQuantity = PhysicalQuantity > = Expan
  */
 export type ArrayValue< Q extends PhysicalQuantity = PhysicalQuantity > = Expand<
   BaseValue< ValueType.ARRAY > &
-  StrictSubset< ValueFields< Q, number >, 'values', 'unit' >
+  StrictSubset< ValueFields< Q, number >, 'values', UnitField< Q > >
 >;
 
 /**
@@ -107,7 +114,7 @@ export type ArrayValue< Q extends PhysicalQuantity = PhysicalQuantity > = Expand
  */
 export type RangeValue< Q extends PhysicalQuantity = PhysicalQuantity > = Expand<
   BaseValue< ValueType.RANGE > &
-  StrictSubset< ValueFields< Q, number >, 'range', 'value' | 'unit' >
+  StrictSubset< ValueFields< Q, number >, 'range', 'value' | UnitField< Q > >
 >;
 
 /**
