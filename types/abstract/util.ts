@@ -50,11 +50,11 @@ export type LangGroup< L extends LangCode = LangCode.ENGLISH, T = string > = Gro
  * entities (Elements, Nuclides, etc.) or registries (Units, References).
  * 
  * @template E The entity type or specialized registry category.
- * @template K A set of primary keys or identifiers that define the specific record (e.g., symbol, id).
  * @template C The raw scientific data collection associated with the entity.
+ * @template K A set of primary keys or identifiers that define the specific record (e.g., symbol, id).
  */
 export type Factory<
   E extends EntityType | 'unit' | 'ref',
-  K extends Record< string, string | number >,
-  C extends Collection< unknown >
+  C extends Collection< unknown >,
+  K extends Record< string, string | number >
 > = Expand< Brand< K & { data: C }, E, 'type', true > >;
