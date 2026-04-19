@@ -62,8 +62,25 @@ export type CompoundEntity = Collection< {
   [ key: CompoundId ]: Compound;
 } >;
 
-export type CompoundFactory = Factory<
-  EntityType.COMPOUND,
-  { compoundId: CompoundId },
-  CompoundData
->;
+/**
+ * Factory type for defining chemical compounds in the database repository.
+ * Ensures that the compound identifier and underlying scientific data are correctly typed.
+ * 
+ * @example
+ * ```typescript
+ * import type { CompoundFactory } from '@pseinfo/database-schema/entity/compound';
+ * import { EntityType } from '@pseinfo/database-schema/enum/util';
+ * 
+ * export default ( {
+ *   type: EntityType.COMPOUND,
+ *   compoundId: 'water',
+ *   data: {
+ *     // ...
+ *   }
+ * } ) as const satisfies CompoundFactory;
+ * ```
+ */
+export type CompoundFactory = Factory< EntityType.COMPOUND, CompoundData, {
+  /** The compound identifier as primary entity key. */
+  compoundId: CompoundId;
+} >;
