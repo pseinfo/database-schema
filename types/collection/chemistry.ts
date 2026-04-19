@@ -24,7 +24,7 @@ export type ChemistryCollection = Collection< {
   /** The sum of the atomic weights of all atoms in a molecule's formula (also named formula mass). */
   molecularMass?: Single< NumberProperty< 'mass' > >;
   /** The ratio of the average mass of molecules of a substance to one-twelfth the mass of an atom of carbon-12. */
-  relativeMolecularMass?: Single< PrimitiveProperty< number > >;
+  relativeMolecularMass?: Single< NumberProperty< never > >;
 
   /** Grouping of properties related to the proton-donor or acceptor behavior. */
   basicity?: Group< {
@@ -33,13 +33,13 @@ export type ChemistryCollection = Collection< {
     /** The overall nature of a substance in acid-base reactions (acidic, basic, amphoteric). */
     acidBaseCharacter?: Single< PrimitiveProperty< AcidBaseCharacter > >;
     /** The negative logarithm of the acid dissociation constant. */
-    pKa?: Single< PrimitiveProperty< number > >;
+    pKa?: Single< NumberProperty< never > >;
     /** The negative logarithm of the base dissociation constant. */
-    pKb?: Single< PrimitiveProperty< number > >;
+    pKb?: Single< NumberProperty< never > >;
     /** The measure of acidity or basicity of an aqueous solution. */
-    pH?: Single< PrimitiveProperty< number > >;
+    pH?: Single< NumberProperty< never > >;
     /** The pH at which a particular molecule carries no net electrical charge. */
-    isoelectricPoint?: Single< PrimitiveProperty< number > >;
+    isoelectricPoint?: Single< NumberProperty< never > >;
     /** The classification based on the ability to accept or donate electron pairs. */
     lewisAcidity?: Single< PrimitiveProperty< LewisModel > >;
     /** The classification based on the ability to donate electron pairs. */
@@ -87,9 +87,9 @@ export type ChemistryCollection = Collection< {
     /** The maximum amount of the substance that will dissolve in water at equilibrium. */
     waterSolubility?: Single< NumberProperty< 'concentration' > >;
     /** The equilibrium constant for the dissolution of an ionic compound in water. */
-    solubilityProduct?: Single< PrimitiveProperty< number > >;
+    solubilityProduct?: Single< NumberProperty< never > >;
     /** The ratio of the concentration of a gas in a solution to its partial pressure in the gas phase. */
-    henryConstant?: Single< PrimitiveProperty< number > >;
+    henryConstant?: Single< NumberProperty< never > >;
   } >;
 
   /** Grouping of properties describing the three-dimensional arrangement of atoms in a molecule. */
