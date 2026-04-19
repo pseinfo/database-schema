@@ -337,8 +337,23 @@ export type RefId = Brand< string, 'refId' >;
  */
 export type ReferenceCollection = Record< RefId, Reference >;
 
-export type ReferenceFactory = Factory<
-  'ref',
-  { refId: RefId },
-  Reference
->;
+/**
+ * Factory type for defining scientific references in the bibliography.
+ * 
+ * @example
+ * ```typescript
+ * import type { ReferenceFactory } from '@pseinfo/database-schema/abstract/reference';
+ * 
+ * export default ( {
+ *   type: 'ref',
+ *   refId: 'dewiki:XXXXXXX',
+ *   data: {
+ *     // ...
+ *   }
+ * } ) as const satisfies ReferenceFactory;
+ * ```
+ */
+export type ReferenceFactory = Factory< 'ref', Reference, {
+  /** The unique reference identifier. */
+  refId: RefId;
+} >;
