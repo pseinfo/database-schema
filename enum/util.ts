@@ -4,6 +4,14 @@
  * This module includes value types, confidence levels, standard conditions, and units of measurement.
  */
 
+export enum EntityType {
+  ELEMENT = 'element',
+  NUCLIDE = 'nuclide',
+  COMPOUND = 'compound',
+  MINERAL = 'mineral',
+  MIXTURE = 'mixture'
+};
+
 /**
  * Technical representation models for data values within the schema.
  */
