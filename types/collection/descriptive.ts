@@ -15,11 +15,11 @@ import type { RegistryGroup, StructureGroup } from './registry';
  * Historical metadata concerning the first identification of a substance.
  */
 export type DiscoveryGroup = Group< {
-  /** The year the substance was officially identified or discovered. */
-  year?: Distinct< number >;
+  /** The year or period when the substance was discovered or first identified. */
+  year?: Distinct< string >;
   /** The name of the individuals primarily credited with the discovery. */
   discoverer?: Distinct< string | string[] >;
-  /** The country or region where the discovery took place. */
+  /** The country or region where the discovery took place (ISO 3166-1 alpha-2). */
   country?: Distinct< string | string[] >;
   /** The university or organization where the research was conducted. */
   institute?: Distinct< string | string[] >;
