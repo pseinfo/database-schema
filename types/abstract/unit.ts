@@ -5,7 +5,7 @@
  * prefixing rules, and dimensional analysis within the database.
  */
 
-import type { Brand } from 'devtypes/types/util';
+import type { Brand, Expand } from 'devtypes/types/util';
 import type { MetricSystem } from '../../enum/util';
 import type { Factory } from './util';
 
@@ -231,7 +231,7 @@ export type DimensionVector = [ number, number, number, number, number, number, 
  * @template Q The physical quantity this unit belongs to.
  * @template U The specific symbol of this unit.
  */
-export type Unit< Q extends PhysicalQuantity, U extends BaseUnitSymbols< Q > > = Brand< {
+export type Unit< Q extends PhysicalQuantity, U extends BaseUnitSymbols< Q > > = Expand< Brand< {
   /** The full human-readable name of the unit (e.g., "meters per second"). */
   name?: string;
   /** The metric or imperial system this unit originates from. */
@@ -247,7 +247,7 @@ export type Unit< Q extends PhysicalQuantity, U extends BaseUnitSymbols< Q > > =
     /** The additive offset (primarily for temperature scales). */
     offset?: number;
   };
-}, U, 'symbol', true >;
+}, U, 'symbol', true > >;
 
 /**
  * Defines the properties and available units for a physical quantity.
