@@ -102,7 +102,7 @@ export const ValidUnits = {
   /** Thermodynamics: Entropy */
   entropy: { base: [ 'J/(mol·K)', 'J/(g·K)', 'cal/(mol·K)', 'Btu/(lb·°F)' ], prefixable: [] },
   /** Thermodynamics: Total Heat Capacity */
-  heatCapacity: { base: [ 'J/(mol·K)', 'J/(g·K)', 'cal/(mol·K)', 'Btu/(lb·°F)' ], prefixable: [] },
+  heatCapacity: { base: [ 'J/(mol·K)', 'J/(g·K)', 'J/(kg·K)', 'cal/(mol·K)', 'Btu/(lb·°F)' ], prefixable: [] },
   /** Thermodynamics: Specific Heat Capacity */
   specificHeatCapacity: { base: [ 'J/(g·K)', 'J/(kg·K)', 'cal/(g·K)', 'Btu/(lb·°F)' ], prefixable: [] },
   /** Thermodynamics: Temperature Coefficient */
