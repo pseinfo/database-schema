@@ -12,11 +12,11 @@ Visit [technical documentation](https://pseinfo.github.io/database-schema) for i
 
 The `@pseinfo/database-schema` is designed as a modular, five-tier architecture that ensures both strict type safety and scientific flexibility.
 
-1.  **Abstract Layer:** Defines the fundamental behavior of scientific data, including measurements, uncertainties, and experimental conditions.
-2.  **Collection Layer:** Aggregates properties into thematic modules such as atomic physics, thermodynamics, and crystallographic analysis.
-3.  **Data Layer:** Provides the "raw" scientific content (e.g., `ElementData`), designed for manual maintenance without system-generated metadata.
-4.  **Entity Layer:** Enriches the data with automated `@metadata` (hashes, timestamps, versions) to create complete database records (e.g., `Element`).
-5.  **Registry Layer:** Composes these entities into global dictionaries (e.g., `ElementEntity`), providing a unified structure consistent across all domains.
+1.  **Abstract layer:** Defines the fundamental behavior of scientific data, including measurements, uncertainties, and experimental conditions.
+2.  **Collection layer:** Aggregates properties into thematic modules such as atomic physics, thermodynamics, and crystallographic analysis.
+3.  **Data layer:** Provides the "raw" scientific content (e.g., `ElementData`), designed for manual maintenance without system-generated metadata.
+4.  **Entity layer:** Enriches the data with automated `@metadata` (hashes, timestamps, versions) to create complete database records (e.g., `Element`).
+5.  **Registry layer:** Composes these entities into global dictionaries (e.g., `ElementEntity`), providing a unified structure consistent across all domains.
 
 ## Scientific Property Model
 
@@ -38,17 +38,32 @@ The database is organized into distinct scientific domains, each with specialize
 
 ## Factory Types
 
-To facilitate the construction of the database repository, the schema provides **factory types**. These types allow for strict validation of source files, ensuring that path conventions and primary identifiers are correctly implemented at build-time.
+To construct and maintain the database, the schema provides dedicated **factory types**. These serve as internal helper types that act as build-time "contracts" for individual data files. They ensure that every entry—whether it's a chemical element, a complex mixture, or a radioactive nuclide—is perfectly aligned with the schema's requirements before the database is automatically generated.
+
+Using these factories, developers benefit from:
+- **Strict validation:** Ensuring that primary identifiers (symbols, mass numbers, units) are valid and correctly typed.
+- **Structural integrity:** Guaranteeing that the data object conforms exactly to the expected entity model.
+- **Developer experience:** Providing IDE integration with autocomplete and error checking during data entry.
+
+Example:
 
 ```typescript
-import type { ElementData } from '@pseinfo/database-schema/entity/element';
+import type { ElementFactory } from '@pseinfo/database-schema/types/entity/element';
 import { ElementSymbol } from '@pseinfo/database-schema/enum/element';
+import { EntityType } from '@pseinfo/database-schema/enum/util';
 
 export default ( {
-  path: 'data/element',
-  symbol: ElementSymbol.H,
+  type: EntityType.ELEMENT,
+  element: ElementSymbol.H,
   data: {
-    // ...
+    classification: {
+      symbol: 'H',
+      atomicNumber: 1,
+      // ...
+    },
+    descriptive: {
+        // ...
+    }
   }
 } ) as const satisfies ElementFactory;
 ```
