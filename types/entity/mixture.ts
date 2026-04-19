@@ -62,8 +62,25 @@ export type MixtureEntity = Collection< {
   [ key: MixtureId ]: Mixture;
 } >;
 
-export type MixtureFactory = Factory<
-  EntityType.MIXTURE,
-  { mixtureId: MixtureId },
-  MixtureData
->;
+/**
+ * Factory type for defining chemical mixtures in the database repository.
+ * Ensures that the mixture identifier and constituent data are correctly typed.
+ * 
+ * @example
+ * ```typescript
+ * import type { MixtureFactory } from '@pseinfo/database-schema/entity/mixture';
+ * import { EntityType } from '@pseinfo/database-schema/enum/util';
+ * 
+ * export default ( {
+ *   type: EntityType.MIXTURE,
+ *   mixtureId: 'air',
+ *   data: {
+ *     // ...
+ *   }
+ * } ) as const satisfies MixtureFactory;
+ * ```
+ */
+export type MixtureFactory = Factory< EntityType.MIXTURE, MixtureData, {
+  /** The mixture identifier as primary entity key. */
+  mixtureId: MixtureId;
+} >;

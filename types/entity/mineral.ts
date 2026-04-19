@@ -70,8 +70,25 @@ export type MineralEntity = Collection< {
   [ key: MineralId ]: Mineral;
 } >;
 
-export type MineralFactory = Factory<
-  EntityType.MINERAL,
-  { mineralId: MineralId },
-  MineralData
->;
+/**
+ * Factory type for defining minerals in the database repository.
+ * Ensures that the mineral identifier and geological data are correctly typed.
+ * 
+ * @example
+ * ```typescript
+ * import type { MineralFactory } from '@pseinfo/database-schema/entity/mineral';
+ * import { EntityType } from '@pseinfo/database-schema/enum/util';
+ * 
+ * export default ( {
+ *   type: EntityType.MINERAL,
+ *   mineralId: 'quartz',
+ *   data: {
+ *     // ...
+ *   }
+ * } ) as const satisfies MineralFactory;
+ * ```
+ */
+export type MineralFactory = Factory< EntityType.MINERAL, MineralData, {
+  /** The mineral identifier as primary entity key. */
+  mineralId: MineralId;
+} >;
