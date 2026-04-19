@@ -54,33 +54,33 @@ export type AtomicsCollection = Collection< {
   /** Grouping of properties defining the electrical state and shielding of the nucleus. */
   charge?: Group< {
     /** The net positive charge of the nucleus, determined by the number of protons. */
-    nuclearCharge: Single< PrimitiveProperty< number > >;
+    nuclearCharge: Single< NumberProperty< never > >;
     /** The net positive charge experienced by a valence electron after accounting for shielding by inner electrons. */
-    effectiveCharge: Single< PrimitiveProperty< number > >;
+    effectiveCharge: Single< NumberProperty< never > >;
   } >;
 
   /** Grouping of various scales for measuring an atom's tendency to attract bonding electrons. */
   electronegativity?: Group< {
     /** The original dimensionless scale based on bond-dissociation energies. */
-    pauling?: Single< PrimitiveProperty< number > >;
+    pauling?: Single< NumberProperty< never > >;
     /** A scale based on the relative stability of atomic volumes. */
-    sanderson?: Single< PrimitiveProperty< number > >;
+    sanderson?: Single< NumberProperty< never > >;
     /** A scale based on the electrostatic force exerted by the nucleus on valence electrons. */
-    allredRochow?: Single< PrimitiveProperty< number > >;
+    allredRochow?: Single< NumberProperty< never > >;
     /** The arithmetic mean of the first ionization energy and electron affinity. */
-    mulliken?: Single< PrimitiveProperty< number > >;
+    mulliken?: Single< NumberProperty< never > >;
     /** A scale based on the average one-electron energy of valence shell electrons. */
-    allen?: Single< PrimitiveProperty< number > >;
+    allen?: Single< NumberProperty< never > >;
     /** A modern scale incorporating shell-wise screening and orbital energy. */
     ghoshGupta?: Single< NumberProperty< 'energy' > >;
     /** A scale related to the polarizability and valence state of the atom. */
-    nagle?: Single< PrimitiveProperty< number > >;
+    nagle?: Single< NumberProperty< never > >;
     /** A measure of chemical hardness and absolute electronegativity. */
     pearson?: Single< NumberProperty< 'energy' > >;
     /** A scale based on effective nuclear charge and atomic radii. */
-    martynov?: Single< PrimitiveProperty< number > >;
+    martynov?: Single< NumberProperty< never > >;
     /** A scale derived from the spectroscopic properties of atoms. */
-    gordy?: Single< PrimitiveProperty< number > >;
+    gordy?: Single< NumberProperty< never > >;
     /** A scale based on the average binding energy of valence electrons. */
     rahm?: Single< NumberProperty< 'energy' > >;
   } >;
