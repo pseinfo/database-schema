@@ -81,11 +81,39 @@ export type NuclideCollection = Collection< {
   } >;
 } >;
 
-export type NuclideFactory< K extends ElementSymbol > = Factory<
-  EntityType.NUCLIDE,
-  { element: K, nuclide: NuclideId, z: number, n: number },
-  NuclideData< K >
->;
+/**
+ * Factory type for defining nuclides (isotopes) in the database repository.
+ * Ensures that the elemental association and nuclear identifiers are correctly typed.
+ * @template K - The chemical element symbol this isotope belongs to.
+ * 
+ * @example
+ * ```typescript
+ * import type { NuclideFactory } from '@pseinfo/database-schema/entity/nuclide';
+ * import { ElementSymbol } from '@pseinfo/database-schema/enum/element';
+ * import { EntityType } from '@pseinfo/database-schema/enum/util';
+ * 
+ * export default ( {
+ *   type: EntityType.NUCLIDE,
+ *   element: ElementSymbol.U,
+ *   nuclide: 'U-235',
+ *   z: 92,
+ *   n: 143,
+ *   data: {
+ *     // ...
+ *   }
+ * } ) as const satisfies NuclideFactory< ElementSymbol.U >;
+ * ```
+ */
+export type NuclideFactory< K extends ElementSymbol > = Factory< EntityType.NUCLIDE, NuclideData< K >, {
+  /** The element symbol the nuclide belongs to. */
+  element: K;
+  /** The nuclide identifier as primary entity key. */
+  nuclide: NuclideId;
+  /** The nuclear charge (Proton count). */
+  z: number;
+  /** The neutron count. */
+  n: number;
+} >;
 
 /**
  * A dense summary record for a specific nuclide used in the auto-generated nuclide index.
