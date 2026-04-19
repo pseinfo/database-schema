@@ -32,9 +32,9 @@ export type AtomicsCollection = Collection< {
     /** The actual mass of a single atom, typically expressed in unified atomic mass units (u). */
     atomicMass?: Single< NumberProperty< 'mass' > >;
     /** The weighted average mass of an element's isotopes relative to 1/12th the mass of carbon-12. */
-    standardAtomicWeight?: Single< PrimitiveProperty< number > >;
+    standardAtomicWeight?: Single< NumberProperty< never > >;
     /** The ratio of the average atomic mass of a sample to the atomic mass constant. */
-    relativeAtomicMass?: Single< PrimitiveProperty< number > >;
+    relativeAtomicMass?: Single< NumberProperty< never > >;
     /** The difference between the actual atomic mass and the mass number, expressed in energy units. */
     massExcess?: Single< NumberProperty< 'energy' > >;
   } >;
