@@ -34,6 +34,23 @@ export type MetaData< T extends Collection< unknown > = Collection< unknown > > 
 } >;
 
 /**
+ * Data model for legal and creative attribution of assets.
+ * Provides a standardized structure for handling authorship, licensing, and credits.
+ */
+export type Attribution = Group< {
+  /** The individual or organization primarily responsible for the creation of the asset. */
+  author?: Distinct< string >;
+  /** The legal license identifier or descriptive license name. */
+  license: Distinct< string >;
+  /** The mandatory attribution string required by the license or creator. */
+  credits: Distinct< string >;
+  /** The originating website, digital archive, or publication where the asset was sourced. */
+  source?: Distinct< string >;
+  /** The ISO 8601 date the asset was last accessed or verified. */
+  accessed?: Distinct< ISO8601Date >;
+} >;
+
+/**
  * A specialized group for localized strings or values.
  * It enforces at least one primary language (usually English) and allows optional translations.
  * @template L The primary language code(s) required for this group.
