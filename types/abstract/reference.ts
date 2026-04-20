@@ -7,7 +7,7 @@
 
 import type { ExtractFrom, RequireAtLeastOne, RequireExactlyOneFrom, StrictSubset } from 'devtypes/types/constraint';
 import type { Brand, Expand } from 'devtypes/types/util';
-import type { ReferenceType } from '../../enum/util';
+import type { LangCode, ReferenceType } from '../../enum/util';
 import type { Factory, ISO8601Date } from './util';
 
 /**
@@ -21,6 +21,8 @@ type BaseReference< T extends ReferenceType > = Brand< {
   url?: string;
   /** Digital Object Identifier - the unique permanent identifier for scholarly work. */
   doi?: string;
+  /** Language of the reference. */
+  language?: LangCode;
 }, T, 'type', true >;
 
 /**

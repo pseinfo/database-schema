@@ -8,8 +8,9 @@ import type {
   AcidBaseCharacter, BasicityType, BondType, Goldschmidt, HSAB, Hybridization, LewisModel,
   MolecularShape, OxideCharacter, SolubilityQualifier
 } from '../../enum/chemistry';
-import type { Collection, Group, Single } from '../abstract/collection';
-import type { NumberProperty, PrimitiveProperty } from '../abstract/property';
+import type { EntityType } from '../../enum/util';
+import type { Collection, Distinct, Group, Single } from '../abstract/collection';
+import type { NumberProperty, PrimitiveProperty, StructProperty } from '../abstract/property';
 
 /**
  * Registry of chemical properties describing the reactivity, structure, and energetics of substances.
@@ -52,10 +53,19 @@ export type ChemistryCollection = Collection< {
 
   /** Grouping of properties related to the loss or gain of electrons. */
   oxidation?: Group< {
-    /** The formal charge an atom would have if all bonds were ionic. */
-    oxidationStates?: Single< PrimitiveProperty< string > >;
     /** The acidic or basic behavior of an element's oxide. */
     oxideCharacter?: Single< PrimitiveProperty< OxideCharacter > >;
+    /** The formal charge an atom would have if all bonds were ionic. */
+    oxidationStates?: Single< StructProperty< {
+      /** The numeric value of the formal charge. */
+      value: number;
+      /** Indicates if this is a primary or most common oxidation state. */
+      main?: boolean;
+      /** Indicates if the state is unstable, rare or only occurs in specific complexes. */
+      unstable?: boolean;
+      /** Specific chemical context or remarks regarding this oxidation state. */
+      context?: string;
+    } > >;
   } >;
 
   /** Grouping of properties related to the relationship between electricity and chemical change. */
@@ -80,16 +90,30 @@ export type ChemistryCollection = Collection< {
     bindingEnergy?: Single< NumberProperty< 'energy' > >;
   } >;
 
-  /** Grouping of properties describing the ability of a substance to dissolve in a solvent. */
+  /** Grouping of properties describing the ability of a substance to dissolve in various solvents. */
   solubility?: Group< {
-    /** A qualitative descriptor of a substance's capacity to dissolve. */
-    quantifier?: Single< PrimitiveProperty< SolubilityQualifier > >;
-    /** The maximum amount of the substance that will dissolve in water at equilibrium. */
-    waterSolubility?: Single< NumberProperty< 'concentration' > >;
-    /** The equilibrium constant for the dissolution of an ionic compound in water. */
-    solubilityProduct?: Single< NumberProperty< never > >;
     /** The ratio of the concentration of a gas in a solution to its partial pressure in the gas phase. */
     henryConstant?: Single< NumberProperty< never > >;
+    /** Detailed solubility data for specific solvents. */
+    solubilities?: Single< StructProperty< {
+      /** 
+       * The identifier of the solvent used. 
+       * Can be a common name ('water') or a compound/mixture id.
+       */
+      solvent: Distinct< string | {
+        type: EntityType.COMPOUND | EntityType.MIXTURE;
+        id: string;
+      } >;
+      /** The quantitative measurement of solubility. */
+      value?: Single< NumberProperty< 'concentration' > >;
+      /** 
+       * The equilibrium constant for the dissolution of an ionic compound in a solvent. 
+       * Only applicable for ionic compounds.
+       */
+      ksp?: Single< NumberProperty< never > >;
+      /** A qualitative descriptor of the substance's capacity to dissolve. */
+      qualifier?: Single< PrimitiveProperty< SolubilityQualifier > >;
+    } > >;
   } >;
 
   /** Grouping of properties describing the three-dimensional arrangement of atoms in a molecule. */

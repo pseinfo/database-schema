@@ -126,6 +126,10 @@ export const ValidUnits = {
   electricConductivity: { base: [ 'S/m', 'S/cm' ], prefixable: [ 'S/m' ] },
   /** Electromagnetism: Electric Resistivity (Specific) */
   electricResistivity: { base: [ 'Ω·m', 'Ω·cm' ], prefixable: [ 'Ω·m' ] },
+  /** Electromagnetism: Electric Capacitance */
+  capacitance: { base: [ 'F' ], prefixable: [ 'F' ] },
+  /** Electromagnetism: Electric Inductance */
+  inductance: { base: [ 'H' ], prefixable: [ 'H' ] },
   /** Electromagnetism: Electric Dipole Moment */
   dipoleMoment: { base: [ 'C·m', 'statC·cm', 'abC·cm' ], prefixable: [ 'C·m' ] },
 
@@ -147,9 +151,9 @@ export const ValidUnits = {
   massMagneticSusceptibility: { base: [ 'cm[3]/g', 'm[3]/kg' ], prefixable: [] },
 
   /** Photometry: Luminous Flux */
-  luminousFlux: { base: [ 'lm' ], prefixable: [] },
+  luminousFlux: { base: [ 'lm' ], prefixable: [ 'lm' ] },
   /** Photometry: Illuminance */
-  illuminance: { base: [ 'lx', 'fc' ], prefixable: [] },
+  illuminance: { base: [ 'lx', 'fc' ], prefixable: [ 'lx' ] },
 
   /** Acoustics: Speed of Sound */
   soundSpeed: { base: [ 'm/s', 'km/h', 'ft/s' ], prefixable: [ 'm/s' ] },
@@ -166,10 +170,10 @@ export const ValidUnits = {
   molarity: { base: [ 'M', 'mol/L' ], prefixable: [ 'mol/L' ] },
   /** Chemistry: Molality (mol/kg) */
   molality: { base: [ 'm', 'mol/kg' ], prefixable: [ 'mol/kg' ] },
-  /** Chemistry: Dimensionless Mole Fraction */
-  moleFraction: { base: [ '%', '‰', '*', 'ppm', 'ppb', 'ppt' ], prefixable: [] },
   /** Chemistry: Molar Heat Capacity */
   molarHeatCapacity: { base: [ 'J/(mol·K)', 'cal/(mol·K)' ], prefixable: [] },
+  /** Chemistry: Catalytic Activity */
+  catalyticActivity: { base: [ 'kat' ], prefixable: [ 'kat' ] },
 
   /** Fluid Dynamics: Dynamic Viscosity */
   dynamicViscosity: { base: [ 'Pa·s', 'cP', 'poise', 'mPa·s' ], prefixable: [] },
@@ -180,6 +184,8 @@ export const ValidUnits = {
   activity: { base: [ 'Bq', 'Ci' ], prefixable: [ 'Bq', 'Ci' ] },
   /** Nuclear: Absorbed Radiation Dose */
   absorbedDose: { base: [ 'Gy', 'rad' ], prefixable: [ 'Gy' ] },
+  /** Nuclear: Equivalent Dose */
+  equivalentDose: { base: [ 'Sv', 'rem' ], prefixable: [ 'Sv' ] },
 
   /** Magnetic Resonance: Gyromagnetic Ratio */
   gyromagneticRatio: { base: [ 'rad/(s·T)' ] , prefixable: [] },
@@ -193,7 +199,8 @@ export const ValidUnits = {
   /** General Physics: Geometric Area */
   area: { base: [ 'm[2]', 'b' ], prefixable: [ 'm[2]' ] },
   /** General Physics: Dimensionless Quantity */
-  quantity: { base: [ '*', '%', '‰', 'mol' ], prefixable: [] },
+  quantity: { base: [ '*', '%', '‰' ], prefixable: [] },
+
   /** Economics: Monetary Currency */
   currency: { base: [ 'USD', 'EUR', 'CHF' ], prefixable: [] }
 } as const;

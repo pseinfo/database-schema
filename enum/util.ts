@@ -140,6 +140,18 @@ export enum UncertaintyType {
 };
 
 /**
+ * High-level categorization of binary large objects.
+ */
+export enum BlobType {
+  /** Visual assets such as photographs, diagrams, or spectra. */
+  IMAGE = 'image',
+  /** Three-dimensional structural models (e.g., molecule, crystal). */
+  MODEL_3D = '3d',
+  /** Specialized scientific data formats or raw logs. */
+  DATA = 'data'
+};
+
+/**
  * Classification of bibliographic references and data sources based on BibTeX.
  */
 export enum ReferenceType {

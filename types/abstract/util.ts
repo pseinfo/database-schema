@@ -12,6 +12,23 @@ import type { Collection, Distinct, Group } from '../abstract/collection';
 export type ISO8601Date = `${number}-${number}-${number}T${number}:${number}:${number}Z`;
 
 /**
+ * Data model for legal and creative attribution of assets.
+ * Provides a standardized structure for handling authorship, licensing, and credits.
+ */
+export type Attribution = Group< {
+  /** The individual or organization primarily responsible for the creation of the asset. */
+  author?: Distinct< string >;
+  /** The legal license identifier or descriptive license name. */
+  license: Distinct< string >;
+  /** The mandatory attribution string required by the license or creator. */
+  credits: Distinct< string >;
+  /** The originating website, digital archive, or publication where the asset was sourced. */
+  source?: Distinct< string >;
+  /** The ISO 8601 date the asset was last accessed or verified. */
+  accessed?: Distinct< ISO8601Date >;
+} >;
+
+/**
  * Defines the root metadata structure for the schema, supporting automated enrichment.
  * This generic wrapper ensures that every high-level entity or collection can be tracked for
  * versioning, integrity, and source information.
@@ -21,7 +38,7 @@ export type MetaData< T extends Collection< unknown > = Collection< unknown > > 
   /** Internal metadata object for administrative and scientific tracking. */
   '@metadata': Distinct< {
     /** The version of the schema used for this data object. */
-    schemaVersion: 1;
+    readonly schemaVersion: 1;
     /** ISO 8601 timestamp of the last modification. */
     lastModified: ISO8601Date;
     /** Unique commit hash or version identifier representing the data source state. */
@@ -52,14 +69,14 @@ export type LangGroup< L extends LangCode = LangCode.ENGLISH, T = string > = Gro
  * structure, identifiers, and underlying data collections are perfectly aligned.
  * 
  * This enables strict template validation within the IDE and CI/CD pipelines when creating new
- * entities (Elements, Nuclides, etc.) or registries (Units, References).
+ * entities (Elements, Nuclides, etc.) or registries (Units, References, Blobs).
  * 
  * @template E The entity type or specialized registry category.
  * @template C The raw scientific data collection associated with the entity.
  * @template K A set of primary keys or identifiers that define the specific record (e.g., symbol, id).
  */
 export type Factory<
-  E extends EntityType | 'unit' | 'ref',
+  E extends EntityType | 'unit' | 'ref' | 'blob',
   C extends Collection< unknown >,
   K extends Record< string, string | number >
 > = Expand< Brand< K & { data: C }, E, 'type', true > >;
