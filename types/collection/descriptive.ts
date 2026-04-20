@@ -8,7 +8,7 @@ import type { ImageFormat, LangCode } from '../../enum/util';
 import type { BlobId } from '../abstract/blob';
 import type { Collection, Distinct, Group } from '../abstract/collection';
 import type { RefId } from '../abstract/reference';
-import type { ISO8601Date, LangGroup } from '../abstract/util';
+import type { Attribution, ISO8601Date, LangGroup } from '../abstract/util';
 import type { RegistryGroup, StructureGroup } from './registry';
 
 /**
@@ -37,18 +37,10 @@ export type MediaGroup = Group< {
   images?: Distinct< {
     /** The absolute URL or path to the image file. */
     url: string;
-    /** The file format of the image (e.g., PNG, JPEG). */
+    /** The file encoding format of the image. */
     format?: ImageFormat;
-    /** Information regarding the attribution or ownership of the image. */
-    credits: string;
-    /** The legal license governing the use of the image. */
-    license: string;
-    /** The creator or photographer of the media. */
-    author?: string;
-    /** The originating website or publication. */
-    source?: string;
-    /** The ISO 8601 date the image was last accessed. */
-    accessed?: ISO8601Date;
+    /** Legal and creative attribution for the binary asset. */
+    attribution?: Attribution;
     /** Physical width of the original image in pixels. */
     width?: number;
     /** Physical height of the original image in pixels. */
