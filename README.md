@@ -24,9 +24,11 @@ A central principle of the schema is the encapsulation of data within a robust *
 
 Experimental conditions like temperature and pressure are natively supported as context for every property, while a citation system ensures that every data point can be traced back to its original reference in the scientific literature.
 
-## Unit & Reference Registries
+## Blob, Unit & Reference Registries
 
-The schema promotes data integrity through centralized registries for physical quantities and academic references. The **unit registry** provides a strictly typed framework for dimensions and prefixes, ensuring that physical properties like molar mass or magnetic susceptibilities are always represented with correct SI-compliant symbols.
+The schema promotes data integrity through centralized registries for physical quantities, media blobs, and academic references. The **unit registry** provides a strictly typed framework for dimensions and prefixes, ensuring that physical properties like molar mass or magnetic susceptibilities are always represented with correct SI-compliant symbols.
+
+**Blobs** handle the storage of large media files (e.g., crystallographic structures, spectral data) in a way that is decoupled from the core database, allowing for efficient management and retrieval without bloating the primary data records.
 
 Complementing this, the **reference registry** manages the bibliography of the entire database, allowing for a deduplicated and verifiable chain of custody for all scientific information.
 
