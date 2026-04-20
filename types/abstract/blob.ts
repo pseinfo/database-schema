@@ -33,7 +33,7 @@ type BaseBlob< T extends BlobType > = Brand< {
 export type ImageBlob = Expand< BaseBlob< BlobType.IMAGE > & {
   /** The raster or vector format of the image. */
   format: ImageFormat;
-  /** The raw base64 encoded payload or internal data URI. */
+  /** The raw base64 encoded payload of the image. */
   data: string;
   /** Physical width of the asset in pixels. */
   width?: number;
@@ -47,7 +47,7 @@ export type ImageBlob = Expand< BaseBlob< BlobType.IMAGE > & {
 export type Model3DBlob = Expand< BaseBlob< BlobType.MODEL_3D > & {
   /** The chemical or spatial data format (e.g., CIF, PDB). */
   format: D3Format;
-  /** The structural data payload. */
+  /** The structural data payload encoded as base64. */
   data: string;
 } >;
 
@@ -56,7 +56,7 @@ export type Model3DBlob = Expand< BaseBlob< BlobType.MODEL_3D > & {
  */
 export type DataBlob = Expand< BaseBlob< BlobType.DATA > & {
   /** The formal IANA media type (Mime-Type). */
-  mimeType: string;
+  mimeType: `${string}/${string}`;
   /** The binary payload encoded as base64. */
   data: string;
 } >;
