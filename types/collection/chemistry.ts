@@ -8,7 +8,8 @@ import type {
   AcidBaseCharacter, BasicityType, BondType, Goldschmidt, HSAB, Hybridization, LewisModel,
   MolecularShape, OxideCharacter, SolubilityQualifier
 } from '../../enum/chemistry';
-import type { Collection, Group, Single } from '../abstract/collection';
+import type { EntityType } from '../../enum/util';
+import type { Collection, Distinct, Group, Single } from '../abstract/collection';
 import type { NumberProperty, PrimitiveProperty, StructProperty } from '../abstract/property';
 
 /**
@@ -89,16 +90,30 @@ export type ChemistryCollection = Collection< {
     bindingEnergy?: Single< NumberProperty< 'energy' > >;
   } >;
 
-  /** Grouping of properties describing the ability of a substance to dissolve in a solvent. */
+  /** Grouping of properties describing the ability of a substance to dissolve in various solvents. */
   solubility?: Group< {
-    /** A qualitative descriptor of a substance's capacity to dissolve. */
-    quantifier?: Single< PrimitiveProperty< SolubilityQualifier > >;
-    /** The maximum amount of the substance that will dissolve in water at equilibrium. */
-    waterSolubility?: Single< NumberProperty< 'concentration' > >;
-    /** The equilibrium constant for the dissolution of an ionic compound in water. */
-    solubilityProduct?: Single< NumberProperty< never > >;
     /** The ratio of the concentration of a gas in a solution to its partial pressure in the gas phase. */
     henryConstant?: Single< NumberProperty< never > >;
+    /** Detailed solubility data for specific solvents. */
+    solubilities?: Single< StructProperty< {
+      /** 
+       * The identifier of the solvent used. 
+       * Can be a common name ('water') or a compound/mixture id.
+       */
+      solvent: Distinct< string | {
+        type: EntityType.COMPOUND | EntityType.MIXTURE;
+        id: string;
+      } >;
+      /** The quantitative measurement of solubility. */
+      value?: Single< NumberProperty< 'concentration' > >;
+      /** 
+       * The equilibrium constant for the dissolution of an ionic compound in a solvent. 
+       * Only applicable for ionic compounds.
+       */
+      ksp?: Single< NumberProperty< never > >;
+      /** A qualitative descriptor of the substance's capacity to dissolve. */
+      qualifier?: Single< PrimitiveProperty< SolubilityQualifier > >;
+    } > >;
   } >;
 
   /** Grouping of properties describing the three-dimensional arrangement of atoms in a molecule. */
