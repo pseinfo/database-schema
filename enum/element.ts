@@ -133,14 +133,10 @@ export enum ElementSymbol {
  * Periodic table blocks based on the orbital subshell being filled by the valence electrons.
  */
 export enum ElementBlock {
-  /** Sharp orbital block containing groups 1 and 2, plus helium. */
-  S = 's',
-  /** Principal orbital block containing groups 13 to 18 (excluding helium). */
-  P = 'p',
-  /** Diffuse orbital block containing the transition metals (groups 3 to 12). */
-  D = 'd',
-  /** Fundamental orbital block containing lanthanoids and actinoids. */
-  F = 'f'
+  /** Sharp orbital block containing groups 1 and 2, plus helium. */ S = 's',
+  /** Principal orbital block containing groups 13 to 18 (excluding helium). */ P = 'p',
+  /** Diffuse orbital block containing the transition metals (groups 3 to 12). */ D = 'd',
+  /** Fundamental orbital block containing lanthanoids and actinoids. */ F = 'f'
 };
 
 /**

@@ -52,6 +52,8 @@ export type ChemistryCollection = Collection< {
 
   /** Grouping of properties related to the loss or gain of electrons. */
   oxidation?: Group< {
+    /** The acidic or basic behavior of an element's oxide. */
+    oxideCharacter?: Single< PrimitiveProperty< OxideCharacter > >;
     /** The formal charge an atom would have if all bonds were ionic. */
     oxidationStates?: Single< StructProperty< {
       /** The numeric value of the formal charge. */
@@ -63,8 +65,6 @@ export type ChemistryCollection = Collection< {
       /** Specific chemical context or remarks regarding this oxidation state. */
       context?: string;
     } > >;
-    /** The acidic or basic behavior of an element's oxide. */
-    oxideCharacter?: Single< PrimitiveProperty< OxideCharacter > >;
   } >;
 
   /** Grouping of properties related to the relationship between electricity and chemical change. */

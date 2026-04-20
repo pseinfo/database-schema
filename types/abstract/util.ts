@@ -12,6 +12,23 @@ import type { Collection, Distinct, Group } from '../abstract/collection';
 export type ISO8601Date = `${number}-${number}-${number}T${number}:${number}:${number}Z`;
 
 /**
+ * Data model for legal and creative attribution of assets.
+ * Provides a standardized structure for handling authorship, licensing, and credits.
+ */
+export type Attribution = Group< {
+  /** The individual or organization primarily responsible for the creation of the asset. */
+  author?: Distinct< string >;
+  /** The legal license identifier or descriptive license name. */
+  license: Distinct< string >;
+  /** The mandatory attribution string required by the license or creator. */
+  credits: Distinct< string >;
+  /** The originating website, digital archive, or publication where the asset was sourced. */
+  source?: Distinct< string >;
+  /** The ISO 8601 date the asset was last accessed or verified. */
+  accessed?: Distinct< ISO8601Date >;
+} >;
+
+/**
  * Defines the root metadata structure for the schema, supporting automated enrichment.
  * This generic wrapper ensures that every high-level entity or collection can be tracked for
  * versioning, integrity, and source information.
@@ -31,23 +48,6 @@ export type MetaData< T extends Collection< unknown > = Collection< unknown > > 
     /** Permalink to the source file in the repository, allowing traceability and version control. */
     permalink: `https://github.com/pseinfo/database/blob/${string}/data/${string}.ts`;
   } >;
-} >;
-
-/**
- * Data model for legal and creative attribution of assets.
- * Provides a standardized structure for handling authorship, licensing, and credits.
- */
-export type Attribution = Group< {
-  /** The individual or organization primarily responsible for the creation of the asset. */
-  author?: Distinct< string >;
-  /** The legal license identifier or descriptive license name. */
-  license: Distinct< string >;
-  /** The mandatory attribution string required by the license or creator. */
-  credits: Distinct< string >;
-  /** The originating website, digital archive, or publication where the asset was sourced. */
-  source?: Distinct< string >;
-  /** The ISO 8601 date the asset was last accessed or verified. */
-  accessed?: Distinct< ISO8601Date >;
 } >;
 
 /**

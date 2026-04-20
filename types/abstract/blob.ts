@@ -78,6 +78,19 @@ export type BlobCollection = Record< BlobId, Blob >;
 
 /**
  * Factory type for defining binary assets in the database repository.
+ * 
+ * @example
+ * ```typescript
+ * import type { BlobFactory } from '@pseinfo/database-schema/abstract/blob';
+ * 
+ * export default ( {
+ *   type: 'blob',
+ *   blobId: 'XXXXXXX',
+ *   data: {
+ *     // ...
+ *   }
+ * } ) as const satisfies BlobFactory;
+ * ```
  */
 export type BlobFactory = Factory< 'blob', Blob, {
   /** The unique, branded identifier for this binary asset. */
