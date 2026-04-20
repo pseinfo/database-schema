@@ -4,9 +4,9 @@
  * and historical context for chemical substances.
  */
 
-import type { D3Format, ImageFormat, LangCode } from '../../enum/util';
-import type { Collection, Distinct, Group, Single } from '../abstract/collection';
-import type { PrimitiveProperty } from '../abstract/property';
+import type { ImageFormat, LangCode } from '../../enum/util';
+import type { BlobId } from '../abstract/blob';
+import type { Collection, Distinct, Group } from '../abstract/collection';
 import type { RefId } from '../abstract/reference';
 import type { ISO8601Date, LangGroup } from '../abstract/util';
 import type { RegistryGroup, StructureGroup } from './registry';
@@ -58,24 +58,17 @@ export type MediaGroup = Group< {
   /** Characteristic fingerprint data from various spectroscopic techniques. */
   spectrum?: Group< {
     /** Base64 encoded data for the absorption spectrum. */
-    absorption?: Single< PrimitiveProperty< string > >;
+    absorption?: BlobId;
     /** Base64 encoded data for the emission spectrum. */
-    emission?: Single< PrimitiveProperty< string > >;
+    emission?: BlobId;
     /** Base64 encoded data for ultraviolet-visible spectroscopy data. */
-    uv?: Single< PrimitiveProperty< string > >;
+    uv?: BlobId;
     /** Base64 encoded data for X-ray diffraction or spectroscopy. */
-    xray?: Single< PrimitiveProperty< string > >;
+    xray?: BlobId;
   } >;
 
   /** Data files for rendering three-dimensional molecular or crystal structures. */
-  structure3D?: Distinct< {
-    /** The raw Base64 encoded structural data (e.g., CIF, XYZ, PDB). */
-    data: string;
-    /** The chemical data format used for the 3D representation. */
-    format: D3Format;
-    /** External URL for a specialized 3D viewer or repository. */
-    url?: string;
-  }[] >;
+  structure3D?: BlobId[];
 } >;
 
 /**
