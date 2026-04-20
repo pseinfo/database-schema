@@ -8,6 +8,9 @@ import type { Brand, Expand } from 'devtypes/types/util';
 import type { EntityType, LangCode } from '../../enum/util';
 import type { Collection, Distinct, Group } from '../abstract/collection';
 
+/** Helper type for ISO 8601 date format. */
+export type ISO8601Date = `${number}-${number}-${number}T${number}:${number}:${number}Z`;
+
 /**
  * Defines the root metadata structure for the schema, supporting automated enrichment.
  * This generic wrapper ensures that every high-level entity or collection can be tracked for
@@ -20,7 +23,7 @@ export type MetaData< T extends Collection< unknown > = Collection< unknown > > 
     /** The version of the schema used for this data object. */
     schemaVersion: 1;
     /** ISO 8601 timestamp of the last modification. */
-    lastModified: `${number}-${number}-${number}T${number}:${number}:${number}Z`;
+    lastModified: ISO8601Date;
     /** Unique commit hash or version identifier representing the data source state. */
     commit: string;
     /** Cryptographic hash for data integrity verification of the entire object. */
