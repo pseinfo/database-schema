@@ -26,7 +26,9 @@ type BaseValue< T extends ValueType > = Brand< {
   confidence?: ValueConfidence;
   /** Experimental or statistical uncertainty associated with the value. */
   uncertainty?: Uncertainty;
-  /** Contextual information or remarks regarding the specific value or measurement. */
+  /** Scientific context of the value. */
+  context?: string;
+  /** Notes or remarks regarding the value. */
   note?: string;
 }, T, 'type', true >;
 
