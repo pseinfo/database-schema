@@ -42,9 +42,9 @@ export type Database = Collection< {
   } >;
 
   /** The global registry of physical quantities and their supported scientific units. */
-  unit: UnitCollection;
+  units: UnitCollection;
   /** The centralized repository of all scientific citations and verifiable data sources. */
-  refs: ReferenceCollection;
+  references: ReferenceCollection;
   /** The centralized repository of all binary large objects. */
-  blob: BlobCollection;
+  blobs: BlobCollection;
 } >;
