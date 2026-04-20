@@ -8,7 +8,7 @@
 import type { ExtractFrom, RequireAtLeastOne, RequireExactlyOneFrom, StrictSubset } from 'devtypes/types/constraint';
 import type { Brand, Expand } from 'devtypes/types/util';
 import type { ReferenceType } from '../../enum/util';
-import type { Factory } from './util';
+import type { Factory, ISO8601Date } from './util';
 
 /**
  * Base branded metadata shared by all bibliographic reference types.
@@ -16,7 +16,7 @@ import type { Factory } from './util';
  */
 type BaseReference< T extends ReferenceType > = Brand< {
   /** ISO 8601 date when the source was last accessed (crucial for web resources). */
-  accessed?: string;
+  accessed?: ISO8601Date;
   /** Direct link to the source material. */
   url?: string;
   /** Digital Object Identifier - the unique permanent identifier for scholarly work. */

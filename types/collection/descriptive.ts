@@ -8,7 +8,7 @@ import type { D3Format, ImageFormat, LangCode } from '../../enum/util';
 import type { Collection, Distinct, Group, Single } from '../abstract/collection';
 import type { PrimitiveProperty } from '../abstract/property';
 import type { RefId } from '../abstract/reference';
-import type { LangGroup } from '../abstract/util';
+import type { ISO8601Date, LangGroup } from '../abstract/util';
 import type { RegistryGroup, StructureGroup } from './registry';
 
 /**
@@ -47,6 +47,8 @@ export type MediaGroup = Group< {
     author?: string;
     /** The originating website or publication. */
     source?: string;
+    /** The ISO 8601 date the image was last accessed. */
+    accessed?: ISO8601Date;
     /** Physical width of the original image in pixels. */
     width?: number;
     /** Physical height of the original image in pixels. */
@@ -90,8 +92,8 @@ export type WeblinksGroup = Group< {
     description?: string;
     /** Link to a permanent archive version (e.g., Wayback Machine). */
     archiveUrl?: string;
-    /** The date the link was last verified for content. */
-    accessed?: string;
+    /** The ISO 8601 date the link was last verified for content. */
+    accessed?: ISO8601Date;
     /** The language of the linked page. */
     language?: LangCode;
   }[] >;

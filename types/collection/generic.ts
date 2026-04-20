@@ -6,6 +6,7 @@
 
 import type { Collection, Single } from '../abstract/collection';
 import type { StructProperty } from '../abstract/property';
+import type { ISO8601Date } from '../abstract/util';
 import type { NumberValue } from '../abstract/value';
 
 /**
@@ -17,7 +18,7 @@ export type GenericCollection = Collection< {
     /** The numerical amount and currency of the price. */
     value: NumberValue< 'currency' >;
     /** The ISO 8601 date when this specific price was recorded. */
-    date?: `${number}-${number}-${number}T${number}:${number}:${number}Z`;
+    date?: ISO8601Date;
     /** The specific stock exchange or commercial market where the price was observed. */
     market?: string;
     /** External URL for the price source or market documentation. */
