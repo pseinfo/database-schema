@@ -9,7 +9,7 @@ import type {
   MolecularShape, OxideCharacter, SolubilityQualifier
 } from '../../enum/chemistry';
 import type { Collection, Group, Single } from '../abstract/collection';
-import type { NumberProperty, PrimitiveProperty } from '../abstract/property';
+import type { NumberProperty, PrimitiveProperty, StructProperty } from '../abstract/property';
 
 /**
  * Registry of chemical properties describing the reactivity, structure, and energetics of substances.
@@ -53,7 +53,16 @@ export type ChemistryCollection = Collection< {
   /** Grouping of properties related to the loss or gain of electrons. */
   oxidation?: Group< {
     /** The formal charge an atom would have if all bonds were ionic. */
-    oxidationStates?: Single< PrimitiveProperty< string > >;
+    oxidationStates?: Single< StructProperty< {
+      /** The numeric value of the formal charge. */
+      value: number;
+      /** Indicates if this is a primary or most common oxidation state. */
+      main?: boolean;
+      /** Indicates if the state is unstable, rare or only occurs in specific complexes. */
+      unstable?: boolean;
+      /** Specific chemical context or remarks regarding this oxidation state. */
+      context?: string;
+    } > >;
     /** The acidic or basic behavior of an element's oxide. */
     oxideCharacter?: Single< PrimitiveProperty< OxideCharacter > >;
   } >;
