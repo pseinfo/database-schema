@@ -5,16 +5,16 @@
  * and high-level registries into a single unified data model.
  */
 
+import type { BlobCollection } from './abstract/blob';
 import type { Collection } from './abstract/collection';
 import type { ReferenceCollection } from './abstract/reference';
+import type { DBMeta, DBStats } from './abstract/meta';
 import type { UnitCollection } from './abstract/unit';
-import type { MetaData } from './abstract/util';
 import type { CompoundEntity } from './entity/compound';
 import type { ElementEntity } from './entity/element';
 import type { MineralEntity } from './entity/mineral';
 import type { MixtureEntity } from './entity/mixture';
 import type { NuclideEntity } from './entity/nuclide';
-import type { StatsCollection } from './collection/stats';
 
 /**
  * The high-level root of the scientific repository.
@@ -22,11 +22,10 @@ import type { StatsCollection } from './collection/stats';
  * into a single structured object.
  */
 export type Database = Collection< {
-  /** Global administrative metadata including internal database statistics. */
-  meta: MetaData< {
-    /** Detailed metrics on entity distribution and contributor activity. */
-    stats: StatsCollection;
-  } >;
+  /** Global administrative metadata. */
+  meta: DBMeta;
+  /** Metrics on entity distribution and contributor activity. */
+  stats: DBStats;
 
   /** The primary scientific datasets grouped by entity domain. */
   data: Collection< {
@@ -46,4 +45,6 @@ export type Database = Collection< {
   unit: UnitCollection;
   /** The centralized repository of all scientific citations and verifiable data sources. */
   refs: ReferenceCollection;
+  /** The centralized repository of all binary large objects. */
+  blob: BlobCollection;
 } >;

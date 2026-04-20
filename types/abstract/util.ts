@@ -21,7 +21,7 @@ export type MetaData< T extends Collection< unknown > = Collection< unknown > > 
   /** Internal metadata object for administrative and scientific tracking. */
   '@metadata': Distinct< {
     /** The version of the schema used for this data object. */
-    schemaVersion: 1;
+    readonly schemaVersion: 1;
     /** ISO 8601 timestamp of the last modification. */
     lastModified: ISO8601Date;
     /** Unique commit hash or version identifier representing the data source state. */
