@@ -8,7 +8,7 @@
 import type { Brand, Expand } from 'devtypes/types/util';
 import type { BlobType, D3Format, ImageFormat } from '../../enum/util';
 import type { RefId } from './reference';
-import type { Factory } from './util';
+import type { Attribution, Factory } from './util';
 
 /**
  * Branded base attributes for all binary large objects.
@@ -19,6 +19,8 @@ type BaseBlob< T extends BlobType > = Brand< {
   hash?: string;
   /** The total size of the binary data in bytes. */
   size?: number;
+  /** Legal and creative attribution for the binary asset. */
+  attribution?: Attribution;
   /** Internal remarks or scientific context regarding the asset. */
   note?: string;
   /** Citations and verifiable sources for the binary content. */
