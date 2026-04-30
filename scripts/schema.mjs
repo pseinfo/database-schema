@@ -16,9 +16,9 @@ class SchemaGenerator {
 
   FILES = {
     FINAL: 'src/schema.json',
+    TYPES_ENTRY: 'model/index.ts',
     TSCONFIG: 'tsconfig.json',
-    PACKAGE: 'package.json',
-    TYPES_ENTRY: 'types/index.ts'
+    PACKAGE: 'package.json'
   };
 
   CONFIG = {
