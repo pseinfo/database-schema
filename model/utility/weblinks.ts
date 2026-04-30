@@ -1,4 +1,4 @@
-import type { LangCode } from '../../enum/base/locale';
+import type { LangCode } from '../../enum/system/locale';
 import type { IsoDate, LangGroup, UrlString } from '../base/primitive';
 
 export type Weblinks = {

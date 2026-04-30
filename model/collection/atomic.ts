@@ -1,4 +1,4 @@
-import type { ElementSymbol, PaulingSpin, ShellModel, Subshell } from '../../enum/domain/element';
+import type { ElementSymbol, PaulingSpin, ShellModel, Subshell } from '../../enum/science/element';
 import type { Collection, Group, One, OneOrMany } from '../base/modifier';
 import type { ArrayProperty, NumberProperty, PrimitiveProperty, StructProperty } from '../base/property';
 import type { NoUnit } from '../registry/unit';

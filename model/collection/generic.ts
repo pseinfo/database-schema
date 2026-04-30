@@ -1,6 +1,6 @@
 import type { RequireAtLeastOne } from 'devtypes/types/constraint';
-import type { Currency } from '../../enum/base/locale';
-import type { PriceContext, PriceTax, PriceValue } from '../../enum/collection/generic';
+import type { Currency } from '../../enum/system/locale';
+import type { PriceContext, PriceTax, PriceValue } from '../../enum/science/generic';
 import type { Collection, Many } from '../base/modifier';
 import type { IsoDate } from '../base/primitive';
 import type { StructProperty } from '../base/property';

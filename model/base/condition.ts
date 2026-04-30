@@ -1,4 +1,4 @@
-import type { ConditionType, StandardCondition } from '../../enum/base/condition';
+import type { ConditionType, StandardCondition } from '../../enum/system/condition';
 import type { PhysicalQuantity } from '../registry/unit';
 import type { NumberValue } from './value';
 

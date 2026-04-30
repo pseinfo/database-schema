@@ -1,6 +1,6 @@
 import type { Brand, Expand } from 'devtypes/types/util';
-import type { CountryCode } from '../../enum/base/locale';
-import type { EventTimeType, EventType } from '../../enum/collection/history';
+import type { CountryCode } from '../../enum/system/locale';
+import type { EventTimeType, EventType } from '../../enum/science/history';
 import type { Collection, Distinct } from '../base/modifier';
 import type { IsoDate } from '../base/primitive';
 import type { OrgId } from '../registry/organization';

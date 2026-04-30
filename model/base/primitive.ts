@@ -1,5 +1,5 @@
 import type { Expand } from 'devtypes/types/util';
-import type { LangCode } from '../../enum/base/locale';
+import type { LangCode } from '../../enum/system/locale';
 
 export type RepoBase = 'https://github.com/pseinfo/database';
 

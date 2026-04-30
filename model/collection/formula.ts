@@ -1,5 +1,5 @@
-import type { FormulaType } from '../../enum/collection/formula';
-import type { BlobType } from '../../enum/registry/blob';
+import type { FormulaType } from '../../enum/science/formula';
+import type { BlobType } from '../../enum/system/blob';
 import type { Collection, OneOrMany } from '../base/modifier';
 import type { StructProperty } from '../base/property';
 import type { BlobId } from '../registry/blob';

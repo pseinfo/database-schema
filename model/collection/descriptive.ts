@@ -1,4 +1,4 @@
-import type { SensoryProperty } from '../../enum/collection/descriptive';
+import type { SensoryProperty } from '../../enum/science/descriptive';
 import type { Collection, Group, Many, Mapping, One } from '../base/modifier';
 import type { LangGroup } from '../base/primitive';
 import type { PrimitiveProperty } from '../base/property';

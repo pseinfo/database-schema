@@ -1,6 +1,6 @@
 import type { Brand, Expand } from 'devtypes/types/util';
-import type { BlobEncoding, BlobType, MimeType, StorageType } from '../../enum/registry/blob';
-import type { RegistryType } from '../../enum/registry/system';
+import type { BlobEncoding, BlobType, MimeType, StorageType } from '../../enum/system/blob';
+import type { RegistryType } from '../../enum/system/domain';
 import type { Factory } from '../base/factory';
 import type { Collection, Distinct } from '../base/modifier';
 import type { IsoDate, UrlString } from '../base/primitive';

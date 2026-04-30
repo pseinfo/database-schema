@@ -1,4 +1,4 @@
-import type { Diaphaneity, Gloss, Lustre, MagneticOrdering, Phase, Superconductivity } from '../../enum/collection/physics';
+import type { Diaphaneity, Gloss, Lustre, MagneticOrdering, Phase, Superconductivity } from '../../enum/science/physics';
 import type { Collection, Group, OneOrMany } from '../base/modifier';
 import type { LangGroup } from '../base/primitive';
 import type { CoupledNumberProperty, NumberProperty, PrimitiveProperty, RangeProperty, StructProperty } from '../base/property';

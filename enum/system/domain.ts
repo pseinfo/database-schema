@@ -1,4 +1,4 @@
-export enum EntityType {
+export enum DomainType {
   ELEMENT = 'element',
   NUCLIDE = 'nuclide',
   COMPOUND = 'compound',

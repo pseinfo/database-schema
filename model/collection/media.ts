@@ -1,5 +1,5 @@
 import type { Expand } from 'devtypes/types/util';
-import type { BlobType, DocumentType, Model3DType, SpectrumType } from '../../enum/registry/blob';
+import type { BlobType, DocumentType, Model3DType, SpectrumType } from '../../enum/system/blob';
 import type { Collection, Distinct } from '../base/modifier';
 import type { BlobId } from '../registry/blob';
 

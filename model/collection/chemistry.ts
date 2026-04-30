@@ -3,9 +3,9 @@ import type {
   CleavageType, CrystalFamily, CrystalHabit, CrystalSystem, FractureType, Goldschmidt,
   HSAB, Hybridization, LewisModel, MolecularShape, OxideCharacter, SolubilityQualifier,
   Tenacity, TwinningMode, TwinningType
-} from '../../enum/collection/chemistry';
-import type { ElementSymbol } from '../../enum/domain/element';
-import type { EntityType } from '../../enum/registry/system';
+} from '../../enum/science/chemistry';
+import type { ElementSymbol } from '../../enum/science/element';
+import type { DomainType } from '../../enum/system/domain';
 import type { Collection, Group, Many, OneOrMany } from '../base/modifier';
 import type { NumberProperty, PrimitiveProperty, StructProperty } from '../base/property';
 import type { NumberValue } from '../base/value';
@@ -15,8 +15,8 @@ import type { NoUnit } from '../registry/unit';
 
 export type Solubility = {
   solvent:
-    | { type: EntityType.COMPOUND, id: CompoundId }
-    | { type: EntityType.MIXTURE, id: MixtureId }
+    | { type: DomainType.COMPOUND, id: CompoundId }
+    | { type: DomainType.MIXTURE, id: MixtureId }
     | string;
   value?: NumberValue< 'concentration' >;
   ksp?: NumberValue< NoUnit >;

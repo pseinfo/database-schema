@@ -1,6 +1,6 @@
 import type { Brand, Expand } from 'devtypes/types/util';
-import type { RegistryType } from '../../enum/registry/system';
-import type { MeasurementSystem } from '../../enum/registry/unit';
+import type { RegistryType } from '../../enum/system/domain';
+import type { MeasurementSystem } from '../../enum/system/unit';
 import type { Factory } from '../base/factory';
 import type { Collection, Distinct } from '../base/modifier';
 import type { LangGroup } from '../base/primitive';

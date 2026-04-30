@@ -1,5 +1,5 @@
 import type { Brand, Expand } from 'devtypes/types/util';
-import type { ConfidenceType, UncertaintyShape, UncertaintyType } from '../../enum/base/uncertainty';
+import type { ConfidenceType, UncertaintyShape, UncertaintyType } from '../../enum/system/uncertainty';
 
 type BaseUncertainty< T extends UncertaintyType > = Expand< Brand< {
   shape:

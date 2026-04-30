@@ -3,7 +3,7 @@ import type {
   BetaRadiationType, BetaTransitionType, DecayMode, DelayedParticle,
   IncidentNeutronEnergy, MomentMeasurementMethod, MomentMeasurementRef,
   RadiationType, SpinParity
-} from '../../enum/collection/nuclear';
+} from '../../enum/science/nuclear';
 import type { Collection, Many, Mapping, One } from '../base/modifier';
 import type { StructProperty } from '../base/property';
 import type { NumberValue } from '../base/value';

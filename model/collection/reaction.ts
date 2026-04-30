@@ -2,8 +2,8 @@ import type { Brand } from 'devtypes/types/util';
 import type {
   ReactionAnnotation, ReactionEffect, ReactionModifier, ReactionSpecies,
   ReactionState, ReactionTransition
-} from '../../enum/collection/reaction';
-import type { ElementSymbol } from '../../enum/domain/element';
+} from '../../enum/science/reaction';
+import type { ElementSymbol } from '../../enum/science/element';
 import type { CompoundId } from '../domain/compound';
 import type { MineralId } from '../domain/mineral';
 import type { MixtureId } from '../domain/mixture';

@@ -1,7 +1,7 @@
 import type {
   ADRClass, DOTClass, GHSClass, GHSPictogram, NFPACode, NFPANotice, Organism, SignalWord,
   ToxicityApplication, ToxicityOrganism, ToxicityType, WHMISClass
-} from '../../enum/collection/safety';
+} from '../../enum/science/safety';
 import type { Collection, Group, Many, One } from '../base/modifier';
 import type { LangGroup } from '../base/primitive';
 import type { PrimitiveProperty, StructProperty } from '../base/property';

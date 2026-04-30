@@ -1,7 +1,7 @@
 import type { RequireAtLeastOne } from 'devtypes/types/constraint';
 import type { Primitive } from 'devtypes/types/primitive';
 import type { Brand, Expand } from 'devtypes/types/util';
-import type { ValueOrigin, ValueType } from '../../enum/base/value';
+import type { ValueOrigin, ValueType } from '../../enum/system/value';
 import type { NoUnit, PhysicalQuantity, UnitId } from '../registry/unit';
 import type { Struct } from './primitive';
 import type { Uncertainty } from './uncertainty';

@@ -1,4 +1,4 @@
-import type { AbundanceType, NaturalOccurrence } from '../../enum/collection/abundance';
+import type { AbundanceType, NaturalOccurrence } from '../../enum/science/abundance';
 import type { Collection, Mapping, One, OneOrMany } from '../base/modifier';
 import type { NumberProperty, PrimitiveProperty } from '../base/property';
 
