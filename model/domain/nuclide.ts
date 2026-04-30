@@ -56,3 +56,28 @@ export type NuclideFactory< K extends ElementSymbol > = Factory< DomainType.NUCL
   z: number;
   n: number;
 } >;
+
+
+export type NuclideIndexEntry< Z extends number, N extends number > = {
+  nuclide: NuclideId;
+  z: Z;
+  n: N;
+  a: number;
+  element: ElementSymbol;
+  layer: {
+    halfLife?: number;
+    mainDecayMode?: DecayMode;
+    minStepsToStable?: number;
+    nuclearRadius?: number;
+    massExcess?: number;
+    atomicMass?: number;
+    bindingEnergy?: number;
+    discovery?: number;
+  };
+};
+
+export type NuclideIndex = Collection< {
+  [ Z in number ]?: Collection< {
+    [ N in number ]?: Distinct< NuclideIndexEntry< Z, N > >;
+  } >;
+} >;
