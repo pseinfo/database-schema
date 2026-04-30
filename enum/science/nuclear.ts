@@ -1,22 +1,3 @@
-export enum NuclideState {
-  GROUND = 'ground',
-  M1 = 'm1',
-  M2 = 'm2',
-  M3 = 'm3',
-  M4 = 'm4'
-};
-
-export enum NuclideStability {
-  STABLE = 'stable',
-  UNSTABLE = 'unstable'
-};
-
-export enum NuclideOrigin {
-  PRIMORDIAL = 'primordial',
-  NATURAL = 'natural',
-  SYNTHETIC = 'synthetic'
-};
-
 export enum SpinParity {
   POSITIVE = 'positive',
   NEGATIVE = 'negative',
@@ -108,8 +89,4 @@ export enum IncidentNeutronEnergy {
   THERMAL = 'thermal',
   FAST = 'fast',
   MEV_14 = '14MeV'
-};
-
-export enum NuclideProperty {
-  MONONUCLIDE = 'mononuclide'
 };
