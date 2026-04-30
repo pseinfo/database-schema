@@ -1,6 +1,6 @@
-import type { UnitConfig } from '../model/registry/unit.config';
+import type { UnitConfig } from '../model/registry/unit';
 
-export const ValidUnits = {
+export default ( {
   // --- BASE SI QUANTITIES ---
   time: {
     symbol: 't',
@@ -401,4 +401,4 @@ export const ValidUnits = {
     prefixableUnits: [ 'Pa·m[1/2]' ],
     baseUnit: 'Pa·m[1/2]'
   }
-} as const satisfies UnitConfig;
+} ) as const satisfies UnitConfig;

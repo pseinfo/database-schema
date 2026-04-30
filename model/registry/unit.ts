@@ -5,11 +5,15 @@ import type { Factory } from '../base/factory';
 import type { Collection, Distinct } from '../base/modifier';
 import type { LangGroup } from '../base/primitive';
 
-import { ValidUnits } from '../../config/units';
+import ValidUnits from '../../config/units';
 export type PhysicalQuantity = keyof typeof ValidUnits;
 export type ValidUnits = typeof ValidUnits;
 
 export type NoUnit = never;
+
+export type DimensionVector = readonly [
+  T: number, L: number, M: number, I: number, Θ: number, N: number, J: number
+];
 
 export type SIDimension = ( typeof SIDimension )[ number ];
 export const SIDimension = [
@@ -23,6 +27,14 @@ export const SIPrefix = {
   k: 1e3, h: 1e2, da: 1e1, d: 1e-1, c: 1e-2, m: 1e-3, µ: 1e-6,
   n: 1e-9, p: 1e-12, f: 1e-15, a: 1e-18, z: 1e-21, y: 1e-24
 } as const;
+
+export type UnitConfig = Readonly< Record< string, {
+  symbol: string;
+  vector: DimensionVector | null;
+  units: string[];
+  prefixableUnits: string[];
+  baseUnit: string;
+} > >;
 
 type BaseUnitSymbols< Q extends PhysicalQuantity > = ValidUnits[ Q ][ 'units' ][ number ];
 type PrefixableUnitSymbols< Q extends PhysicalQuantity > = ValidUnits[ Q ][ 'prefixableUnits' ][ number ];
