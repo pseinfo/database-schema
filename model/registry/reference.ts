@@ -2,6 +2,9 @@ import type { RequireAtLeastOne, RequireExactlyOneFrom } from 'devtypes/types/co
 import type { Brand, Expand } from 'devtypes/types/util';
 import type { LangCode } from '../../enum/base/locale';
 import type { ReferenceType } from '../../enum/registry/reference';
+import type { RegistryType } from '../../enum/registry/system';
+import type { Factory } from '../base/factory';
+import type { Collection, Distinct } from '../base/modifier';
 import type { IsoDate, UrlString } from '../base/primitives';
 
 type BaseReference< R extends ReferenceType > = Brand< {
@@ -144,3 +147,13 @@ export type Reference =
   | ProceedingsReference
   | TechreportReference
   | UnpublishedReference;
+
+export type RefId = Brand< string, 'refId' >;
+
+export type ReferenceRegistry = Collection< {
+  [ K in RefId ]: Distinct< Reference >;
+} >;
+
+export type ReferenceFactory = Factory< RegistryType.REFERENCE, Reference, {
+  refId: RefId;
+} >;
