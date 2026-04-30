@@ -38,13 +38,11 @@ export type SingleValue< Q extends PhysicalQuantity | NoUnit = PhysicalQuantity 
 >;
 
 export type ArrayValue< Q extends PhysicalQuantity | NoUnit = PhysicalQuantity > = Expand<
-  BaseValue< ValueType.ARRAY > & { values: number[] } &
-  UnitField< Q >
+  BaseValue< ValueType.ARRAY > & { values: number[] } & UnitField< Q >
 >;
 
 export type RangeValue< Q extends PhysicalQuantity | NoUnit = PhysicalQuantity > = Expand<
-  BaseValue< ValueType.RANGE > & { range: Range, value?: number } &
-  UnitField< Q >
+  BaseValue< ValueType.RANGE > & { range: Range, value?: number } & UnitField< Q >
 >;
 
 export type CoupledNumberValue< Q extends PhysicalQuantity | NoUnit = PhysicalQuantity > = Expand<
