@@ -1,7 +1,5 @@
 import type { Expand } from 'devtypes/types/util';
-
-// will be imported
-type PropertyWrapper = any;
+import type { PropertyWrapper } from './property';
 
 export type Distinct< T = unknown > = T;
 
