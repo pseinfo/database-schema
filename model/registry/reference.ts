@@ -4,7 +4,7 @@ import type { ReferenceType } from '../../enum/registry/reference';
 import type { IsoDate, UrlString } from '../base/primitives';
 
 type BaseReference< R extends ReferenceType > = Brand< {
-  doi?: `doi:${string}`;
+  doi?: `doi:${ string }`;
   url?: UrlString;
   accessed?: IsoDate;
   language?: LangCode;
@@ -46,3 +46,8 @@ type MetaFields = {
   isbn?: string;
   reportType?: string;
 };
+
+type Fields = CoreFields & PersonFields & LocFields & VenueFields & MetaFields;
+
+type Req< K extends keyof Fields > = Required< Pick< Fields, K > >;
+type Opt< K extends keyof Fields > = Pick< Fields, K >;
