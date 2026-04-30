@@ -89,7 +89,7 @@ export type Toxicity = {
   /** Route of biological exposure. */
   application?: ToxicityApplication;
   /** Biological species or system used in the toxicity test. */
-  organism: 
+  organism:
     | { type: ToxicityOrganism.ORGANISM, value: Organism }
     | { type: ToxicityOrganism.OTHER, value: string };
   /** Quantitative toxicological limit or range. */
