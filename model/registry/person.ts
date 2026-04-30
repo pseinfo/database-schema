@@ -1,6 +1,7 @@
-import { CountryCode } from '../../enum/base/locale';
-import { Gender } from '../../enum/registry/person';
-import { RefId } from './reference';
+import type { CountryCode } from '../../enum/base/locale';
+import type { Gender } from '../../enum/registry/person';
+import type { OrgId } from './organization';
+import type { RefId } from './reference';
 
 export type Person = {
   name: {
