@@ -24,6 +24,7 @@
     "elements",
     "compounds",
     "minerals",
+    "mixtures",
     "nuclides",
     "types",
     "typescript",
@@ -32,43 +33,12 @@
   ],
   "files": [
     "enum",
-    "types",
+    "model",
     "src",
     "README.md",
     "LICENSE"
   ],
   "type": "module",
-  "exports": {
-    ".": {
-      "types": "./types/index.ts",
-      "default": "./types/index.ts",
-      "import": "./types/index.ts"
-    },
-    "./abstract/*": {
-      "types": "./types/abstract/*.ts",
-      "default": "./types/abstract/*.ts",
-      "import": "./types/abstract/*.ts"
-    },
-    "./collection/*": {
-      "types": "./types/collection/*.ts",
-      "default": "./types/collection/*.ts",
-      "import": "./types/collection/*.ts"
-    },
-    "./entity/*": {
-      "types": "./types/entity/*.ts",
-      "default": "./types/entity/*.ts",
-      "import": "./types/entity/*.ts"
-    },
-    "./enum/*": {
-      "types": "./enum/*.ts",
-      "default": "./enum/*.ts",
-      "import": "./enum/*.ts"
-    },
-    "./schema.json": {
-      "default": "./src/schema.json",
-      "import": "./src/schema.json"
-    }
-  },
   "scripts": {
     "lint": "tsc",
     "docs": "typedoc --logLevel Verbose --options typedoc.json",
