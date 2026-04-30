@@ -51,3 +51,9 @@ type Fields = CoreFields & PersonFields & LocFields & VenueFields & MetaFields;
 
 type Req< K extends keyof Fields > = Required< Pick< Fields, K > >;
 type Opt< K extends keyof Fields > = Pick< Fields, K >;
+
+type CoreBase = Req< 'title' | 'year' > & Opt< 'month' | 'note' >;
+type Authored = CoreBase & Req< 'author' >;
+type VolNum = Opt< 'volume' | 'number' >;
+type ConfBase = Authored & VolNum & Req< 'booktitle' > & Opt< 'editor' | 'series' | 'pages' | 'address' | 'organization' | 'publisher' >;
+type ThesisBase = Authored & Req< 'school' > & Opt< 'reportType' | 'address' >;
