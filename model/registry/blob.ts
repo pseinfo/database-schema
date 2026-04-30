@@ -3,7 +3,7 @@ import type { BlobEncoding, BlobType, MimeType, StorageType } from '../../enum/r
 import type { RegistryType } from '../../enum/registry/system';
 import type { Factory } from '../base/factory';
 import type { Collection, Distinct } from '../base/modifier';
-import type { IsoDate, UrlString } from '../base/primitives';
+import type { IsoDate, UrlString } from '../base/primitive';
 import type { Attribution } from '../utility/attribution';
 
 export type AllowedMimeTypes< T extends BlobType > =

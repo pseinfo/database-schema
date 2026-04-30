@@ -5,7 +5,7 @@ import type { ReferenceType } from '../../enum/registry/reference';
 import type { RegistryType } from '../../enum/registry/system';
 import type { Factory } from '../base/factory';
 import type { Collection, Distinct } from '../base/modifier';
-import type { IsoDate, UrlString } from '../base/primitives';
+import type { IsoDate, UrlString } from '../base/primitive';
 
 type BaseReference< R extends ReferenceType > = Brand< {
   doi?: `doi:${ string }`;

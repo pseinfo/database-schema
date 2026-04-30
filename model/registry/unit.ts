@@ -3,7 +3,7 @@ import type { RegistryType } from '../../enum/registry/system';
 import type { MeasurementSystem } from '../../enum/registry/unit';
 import type { Factory } from '../base/factory';
 import type { Collection, Distinct } from '../base/modifier';
-import type { LangGroup } from '../base/primitives';
+import type { LangGroup } from '../base/primitive';
 
 import { ValidUnits } from '../../config/units';
 export type PhysicalQuantity = keyof typeof ValidUnits;

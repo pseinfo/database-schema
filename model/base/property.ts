@@ -4,7 +4,7 @@ import type { ReactionRef } from '../collection/reaction';
 import type { RefId } from '../registry/reference';
 import type { NoUnit, PhysicalQuantity } from '../registry/unit';
 import type { Condition } from './condition';
-import type { Struct } from './primitives';
+import type { Struct } from './primitive';
 import type * as v from './value';
 
 type BaseProperty< C extends PhysicalQuantity, T extends Struct = {} > = {

@@ -1,5 +1,5 @@
 import type { LangCode } from '../../enum/base/locale';
-import type { IsoDate, LangGroup, UrlString } from '../base/primitives';
+import type { IsoDate, LangGroup, UrlString } from '../base/primitive';
 
 export type Weblinks = {
   links?: Array< {

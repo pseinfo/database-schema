@@ -1,6 +1,6 @@
 import type { Expand } from 'devtypes/types/util';
 import type { Collection, Distinct } from '../base/modifier';
-import type { IsoDate, RepoBase } from '../base/primitives';
+import type { IsoDate, RepoBase } from '../base/primitive';
 
 export type Metadata< T extends Collection< unknown > > = Expand< T & {
   '@metadata': Distinct< {

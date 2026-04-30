@@ -1,4 +1,4 @@
-import type { IsoDate, UrlString } from '../base/primitives';
+import type { IsoDate, UrlString } from '../base/primitive';
 
 export type Attribution = {
   author?: string;

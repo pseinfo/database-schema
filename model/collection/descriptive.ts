@@ -1,6 +1,6 @@
 import type { SensoryProperty } from '../../enum/collection/descriptive';
 import type { Collection, Group, Many, Mapping, One } from '../base/modifier';
-import type { LangGroup } from '../base/primitives';
+import type { LangGroup } from '../base/primitive';
 import type { PrimitiveProperty } from '../base/property';
 
 export type DescriptiveCollection = Collection< {
