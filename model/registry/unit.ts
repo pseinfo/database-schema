@@ -33,3 +33,13 @@ export type UnitConfig = Record< string, {
   prefixableUnits: string[];
   baseUnit: string;
 } >;
+
+export type PhysicalQuantity = keyof typeof ValidUnits;
+export type ValidUnits = typeof ValidUnits;
+
+type BaseUnitSymbols< Q extends PhysicalQuantity > = ValidUnits[ Q ][ 'units' ][ number ];
+type PrefixableUnitSymbols< Q extends PhysicalQuantity > = ValidUnits[ Q ][ 'prefixableUnits' ][ number ];
+
+type PrefixedSymbols< Q extends PhysicalQuantity > =
+  | BaseUnitSymbols< Q >
+  | `${ SIPrefix }${ PrefixableUnitSymbols< Q > }`;
