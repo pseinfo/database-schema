@@ -107,3 +107,10 @@ export type NuclideDecayChainEntry< N extends NuclideId > = {
 export type NuclideDecayChains = Collection< {
   [ N in NuclideId ]?: Distinct< NuclideDecayChainEntry< N > >;
 } >;
+
+
+export type NuclideDomain = Collection< {
+  nuclides: NuclideCollection;
+  index: NuclideIndex;
+  decayChains: NuclideDecayChains;
+} >;

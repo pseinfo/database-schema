@@ -3,6 +3,7 @@ import type { CompoundDomain } from './domain/compound';
 import type { ElementDomain } from './domain/element';
 import type { MineralDomain } from './domain/mineral';
 import type { MixtureDomain } from './domain/mixture';
+import type { NuclideDomain } from './domain/nuclide';
 import type { BlobRegistry } from './registry/blob';
 import type { OrganizationRegistry } from './registry/organization';
 import type { PersonRegistry } from './registry/person';
@@ -14,6 +15,7 @@ export type Database = Collection< {
   meta: DBMeta;
   domains: Group< {
     elements: ElementDomain;
+    nuclides: NuclideDomain;
     compounds: CompoundDomain;
     minerals: MineralDomain;
     mixtures: MixtureDomain;
