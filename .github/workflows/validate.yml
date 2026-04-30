@@ -8,7 +8,7 @@ on:
 
 jobs:
   validate:
-    name: Type Safety & Schema
+    name: Type Safety
     runs-on: ubuntu-latest
 
     steps:
