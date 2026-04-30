@@ -1,4 +1,5 @@
-import type { Brand } from 'devtypes/types/util';
+import type { RequireAtLeastOne, RequireExactlyOneFrom } from 'devtypes/types/constraint';
+import type { Brand, Expand } from 'devtypes/types/util';
 import type { LangCode } from '../../enum/base/locale';
 import type { ReferenceType } from '../../enum/registry/reference';
 import type { IsoDate, UrlString } from '../base/primitives';
@@ -57,3 +58,63 @@ type Authored = CoreBase & Req< 'author' >;
 type VolNum = Opt< 'volume' | 'number' >;
 type ConfBase = Authored & VolNum & Req< 'booktitle' > & Opt< 'editor' | 'series' | 'pages' | 'address' | 'organization' | 'publisher' >;
 type ThesisBase = Authored & Req< 'school' > & Opt< 'reportType' | 'address' >;
+
+export type ArticleReference = Expand<
+  BaseReference< ReferenceType.ARTICLE > &
+  Authored & VolNum & Req< 'journal' > & Opt< 'pages' >
+>;
+
+export type BookReference = Expand<
+  BaseReference< ReferenceType.BOOK > & CoreBase & VolNum & Req< 'publisher' > &
+  Opt< 'series' | 'address' | 'edition' | 'isbn' > &
+  RequireExactlyOneFrom< Fields, 'author' | 'editor' >
+>;
+
+export type BookletReference = Expand<
+  BaseReference< ReferenceType.BOOKLET > & Req< 'title' > &
+  Opt< 'author' | 'howpublished' | 'address' | 'month' | 'year' | 'note' >
+>;
+
+export type ConferenceReference = Expand< BaseReference< ReferenceType.CONFERENCE > & ConfBase >;
+
+export type InbookReference = Expand<
+  BaseReference< ReferenceType.INBOOK > & CoreBase & VolNum & Req< 'publisher' > &
+  RequireExactlyOneFrom< Fields, 'author' | 'editor' > & RequireAtLeastOne< Fields, 'chapter' | 'pages' > &
+  Opt< 'series' | 'reportType' | 'address' | 'edition' >
+>;
+
+export type IncollectionReference = Expand<
+  BaseReference< ReferenceType.INCOLLECTION > & Authored & VolNum & Req< 'booktitle' | 'publisher' > &
+  Opt< 'editor' | 'series' | 'reportType' | 'chapter' | 'pages' | 'address' | 'edition' >
+>;
+
+export type InproceedingsReference = Expand< BaseReference< ReferenceType.INPROCEEDINGS > & ConfBase >;
+
+export type ManualReference = Expand<
+  BaseReference< ReferenceType.MANUAL > & Req< 'title' > &
+  Opt< 'author' | 'organization' | 'address' | 'edition' | 'month' | 'note' | 'year' >
+>;
+
+export type MastersthesisReference = Expand< BaseReference< ReferenceType.MASTERSTHESIS > & ThesisBase >;
+export type ThesisReference = Expand< BaseReference< ReferenceType.THESIS > & ThesisBase >;
+export type PhdthesisReference = Expand< BaseReference< ReferenceType.PHDTHESIS > & ThesisBase >;
+
+export type MiscReference = Expand<
+  BaseReference< ReferenceType.MISC > &
+  Opt< 'author' | 'title' | 'howpublished' | 'month' | 'year' | 'note' >
+>;
+
+export type ProceedingsReference = Expand<
+  BaseReference< ReferenceType.PROCEEDINGS > & CoreBase & VolNum &
+  Opt< 'editor' | 'series' | 'address' | 'organization' | 'publisher' >
+>;
+
+export type TechreportReference = Expand<
+  BaseReference< ReferenceType.TECHREPORT > & Authored & Req< 'institution' > &
+  Opt< 'reportType' | 'note' | 'number' | 'address' >
+>;
+
+export type UnpublishedReference = Expand<
+  BaseReference< ReferenceType.UNPUBLISHED > & Req< 'author' | 'title' | 'note' > &
+  Opt< 'month' | 'year' >
+>;
