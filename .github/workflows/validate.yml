@@ -8,7 +8,7 @@ on:
 
 jobs:
   validate:
-    name: Type Safety & Schema
+    name: Type Safety
     runs-on: ubuntu-latest
 
     steps:
@@ -26,13 +26,3 @@ jobs:
 
       - name: Type Check
         run: npm run lint
-
-      - name: Generate Schema
-        run: npm run schema
-
-      - name: Upload Schema Artifact
-        uses: actions/upload-artifact@v7
-        with:
-          name: schema
-          path: src/schema.json
-          if-no-files-found: error

@@ -1,6 +1,6 @@
 {
   "$schema": "https://typedoc.org/schema.json",
-  "entryPoints": [ "./types/*", "./enum/*" ],
+  "entryPoints": [ "./config/*", "./enum/*", "./model/*" ],
   "entryPointStrategy": "expand",
   "out": "docs",
   "githubPages": true,
@@ -13,7 +13,7 @@
   "excludeInternal": false,
   "excludeExternals": true,
   "name": "Periodic Table Database Schema",
-  "customFooterHtml": "Copyright © 2026 Periodic Table <br /> Distributed under the MIT license.",
+  "customFooterHtml": "Copyright © 2026 Periodic Table by Paul Köhler <br /> Distributed under the MIT license.",
   "hideGenerator": true,
   "favicon": "favicon.ico",
   "headings": {
@@ -22,7 +22,6 @@
   },
   "navigationLinks": {
     "Periodic Table": "https://pse-info.de",
-    "Schema": "https://unpkg.com/@pseinfo/database-schema/src/schema.json",
     "Database": "https://github.com/pseinfo/database",
     "npm": "https://npmjs.com/@pseinfo/database-schema",
     "Code": "https://github.com/pseinfo/database-schema"

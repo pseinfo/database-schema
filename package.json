@@ -1,7 +1,7 @@
 {
   "name": "@pseinfo/database-schema",
   "description": "TypeScript type declarations for the @pseinfo database",
-  "version": "0.6.6",
+  "version": "0.7.0",
   "license": "MIT",
   "author": {
     "name": "Paul Köhler",
@@ -24,6 +24,7 @@
     "elements",
     "compounds",
     "minerals",
+    "mixtures",
     "nuclides",
     "types",
     "typescript",
@@ -31,59 +32,58 @@
     "pseinfo"
   ],
   "files": [
+    "config",
     "enum",
-    "types",
-    "src",
+    "model",
     "README.md",
     "LICENSE"
   ],
   "type": "module",
   "exports": {
     ".": {
-      "types": "./types/index.ts",
-      "default": "./types/index.ts",
-      "import": "./types/index.ts"
-    },
-    "./abstract/*": {
-      "types": "./types/abstract/*.ts",
-      "default": "./types/abstract/*.ts",
-      "import": "./types/abstract/*.ts"
-    },
-    "./collection/*": {
-      "types": "./types/collection/*.ts",
-      "default": "./types/collection/*.ts",
-      "import": "./types/collection/*.ts"
-    },
-    "./entity/*": {
-      "types": "./types/entity/*.ts",
-      "default": "./types/entity/*.ts",
-      "import": "./types/entity/*.ts"
+      "types": "./model/index.ts",
+      "default": "./model/index.ts",
+      "import": "./model/index.ts"
     },
     "./enum/*": {
       "types": "./enum/*.ts",
       "default": "./enum/*.ts",
       "import": "./enum/*.ts"
     },
-    "./schema.json": {
-      "default": "./src/schema.json",
-      "import": "./src/schema.json"
+    "./base/*": {
+      "types": "./model/base/*.ts",
+      "default": "./model/base/*.ts",
+      "import": "./model/base/*.ts"
+    },
+    "./collection/*": {
+      "types": "./model/collection/*.ts",
+      "default": "./model/collection/*.ts",
+      "import": "./model/collection/*.ts"
+    },
+    "./domain/*": {
+      "types": "./model/domain/*.ts",
+      "default": "./model/domain/*.ts",
+      "import": "./model/domain/*.ts"
+    },
+    "./registry/*": {
+      "types": "./model/registry/*.ts",
+      "default": "./model/registry/*.ts",
+      "import": "./model/registry/*.ts"
+    },
+    "./utility/*": {
+      "types": "./model/utility/*.ts",
+      "default": "./model/utility/*.ts",
+      "import": "./model/utility/*.ts"
     }
   },
   "scripts": {
     "lint": "tsc",
-    "docs": "typedoc --logLevel Verbose --options typedoc.json",
-    "schema": "node scripts/schema.mjs",
-    "schema:generate": "node scripts/schema.mjs generate",
-    "schema:optimize": "node scripts/schema.mjs optimize",
-    "schema:validate": "node scripts/schema.mjs validate"
+    "docs": "typedoc --logLevel Verbose --options typedoc.json"
   },
   "dependencies": {
     "devtypes": "^2.1.0"
   },
   "devDependencies": {
-    "ajv": "^8.18.0",
-    "json-stable-stringify": "^1.3.0",
-    "ts-json-schema-generator": "^2.9.0",
     "typedoc": "^0.28.19",
     "typedoc-github-theme": "^0.4.0",
     "typedoc-plugin-missing-exports": "^4.1.3",
