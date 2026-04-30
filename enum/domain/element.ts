@@ -117,3 +117,110 @@ export enum ElementSymbol {
   Ts = 'ts',
   Og = 'og'
 };
+
+export enum ElementSet {
+  NON_METAL = 'nonMetal',
+  NOBLE_GAS = 'nobleGas',
+  ALKALI_METAL = 'alkaliMetal',
+  ALKALINE_EARTH_METAL = 'alkalineEarthMetal',
+  METALLOID = 'metalloid',
+  HALOGEN = 'halogen',
+  METAL = 'metal',
+  TRANSITION_METAL = 'transitionMetal',
+  LANTHANOIDE = 'lanthanoid',
+  ACTINOIDE = 'actinoide'
+};
+
+export enum ElementGroup {
+  ALKALI_METAL = 'alkaliMetal',
+  ALKALINE_EARTH_METAL = 'alkalineEarthMetal',
+  SCANDIUM_GROUP = 'scandiumGroup',
+  TITANIUM_GROUP = 'titaniumGroup',
+  VANADIUM_GROUP = 'vanadiumGroup',
+  CHROMIUM_GROUP = 'chromiumGroup',
+  MANGANESE_GROUP = 'manganeseGroup',
+  IRON_GROUP = 'ironGroup',
+  COBALT_GROUP = 'cobaltGroup',
+  NICKEL_GROUP = 'nickelGroup',
+  COPPER_GROUP = 'copperGroup',
+  ZINC_GROUP = 'zincGroup',
+  BORON_GROUP = 'boronGroup',
+  CARBON_GROUP = 'carbonGroup',
+  PNICTOGEN = 'pnictogen',
+  CHALCOGEN = 'chalcogen',
+  HALOGEN = 'halogen',
+  NOBLE_GAS = 'nobleGas',
+  LANTHANOID_SERIES = 'lanthanoidSeries',
+  ACTINOID_SERIES = 'actinoidSeries'
+};
+
+export enum ElementProperty {
+  ANTIQUITY = 'antiquity',
+  MONONUCLEIDE = 'mononuclide',
+  NOBLE = 'noble',
+  NATIVE_METAL = 'nativeMetal',
+  RARE_EARTH = 'rareEarth',
+  PLATINUM_METAL = 'platinumMetal',
+  REFRACTORY_METAL = 'refractoryMetal',
+  PRECIOUS_METAL = 'preciousMetal',
+  COINAGE_METALS = 'coinageMetals',
+  HEAVY_METAL = 'heavyMetal',
+  LIGHT_METAL = 'lightMetal',
+  SUPERHEAVY_METAL = 'superheavyMetal',
+  DIATOMIC = 'diatomic',
+  ALLOTROPIC = 'allotropic'
+};
+
+export enum ShellModel {
+  K = 'k',
+  L = 'l',
+  M = 'm',
+  N = 'n',
+  O = 'o',
+  P = 'p',
+  Q = 'q'
+};
+
+export enum Subshell {
+  S = 's',
+  P = 'p',
+  D = 'd',
+  F = 'f'
+};
+
+export enum PaulingSpin {
+  UP = 'up',
+  DOWN = 'down',
+  BOTH = 'both'
+};
+
+export enum PeriodicTableColumn {
+  COLUMN_1 = 1,
+  COLUMN_2 = 2,
+  COLUMN_3 = 3,
+  COLUMN_4 = 4,
+  COLUMN_5 = 5,
+  COLUMN_6 = 6,
+  COLUMN_7 = 7,
+  COLUMN_8 = 8,
+  COLUMN_9 = 9,
+  COLUMN_10 = 10,
+  COLUMN_11 = 11,
+  COLUMN_12 = 12,
+  COLUMN_13 = 13,
+  COLUMN_14 = 14,
+  COLUMN_15 = 15,
+  COLUMN_16 = 16,
+  COLUMN_17 = 17,
+  COLUMN_18 = 18
+};
+
+export enum PeriodicTablePeriod {
+  PERIOD_1 = 1,
+  PERIOD_2 = 2,
+  PERIOD_3 = 3,
+  PERIOD_4 = 4,
+  PERIOD_5 = 5,
+  PERIOD_6 = 6,
+  PERIOD_7 = 7
+};
