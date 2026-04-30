@@ -1,4 +1,5 @@
 import type { Collection, Group } from './base/modifier';
+import type { CompoundDomain } from './domain/compound';
 import type { ElementDomain } from './domain/element';
 import type { MineralDomain } from './domain/mineral';
 import type { MixtureDomain } from './domain/mixture';
@@ -13,6 +14,7 @@ export type Database = Collection< {
   meta: DBMeta;
   domains: Group< {
     elements: ElementDomain;
+    compounds: CompoundDomain;
     minerals: MineralDomain;
     mixtures: MixtureDomain;
   } >;
