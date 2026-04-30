@@ -22,9 +22,7 @@ export type SMARTS = string;
 /** Wiswesser Line Notation, a historical line-entry system for chemical structures. */
 export type WLN = string;
 
-/**
- * Collection of diverse structural notations and systematic nomenclature.
- */
+/** Collection of diverse structural notations and systematic nomenclature. */
 export type StructureCollection = Collection< {
   /** Systematic IUPAC name of the entity. */
   iupacName?: Distinct< IUPACName >;
