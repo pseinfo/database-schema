@@ -31,11 +31,11 @@ type FractionComponent = Expand< BaseComponent< CompositionType.FRACTION > & {
   fraction: number;
 } >;
 
-export type CompositionCollection< E extends DomainType > = Collection< {
+export type CompositionCollection< D extends DomainType > = Collection< {
   components: Distinct<
-    E extends DomainType.COMPOUND ? StoichiometryComponent :
-    E extends DomainType.MINERAL ? StoichiometryComponent | RangeComponent :
-    E extends DomainType.MIXTURE ? FractionComponent :
+    D extends DomainType.COMPOUND ? StoichiometryComponent :
+    D extends DomainType.MINERAL ? StoichiometryComponent | RangeComponent :
+    D extends DomainType.MIXTURE ? FractionComponent :
     never
   >[];
 } >;
