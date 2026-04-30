@@ -1,7 +1,6 @@
 /**
  * @file enum/science/nuclear.ts
- * @description Defines enums for nuclear physics, including decay modes,
- * radiation types, and quantum states.
+ * @description Defines enums for nuclear physics, including decay modes, radiation types, and quantum states.
  */
 
 /**

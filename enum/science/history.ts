@@ -1,7 +1,6 @@
 /**
  * @file enum/science/history.ts
- * @description Defines enums for tracking the historical development and
- * discovery of elements and substances.
+ * @description Defines enums for tracking the historical development and discovery of elements and substances.
  */
 
 /**

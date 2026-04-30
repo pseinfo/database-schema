@@ -1,3 +1,11 @@
+/**
+ * @file enum/system/locale.ts
+ * @description Defines enums for internationalization, including language, country, and currency codes.
+ */
+
+/**
+ * ISO 639-1 two-letter language codes for internationalization.
+ */
 export enum LangCode {
   ARABIC = 'ar', BENGALI = 'bn', BULGARIAN = 'bg', CHINESE = 'zh', CROATIAN = 'hr', CZECH = 'cs',
   DANISH = 'da', DUTCH = 'nl', ENGLISH = 'en', ESTONIAN = 'et', FINNISH = 'fi', FRENCH = 'fr',
@@ -8,6 +16,9 @@ export enum LangCode {
   THAI = 'th', TURKISH = 'tr', UKRAINIAN = 'uk', VIETNAMESE = 'vi'
 };
 
+/**
+ * ISO 3166-1 alpha-2 two-letter country codes for geographic classification.
+ */
 export enum CountryCode {
   AFGHANISTAN = 'AF', ALAND_ISLANDS = 'AX', ALBANIA = 'AL', ALGERIA = 'DZ', AMERICAN_SAMOA = 'AS',
   ANDORRA = 'AD', ANGOLA = 'AO', ANGUILLA = 'AI', ANTARCTICA = 'AQ', ANTIGUA_AND_BARBUDA = 'AG',
@@ -61,6 +72,9 @@ export enum CountryCode {
   WALLIS_AND_FUTUNA = 'WF', WESTERN_SAHARA = 'EH', YEMEN = 'YE', ZAMBIA = 'ZM', ZIMBABWE = 'ZW'
 };
 
+/**
+ * ISO 4217 three-letter currency codes for economic and financial data.
+ */
 export enum Currency {
   USD = 'USD', EUR = 'EUR', JPY = 'JPY', GBP = 'GBP', AUD = 'AUD', CAD = 'CAD', CHF = 'CHF',
   CNY = 'CNY', SEK = 'SEK', NZD = 'NZD', MXN = 'MXN', SGD = 'SGD', HKD = 'HKD', NOK = 'NOK',

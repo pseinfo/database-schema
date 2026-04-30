@@ -1,7 +1,6 @@
 /**
  * @file enum/science/physics.ts
- * @description Defines enums for physical states, magnetic properties,
- * and optical characteristics of materials.
+ * @description Defines enums for physical states, magnetic properties, and optical characteristics of materials.
  */
 
 /**
