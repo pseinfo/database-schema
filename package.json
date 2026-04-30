@@ -35,11 +35,47 @@
     "config",
     "enum",
     "model",
-    "src",
     "README.md",
     "LICENSE"
   ],
   "type": "module",
+  "exports": {
+    ".": {
+      "types": "./model/index.ts",
+      "default": "./model/index.ts",
+      "import": "./model/index.ts"
+    },
+    "./enum/*": {
+      "types": "./enum/*.ts",
+      "default": "./enum/*.ts",
+      "import": "./enum/*.ts"
+    },
+    "./base/*": {
+      "types": "./model/base/*.ts",
+      "default": "./model/base/*.ts",
+      "import": "./model/base/*.ts"
+    },
+    "./collection/*": {
+      "types": "./model/collection/*.ts",
+      "default": "./model/collection/*.ts",
+      "import": "./model/collection/*.ts"
+    },
+    "./domain/*": {
+      "types": "./model/domain/*.ts",
+      "default": "./model/domain/*.ts",
+      "import": "./model/domain/*.ts"
+    },
+    "./registry/*": {
+      "types": "./model/registry/*.ts",
+      "default": "./model/registry/*.ts",
+      "import": "./model/registry/*.ts"
+    },
+    "./utility/*": {
+      "types": "./model/utility/*.ts",
+      "default": "./model/utility/*.ts",
+      "import": "./model/utility/*.ts"
+    }
+  },
   "scripts": {
     "lint": "tsc",
     "docs": "typedoc --logLevel Verbose --options typedoc.json"
