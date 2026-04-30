@@ -6,7 +6,7 @@ import type { BlobId } from '../registry/blob';
 type MediaSubtypeMap = {
   [ BlobType.IMAGE ]: never;
   [ BlobType.MODEL_3D ]: Model3DType;
-  [ BlobType.STRUCTURE ]: never;
+  [ BlobType.FORMULA ]: never;
   [ BlobType.SPECTRUM ]: SpectrumType;
   [ BlobType.DOCUMENT ]: DocumentType;
   [ BlobType.DATA ]: never;

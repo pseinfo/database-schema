@@ -7,7 +7,7 @@ import type { IsoDate, UrlString } from '../base/primitive';
 import type { Attribution } from '../utility/attribution';
 
 export type AllowedMimeTypes< T extends BlobType > =
-  T extends BlobType.IMAGE | BlobType.STRUCTURE | BlobType.SPECTRUM
+  T extends BlobType.IMAGE | BlobType.FORMULA | BlobType.SPECTRUM
     ? MimeType.PNG | MimeType.JPEG | MimeType.GIF | MimeType.SVG | MimeType.WEBP
     : T extends BlobType.MODEL_3D
       ? MimeType.PDB | MimeType.MOL | MimeType.SDF | MimeType.XYZ | MimeType.CIF

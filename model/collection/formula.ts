@@ -7,7 +7,7 @@ import type { BlobId } from '../registry/blob';
 export type Formula = {
   notation?: string;
   latexNotation?: string;
-  images?: BlobId< BlobType.STRUCTURE >[];
+  images?: BlobId< BlobType.FORMULA >[];
 };
 
 export type FormulaCollection = Collection< {
