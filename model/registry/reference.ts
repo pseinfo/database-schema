@@ -9,3 +9,40 @@ type BaseReference< R extends ReferenceType > = Brand< {
   accessed?: IsoDate;
   language?: LangCode;
 }, R, 'type', true >;
+
+type CoreFields = {
+  title?: string;
+  year?: number | string;
+  month?: string;
+  note?: string;
+};
+
+type PersonFields = {
+  author?: string | string[];
+  editor?: string | string[];
+};
+
+type LocFields = {
+  volume?: number | string;
+  number?: number | string;
+  pages?: number | string;
+  chapter?: string;
+};
+
+type VenueFields = {
+  journal?: string;
+  booktitle?: string;
+  publisher?: string;
+  organization?: string;
+  institution?: string;
+  school?: string;
+};
+
+type MetaFields = {
+  address?: string;
+  edition?: string;
+  series?: string;
+  howpublished?: string;
+  isbn?: string;
+  reportType?: string;
+};
