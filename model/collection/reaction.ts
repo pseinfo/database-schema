@@ -4,12 +4,12 @@ import type {
   ReactionState, ReactionTransition
 } from '../../enum/collection/reaction';
 import type { ElementSymbol } from '../../enum/domain/element';
-import type { CompoundId } from '../entity/compound';
-import type { MineralId } from '../entity/mineral';
-import type { MixtureId } from '../entity/mixture';
+import type { CompoundId } from '../domain/compound';
+import type { MineralId } from '../domain/mineral';
+import type { MixtureId } from '../domain/mixture';
 import type { RefId } from '../registry/reference';
 import type { Condition } from '../base/condition';
-import type { Collection, Distinct } from './modifiers';
+import type { Collection, Distinct } from '../base/modifier';
 import type { NumberValue } from '../base/value';
 
 type Reactant =
