@@ -43,3 +43,34 @@ type PrefixableUnitSymbols< Q extends PhysicalQuantity > = ValidUnits[ Q ][ 'pre
 type PrefixedSymbols< Q extends PhysicalQuantity > =
   | BaseUnitSymbols< Q >
   | `${ SIPrefix }${ PrefixableUnitSymbols< Q > }`;
+
+type ConversionField< T extends boolean > = T extends true ? {} : {
+  conversion: {
+    factor: number;
+    offset?: number;
+  };
+};
+
+export type Unit<
+  Q extends PhysicalQuantity, U extends BaseUnitSymbols< Q >,
+  isBase extends boolean = U extends ValidUnits[ Q ][ 'baseUnit' ] ? true : false
+> = Expand< Brand< {
+  name: LangGroup;
+  latex: string;
+  isBase: isBase;
+  prefixable: U extends PrefixableUnitSymbols< Q > ? true : false;
+  system?: MeasurementSystem;
+} & ConversionField< isBase >, U, 'symbol', true > >;
+
+export type Quantity< Q extends PhysicalQuantity > = Expand< Brand< {
+  dimension: {
+    si: Q extends SIDimension ? true : false;
+    vector: ValidUnits[ Q ][ 'vector' ];
+  };
+  name: LangGroup;
+  latex: string;
+  baseUnit: ValidUnits[ Q ][ 'baseUnit' ];
+  units: {
+    [ U in BaseUnitSymbols< Q > ]: Unit< Q, U >;
+  };
+}, ValidUnits[ Q ][ 'symbol' ], 'symbol', true > >;
