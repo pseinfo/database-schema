@@ -61,37 +61,44 @@ type ThesisBase = Authored & Req< 'school' > & Opt< 'reportType' | 'address' >;
 
 export type ArticleReference = Expand<
   BaseReference< ReferenceType.ARTICLE > &
-  Authored & VolNum & Req< 'journal' > & Opt< 'pages' >
+  Authored & VolNum &
+  Req< 'journal' > & Opt< 'pages' >
 >;
 
 export type BookReference = Expand<
-  BaseReference< ReferenceType.BOOK > & CoreBase & VolNum & Req< 'publisher' > &
-  Opt< 'series' | 'address' | 'edition' | 'isbn' > &
+  BaseReference< ReferenceType.BOOK > &
+  CoreBase & VolNum &
+  Req< 'publisher' > & Opt< 'series' | 'address' | 'edition' | 'isbn' > &
   RequireExactlyOneFrom< Fields, 'author' | 'editor' >
 >;
 
 export type BookletReference = Expand<
-  BaseReference< ReferenceType.BOOKLET > & Req< 'title' > &
-  Opt< 'author' | 'howpublished' | 'address' | 'month' | 'year' | 'note' >
+  BaseReference< ReferenceType.BOOKLET > &
+  Req< 'title' > & Opt< 'author' | 'howpublished' | 'address' | 'month' | 'year' | 'note' >
 >;
 
 export type ConferenceReference = Expand< BaseReference< ReferenceType.CONFERENCE > & ConfBase >;
 
 export type InbookReference = Expand<
-  BaseReference< ReferenceType.INBOOK > & CoreBase & VolNum & Req< 'publisher' > &
-  RequireExactlyOneFrom< Fields, 'author' | 'editor' > & RequireAtLeastOne< Fields, 'chapter' | 'pages' > &
-  Opt< 'series' | 'reportType' | 'address' | 'edition' >
+  BaseReference< ReferenceType.INBOOK > &
+  CoreBase & VolNum &
+  Req< 'publisher' > & Opt< 'series' | 'reportType' | 'address' | 'edition' > &
+  RequireExactlyOneFrom< Fields, 'author' | 'editor' > &
+  RequireAtLeastOne< Fields, 'chapter' | 'pages' >
 >;
 
 export type IncollectionReference = Expand<
-  BaseReference< ReferenceType.INCOLLECTION > & Authored & VolNum & Req< 'booktitle' | 'publisher' > &
+  BaseReference< ReferenceType.INCOLLECTION > &
+  Authored & VolNum &
+  Req< 'booktitle' | 'publisher' > &
   Opt< 'editor' | 'series' | 'reportType' | 'chapter' | 'pages' | 'address' | 'edition' >
 >;
 
 export type InproceedingsReference = Expand< BaseReference< ReferenceType.INPROCEEDINGS > & ConfBase >;
 
 export type ManualReference = Expand<
-  BaseReference< ReferenceType.MANUAL > & Req< 'title' > &
+  BaseReference< ReferenceType.MANUAL > &
+  Req< 'title' > &
   Opt< 'author' | 'organization' | 'address' | 'edition' | 'month' | 'note' | 'year' >
 >;
 
@@ -105,16 +112,18 @@ export type MiscReference = Expand<
 >;
 
 export type ProceedingsReference = Expand<
-  BaseReference< ReferenceType.PROCEEDINGS > & CoreBase & VolNum &
+  BaseReference< ReferenceType.PROCEEDINGS > &
+  CoreBase & VolNum &
   Opt< 'editor' | 'series' | 'address' | 'organization' | 'publisher' >
 >;
 
 export type TechreportReference = Expand<
-  BaseReference< ReferenceType.TECHREPORT > & Authored & Req< 'institution' > &
-  Opt< 'reportType' | 'note' | 'number' | 'address' >
+  BaseReference< ReferenceType.TECHREPORT > &
+  Authored &
+  Req< 'institution' > & Opt< 'reportType' | 'note' | 'number' | 'address' >
 >;
 
 export type UnpublishedReference = Expand<
-  BaseReference< ReferenceType.UNPUBLISHED > & Req< 'author' | 'title' | 'note' > &
-  Opt< 'month' | 'year' >
+  BaseReference< ReferenceType.UNPUBLISHED > &
+  Req< 'author' | 'title' | 'note' > & Opt< 'month' | 'year' >
 >;
