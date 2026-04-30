@@ -4,6 +4,7 @@ import type { Gender } from '../../enum/registry/person';
 import type { RegistryType } from '../../enum/registry/system';
 import type { Factory } from '../base/factory';
 import type { Collection, Distinct } from '../base/modifier';
+import type { Weblinks } from '../utility/weblinks';
 import type { OrgId } from './organization';
 import type { RefId } from './reference';
 

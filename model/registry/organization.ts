@@ -4,6 +4,7 @@ import type { OrganizationType } from '../../enum/registry/organization';
 import type { RegistryType } from '../../enum/registry/system';
 import type { Factory } from '../base/factory';
 import type { Collection, Distinct } from '../base/modifier';
+import type { Weblinks } from '../utility/weblinks';
 import type { RefId } from './reference';
 
 export type Organization = {
