@@ -1,8 +1,8 @@
 import type { RequireAtLeastOne, RequireExactlyOneFrom } from 'devtypes/types/constraint';
 import type { Brand, Expand } from 'devtypes/types/util';
+import type { RegistryType } from '../../enum/system/domain';
 import type { LangCode } from '../../enum/system/locale';
 import type { ReferenceType } from '../../enum/system/reference';
-import type { RegistryType } from '../../enum/system/domain';
 import type { Factory } from '../base/factory';
 import type { Collection, Distinct } from '../base/modifier';
 import type { IsoDate, UrlString } from '../base/primitive';

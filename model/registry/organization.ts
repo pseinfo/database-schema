@@ -1,7 +1,7 @@
 import type { Brand } from 'devtypes/types/util';
+import type { RegistryType } from '../../enum/system/domain';
 import type { CountryCode } from '../../enum/system/locale';
 import type { OrganizationType } from '../../enum/system/organization';
-import type { RegistryType } from '../../enum/system/domain';
 import type { Factory } from '../base/factory';
 import type { Collection, Distinct } from '../base/modifier';
 import type { Weblinks } from '../utility/weblinks';
