@@ -1,5 +1,6 @@
 import type { Collection, Group } from './base/modifier';
 import type { ElementDomain } from './domain/element';
+import type { MineralDomain } from './domain/mineral';
 import type { BlobRegistry } from './registry/blob';
 import type { OrganizationRegistry } from './registry/organization';
 import type { PersonRegistry } from './registry/person';
@@ -11,6 +12,7 @@ export type Database = Collection< {
   meta: DBMeta;
   domains: Group< {
     elements: ElementDomain;
+    minerals: MineralDomain;
   } >;
   registries: Group< {
     blobs: BlobRegistry;
