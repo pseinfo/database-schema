@@ -12,26 +12,14 @@ import type { Condition } from '../base/condition';
 import type { Collection, Distinct } from '../base/modifier';
 import type { NumberValue } from '../base/value';
 
-type Reactant =
-  | { type: ReactionSpecies.ELEMENT, id: ElementSymbol }
-  | { type: ReactionSpecies.COMPOUND, id: CompoundId }
-  | { type: ReactionSpecies.MINERAL, id: MineralId }
-  | { type: ReactionSpecies.MIXTURE, id: MixtureId }
-  | { type: ReactionSpecies.SELF }
-  | { type: ReactionSpecies.FORMULA, formula: string };
-
-type Modifier =
-  | { type: ReactionModifier.CATALYST, value: ReactionTerm }
-  | { type: ReactionModifier.ENERGY_HEAT | ReactionModifier.ENERGY_LIGHT, value?: number }
-  | { type: ReactionModifier.ACID | ReactionModifier.BASE, value?: string };
-
-type Annotation = {
-  term: ReactionTerm;
-  position: ReactionAnnotation;
-};
-
 export type ReactionTerm = {
-  reactant: Reactant;
+  reactant:
+    | { type: ReactionSpecies.ELEMENT, id: ElementSymbol }
+    | { type: ReactionSpecies.COMPOUND, id: CompoundId }
+    | { type: ReactionSpecies.MINERAL, id: MineralId }
+    | { type: ReactionSpecies.MIXTURE, id: MixtureId }
+    | { type: ReactionSpecies.SELF }
+    | { type: ReactionSpecies.FORMULA, formula: string };
   coefficient: number;
   charge?: number;
   state?: ReactionState;
@@ -42,8 +30,15 @@ export type ReactionStep = {
   transition: ReactionTransition;
   terms: ReactionTerm[];
   condition?: Condition;
-  modifiers?: Modifier[];
-  annotations?: Annotation[];
+  modifiers?: Array<
+    | { type: ReactionModifier.CATALYST, value: ReactionTerm }
+    | { type: ReactionModifier.ENERGY_HEAT | ReactionModifier.ENERGY_LIGHT, value?: number }
+    | { type: ReactionModifier.ACID | ReactionModifier.BASE, value?: string }
+  >;
+  annotations?: Array< {
+    term: ReactionTerm;
+    position: ReactionAnnotation;
+  } >;
 };
 
 export type Reaction = {
