@@ -1,3 +1,9 @@
+/**
+ * @file config/units.ts
+ * @description Central registry for physical quantities, their SI dimensions, and associated units.
+ * Defines the scientific framework for unit conversion and validation.
+ */
+
 import type { UnitConfig } from '../model/registry/unit';
 
 export default ( {
