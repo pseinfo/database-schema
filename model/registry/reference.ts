@@ -127,3 +127,20 @@ export type UnpublishedReference = Expand<
   BaseReference< ReferenceType.UNPUBLISHED > &
   Req< 'author' | 'title' | 'note' > & Opt< 'month' | 'year' >
 >;
+
+export type Reference =
+  | ArticleReference
+  | BookReference
+  | BookletReference
+  | ConferenceReference
+  | InbookReference
+  | IncollectionReference
+  | InproceedingsReference
+  | ManualReference
+  | MastersthesisReference
+  | ThesisReference
+  | MiscReference
+  | PhdthesisReference
+  | ProceedingsReference
+  | TechreportReference
+  | UnpublishedReference;
