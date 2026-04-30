@@ -54,8 +54,8 @@ import { ElementSymbol } from '@pseinfo/database-schema/enum/science/element';
 import { DomainType } from '@pseinfo/database-schema/enum/system/domain';
 
 export default ( {
-  type: EntityType.ELEMENT,
-  element: ElementSymbol.H,
+  type: DomainType.ELEMENT,
+  elementSymbol: ElementSymbol.H,
   data: {
     classification: {
       symbol: 'H',
