@@ -43,7 +43,7 @@ export type SynthesisEvent = Expand< BaseEvent< EventType.SYNTHESIS > & MethodFi
 export type NamingEvent = Expand< BaseEvent< EventType.NAMING > & NamingFields >;
 export type ConfirmationEvent = Expand< BaseEvent< EventType.CONFIRMATION > >;
 export type CharacterizationEvent = Expand< BaseEvent< EventType.CHARACTERIZATION > >;
-export type OtherEvent = Expand< BaseEvent< EventType.OTHER > & { context: string } >;
+export type MiscEvent = Expand< BaseEvent< EventType.MISC > & { context: string } >;
 
 export type HistoryEvent =
   | DiscoveryEvent
@@ -53,7 +53,7 @@ export type HistoryEvent =
   | NamingEvent
   | ConfirmationEvent
   | CharacterizationEvent
-  | OtherEvent;
+  | MiscEvent;
 
 export type HistoryCollection = Collection< {
   events?: Distinct< HistoryEvent >[];
