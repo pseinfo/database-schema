@@ -1,6 +1,6 @@
 {
   "$schema": "https://typedoc.org/schema.json",
-  "entryPoints": [ "./enum/*", "./model/*" ],
+  "entryPoints": [ "./config/*", "./enum/*", "./model/*" ],
   "entryPointStrategy": "expand",
   "out": "docs",
   "githubPages": true,
