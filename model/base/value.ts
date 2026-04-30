@@ -45,7 +45,7 @@ type BaseValue< T extends ValueType > = Brand< {
   /** Descriptive context regarding the measurement environment or methodology. */
   context?: string;
   /** Additional qualitative notes regarding the data value. */
-  note?: string;
+  notes?: string;
 } & UncertaintyField< T >, T, 'type', true >;
 
 /** Quantitative interval for representing measurement spans. */

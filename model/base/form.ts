@@ -23,7 +23,7 @@ type BaseForm< T extends FormType, C extends Collection< unknown > > = Brand< {
   /** Environmental conditions associated with this manifestation. */
   conditions?: Condition;
   /** Additional qualitative notes regarding the structural form. */
-  note?: string;
+  notes?: string;
 }, T, 'type', true >;
 
 /**

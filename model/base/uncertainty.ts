@@ -38,7 +38,7 @@ type BaseUncertainty< T extends UncertaintyType > = Expand< Brand< {
     method?: string;
   };
   /** Additional qualitative notes regarding the error margin. */
-  note?: string;
+  notes?: string;
 }, T, 'type', true > >;
 
 /** Error margin expressed in the same physical unit as the measured value. */
