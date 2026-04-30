@@ -81,3 +81,29 @@ export type NuclideIndex = Collection< {
     [ N in number ]?: Distinct< NuclideIndexEntry< Z, N > >;
   } >;
 } >;
+
+
+export type NuclideDecayChainLink = {
+  nuclide: NuclideId;
+  mode: DecayMode;
+  probability: number | null;
+};
+
+export type NuclideDecayChainEntry< N extends NuclideId > = {
+  nuclide: N;
+  z: number;
+  n: number;
+  a: number;
+  element: ElementSymbol;
+  halfLife: number | null;
+  stable: boolean;
+  daughterChains: NuclideDecayChainLink[];
+  parentChains: NuclideDecayChainLink[];
+  chainDepth: number;
+  minStepsToStable: number;
+  isTerminal: boolean;
+};
+
+export type NuclideDecayChains = Collection< {
+  [ N in NuclideId ]?: Distinct< NuclideDecayChainEntry< N > >;
+} >;
