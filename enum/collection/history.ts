@@ -5,7 +5,8 @@ export enum EventType {
   SYNTHESIS = 'synthesis',
   NAMING = 'naming',
   CONFIRMATION = 'confirmation',
-  CHARACTERIZATION = 'characterization'
+  CHARACTERIZATION = 'characterization',
+  OTHER = 'other'
 };
 
 export enum EventTimeType {
