@@ -2,9 +2,8 @@
 
 [![npm version](https://img.shields.io/npm/v/@pseinfo/database-schema?style=flat-square)](https://npmjs.com/@pseinfo/database-schema)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](https://github.com/pseinfo/database-schema/blob/master/LICENSE)
-[![Schema](https://img.shields.io/badge/Schema-JSON-blue?style=flat-square)](https://unpkg.com/@pseinfo/database-schema/src/schema.json)
 
-Strict TypeScript definitions and JSON Schema for structured representation of chemical elements, minerals, nuclides, mixtures, and compounds used by the [periodic table database](https://github.com/pseinfo/database).
+Strict TypeScript definitions for structured representation of chemical elements, minerals, nuclides, mixtures, and compounds used by the [periodic table database](https://github.com/pseinfo/database).
 
 Visit [technical documentation](https://pseinfo.github.io/database-schema) for in-depth insights into the schema architecture.
 
@@ -12,11 +11,11 @@ Visit [technical documentation](https://pseinfo.github.io/database-schema) for i
 
 The `@pseinfo/database-schema` is designed as a modular, five-tier architecture that ensures both strict type safety and scientific flexibility.
 
-1.  **Abstract layer:** Defines the fundamental behavior of scientific data, including measurements, uncertainties, and experimental conditions.
-2.  **Collection layer:** Aggregates properties into thematic modules such as atomic physics, thermodynamics, and crystallographic analysis.
-3.  **Data layer:** Provides the "raw" scientific content (e.g., `ElementData`), designed for manual maintenance without system-generated metadata.
-4.  **Entity layer:** Enriches the data with automated `@metadata` (hashes, timestamps, versions) to create complete database records (e.g., `Element`).
-5.  **Registry layer:** Composes these entities into global dictionaries (e.g., `ElementEntity`), providing a unified structure consistent across all domains.
+1. **Abstract layer:** Defines the fundamental behavior of scientific data, including measurements, uncertainties, and experimental conditions.
+2. **Collection layer:** Aggregates properties into thematic modules such as atomic physics, thermodynamics, and crystallographic analysis.
+3. **Data layer:** Provides the "raw" scientific content (e.g., `ElementData`), designed for manual maintenance without system-generated metadata.
+4. **Entity layer:** Enriches the data with automated `@metadata` (hashes, timestamps, versions) to create complete database records (e.g., `Element`).
+5. **Domain layer:** Composes these entities into global dictionaries (e.g., `ElementDomain`), providing a unified structure consistent across all domains.
 
 ## Scientific Property Model
 
@@ -24,13 +23,13 @@ A central principle of the schema is the encapsulation of data within a robust *
 
 Experimental conditions like temperature and pressure are natively supported as context for every property, while a citation system ensures that every data point can be traced back to its original reference in the scientific literature.
 
-## Blob, Unit & Reference Registries
+## Registries
 
-The schema promotes data integrity through centralized registries for physical quantities, media blobs, and academic references. The **unit registry** provides a strictly typed framework for dimensions and prefixes, ensuring that physical properties like molar mass or magnetic susceptibilities are always represented with correct SI-compliant symbols.
+The schema promotes data integrity through centralized registries for physical quantities, media blobs, academic references, organizations and people.
 
-**Blobs** handle the storage of large media files (e.g., crystallographic structures, spectral data) in a way that is decoupled from the core database, allowing for efficient management and retrieval without bloating the primary data records.
+The **unit registry** provides a strictly typed framework for dimensions and prefixes, ensuring that physical properties always represented with correct SI-compliant symbols. **Blobs** handle the storage of large media files (e.g., structure files, spectral data) in a way that is decoupled from the core database, allowing for efficient management and retrieval without bloating the primary data records. The **reference registry** manages the bibliography of the entire database, allowing for a deduplicated and verifiable chain of custody for all scientific information.
 
-Complementing this, the **reference registry** manages the bibliography of the entire database, allowing for a deduplicated and verifiable chain of custody for all scientific information.
+**Person** and **organization registries** maintain the metadata of scientists and institutions involved in discovery, research, and data curation, providing a historical and social context for the scientific data.
 
 ## Database Entities
 
@@ -50,9 +49,9 @@ Using these factories, developers benefit from:
 Example:
 
 ```typescript
-import type { ElementFactory } from '@pseinfo/database-schema/types/entity/element';
-import { ElementSymbol } from '@pseinfo/database-schema/enum/element';
-import { EntityType } from '@pseinfo/database-schema/enum/util';
+import type { ElementFactory } from '@pseinfo/database-schema/model/domain/element';
+import { ElementSymbol } from '@pseinfo/database-schema/enum/science/element';
+import { DomainType } from '@pseinfo/database-schema/enum/system/domain';
 
 export default ( {
   type: EntityType.ELEMENT,
@@ -72,7 +71,7 @@ export default ( {
 
 ## Package
 
-The package provides the complete set of TypeScript definitions and JSON Schema for Draft-07 compliance, allowing for runtime validation in heterogeneous environments.
+The package provides the complete set of TypeScript definitions, allowing for validation checks in heterogeneous environments.
 
 Developers have access to the full suite of internal enums, utility types, and the high-level structural model, enabling the integration of chemical data into specialized applications with absolute structural certainty.
 
