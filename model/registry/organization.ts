@@ -22,5 +22,5 @@ export type OrganizationRegistry = Collection< {
 } >;
 
 export type OrganizationFactory = Factory< RegistryType.ORGANIZATION, Organization, {
-  orgId: OrgId
+  orgId: OrgId;
 } >;

@@ -1,5 +1,9 @@
+import type { Brand } from 'devtypes/types/util';
 import type { CountryCode } from '../../enum/base/locale';
 import type { Gender } from '../../enum/registry/person';
+import type { RegistryType } from '../../enum/registry/system';
+import type { Factory } from '../base/factory';
+import type { Collection, Distinct } from '../base/modifier';
 import type { OrgId } from './organization';
 import type { RefId } from './reference';
 
@@ -18,3 +22,13 @@ export type Person = {
   weblinks?: Weblinks;
   references?: RefId[];
 };
+
+export type PersonId = Brand< string, 'personId' >;
+
+export type PersonRegistry = Collection< {
+  [ K in PersonId ]: Distinct< Person >;
+} >;
+
+export type PersonFactory = Factory< RegistryType.PERSON, Person, {
+  personId: PersonId;
+} >;
