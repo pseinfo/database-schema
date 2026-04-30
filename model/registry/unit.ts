@@ -74,3 +74,16 @@ export type Quantity< Q extends PhysicalQuantity > = Expand< Brand< {
     [ U in BaseUnitSymbols< Q > ]: Unit< Q, U >;
   };
 }, ValidUnits[ Q ][ 'symbol' ], 'symbol', true > >;
+
+export type UnitId< Q extends PhysicalQuantity = PhysicalQuantity > = Brand<
+  [ Q, PrefixedSymbols< Q > ],
+  `unitId:${ Q }`
+>;
+
+export type UnitRegistry = Collection< {
+  [ Q in PhysicalQuantity ]?: Distinct< Quantity< Q > >;
+} >;
+
+export type UnitFactory< Q extends PhysicalQuantity > = Factory< RegistryType.UNIT, Quantity< Q >, {
+  quantity: Q;
+} >;
