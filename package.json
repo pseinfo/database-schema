@@ -81,6 +81,7 @@
     "docs": "typedoc --logLevel Verbose --options typedoc.json"
   },
   "dependencies": {
+    "@pseinfo/hp-statements": "^1.0.0",
     "devtypes": "^2.1.0"
   },
   "devDependencies": {
