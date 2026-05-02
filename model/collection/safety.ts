@@ -4,6 +4,7 @@
  * labeling, and toxicological information.
  */
 
+import type { HazardStatements } from '@pseinfo/hp-statements';
 import type {
   ADRClass, DOTClass, GHSClass, GHSPictogram, NFPACode, NFPANotice, Organism, SignalWord,
   ToxicityApplication, ToxicityOrganism, ToxicityType, WHMISClass
@@ -13,27 +14,10 @@ import type { LangGroup } from '../base/primitive';
 import type { PrimitiveProperty, StructProperty } from '../base/property';
 import type { RangeValue, SingleValue } from '../base/value';
 
-/** GHS Hazard statement code (H-statement). */
-export type HStatement = `H${ '2' | '3' | '4' | '5' }${ number }`;
-/** GHS Precautionary statement code (P-statement). */
-export type PStatement = `P${ '1' | '2' | '3' | '4' | '5' }${ number }`;
-/** Supplemental EU-specific hazard statement code. */
-export type EUHStatement = `EUH${ '0' | '2' | '3' | '4' }${ number }`;
-
 /** Kemler Code or Hazard Identification Number. */
 export type HazardIdentification = `${ 'X' | '' }${ number }`;
 /** Four-digit number identifying dangerous goods in international transport. */
 export type UNNumber = `${ '0' | '1' | '2' | '3' | '8' | '9' }${ number }`;
-
-/** Standardized phrases for describing chemical hazards and precautions. */
-export type HazardStatements = {
-  /** Globally Harmonized System (GHS) hazard statements. */
-  hazard?: HStatement[];
-  /** GHS precautionary statements for handling and storage. */
-  precautionary?: PStatement[];
-  /** Supplemental European Union hazard statements. */
-  eu?: EUHStatement[];
-};
 
 /** Fire protection association rating for emergency response. */
 export type NFPA = {
